@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}实时监控 - 化工厂危险行为检测系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    .monitor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .monitor-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .monitor-header {
+        background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .monitor-body {
+        padding: 0;
+        background: #1a1a2e;
+        min-height: 350px;
+    }
+    .monitor-body iframe {
+        width: 100%;
+        height: 350px;
+        border: none;
+    }
+    .status-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
+    .status-normal {
+        background: #d4edda;
+        color: #28a745;
+    }
+    .monitor-stats {
+        display: flex;
+        gap: 20px;
+        padding: 15px 20px;
+        background: #f8f9fa;
+    }
+    .monitor-stats span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+        color: #666;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+        grid-column: 1 / -1;
+    }
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 15px;
+        opacity: 0.3;
+    }
+    {% if not current_user.is_authenticated %}
+    .alert-info {
+        background: #cff4fc;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    {% endif %}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if not current_user.is_authenticated %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle me-2"></i>
+    请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看实时监控画面
+</div>
+{% else %}
+<h4 class="mb-4"><i class="fas fa-video me-2 text-primary"></i>实时视频监控</h4>
+
+<div class="monitor-grid" id="monitorGrid">
+    <div id="emptyState" class="empty-state">
+        <i class="fas fa-video-slash text-muted"></i>
+        <h5>暂无视频流</h5>
+        <p>请检查 cameras.json 配置文件</p>
+    </div>
+</div>
+{% endif %}
+
+{% block extra_js %}
+<script>
+    let camerasLoaded = false;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        if (camerasLoaded) return;
+        camerasLoaded = true;
+        
+        fetch('/api/cameras')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API返回数据:', data);
+                const cameras = data.cameras || [];
+                console.log('摄像头数量:', cameras.length);
+                const emptyState = document.getElementById('emptyState');
+                
+                if (cameras.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                emptyState.style.display = 'none';
+                
+                cameras.forEach(camera => {
+                    addCameraCard(camera.id, camera.name, camera.webrtc_url);
+                });
+            })
+            .catch(error => {
+                console.error('获取摄像头列表失败:', error);
+            });
+    });
+
+    function addCameraCard(id, name, webrtcUrl) {
+        const monitorGrid = document.getElementById('monitorGrid');
+        const card = document.createElement('div');
+        card.className = 'monitor-card';
+        
+        card.innerHTML = `
+            <div class="monitor-header">
+                <span><i class="fas fa-map-marker-alt me-2"></i>${name}</span>
+                <span class="status-badge status-normal"><i class="fas fa-circle me-1"></i>在线</span>
+            </div>
+            <div class="monitor-body">
+                <iframe src="${webrtcUrl}" allowfullscreen></iframe>
+            </div>
+            <div class="monitor-stats">
+                <span><i class="fas fa-video"></i>WebRTC</span>
+                <span><i class="fas fa-link"></i>${webrtcUrl}</span>
+            </div>
+        `;
+        
+        monitorGrid.appendChild(card);
+    }
+</script>
+{% endblock %}
+{% endblock %}

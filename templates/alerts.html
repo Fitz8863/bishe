@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}抓拍记录 - 化工厂危险行为检测系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    .capture-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .capture-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+    .capture-card:hover {
+        transform: translateY(-5px);
+    }
+    .capture-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #1a1a2e;
+    }
+    .capture-body {
+        padding: 15px;
+    }
+    .capture-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .capture-meta {
+        color: #7f8c8d;
+        font-size: 0.85rem;
+    }
+    .capture-meta i {
+        margin-right: 5px;
+    }
+    .capture-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .capture-badge.danger {
+        background: #ffeaaf;
+        color: #e74c3c;
+    }
+    .capture-badge.warning {
+        background: #fff3cd;
+        color: #f39c12;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+        grid-column: 1 / -1;
+    }
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 15px;
+        opacity: 0.3;
+    }
+    .refresh-btn {
+        padding: 8px 20px;
+        border-radius: 20px;
+        border: none;
+        background: #1a5f7a;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .refresh-btn:hover {
+        background: #159895;
+    }
+    .refresh-btn.loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    .refresh-btn.loading i {
+        animation: spin 0.5s ease-in-out infinite;
+        display: inline-block;
+        font-size: 1.2em;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg) scale(1); }
+        25% { transform: rotate(90deg) scale(1.2); }
+        50% { transform: rotate(180deg) scale(1); }
+        75% { transform: rotate(270deg) scale(1.2); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+    .api-info {
+        background: #e3f2fd;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .api-info code {
+        background: #fff;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    {% if not current_user.is_authenticated %}
+    .alert-info {
+        background: #cff4fc;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    {% endif %}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if not current_user.is_authenticated %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle me-2"></i>
+    请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看抓拍记录
+</div>
+{% else %}
+<h4 class="mb-4">
+    <i class="fas fa-camera me-2 text-danger"></i>抓拍记录
+    <button class="refresh-btn float-end" onclick="loadCaptures()">
+        <i class="fas fa-sync-alt me-1"></i>刷新
+    </button>
+</h4>
+
+<div class="api-info">
+    <strong><i class="fas fa-plug me-2"></i>远程设备上传接口:</strong>
+    <code>POST http://YOUR_SERVER_IP:5000/capture/upload</code>
+    <br>
+    <small class="text-muted">参数: file(图片文件), camera_id(摄像头ID), location(地点), violation_type(违规类型)</small>
+</div>
+
+<div class="capture-grid" id="captureGrid">
+    <div id="emptyState" class="empty-state">
+        <i class="fas fa-camera-slash text-muted"></i>
+        <h5>暂无抓拍记录</h5>
+        <p>远程摄像头发送的抓拍记录将会显示在这里</p>
+    </div>
+</div>
+{% endif %}
+
+{% block extra_js %}
+<script>
+    let capturesLoaded = false;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        if (capturesLoaded) return;
+        capturesLoaded = true;
+        loadCaptures();
+    });
+
+    function loadCaptures() {
+        const btn = document.querySelector('.refresh-btn');
+        btn.classList.add('loading');
+        
+        fetch('/capture/list')
+            .then(response => response.json())
+            .then(data => {
+                const captures = data.captures || [];
+                const grid = document.getElementById('captureGrid');
+                const emptyState = document.getElementById('emptyState');
+                
+                // 清除旧的卡片（保留emptyState）
+                const oldCards = grid.querySelectorAll('.capture-card');
+                oldCards.forEach(card => card.remove());
+                
+                if (captures.length === 0) {
+                    emptyState.style.display = 'block';
+                } else {
+                    emptyState.style.display = 'none';
+                    
+                    captures.forEach(capture => {
+                        const card = document.createElement('div');
+                        card.className = 'capture-card';
+                        
+                        card.innerHTML = `
+                            <img class="capture-image" src="/static/${capture.image_path}" alt="抓拍图片" onerror="this.src='/static/img/placeholder.png'">
+                            <div class="capture-body">
+                                <div class="capture-title">
+                                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                                    ${capture.violation_type || '违规行为'}
+                                </div>
+                                <div class="capture-meta">
+                                    <div><i class="fas fa-map-marker-alt"></i>${capture.location}</div>
+                                    <div><i class="fas fa-video"></i>${capture.camera_id}</div>
+                                    <div><i class="fas fa-clock"></i>${capture.capture_time}</div>
+                                </div>
+                                <span class="capture-badge danger">危险</span>
+                            </div>
+                        `;
+                        
+                        grid.appendChild(card);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('获取抓拍记录失败:', error);
+            })
+            .finally(() => {
+                btn.classList.remove('loading');
+            });
+    }
+</script>
+{% endblock %}
+{% endblock %}

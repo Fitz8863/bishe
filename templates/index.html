@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 化工厂危险行为检测系统{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4"><i class="fas fa-home me-2 text-primary"></i>欢迎使用化工厂危险行为检测系统</h2>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="icon-container mb-3">
+                                <i class="fas fa-video fa-3x text-info"></i>
+                            </div>
+                            <h5 class="card-title">实时监控</h5>
+                            <p class="card-text">实时监控各个关键区域，及时发现安全隐患</p>
+                            <a href="{{ url_for('main.monitor') }}" class="btn btn-info">进入监控</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="icon-container mb-3">
+                                <i class="fas fa-camera fa-3x text-danger"></i>
+                            </div>
+                            <h5 class="card-title">抓拍记录</h5>
+                            <p class="card-text">自动识别危险行为并及时抓拍</p>
+                            <a href="{{ url_for('main.alerts') }}" class="btn btn-danger">查看记录</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="icon-container mb-3">
+                                <i class="fas fa-cog fa-3x text-success"></i>
+                            </div>
+                            <h5 class="card-title">系统设置</h5>
+                            <p class="card-text">配置远程摄像头参数和MQTT连接</p>
+                            <a href="{{ url_for('settings.index') }}" class="btn btn-success">进入设置</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-history me-2"></i>最近抓拍</h5>
+                        </div>
+                        <div class="card-body" id="recentActivity">
+                            <div class="text-center text-muted">
+                                <i class="fas fa-spinner fa-spin me-2"></i>加载中...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-tachometer-alt me-2"></i>系统状态</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-around text-center">
+                                <div>
+                                    <div class="stat-number text-primary" id="cameraCount">-</div>
+                                    <div class="stat-label">摄像头</div>
+                                </div>
+                                <div>
+                                    <div class="stat-number text-success" id="onlineCount">-</div>
+                                    <div class="stat-label">在线</div>
+                                </div>
+                                <div>
+                                    <div class="stat-number text-warning" id="captureCount">-</div>
+                                    <div class="stat-label">抓拍记录</div>
+                                </div>
+                                <div>
+                                    <div class="stat-number text-danger" id="todayCount">-</div>
+                                    <div class="stat-label">今日抓拍</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-container {
+    display: inline-block;
+    padding: 15px;
+    background: rgba(13, 110, 253, 0.1);
+    border-radius: 50%;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.activity-icon.danger {
+    background: #ffeaaf;
+    color: #e74c3c;
+}
+
+.activity-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.activity-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.activity-meta {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+.activity-time {
+    font-size: 0.8rem;
+    color: #95a5a6;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    loadDashboardData();
+});
+
+function loadDashboardData() {
+    // 获取摄像头数量
+    fetch('/api/cameras')
+        .then(res => res.json())
+        .then(data => {
+            const cameras = data.cameras || [];
+            document.getElementById('cameraCount').textContent = cameras.length;
+            document.getElementById('onlineCount').textContent = cameras.length;
+        })
+        .catch(err => {
+            document.getElementById('cameraCount').textContent = '0';
+            document.getElementById('onlineCount').textContent = '0';
+        });
+    
+    // 获取抓拍记录数量
+    fetch('/capture/list')
+        .then(res => res.json())
+        .then(data => {
+            const captures = data.captures || [];
+            document.getElementById('captureCount').textContent = captures.length;
+            
+            // 计算今日抓拍数量
+            const today = new Date().toDateString();
+            const todayCount = captures.filter(c => new Date(c.capture_time).toDateString() === today).length;
+            document.getElementById('todayCount').textContent = todayCount;
+            
+            // 渲染最近活动
+            renderRecentActivity(captures.slice(0, 5));
+        })
+        .catch(err => {
+            document.getElementById('captureCount').textContent = '0';
+            document.getElementById('todayCount').textContent = '0';
+        });
+}
+
+function renderRecentActivity(captures) {
+    const container = document.getElementById('recentActivity');
+    
+    if (captures.length === 0) {
+        container.innerHTML = '<div class="text-center text-muted">暂无抓拍记录</div>';
+        return;
+    }
+    
+    let html = '';
+    captures.forEach(capture => {
+        const timeAgo = getTimeAgo(capture.capture_time);
+        html += `
+            <div class="activity-item">
+                <div class="activity-icon danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-title">${capture.violation_type || '违规行为'}</div>
+                    <div class="activity-meta">
+                        <i class="fas fa-map-marker-alt me-1"></i>${capture.location}
+                    </div>
+                </div>
+                <div class="activity-time">${timeAgo}</div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+function getTimeAgo(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    
+    if (seconds < 60) return '刚刚';
+    if (seconds < 3600) return Math.floor(seconds / 60) + '分钟前';
+    if (seconds < 86400) return Math.floor(seconds / 3600) + '小时前';
+    if (seconds < 604800) return Math.floor(seconds / 86400) + '天前';
+    return date.toLocaleDateString('zh-CN');
+}
+</script>
+{% endblock %}

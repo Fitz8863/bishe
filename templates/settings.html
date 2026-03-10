@@ -1,0 +1,433 @@
+{% extends "base.html" %}
+
+{% block title %}系统设置 - 化工厂危险行为检测系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    .mqtt-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .mqtt-card:hover {
+        transform: scale(1.02);
+    }
+    .mqtt-card.connected {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        color: white;
+    }
+    .mqtt-icon {
+        font-size: 2.5rem;
+    }
+    .mqtt-icon.connected {
+        color: #4ade80;
+    }
+    .mqtt-icon.disconnected {
+        color: #f87171;
+    }
+    .wifi-list-item {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .wifi-list-item:hover {
+        background: #f8f9fa;
+    }
+    .wifi-list-item:last-child {
+        border-bottom: none;
+    }
+    .wifi-name {
+        font-weight: 600;
+        color: #333;
+    }
+    .wifi-address {
+        font-size: 0.85rem;
+        color: #666;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: #e7f1ff;
+        color: #1a5f7a;
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+    }
+    {% if not current_user.is_authenticated %}
+    .alert-info {
+        background: #cff4fc;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    {% endif %}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if not current_user.is_authenticated %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle me-2"></i>
+    请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看系统设置
+</div>
+{% else %}
+<div class="row">
+    <div class="col-12">
+        <div class="mqtt-card" id="mqttCard" onclick="toggleCollapse()">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="mqtt-icon" id="mqttIcon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="ms-3">
+                        <div id="connectionStatus" style="font-size: 1.2rem; font-weight: bold;">未连接</div>
+                        <small id="connectionBroker">点击设置连接</small>
+                    </div>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-down" id="collapseIcon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="accordion" id="mqttAccordion">
+            <div class="accordion-item">
+                <div id="collapseMqtt" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3">添加新连接</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">MQTT Broker地址</label>
+                                    <input type="text" class="form-control" id="mqttBroker" placeholder="如: 127.0.0.1 或 emqx.abc.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">端口</label>
+                                    <input type="number" class="form-control" id="mqttPort" value="1883">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">用户名（可选）</label>
+                                    <input type="text" class="form-control" id="mqttUsername" placeholder="请输入用户名">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">密码（可选）</label>
+                                    <input type="password" class="form-control" id="mqttPassword" placeholder="请输入密码">
+                                </div>
+                                <button class="btn btn-success w-100" onclick="saveAndConnect()">
+                                    <i class="fas fa-plug me-2"></i>连接
+                                </button>
+                            </div>
+                            <div class="col-md-6 d-flex flex-column">
+                                <h6 class="fw-bold mb-3">连接记录</h6>
+                                <div id="wifiList" class="flex-grow-1" style="max-height: 340px; overflow-y: auto;">
+                                    <div class="text-center text-muted py-3">
+                                        <i class="fas fa-server me-2"></i>暂无连接记录
+                                    </div>
+                                </div>
+                                <div class="text-end mt-2">
+                                    <button class="btn btn-danger w-100" onclick="disconnectMqtt()">
+                                        <i class="fas fa-plug me-2"></i>断开连接
+                                    </button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <h5 class="mb-3"><i class="fas fa-video me-2"></i>远程摄像头参数设置</h5>
+            <div id="cameraConfigSection">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% block extra_js %}
+<script>
+let settingsLoaded = false;
+let isMqttConnected = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (settingsLoaded) return;
+    settingsLoaded = true;
+    
+    checkConnectionStatus();
+    loadWifiList();
+});
+
+function checkConnectionStatus() {
+    fetch('/settings/api/mqtt/status')
+        .then(res => res.json())
+        .then(data => {
+            isMqttConnected = data.connected;
+            if (data.connected) {
+                updateUI(true, data.broker, data.port);
+                renderCameraConfigSection(true);
+            } else {
+                updateUI(false);
+                renderCameraConfigSection(false);
+            }
+        });
+}
+
+function renderCameraConfigSection(connected) {
+    const section = document.getElementById('cameraConfigSection');
+    if (!connected) {
+        section.innerHTML = `
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
+            </div>
+        `;
+    } else {
+        section.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">选择摄像头</h6>
+                            <select class="form-select mb-3" id="cameraSelect">
+                                <option value="">请选择摄像头</option>
+                            </select>
+                            
+                            <h6 class="fw-bold mb-3">阈值设置</h6>
+                            <div class="mb-3">
+                                <label class="form-label">置信度阈值 (0-1)</label>
+                                <input type="number" class="form-control" id="confidenceThreshold" value="0.7" step="0.1" min="0" max="1">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">检测框阈值 (0-1)</label>
+                                <input type="number" class="form-control" id="iouThreshold" value="0.5" step="0.1" min="0" max="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">缩放设置</h6>
+                            <div class="mb-3">
+                                <label class="form-label">缩放比例 (0.5-2.0)</label>
+                                <input type="number" class="form-control" id="scaleRatio" value="1.0" min="0.5" max="2.0" step="0.1">
+                            </div>
+                            
+                        </div>
+                    </div>
+                                </select>
+                            </div>
+                            <button class="btn btn-success w-100 mt-3" onclick="sendCameraConfig()">
+                                <i class="fas fa-paper-plane me-2"></i>发送配置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // 加载摄像头列表
+        loadCameraList();
+    }
+}
+
+function loadCameraList() {
+    fetch('/api/cameras')
+        .then(res => res.json())
+        .then(data => {
+            const select = document.getElementById('cameraSelect');
+            select.innerHTML = '<option value="">请选择摄像头</option>';
+            const cameras = data.cameras || [];
+            cameras.forEach(cam => {
+                const option = document.createElement('option');
+                option.value = cam.id;
+                option.textContent = cam.name || cam.id;
+                select.appendChild(option);
+            });
+        });
+}
+
+function sendCameraConfig() {
+    const camera_id = document.getElementById('cameraSelect').value;
+    if (!camera_id) {
+        alert('请选择摄像头');
+        return;
+    }
+    
+    const config = {
+        camera_id: camera_id,
+        confidence_threshold: parseFloat(document.getElementById('confidenceThreshold').value),
+        iou_threshold: parseFloat(document.getElementById('iouThreshold').value),
+        scale_ratio: parseFloat(document.getElementById('scaleRatio').value)
+    };
+    
+    fetch('/settings/api/camera/config', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            camera_id: camera_id,
+            config_type: 'parameters',
+            config_value: config
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.message) {
+            alert('配置发送成功!');
+        } else {
+            alert('配置发送失败: ' + data.error);
+        }
+    })
+    .catch(err => {
+        alert('发送失败: ' + err);
+    });
+}
+
+function loadWifiList() {
+    fetch('/settings/api/mqtt/configs')
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById('wifiList');
+            const configs = data.configs || [];
+            
+            if (configs.length === 0) {
+                list.innerHTML = '<div class="text-center text-muted py-4"><i class="fas fa-wifi me-2"></i>暂无连接记录</div>';
+                return;
+            }
+            
+            let html = '';
+            configs.forEach(config => {
+                html += `
+                    <div class="wifi-list-item" ondblclick="connectToWifi('${config.broker}', ${config.port}, '${config.username || ''}', ${config.is_active})">
+                        <div class="wifi-name">${config.broker}</div>
+                        <div class="wifi-address">端口: ${config.port}</div>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+        });
+}
+
+function connectToWifi(broker, port, username, isActive) {
+    if (!broker) return;
+    
+    fetch('/settings/api/mqtt/connect', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            broker: broker,
+            port: port,
+            username: username,
+            password: '',
+            save: false
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.connected) {
+            updateUI(true, broker, port);
+            alert('连接成功!');
+        } else {
+            document.getElementById('mqttBroker').value = broker;
+            document.getElementById('mqttPort').value = port;
+            document.getElementById('mqttUsername').value = username;
+            new bootstrap.Collapse(document.getElementById('collapseMqtt')).show();
+            alert('该连接需要密码，请输入密码后连接');
+        }
+    });
+}
+
+function saveAndConnect() {
+    const broker = document.getElementById('mqttBroker').value;
+    const port = parseInt(document.getElementById('mqttPort').value) || 1883;
+    const username = document.getElementById('mqttUsername').value;
+    const password = document.getElementById('mqttPassword').value;
+    
+    if (!broker) {
+        alert('请输入MQTT服务器地址');
+        return;
+    }
+    
+    fetch('/settings/api/mqtt/connect', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            broker: broker,
+            port: port,
+            username: username,
+            password: password,
+            save: true
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.connected) {
+            updateUI(true, broker, port);
+            loadWifiList();
+            alert('连接成功!');
+        } else {
+            alert('连接失败: ' + data.error);
+        }
+    })
+    .catch(err => {
+        alert('连接失败: ' + err);
+    });
+}
+
+function disconnectMqtt() {
+    fetch('/settings/api/mqtt/disconnect', {
+        method: 'POST'
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.message) {
+            updateUI(false);
+            renderCameraConfigSection(false);
+            alert('已断开连接');
+        }
+    })
+    .catch(err => {
+        alert('断开失败: ' + err);
+    });
+}
+
+function toggleCollapse() {
+    const collapse = document.getElementById('collapseMqtt');
+    new bootstrap.Collapse(collapse).toggle();
+}
+
+function updateUI(connected, broker, port) {
+    const mqttCard = document.getElementById('mqttCard');
+    const mqttIcon = document.getElementById('mqttIcon');
+    const connectionStatus = document.getElementById('connectionStatus');
+    const connectionBroker = document.getElementById('connectionBroker');
+    
+    if (connected) {
+        mqttCard.classList.add('connected');
+        mqttIcon.className = 'mqtt-icon connected';
+        mqttIcon.innerHTML = '<i class="fas fa-server"></i>';
+        connectionStatus.textContent = '已连接';
+        connectionBroker.textContent = broker;
+        isMqttConnected = true;
+        renderCameraConfigSection(true);
+    } else {
+        mqttCard.classList.remove('connected');
+        mqttIcon.className = 'mqtt-icon disconnected';
+        mqttIcon.innerHTML = '<i class="fas fa-server"></i>';
+        connectionStatus.textContent = '未连接';
+        connectionBroker.textContent = '点击设置连接';
+        isMqttConnected = false;
+        renderCameraConfigSection(false);
+    }
+}
+</script>
+{% endblock %}
+{% endblock %}

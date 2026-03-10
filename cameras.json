@@ -1,0 +1,9 @@
+{
+    "cameras": [
+        {
+            "id": "001",
+            "name": "生产车间A区",
+            "webrtc_url": "http://fnas:8889/jetson1"
+        }
+    ]
+}
