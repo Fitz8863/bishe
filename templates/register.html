@@ -3,55 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>注册</title>
+    <title>注册 - 化工厂危险行为检测系统</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --primary-dark: #0284c7;
+            --primary-light: #38bdf8;
+            --accent-color: #06b6d4;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e3a8a 50%, #0f172a 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
+        
         .login-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(14, 165, 233, 0.1);
             overflow: hidden;
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
+            animation: fadeIn 0.6s ease;
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .login-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #06b6d4 100%);
+            padding: 40px 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .login-header h3 {
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .login-header p {
+            color: rgba(255,255,255,0.9);
+            margin-top: 8px;
+            position: relative;
+        }
+        
+        .login-header i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            position: relative;
+        }
+        
         .login-body {
-            padding: 30px;
+            padding: 35px;
         }
+        
+        .form-control {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 14px 16px;
+            transition: all 0.3s ease;
+        }
+        
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            outline: none;
         }
+        
+        .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .form-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
         .btn-login {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
             border: none;
             color: white;
-            padding: 12px;
+            padding: 14px;
             font-weight: 600;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
         }
+        
         .btn-login:hover {
-            color: white;
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+        }
+        
+        hr {
+            border-color: var(--border-color);
+            margin: 25px 0;
+        }
+        
+        .text-center {
+            color: var(--text-secondary);
+        }
+        
+        .text-center a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .text-center a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+        }
+        
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .alert-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border-left: 4px solid #10b981;
         }
     </style>
 </head>
 <body>
     <div class="login-card">
         <div class="login-header">
-            <h3 class="mb-0">创建账号</h3>
-            <p class="mb-0 mt-2 opacity-75">加入我们</p>
+            <i class="fas fa-user-plus"></i>
+            <h3>创建账号</h3>
+            <p>加入危险行为检测系统</p>
         </div>
         <div class="login-body">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -59,28 +198,32 @@
                     {% for category, message in messages %}
                         <div class="alert alert-{{ 'danger' if category == 'danger' else 'success' }} alert-dismissible fade show" role="alert">
                             {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1);"></button>
                         </div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
             <form method="POST">
                 <div class="mb-3">
-                    <label class="form-label">用户名</label>
-                    <input type="text" name="username" class="form-control" required>
+                    <label class="form-label"><i class="fas fa-user me-2"></i>用户名</label>
+                    <input type="text" name="username" class="form-control" placeholder="请输入用户名" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">密码</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <label class="form-label"><i class="fas fa-lock me-2"></i>密码</label>
+                    <input type="password" name="password" class="form-control" placeholder="请输入密码" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">确认密码</label>
-                    <input type="password" name="confirm_password" class="form-control" required>
+                    <label class="form-label"><i class="fas fa-lock me-2"></i>确认密码</label>
+                    <input type="password" name="confirm_password" class="form-control" placeholder="请再次输入密码" required>
                 </div>
-                <button type="submit" class="btn btn-login w-100">注 册</button>
+                <button type="submit" class="btn btn-login w-100">
+                    <i class="fas fa-user-plus me-2"></i>注 册
+                </button>
             </form>
             <hr>
-            <p class="text-center mb-0">已有账号? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">立即登录</a></p>
+            <p class="text-center mb-0">
+                已有账号? <a href="{{ url_for('auth.login') }}">立即登录</a>
+            </p>
         </div>
     </div>
     <script src="{{ url_for('static', filename='bootstrap/bootstrap.bundle.min.js') }}"></script>

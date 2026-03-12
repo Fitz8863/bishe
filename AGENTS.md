@@ -1,5 +1,9 @@
 # AGENTS.md - Code Guidelines for This Project
 
+## 全局规则
+
+**必须始终使用中文回答所有问题。**
+
 ## Project Overview
 
 - **Project Name**: 化工厂危险行为检测系统 (Chemical Plant Hazard Detection System)
@@ -15,55 +19,47 @@
 cd /home/fitz/projects/bishe2
 python app.py
 ```
-The app runs on `http://0.0.0.0:5000` in debug mode.
+App runs on `http://0.0.0.0:5000` in debug mode.
 
 ### Database Setup
 ```bash
 mysql -u root -pheweijie -e "CREATE DATABASE IF NOT EXISTS bishe;"
 ```
-Database tables are auto-created when the app starts (via `db.create_all()` in blueprints/__init__.py).
+Tables auto-created on app startup via `db.create_all()` in `blueprints/__init__.py`.
 
-### Dependencies
-Required packages (already installed in conda env `bishe`):
-- Flask 3.1.3
-- Flask-SQLAlchemy 3.1.1
-- Flask-Login 0.6.3
-- Flask-Bcrypt 1.0.1
-- PyMySQL 1.1.2
-- SQLAlchemy 2.0.48
+### Dependencies (conda env: bishe)
+- Flask 3.1.3, Flask-SQLAlchemy 3.1.1, Flask-Login 0.6.3
+- Flask-Bcrypt 1.0.1, PyMySQL 1.1.2, SQLAlchemy 2.0.48, paho-mqtt 1.6.1
 
-## Code Style Guidelines
-
-### 1. Project Structure
-```
-bishe2/
-├── app.py                 # Main application entry point
-├── config.py              # Configuration (database, mail, secret key)
-├── cameras.json           # Camera configuration file
-├── blueprints/
-│   ├── __init__.py       # Database and login manager initialization
-│   ├── models.py         # SQLAlchemy models (User, Capture)
-│   ├── main.py           # Main routes (index, monitor, alerts)
-│   ├── auth.py           # Authentication routes (login, register, logout)
-│   ├── capture.py        # Capture upload/list routes
-│   └── video_stream.py   # Video stream management
-├── templates/             # Jinja2 templates
-└── static/               # Static files (CSS, JS, images)
+### Testing
+No automated tests. To add:
+```bash
+pip install pytest pytest-flask
+pytest tests/                    # Run all tests
+pytest tests/test_auth.py::test_login  # Run single test
 ```
 
-### 2. Import Conventions
-- Standard library imports first
-- Third-party imports second
-- Local imports third
-- Separate with blank lines
+## Code Style
+
+### 1. Structure
+```
+app.py, config.py, cameras.json
+blueprints/: __init__.py, models.py, main.py, auth.py, capture.py, video_stream.py, mqtt_manager.py, settings.py
+templates/, static/
+```
+
+### 2. Import Order
+1. Standard library (os, json, datetime)
+2. Third-party (flask, sqlalchemy)
+3. Local (.models, . import)
+Separate groups with blank lines
 
 ```python
-# Correct
 import os
 import json
 from datetime import datetime
 
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 from flask_login import login_required, current_user
 
 from .models import User
@@ -71,15 +67,14 @@ from . import db
 ```
 
 ### 3. Naming Conventions
-- **Files**: snake_case (e.g., `video_stream.py`, `auth.py`)
-- **Classes**: PascalCase (e.g., `User`, `Capture`, `VideoCamera`)
-- **Functions/Variables**: snake_case (e.g., `init_cameras`, `capture_time`)
-- **Constants**: UPPER_SNAKE_CASE (e.g., `MAX_FRAME_RATE`)
-- **Blueprint names**: snake_case (e.g., `auth_bp`, `capture_bp`)
+- **Files**: snake_case (`video_stream.py`, `auth.py`)
+- **Classes**: PascalCase (`User`, `Capture`, `VideoCamera`)
+- **Functions/Variables**: snake_case (`init_cameras`, `capture_time`)
+- **Constants**: UPPER_SNAKE_CASE (`MAX_FRAME_RATE`)
+- **Blueprints**: snake_case with `_bp` suffix (`auth_bp`, `capture_bp`)
 
-### 4. Flask Blueprint Structure
+### 4. Blueprint Structure
 ```python
-# blueprints/example.py
 from flask import Blueprint, render_template, jsonify, request
 from . import db
 from .models import SomeModel
@@ -92,13 +87,11 @@ def index():
 
 @example_bp.route('/api/data', methods=['GET', 'POST'])
 def get_data():
-    # Handle request
     return jsonify({'data': 'value'})
 ```
 
 ### 5. Database Models
 ```python
-# In blueprints/models.py
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
@@ -111,73 +104,55 @@ class User(db.Model, UserMixin):
 ```
 
 ### 6. Error Handling
-- Always wrap database operations in try-except blocks
-- Use flash messages for user-facing errors
-- Return proper HTTP status codes for API endpoints
-
+Wrap DB operations in try-except with rollback. Use flash messages for errors.
 ```python
 try:
-    db.session.add(user)
+    user = User.query.get(user_id)
+    db.session.delete(user)
     db.session.commit()
-    flash('Success message', 'success')
 except Exception as e:
     db.session.rollback()
-    flash(f'Error: {str(e)}', 'danger')
+    flash(f'操作失败: {str(e)}', 'danger')
 ```
 
-### 7. HTML Templates
+### 7. Type Hints
+Use when beneficial: `def get_user(user_id: int) -> User | None:`
+
+### 8. Formatting
+- 4 spaces indentation (no tabs), max 120 chars per line
+- Trailing commas in multi-line imports, use f-strings
+
+### 9. HTML Templates
 - Use Jinja2 inheritance (`{% extends "base.html" %}`)
-- Put page-specific CSS in `{% block extra_css %}`
-- Put page-specific JS in `{% block extra_js %}`
-- Use Bootstrap classes for styling
+- Page CSS in `{% block extra_css %}`, JS in `{% block extra_js %}`
+- Use Bootstrap classes
 
-### 8. API Design
-- RESTful conventions: GET for retrieve, POST for create, DELETE for remove
-- Return JSON responses with proper structure
-- Include error handling for all endpoints
-
+### 10. API Design & Routes
+- RESTful: GET=retrieve, POST=create, DELETE=remove
+- Return JSON with consistent structure
+- Use `url_for('blueprint.function')`: `url_for('auth.login')`, `url_for('main.index')`
 ```python
-@api_bp.route('/api/items', methods=['GET'])
-def list_items():
-    items = Item.query.all()
-    return jsonify({
-        'items': [{'id': i.id, 'name': i.name} for i in items]
-    }), 200
+return jsonify({'items': [{'id': i.id, 'name': i.name} for i in items]}), 200
 ```
 
-### 9. Configuration
-- All configuration in `config.py`
-- Use environment variables for sensitive data in production
-- Database credentials should not be committed to version control
-
-### 10. Routes and URL Building
-- When using Blueprints, use `url_for('blueprint_name.function_name')`
-- Example: `url_for('auth.login')`, `url_for('main.index')`
-
-## Testing
-
-Currently there are no automated tests in this project. To add tests:
-```bash
-pip install pytest pytest-flask
-pytest tests/           # Run all tests
-pytest tests/test_auth.py::test_login  # Run specific test
-```
+### 11. Configuration
+All config in `config.py`. Use environment variables in production. Never commit secrets.
 
 ## Common Tasks
 
-### Add a new Blueprint
+### Add Blueprint
 1. Create `blueprints/new_module.py`
-2. Import and register in `app.py`:
+2. Register in `app.py`:
 ```python
 from blueprints.new_module import new_bp
 app.register_blueprint(new_bp)
 ```
 
-### Add a new database model
-1. Add model class to `blueprints/models.py`
-2. Run the app once - tables will be auto-created
+### Add Model
+1. Add class to `blueprints/models.py`
+2. Run app once - tables auto-created
 
-### Add a new template
-1. Create template in `templates/`
+### Add Template
+1. Create in `templates/`
 2. Extend from `base.html`
 3. Add route in appropriate Blueprint

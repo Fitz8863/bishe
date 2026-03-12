@@ -6,43 +6,46 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h2 class="mb-4"><i class="fas fa-home me-2 text-primary"></i>欢迎使用化工厂危险行为检测系统</h2>
+            <h2 class="mb-4">
+                <i class="fas fa-shield-alt me-2" style="color: var(--primary-light);"></i>
+                欢迎使用化工厂危险行为检测系统
+            </h2>
             
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card h-100 glow-border">
                         <div class="card-body text-center">
-                            <div class="icon-container mb-3">
-                                <i class="fas fa-video fa-3x text-info"></i>
+                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);">
+                                <i class="fas fa-video fa-3x" style="color: var(--primary-light);"></i>
                             </div>
-                            <h5 class="card-title">实时监控</h5>
-                            <p class="card-text">实时监控各个关键区域，及时发现安全隐患</p>
+                            <h5 class="card-title" style="color: var(--text-primary);">实时监控</h5>
+                            <p class="card-text" style="color: var(--text-secondary);">实时监控各个关键区域，及时发现安全隐患</p>
                             <a href="{{ url_for('main.monitor') }}" class="btn btn-info">进入监控</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card h-100 glow-border">
                         <div class="card-body text-center">
-                            <div class="icon-container mb-3">
-                                <i class="fas fa-camera fa-3x text-danger"></i>
+                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);">
+                                <i class="fas fa-camera fa-3x" style="color: #f87171;"></i>
                             </div>
-                            <h5 class="card-title">抓拍记录</h5>
-                            <p class="card-text">自动识别危险行为并及时抓拍</p>
+                            <h5 class="card-title" style="color: var(--text-primary);">抓拍记录</h5>
+                            <p class="card-text" style="color: var(--text-secondary);">自动识别危险行为并及时抓拍</p>
                             <a href="{{ url_for('main.alerts') }}" class="btn btn-danger">查看记录</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card h-100 glow-border">
                         <div class="card-body text-center">
-                            <div class="icon-container mb-3">
-                                <i class="fas fa-cog fa-3x text-success"></i>
+                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);">
+                                <i class="fas fa-cog fa-3x" style="color: #34d399;"></i>
                             </div>
-                            <h5 class="card-title">系统设置</h5>
-                            <p class="card-text">配置远程摄像头参数和MQTT连接</p>
+                            <h5 class="card-title" style="color: var(--text-primary);">系统设置</h5>
+                            <p class="card-text" style="color: var(--text-secondary);">配置远程摄像头参数和MQTT连接</p>
                             <a href="{{ url_for('settings.index') }}" class="btn btn-success">进入设置</a>
                         </div>
                     </div>
@@ -50,10 +53,10 @@
             </div>
             
             <div class="row mt-4">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0"><i class="fas fa-history me-2"></i>最近抓拍</h5>
+                            <h5 class="mb-0"><i class="fas fa-history me-2" style="color: var(--primary-light);"></i>最近抓拍</h5>
                         </div>
                         <div class="card-body" id="recentActivity">
                             <div class="text-center text-muted">
@@ -63,27 +66,27 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0"><i class="fas fa-tachometer-alt me-2"></i>系统状态</h5>
+                            <h5 class="mb-0"><i class="fas fa-tachometer-alt me-2" style="color: var(--accent-color);"></i>系统状态</h5>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-around text-center">
                                 <div>
-                                    <div class="stat-number text-primary" id="cameraCount">-</div>
+                                    <div class="stat-number" id="cameraCount">-</div>
                                     <div class="stat-label">摄像头</div>
                                 </div>
                                 <div>
-                                    <div class="stat-number text-success" id="onlineCount">-</div>
+                                    <div class="stat-number" style="background: linear-gradient(135deg, #34d399 0%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="onlineCount">-</div>
                                     <div class="stat-label">在线</div>
                                 </div>
                                 <div>
-                                    <div class="stat-number text-warning" id="captureCount">-</div>
+                                    <div class="stat-number" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="captureCount">-</div>
                                     <div class="stat-label">抓拍记录</div>
                                 </div>
                                 <div>
-                                    <div class="stat-number text-danger" id="todayCount">-</div>
+                                    <div class="stat-number" style="background: linear-gradient(135deg, #f87171 0%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="todayCount">-</div>
                                     <div class="stat-label">今日抓拍</div>
                                 </div>
                             </div>
@@ -99,38 +102,20 @@
 {% block extra_css %}
 <style>
 .card {
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    height: 100%;
-}
-
-.card:hover {
-    transform: translateY(-5px);
+    border-radius: 12px;
 }
 
 .icon-container {
     display: inline-block;
-    padding: 15px;
-    background: rgba(13, 110, 253, 0.1);
+    padding: 20px;
     border-radius: 50%;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.stat-label {
-    color: #6c757d;
-    font-size: 0.9rem;
 }
 
 .activity-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .activity-item:last-child {
@@ -138,24 +123,21 @@
 }
 
 .activity-icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 12px;
+    margin-right: 15px;
     flex-shrink: 0;
-}
-
-.activity-icon.danger {
-    background: #ffeaaf;
-    color: #e74c3c;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+    color: #f87171;
 }
 
 .activity-icon img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -167,8 +149,8 @@
 
 .activity-title {
     font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 2px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -176,12 +158,12 @@
 
 .activity-meta {
     font-size: 0.85rem;
-    color: #7f8c8d;
+    color: var(--text-secondary);
 }
 
 .activity-time {
     font-size: 0.8rem;
-    color: #95a5a6;
+    color: var(--text-secondary);
     white-space: nowrap;
     margin-left: 10px;
 }
@@ -195,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadDashboardData() {
-    // 获取摄像头数量
     fetch('/api/cameras')
         .then(res => res.json())
         .then(data => {
@@ -208,19 +189,16 @@ function loadDashboardData() {
             document.getElementById('onlineCount').textContent = '0';
         });
     
-    // 获取抓拍记录数量
     fetch('/capture/list')
         .then(res => res.json())
         .then(data => {
             const captures = data.captures || [];
             document.getElementById('captureCount').textContent = captures.length;
             
-            // 计算今日抓拍数量
             const today = new Date().toDateString();
             const todayCount = captures.filter(c => new Date(c.capture_time).toDateString() === today).length;
             document.getElementById('todayCount').textContent = todayCount;
             
-            // 渲染最近活动
             renderRecentActivity(captures.slice(0, 5));
         })
         .catch(err => {
@@ -241,8 +219,8 @@ function renderRecentActivity(captures) {
     captures.forEach(capture => {
         const timeAgo = getTimeAgo(capture.capture_time);
         html += `
-            <div class="activity-item">
-                <div class="activity-icon danger">
+            <div class="activity-item fade-in">
+                <div class="activity-icon">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="activity-content">

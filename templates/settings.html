@@ -5,18 +5,22 @@
 {% block extra_css %}
 <style>
     .mqtt-card {
-        background: white;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 15px;
         padding: 25px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
     .mqtt-card:hover {
         transform: scale(1.02);
+        box-shadow: 0 8px 25px rgba(14, 165, 233, 0.15);
+        border-color: var(--primary-color);
     }
     .mqtt-card.connected {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
         color: white;
     }
     .mqtt-icon {
@@ -30,39 +34,78 @@
     }
     .wifi-list-item {
         padding: 12px 15px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--border-color);
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.2s ease;
+        border-radius: 8px;
+        margin-bottom: 5px;
     }
     .wifi-list-item:hover {
-        background: #f8f9fa;
+        background: var(--bg-card-hover);
     }
     .wifi-list-item:last-child {
         border-bottom: none;
     }
     .wifi-name {
         font-weight: 600;
-        color: #333;
+        color: var(--text-primary);
     }
     .wifi-address {
         font-size: 0.85rem;
-        color: #666;
+        color: var(--text-secondary);
+    }
+    .accordion-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 15px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+    .accordion-button {
+        background: var(--bg-card);
+        color: var(--text-primary);
+        border: none;
+        padding: 20px;
+        font-weight: 600;
     }
     .accordion-button:not(.collapsed) {
-        background-color: #e7f1ff;
-        color: #1a5f7a;
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+        color: var(--primary-light);
+        box-shadow: none;
     }
     .accordion-button:focus {
         box-shadow: none;
+        border: none;
+    }
+    .accordion-button::after {
+        filter: invert(1);
+    }
+    .accordion-body {
+        background: var(--bg-card);
+        border-top: 1px solid var(--border-color);
+        padding: 25px;
+        color: var(--text-primary);
     }
     {% if not current_user.is_authenticated %}
     .alert-info {
-        background: #cff4fc;
+        background: rgba(14, 165, 233, 0.15);
         border: none;
         border-radius: 10px;
         padding: 20px;
+        color: var(--primary-light);
+    }
+    .alert-info a {
+        color: var(--accent-color);
+        font-weight: 600;
     }
     {% endif %}
+    .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+    }
+    .card-body {
+        color: var(--text-primary);
+    }
 </style>
 {% endblock %}
 
@@ -75,6 +118,9 @@
 {% else %}
 <div class="row">
     <div class="col-12">
+        <h4 class="mb-4">
+            <i class="fas fa-cog me-2" style="color: var(--primary-light);"></i>系统设置
+        </h4>
         <div class="mqtt-card" id="mqttCard" onclick="toggleCollapse()">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
@@ -83,7 +129,7 @@
                     </div>
                     <div class="ms-3">
                         <div id="connectionStatus" style="font-size: 1.2rem; font-weight: bold;">未连接</div>
-                        <small id="connectionBroker">点击设置连接</small>
+                        <small id="connectionBroker" class="opacity-75">点击设置连接</small>
                     </div>
                 </div>
                 <div>
@@ -102,7 +148,9 @@
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="fw-bold mb-3">添加新连接</h6>
+                                <h6 class="fw-bold mb-3" style="color: var(--primary-light);">
+                                    <i class="fas fa-plus-circle me-2"></i>添加新连接
+                                </h6>
                                 <div class="mb-3">
                                     <label class="form-label">MQTT Broker地址</label>
                                     <input type="text" class="form-control" id="mqttBroker" placeholder="如: 127.0.0.1 或 emqx.abc.com">
@@ -124,7 +172,9 @@
                                 </button>
                             </div>
                             <div class="col-md-6 d-flex flex-column">
-                                <h6 class="fw-bold mb-3">连接记录</h6>
+                                <h6 class="fw-bold mb-3" style="color: var(--accent-color);">
+                                    <i class="fas fa-history me-2"></i>连接记录
+                                </h6>
                                 <div id="wifiList" class="flex-grow-1" style="max-height: 340px; overflow-y: auto;">
                                     <div class="text-center text-muted py-3">
                                         <i class="fas fa-server me-2"></i>暂无连接记录
@@ -136,7 +186,6 @@
                                     </button>
                                 </div>
                             </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,9 +195,11 @@
     
     <div class="row mt-4">
         <div class="col-12">
-            <h5 class="mb-3"><i class="fas fa-video me-2"></i>远程摄像头参数设置</h5>
+            <h5 class="mb-3" style="color: var(--text-primary);">
+                <i class="fas fa-video me-2" style="color: var(--primary-light);"></i>远程摄像头参数设置
+            </h5>
             <div id="cameraConfigSection">
-                <div class="alert alert-warning">
+                <div class="alert alert-warning" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; color: #fbbf24;">
                     <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
                 </div>
             </div>
@@ -189,7 +240,7 @@ function renderCameraConfigSection(connected) {
     const section = document.getElementById('cameraConfigSection');
     if (!connected) {
         section.innerHTML = `
-            <div class="alert alert-warning">
+            <div class="alert alert-warning" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; color: #fbbf24;">
                 <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
             </div>
         `;
@@ -199,12 +250,12 @@ function renderCameraConfigSection(connected) {
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="fw-bold mb-3">选择摄像头</h6>
+                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">选择摄像头</h6>
                             <select class="form-select mb-3" id="cameraSelect">
                                 <option value="">请选择摄像头</option>
                             </select>
                             
-                            <h6 class="fw-bold mb-3">阈值设置</h6>
+                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">阈值设置</h6>
                             <div class="mb-3">
                                 <label class="form-label">置信度阈值 (0-1)</label>
                                 <input type="number" class="form-control" id="confidenceThreshold" value="0.7" step="0.1" min="0" max="1">
@@ -215,26 +266,20 @@ function renderCameraConfigSection(connected) {
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h6 class="fw-bold mb-3">缩放设置</h6>
+                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">缩放设置</h6>
                             <div class="mb-3">
                                 <label class="form-label">缩放比例 (0.5-2.0)</label>
                                 <input type="number" class="form-control" id="scaleRatio" value="1.0" min="0.5" max="2.0" step="0.1">
                             </div>
-                            
                         </div>
                     </div>
-                                </select>
-                            </div>
-                            <button class="btn btn-success w-100 mt-3" onclick="sendCameraConfig()">
-                                <i class="fas fa-paper-plane me-2"></i>发送配置
-                            </button>
-                        </div>
-                    </div>
+                    <button class="btn btn-success w-100 mt-3" onclick="sendCameraConfig()">
+                        <i class="fas fa-paper-plane me-2"></i>发送配置
+                    </button>
                 </div>
             </div>
         `;
         
-        // 加载摄像头列表
         loadCameraList();
     }
 }

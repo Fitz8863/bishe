@@ -10,38 +10,42 @@
         gap: 20px;
     }
     .capture-card {
-        background: white;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
     }
     .capture-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15);
+        border-color: var(--primary-color);
     }
     .capture-image {
         width: 100%;
         height: 200px;
         object-fit: cover;
-        background: #1a1a2e;
+        background: #0a0a0f;
     }
     .capture-body {
         padding: 15px;
     }
     .capture-title {
         font-weight: bold;
-        color: #2c3e50;
+        color: var(--text-primary);
         margin-bottom: 8px;
         display: flex;
         align-items: center;
         gap: 8px;
     }
     .capture-meta {
-        color: #7f8c8d;
+        color: var(--text-secondary);
         font-size: 0.85rem;
     }
     .capture-meta i {
         margin-right: 5px;
+        color: var(--primary-light);
     }
     .capture-badge {
         display: inline-block;
@@ -52,35 +56,46 @@
         margin-top: 10px;
     }
     .capture-badge.danger {
-        background: #ffeaaf;
-        color: #e74c3c;
+        background: rgba(239, 68, 68, 0.2);
+        color: #f87171;
     }
     .capture-badge.warning {
-        background: #fff3cd;
-        color: #f39c12;
+        background: rgba(245, 158, 11, 0.2);
+        color: #fbbf24;
     }
     .empty-state {
         text-align: center;
         padding: 60px 20px;
-        color: #6c757d;
+        color: var(--text-secondary);
         grid-column: 1 / -1;
+        background: var(--bg-card);
+        border-radius: 15px;
+        border: 1px solid var(--border-color);
     }
     .empty-state i {
         font-size: 4rem;
         margin-bottom: 15px;
-        opacity: 0.3;
+        background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.5;
+    }
+    .empty-state h5 {
+        color: var(--text-primary);
     }
     .refresh-btn {
         padding: 8px 20px;
         border-radius: 20px;
         border: none;
-        background: #1a5f7a;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
         color: white;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
     }
     .refresh-btn:hover {
-        background: #159895;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
     }
     .refresh-btn.loading {
         pointer-events: none;
@@ -89,33 +104,39 @@
     .refresh-btn.loading i {
         animation: spin 0.5s ease-in-out infinite;
         display: inline-block;
-        font-size: 1.2em;
     }
     @keyframes spin {
-        0% { transform: rotate(0deg) scale(1); }
-        25% { transform: rotate(90deg) scale(1.2); }
-        50% { transform: rotate(180deg) scale(1); }
-        75% { transform: rotate(270deg) scale(1.2); }
-        100% { transform: rotate(360deg) scale(1); }
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
     .api-info {
-        background: #e3f2fd;
+        background: rgba(14, 165, 233, 0.1);
+        border: 1px solid rgba(14, 165, 233, 0.3);
         border-radius: 10px;
         padding: 15px;
         margin-bottom: 20px;
     }
     .api-info code {
-        background: #fff;
+        background: var(--bg-dark);
         padding: 2px 8px;
         border-radius: 4px;
         font-size: 0.9rem;
+        color: var(--primary-light);
+    }
+    .api-info strong {
+        color: var(--text-primary);
     }
     {% if not current_user.is_authenticated %}
     .alert-info {
-        background: #cff4fc;
+        background: rgba(14, 165, 233, 0.15);
         border: none;
         border-radius: 10px;
         padding: 20px;
+        color: var(--primary-light);
+    }
+    .alert-info a {
+        color: var(--accent-color);
+        font-weight: 600;
     }
     {% endif %}
 </style>
@@ -129,14 +150,14 @@
 </div>
 {% else %}
 <h4 class="mb-4">
-    <i class="fas fa-camera me-2 text-danger"></i>抓拍记录
+    <i class="fas fa-bell me-2" style="color: #f87171;"></i>抓拍记录
     <button class="refresh-btn float-end" onclick="loadCaptures()">
         <i class="fas fa-sync-alt me-1"></i>刷新
     </button>
 </h4>
 
 <div class="api-info">
-    <strong><i class="fas fa-plug me-2"></i>远程设备上传接口:</strong>
+    <strong><i class="fas fa-plug me-2" style="color: var(--primary-light);"></i>远程设备上传接口:</strong>
     <code>POST http://YOUR_SERVER_IP:5000/capture/upload</code>
     <br>
     <small class="text-muted">参数: file(图片文件), camera_id(摄像头ID), location(地点), violation_type(违规类型)</small>
@@ -144,7 +165,7 @@
 
 <div class="capture-grid" id="captureGrid">
     <div id="emptyState" class="empty-state">
-        <i class="fas fa-camera-slash text-muted"></i>
+        <i class="fas fa-camera-slash"></i>
         <h5>暂无抓拍记录</h5>
         <p>远程摄像头发送的抓拍记录将会显示在这里</p>
     </div>
@@ -172,7 +193,6 @@
                 const grid = document.getElementById('captureGrid');
                 const emptyState = document.getElementById('emptyState');
                 
-                // 清除旧的卡片（保留emptyState）
                 const oldCards = grid.querySelectorAll('.capture-card');
                 oldCards.forEach(card => card.remove());
                 
@@ -189,7 +209,7 @@
                             <img class="capture-image" src="/static/${capture.image_path}" alt="抓拍图片" onerror="this.src='/static/img/placeholder.png'">
                             <div class="capture-body">
                                 <div class="capture-title">
-                                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                                    <i class="fas fa-exclamation-triangle" style="color: #f87171;"></i>
                                     ${capture.violation_type || '违规行为'}
                                 </div>
                                 <div class="capture-meta">
