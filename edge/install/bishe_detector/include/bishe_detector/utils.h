@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/src/bishe_detector/include/bishe_detector/utils.h
+/home/jetson/projects/bishe/edge/src/bishe_detector/include/bishe_detector/utils.h

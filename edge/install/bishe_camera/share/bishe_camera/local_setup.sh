@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_camera/ament_cmake_environment_hooks/local_setup.sh
+/home/jetson/projects/bishe/edge/build/bishe_camera/ament_cmake_environment_hooks/local_setup.sh

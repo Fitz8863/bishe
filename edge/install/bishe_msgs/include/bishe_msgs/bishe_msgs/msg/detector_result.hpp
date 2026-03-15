@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_msgs/rosidl_generator_cpp/bishe_msgs/msg/detector_result.hpp
+/home/jetson/projects/bishe/edge/build/bishe_msgs/rosidl_generator_cpp/bishe_msgs/msg/detector_result.hpp

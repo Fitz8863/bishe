@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_msgs/rosidl_typesupport_introspection_c/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_introspection_c.h
+/home/jetson/projects/bishe/edge/build/bishe_msgs/rosidl_typesupport_introspection_c/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_introspection_c.h

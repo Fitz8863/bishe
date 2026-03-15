@@ -1,2 +1,1 @@
-source;share/bishe_monitor/environment/ament_prefix_path.sh
-source;share/bishe_monitor/environment/path.sh
+/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_environment_hooks/local_setup.dsv

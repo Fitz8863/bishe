@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/src/bishe_msgs/msg/DetectorResult.msg
+/home/jetson/projects/bishe/edge/src/bishe_msgs/msg/DetectorResult.msg

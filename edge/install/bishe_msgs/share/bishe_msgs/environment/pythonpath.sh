@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_msgs/ament_cmake_environment_hooks/pythonpath.sh
+/home/jetson/projects/bishe/edge/build/bishe_msgs/ament_cmake_environment_hooks/pythonpath.sh

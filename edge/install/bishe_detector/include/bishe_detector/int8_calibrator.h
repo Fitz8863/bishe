@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/src/bishe_detector/include/bishe_detector/int8_calibrator.h
+/home/jetson/projects/bishe/edge/src/bishe_detector/include/bishe_detector/int8_calibrator.h

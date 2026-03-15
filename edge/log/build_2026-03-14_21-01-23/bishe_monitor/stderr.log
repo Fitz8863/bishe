@@ -1,6 +1,0 @@
-[01m[K/home/jetson/projects/bishe/src/bishe_monitor/src/monitor_node.cpp:[m[K In member function ‘[01m[Kvoid MonitorNode::uploadCapture(const string&, const string&)[m[K’:
-[01m[K/home/jetson/projects/bishe/src/bishe_monitor/src/monitor_node.cpp:143:71:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ktime_str[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
-  143 |   void uploadCapture(const std::string& file_path, [01;35m[Kconst std::string& time_str[m[K)
-      |                                                    [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~[m[K
-/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
-/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410

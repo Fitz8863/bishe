@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_detector/ament_cmake_core/bishe_detectorConfig.cmake
+/home/jetson/projects/bishe/edge/build/bishe_detector/ament_cmake_core/bishe_detectorConfig.cmake

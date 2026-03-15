@@ -1,107 +1,66 @@
 # 🤖 Agent Guidelines for `bishe` Workspace (ROS 2 Humble)
 
-This repository contains a ROS 2 Humble workspace for a camera monitoring and detection system (likely a graduation project / "bishe"). It includes nodes for camera capture, AI detection, stream handling, rule monitoring, and MQTT communication.
+This repository contains a ROS 2 Humble workspace for a camera monitoring and safety detection system on Jetson Orin Nano. It includes nodes for camera capture (GStreamer), AI detection (TensorRT/YOLO), MQTT communication, and rule-based monitoring.
 
 ## 🏗️ Environment & Architecture
-- **Framework**: ROS 2 Humble
-- **OS**: Ubuntu Linux (usually 22.04 for Humble)
-- **Build System**: Colcon / ament_cmake / ament_python
-- **Primary Languages**: C++17 and Python 3.10
-- **Domain**: Factory camera monitoring (RTSP streaming, TensorRT/YOLO detection, MQTT telemetry)
+- **Framework**: ROS 2 Humble (Ubuntu 22.04).
+- **Primary Languages**: C++17 and Python 3.10.
+- **Build System**: Colcon with `ament_cmake` or `ament_python`.
+- **Key Dependencies**: TensorRT, OpenCV (CUDA enabled), CUDA, image_transport, cv_bridge, Paho MQTT C++.
 
 ## 🛠️ Build & Test Commands
+Always run from the workspace root (`/home/jetson/projects/bishe/edge`).
 
-### Building
-Always build from the workspace root (where `src` is located).
-
-- **Full Build**:
-  ```bash
-  colcon build --symlink-install
-  ```
-- **Build a Single Package**:
-  ```bash
-  colcon build --packages-select <package_name> --symlink-install
-  ```
-- **Build with Compile Commands (for LSP/IntelliSense)**:
-  ```bash
-  colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-  ```
-- **Clean Workspace**:
-  ```bash
-  rm -rf build/ install/ log/
-  ```
-
-### Sourcing
-After building, you must source the workspace before running nodes or tests:
-```bash
-source install/setup.bash
-```
-
-### Testing
-- **Run All Tests**:
-  ```bash
-  colcon test
-  ```
-- **Check Test Results**:
-  ```bash
-  colcon test-result --all
-  ```
-- **Run Tests for a Single Package**:
-  ```bash
-  colcon test --packages-select <package_name>
-  ```
-- **Run a Specific Test (GTest / PyTest)**:
-  ```bash
-  # For Python packages
-  colcon test --packages-select <package_name> --pytest-args -k "test_name"
-  # For C++ packages with CTest
-  colcon test --packages-select <package_name> --ctest-args -R "test_name"
-  ```
+- **Build All**: `colcon build --symlink-install`
+- **Build Package**: `colcon build --packages-select <package_name> --symlink-install`
+- **Build for LSP**: `colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON`
+- **Clean**: `rm -rf build/ install/ log/`
+- **Source Environment**: `source install/setup.bash`
+- **Test All**: `colcon test`
+- **Test Package**: `colcon test --packages-select <package_name>`
+- **Single Test**:
+  - Python: `colcon test --packages-select <pkg> --pytest-args -k "test_name"`
+  - C++: `colcon test --packages-select <pkg> --ctest-args -R "test_name"`
 
 ## 📝 Code Style & Conventions
 
 ### 1. General Rules
-- **Language**: Code logic, variables, and structural names MUST be in English.
-- **Comments**: Chinese comments and strings are acceptable and already present in the codebase (e.g., `// TODO: 在此处初始化...`). Keep Chinese for documentation/comments if it helps clarify logic for the human developer.
-- **Dependencies**: Keep `package.xml` and `CMakeLists.txt` (or `setup.py`) synchronized when adding new dependencies.
+- **Language**: Logic and variable names MUST be in English.
+- **Comments**: Chinese comments/strings are encouraged for clarity in this project.
+- **Sync**: Keep `package.xml` and `CMakeLists.txt`/`setup.py` synchronized.
 
 ### 2. C++ Guidelines (ROS 2 Style)
-- **Standard**: C++17.
-- **Naming Conventions**:
-  - `CamelCase` for Classes and Structs (e.g., `DetectorNode`).
-  - `snake_case` for variables, functions, and namespaces (e.g., `image_sub_`, `imageCallback`).
-  - `ALL_CAPS` for macros and constants.
-  - **Class member variables** MUST end with a trailing underscore (e.g., `confidence_threshold_`).
-- **Pointers**: Prefer smart pointers. Use ROS 2 typedefs like `bishe_msgs::msg::DetectorResult::SharedPtr`.
-- **ROS 2 Paradigms**:
-  - Encapsulate logic within classes inheriting from `rclcpp::Node`. Avoid global state.
-  - Declare and get ROS parameters inside the node's constructor (`this->declare_parameter`, `this->get_parameter`).
-  - Use `ament_target_dependencies` in `CMakeLists.txt` instead of `target_link_libraries` for ROS 2 packages whenever possible.
-- **Logging**:
-  - NEVER use `std::cout` or `printf`.
-  - ALWAYS use ROS 2 logging macros: `RCLCPP_INFO(this->get_logger(), ...)`, `RCLCPP_ERROR`, `RCLCPP_DEBUG`.
-- **Error Handling**:
-  - Avoid `exit(1)` or terminating the node process manually.
-  - Log errors appropriately and return early or throw standard C++ exceptions caught at a higher level.
+- **Formatting**: 2-space indentation. Braces on new lines for classes/functions, but often same line for control flow in existing code.
+- **Naming**:
+  - `CamelCase`: Classes/Structs (e.g., `DetectorNode`).
+  - `snake_case`: Variables, functions, namespaces.
+  - `member_variable_`: Trailing underscore for class members.
+  - `kConstantName`: 'k' prefix for constants.
+- **Includes**:
+  1. Standard library (`<vector>`, `<string>`)
+  2. ROS 2 headers (`<rclcpp/rclcpp.hpp>`)
+  3. Other libraries (`<opencv2/opencv.hpp>`, `<NvInfer.h>`)
+  4. Project headers (`"utils.h"`)
+- **Paradigms**:
+  - Inheritance: Use `public rclcpp::Node`.
+  - Pointers: Use `std::unique_ptr` for ownership, `SharedPtr` for ROS interfaces.
+  - Parameters: Declare and get in constructor (`this->declare_parameter`).
+- **Error Handling**: Use `try-catch` for library calls (OpenCV, MQTT). Use `throw std::runtime_error` for fatal init failures. Use `CUDA_CHECK` macro for CUDA calls.
 
 ### 3. Python Guidelines
-- **Standard**: PEP 8 compliance.
-- **Naming Conventions**:
-  - `CamelCase` for Classes.
-  - `snake_case` for functions, variables, and module names.
-- **ROS 2 Launch Files**:
-  - Always use modern Python launch files (`.launch.py`).
-  - Follow the structure `def generate_launch_description(): return LaunchDescription([...])`.
-- **Type Hints**: Use Python type hints (`def func(a: int) -> bool:`) where applicable to improve readability and static analysis.
+- **Standard**: PEP 8. 4-space indentation.
+- **Launch Files**: Modern Python launch files (`.launch.py`). Return `LaunchDescription`.
+- **Type Hints**: Use `def func(a: int) -> bool:` for clarity.
 
-### 4. ROS 2 Architecture Rules
-- **Messages**: All custom interfaces (messages, services, actions) are defined in the `bishe_msgs` package. When modifying interfaces, rebuild `bishe_msgs` first before building other dependent packages.
-- **QoS Profiles**: Explicitly specify QoS (Quality of Service) profiles for publishers and subscribers (e.g., `rmw_qos_profile_sensor_data` for images, `10` depth for standard data).
+### 4. ROS 2 Patterns
+- **Logging**: Use `RCLCPP_INFO`, `RCLCPP_ERROR`, etc. Avoid `std::cout`.
+- **QoS**: Use `rmw_qos_profile_sensor_data` for image streams.
+- **Communication**: Custom messages are in `bishe_msgs`. Rebuild it first after changes.
+- **Execution**: Use `rclcpp::TimerBase` for periodic tasks, `std::thread` for heavy background processing (like `DetectorNode` worker threads).
 
-## 🤖 AI Agent Instructions (Cursor / Copilot / OpenCode)
-- **Language Requirements**: ALWAYS communicate, reason, and reply to the user in Chinese (简体中文). This is a strict rule.
-- **Do not start implementing right away** unless explicitly told to. Assess the codebase first.
-- When fixing issues, **prefer minimal changes** over widespread refactoring.
-- If a C++ file fails to compile due to missing headers, check if the dependency is declared in both `CMakeLists.txt` (`find_package`, `ament_target_dependencies`) and `package.xml` (`<depend>`).
-- For multi-step tasks involving ROS 2 messaging, clearly define the message in `bishe_msgs` first, then modify the Publisher node, and finally the Subscriber node.
-- If asked to create a new node, use the existing nodes (e.g., `bishe_detector/src/detector_node.cpp`) as a boilerplate for structure and naming.
+## 🤖 AI Agent Instructions
+- **Response Language**: ALWAYS reply to the user in **Chinese (简体中文)**.
+- **Context First**: Read `package.xml` and `CMakeLists.txt` before proposing dependency changes.
+- **Minimalism**: Prefer small, focused fixes. Avoid large refactors unless requested.
+- **Safety**: Ensure all background threads/timers are properly shut down in destructors.
+- **Boilerplate**: Use `detector_node.cpp` as a reference for complex node structure (threading, queues, parameters).

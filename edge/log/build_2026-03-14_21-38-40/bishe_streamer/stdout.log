@@ -1,4 +1,0 @@
-Consolidate compiler generated dependencies of target streamer_node
-[ 50%] Building CXX object CMakeFiles/streamer_node.dir/src/streamer_node.cpp.o
-[100%] Linking CXX executable streamer_node
-[100%] Built target streamer_node

@@ -1,3 +1,0 @@
-[ 50%] Building CXX object CMakeFiles/camera_node.dir/src/camera_node.cpp.o
-[100%] Linking CXX executable camera_node
-[100%] Built target camera_node

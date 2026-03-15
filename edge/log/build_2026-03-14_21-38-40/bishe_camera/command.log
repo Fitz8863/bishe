@@ -1,1 +1,0 @@
-Invoking command in '/home/jetson/projects/bishe/build/bishe_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_camera -- -j6 -l6

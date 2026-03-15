@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_launch:/home/jetson/projects/bishe/install/bishe_camera:/opt/ros/humble
+/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/bishe_monitor

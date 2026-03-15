@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_camera/ament_cmake_core/bishe_cameraConfig-version.cmake
+/home/jetson/projects/bishe/edge/build/bishe_camera/ament_cmake_core/bishe_cameraConfig-version.cmake

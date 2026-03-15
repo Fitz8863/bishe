@@ -1,1 +1,1 @@
-/home/jetson/projects/bishe/build/bishe_msgs/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+/home/jetson/projects/bishe/edge/build/bishe_msgs/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake

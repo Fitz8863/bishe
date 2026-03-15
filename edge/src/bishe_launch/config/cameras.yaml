@@ -1,34 +1,34 @@
 cameras:
   - id: "001"
     device: "/dev/video0"
-    width: 1280
-    height: 720
-    framerate: 60
+    width: 1920
+    height: 1080
+    framerate: 30
     detector:
       confidence_threshold: 0.45
       nms_threshold: 0.5
-      engine_path: "/home/jetson/projects/bishe/models/yolov8s.engine"
-      worker_threads: 2
+      engine_path: "models/yolov8s.engine"
+      worker_threads: 1
       max_queue_size: 8
     streamer:
       rtsp_url: "rtsp://localhost:8554/stream_001"
       scale: 1.0
       audio_device: "hw:1,0"
-      framerate: 60
+      framerate: 30
 
-  - id: "002"
-    device: "/dev/video2"
-    width: 1280
-    height: 720
-    framerate: 60
-    detector:
-      confidence_threshold: 0.4
-      nms_threshold: 0.5
-      engine_path: "/home/jetson/projects/bishe/models/yolov8s.engine"
-      worker_threads: 1
-      max_queue_size: 8
-    streamer:
-      rtsp_url: "rtsp://localhost:8554/stream_002"
-      scale: 0.8
-      audio_device: "hw:0,0"
-      framerate: 60
+  # - id: "002"
+  #   device: "/dev/video2"
+  #   width: 1280
+  #   height: 720
+  #   framerate: 60
+  #   detector:
+  #     confidence_threshold: 0.4
+  #     nms_threshold: 0.5
+  #     engine_path: "models/yolov8s.engine"
+  #     worker_threads: 1
+  #     max_queue_size: 8
+  #   streamer:
+  #     rtsp_url: "rtsp://localhost:8554/stream_002"
+  #     scale: 0.8
+  #     audio_device: "hw:0,0"
+  #     framerate: 60

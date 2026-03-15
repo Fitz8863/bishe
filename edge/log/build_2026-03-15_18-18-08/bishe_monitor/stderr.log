@@ -1,0 +1,6 @@
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function ‘void MonitorNode::uploadCapture(const string&, const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:143:71: warning: unused parameter ‘time_str’ [-Wunused-parameter]
+  143 |   void uploadCapture(const std::string& file_path, const std::string& time_str)
+      |                                                    ~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
