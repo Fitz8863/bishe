@@ -25,6 +25,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.index') }}"><i class="fas fa-home me-1"></i>首页</a>
                     </li>
+                    {% if current_user.is_authenticated and current_user.is_admin %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.monitor') }}"><i class="fas fa-video me-1"></i>实时监控</a>
                     </li>
@@ -34,6 +35,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('settings.index') }}"><i class="fas fa-cog me-1"></i>系统设置</a>
                     </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated and current_user.is_super_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user_mgmt.index') }}"><i class="fas fa-users-cog me-1"></i>用户管理</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
@@ -77,7 +84,7 @@
         <div class="container">
             <p class="mb-0">
                 <i class="fas fa-industry me-2"></i>
-                化工厂危险行为检测系统 &copy; 2024
+                化工厂危险行为检测系统 &copy; 2026
             </p>
         </div>
     </footer>

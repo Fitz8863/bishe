@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 化工厂危险行为检测系统{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: var(--primary-light);">
+                <i class="fas fa-industry me-3"></i>化工厂安全生产管理
+            </h1>
+            <p class="lead text-secondary">安全第一 · 预防为主 · 综合治理</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- 安全标语卡片 -->
+        <div class="col-md-6">
+            <div class="card h-100 glow-border bg-dark text-white border-0 shadow">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4" style="color: var(--primary-light);">
+                        <i class="fas fa-bullhorn me-2"></i>安全生产标语
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 text-success"></i>
+                            <span class="fs-5">安全生产，人人有责。</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 text-success"></i>
+                            <span class="fs-5">违章作业就是自杀，违章指挥就是谋杀。</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 text-success"></i>
+                            <span class="fs-5">隐患险于明火，防范胜于救灾。</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 text-success"></i>
+                            <span class="fs-5">生产再忙，安全不忘；人命关天，预防在先。</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 text-success"></i>
+                            <span class="fs-5">严守操作规程，严禁违章作业。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 安全常识卡片 -->
+        <div class="col-md-6">
+            <div class="card h-100 glow-border bg-dark text-white border-0 shadow">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4" style="color: #fbbf24;">
+                        <i class="fas fa-info-circle me-2"></i>化工厂作业安全须知
+                    </h5>
+                    <div class="accordion accordion-flush" id="safetyAccordion">
+                        <div class="accordion-item bg-transparent border-bottom border-secondary">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent text-white px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    1. 进入生产区必须穿戴劳动保护用品
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#safetyAccordion">
+                                <div class="accordion-body text-secondary px-0">
+                                    进入生产现场必须按规定穿戴好工作服、安全帽、劳保鞋等。严禁穿化纤服装和钉子鞋。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-transparent border-bottom border-secondary">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent text-white px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    2. 严格执行“动火、进入受限空间”等特殊作业许可制度
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#safetyAccordion">
+                                <div class="accordion-body text-secondary px-0">
+                                    所有特殊作业必须办理作业许可证，并落实安全防护措施，安排专人监护。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-transparent border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent text-white px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    3. 严禁在生产区域吸烟、动用明火
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#safetyAccordion">
+                                <div class="accordion-body text-secondary px-0">
+                                    化工区域严禁烟火。非生产性用火必须按一级动火审批程序办理。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 应急救援提示 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-danger border-0 shadow-lg d-flex align-items-center p-4" role="alert">
+                <i class="fas fa-exclamation-triangle fa-3x me-4"></i>
+                <div>
+                    <h4 class="alert-heading">紧急避险提示</h4>
+                    <p class="mb-0">如遇突发泄漏、火灾或爆炸等情况，请立即按下最近的紧急报警装置，并按照疏散路线逆风撤离至安全集结区。严禁在事故发生时围观或搭乘电梯。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .accordion-button::after {
+        filter: invert(1);
+    }
+    .accordion-button:not(.collapsed) {
+        box-shadow: none;
+    }
+</style>
+{% endblock %}

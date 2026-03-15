@@ -1,8 +1,16 @@
 from flask import Blueprint, render_template, request, jsonify, make_response
+from flask_login import login_required
 from . import db
 from .models import MqttConfig
+from .auth import admin_required
 
 settings_bp = Blueprint('settings', __name__, url_prefix='/settings')
+
+@settings_bp.before_request
+@login_required
+@admin_required
+def before_request():
+    pass
 
 @settings_bp.route('/')
 def index():

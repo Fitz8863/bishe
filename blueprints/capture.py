@@ -2,9 +2,11 @@ import os
 import uuid
 from datetime import datetime
 from flask import Blueprint, request, jsonify, render_template
+from flask_login import login_required
 from werkzeug.utils import secure_filename
 from . import db
 from .models import Capture
+from .auth import admin_required
 
 capture_bp = Blueprint('capture', __name__, url_prefix='/capture')
 
@@ -58,6 +60,8 @@ def upload_capture():
     return jsonify({'error': 'Invalid file type'}), 400
 
 @capture_bp.route('/list', methods=['GET'])
+@login_required
+@admin_required
 def list_captures():
     """获取抓拍记录列表"""
     captures = Capture.query.order_by(Capture.capture_time.desc()).all()
@@ -73,6 +77,8 @@ def list_captures():
     }), 200
 
 @capture_bp.route('/delete/<int:capture_id>', methods=['DELETE'])
+@login_required
+@admin_required
 def delete_capture(capture_id):
     """删除抓拍记录"""
     capture = Capture.query.get(capture_id)

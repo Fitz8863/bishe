@@ -1,10 +1,27 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app
+import functools
+from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
 from .models import User
 from . import db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/')
+
+def admin_required(f):
+    @functools.wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.role not in ['admin', 'assistant']:
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
+
+def super_admin_required(f):
+    @functools.wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.role != 'admin':
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -21,7 +38,7 @@ def register():
         
         bcrypt = Bcrypt(current_app._get_current_object())
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        user = User(username=username, password=hashed_password)
+        user = User(username=username, password=hashed_password, role='user')
         try:
             db.session.add(user)
             db.session.commit()

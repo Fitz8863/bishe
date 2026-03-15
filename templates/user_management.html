@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}用户管理 - 化工厂危险行为检测系统{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-users-cog me-2" style="color: var(--primary-light);"></i>用户管理</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                    <i class="fas fa-plus me-1"></i>添加用户
+                </button>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">ID</th>
+                                    <th>用户名</th>
+                                    <th>密码 (加密哈希)</th>
+                                    <th>身份角色</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td class="ps-4">{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td><small class="text-muted">{{ user.password[:20] }}...</small></td>
+                                    <td>
+                                        {% if user.role == 'admin' %}
+                                            <span class="badge bg-danger">超级管理员</span>
+                                        {% elif user.role == 'assistant' %}
+                                            <span class="badge bg-warning text-dark">辅助管理员</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">普通用户</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-info me-2" onclick="editUser({{ user.id }}, '{{ user.username }}', '{{ user.role }}')">
+                                            <i class="fas fa-edit"></i> 修改
+                                        </button>
+                                        {% if user.username != 'heweijie' %}
+                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser({{ user.id }}, '{{ user.username }}')">
+                                            <i class="fas fa-trash"></i> 删除
+                                        </button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加用户模态框 -->
+<div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">添加新用户</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">用户名</label>
+                    <input type="text" id="add_username" class="form-control bg-secondary text-white border-0">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">密码</label>
+                    <input type="password" id="add_password" class="form-control bg-secondary text-white border-0">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">身份角色</label>
+                    <select id="add_role" class="form-select bg-secondary text-white border-0">
+                        <option value="user">普通用户</option>
+                        <option value="assistant">辅助管理员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="submitAddUser()">确认添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改用户模态框 -->
+<div class="modal fade" id="editUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">修改用户信息</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit_user_id">
+                <div class="mb-3">
+                    <label class="form-label">用户名</label>
+                    <input type="text" id="edit_username" class="form-control bg-secondary text-white border-0">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">新密码 (留空表示不修改)</label>
+                    <input type="password" id="edit_password" class="form-control bg-secondary text-white border-0" placeholder="******">
+                </div>
+                <div class="mb-3" id="role_select_container">
+                    <label class="form-label">身份角色</label>
+                    <select id="edit_role" class="form-select bg-secondary text-white border-0">
+                        <option value="user">普通用户</option>
+                        <option value="assistant">辅助管理员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="submitEditUser()">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function submitAddUser() {
+    const username = document.getElementById('add_username').value;
+    const password = document.getElementById('add_password').value;
+    const role = document.getElementById('add_role').value;
+    
+    if (!username || !password) {
+        alert('用户名和密码不能为空');
+        return;
+    }
+    
+    fetch('{{ url_for("user_mgmt.add_user") }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, role })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) alert(data.error);
+        else {
+            location.reload();
+        }
+    });
+}
+
+function editUser(id, username, role) {
+    document.getElementById('edit_user_id').value = id;
+    document.getElementById('edit_username').value = username;
+    document.getElementById('edit_role').value = role;
+    document.getElementById('edit_password').value = '';
+    
+    // 超级管理员 heweijie 不允许修改角色
+    if (username === 'heweijie') {
+        document.getElementById('role_select_container').style.display = 'none';
+    } else {
+        document.getElementById('role_select_container').style.display = 'block';
+    }
+    
+    new bootstrap.Modal(document.getElementById('editUserModal')).show();
+}
+
+function submitEditUser() {
+    const id = document.getElementById('edit_user_id').value;
+    const username = document.getElementById('edit_username').value;
+    const password = document.getElementById('edit_password').value;
+    const role = document.getElementById('edit_role').value;
+    
+    fetch(`/users/api/update/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, role })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) alert(data.error);
+        else {
+            location.reload();
+        }
+    });
+}
+
+function deleteUser(id, username) {
+    if (confirm(`确定要删除用户 "${username}" 吗？此操作不可撤销。`)) {
+        fetch(`/users/api/delete/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) alert(data.error);
+            else {
+                location.reload();
+            }
+        });
+    }
+}
+</script>
+{% endblock %}

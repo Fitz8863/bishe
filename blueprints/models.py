@@ -6,6 +6,19 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
+    role = db.Column(db.String(20), default='user') # 'admin' or 'user'
+
+    @property
+    def is_super_admin(self):
+        return self.role == 'admin'
+
+    @property
+    def is_assistant(self):
+        return self.role == 'assistant'
+    
+    @property
+    def is_admin(self):
+        return self.role in ['admin', 'assistant']
 
 class Capture(db.Model):
     id = db.Column(db.Integer, primary_key=True)
