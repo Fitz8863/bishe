@@ -1,0 +1,5 @@
+[01m[K/home/jetson/projects/bishe/src/bishe_camera/src/camera_node.cpp:[m[K In member function ‘[01m[Kvoid CameraNode::reportFps()[m[K’:
+[01m[K/home/jetson/projects/bishe/src/bishe_camera/src/camera_node.cpp:47:20:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kfps[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   47 |       const double [01;35m[Kfps[m[K = static_cast<double>(published_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
+      |                    [01;35m[K^~~[m[K
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410

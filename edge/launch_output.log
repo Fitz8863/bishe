@@ -1,0 +1,17 @@
+[INFO] [launch]: All log files can be found below /home/jetson/.ros/log/2026-03-14-14-39-18-307277-jetson-orin-nano-288075
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_node-1]: process started with pid [288083]
+[INFO] [detector_node-2]: process started with pid [288085]
+[INFO] [streamer_node-3]: process started with pid [288087]
+[streamer_node-3] [INFO] [1773470358.778605591] [streamer_node]: Opening writer pipeline: appsrc do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! x264enc bitrate=4000 speed-preset=ultrafast tune=zerolatency ! h264parse ! queue ! sink. alsasrc device=hw:1,0 ! audioconvert ! audioresample ! voaacenc bitrate=128000 ! aacparse ! queue ! sink. rtspclientsink location=rtsp://localhost:8554/stream name=sink protocols=tcp
+[camera_node-1] [INFO] [1773470358.780214004] [camera_node]: Opening pipeline: v4l2src device=/dev/video0 do-timestamp=true ! image/jpeg, width=1280, height=720, framerate=60/1 ! jpegparse ! nvv4l2decoder mjpegdecode=1 ! nvvidconv ! video/x-raw, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink drop=true
+[streamer_node-3] [INFO] [1773470358.869853613] [streamer_node]: Streamer node started, pushing Audio(hw:1,0) and Video to rtsp://localhost:8554/stream
+[detector_node-2] [INFO] [1773470358.986303075] [detector_node]: Loading YOLO engine from: /home/jetson/projects/bishe/models/yolov8s.engine
+[detector_node-2] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+[detector_node-2] [INFO] [1773470359.230172210] [detector_node]: Detector node started, threshold: 0.50
+[camera_node-1] NvMMLiteOpen : Block : BlockType = 277 
+[camera_node-1] NvMMLiteBlockCreate : Block : BlockType = 277 
+[camera_node-1] Opening in BLOCKING MODE 
+[camera_node-1] [ WARN:0@1.464] global cap_gstreamer.cpp:1777 open OpenCV | GStreamer warning: Cannot query video position: status=1, value=59, duration=-1
+[camera_node-1] [INFO] [1773470360.141081233] [camera_node]: Camera opened successfully
+[camera_node-1] [INFO] [1773470360.141239479] [camera_node]: Camera node started, publishing to /camera/image_raw at 1280x720@60fps

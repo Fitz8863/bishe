@@ -1,0 +1,5 @@
+[0.031s] Invoking command in '/home/jetson/projects/bishe/build/bishe_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_camera -- -j6 -l6
+[0.197s] [ 50%] Building CXX object CMakeFiles/camera_node.dir/src/camera_node.cpp.o
+[10.861s] [100%] Linking CXX executable camera_node
+[11.190s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
+[11.989s] [100%] Built target camera_node

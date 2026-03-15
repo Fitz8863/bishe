@@ -1,0 +1,31 @@
+from setuptools import setup
+import os
+from glob import glob
+
+package_name = 'bishe_launch'
+
+setup(
+    name=package_name,
+    version='0.1.0',
+    packages=[package_name],
+    data_files=[
+        (os.path.join('share', 'ament_index', 'resource_index', 'packages'),
+            [os.path.join('resource', package_name, 'ros2')]),
+        (os.path.join('share', package_name, 'launch'),
+            glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'config'),
+            glob('config/*.yaml')),
+        (os.path.join('share', package_name), ['package.xml']),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='maintainer',
+    maintainer_email='maintainer@example.com',
+    description='Launch files for bishe safety detection system',
+    license='MIT',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+        ],
+    },
+)

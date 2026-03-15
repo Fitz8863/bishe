@@ -1,0 +1,5 @@
+bool has_violation
+float32 confidence
+float32 nms_threshold
+string violation_type
+sensor_msgs/Image annotated_image

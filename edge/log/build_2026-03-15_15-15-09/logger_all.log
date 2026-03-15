@@ -1,0 +1,1150 @@
+[0.242s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/bin/colcon', 'build'][0m
+[0.242s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=6, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff99ed5e40>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff99ed5900>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff99ed5900>>)[0m
+[0.558s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.558s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.558s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.559s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.559s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.559s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.559s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/home/jetson/projects/bishe'
+[0.559s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.559s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.559s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.560s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.582s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.582s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.582s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.582s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.582s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.583s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.583s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.583s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.583s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore'
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore_ament_install'
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_pkg']
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_pkg'
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_meta']
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_meta'
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ros']
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ros'
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['cmake', 'python']
+[0.584s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'cmake'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['python_setup_py']
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python_setup_py'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['ignore', 'ignore_ament_install']
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'ignore'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'ignore_ament_install'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['colcon_pkg']
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'colcon_pkg'
+[0.585s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['colcon_meta']
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'colcon_meta'
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['ros']
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'ros'
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['cmake', 'python']
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'cmake'
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'python'
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extensions ['python_setup_py']
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers) by extension 'python_setup_py'
+[0.586s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['ignore', 'ignore_ament_install']
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'ignore'
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'ignore_ament_install'
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['colcon_pkg']
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'colcon_pkg'
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['colcon_meta']
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'colcon_meta'
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['ros']
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'ros'
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['cmake', 'python']
+[0.587s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'cmake'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'python'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extensions ['python_setup_py']
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/plans) by extension 'python_setup_py'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['ignore', 'ignore_ament_install']
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'ignore'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'ignore_ament_install'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['colcon_pkg']
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'colcon_pkg'
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['colcon_meta']
+[0.588s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'colcon_meta'
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['ros']
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'ros'
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['cmake', 'python']
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'cmake'
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'python'
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extensions ['python_setup_py']
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/superpowers/specs) by extension 'python_setup_py'
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.589s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['ignore', 'ignore_ament_install']
+[0.590s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'ignore'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'ignore_ament_install'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['colcon_pkg']
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'colcon_pkg'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['colcon_meta']
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'colcon_meta'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['ros']
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'ros'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['cmake', 'python']
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'cmake'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'python'
+[0.591s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extensions ['python_setup_py']
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(models) by extension 'python_setup_py'
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['ignore', 'ignore_ament_install']
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'ignore'
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'ignore_ament_install'
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['colcon_pkg']
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'colcon_pkg'
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['colcon_meta']
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'colcon_meta'
+[0.592s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['ros']
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'ros'
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['cmake', 'python']
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'cmake'
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'python'
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extensions ['python_setup_py']
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills) by extension 'python_setup_py'
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['ignore', 'ignore_ament_install']
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'ignore'
+[0.593s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'ignore_ament_install'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['colcon_pkg']
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'colcon_pkg'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['colcon_meta']
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'colcon_meta'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['ros']
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'ros'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['cmake', 'python']
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'cmake'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'python'
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extensions ['python_setup_py']
+[0.594s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/agents) by extension 'python_setup_py'
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['ignore', 'ignore_ament_install']
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'ignore'
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'ignore_ament_install'
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['colcon_pkg']
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'colcon_pkg'
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['colcon_meta']
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'colcon_meta'
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['ros']
+[0.595s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'ros'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['cmake', 'python']
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'cmake'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'python'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extensions ['python_setup_py']
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/commands) by extension 'python_setup_py'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['ignore', 'ignore_ament_install']
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'ignore'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'ignore_ament_install'
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['colcon_pkg']
+[0.596s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'colcon_pkg'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['colcon_meta']
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'colcon_meta'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['ros']
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'ros'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['cmake', 'python']
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'cmake'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'python'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extensions ['python_setup_py']
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs) by extension 'python_setup_py'
+[0.597s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['ignore', 'ignore_ament_install']
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'ignore'
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'ignore_ament_install'
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['colcon_pkg']
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'colcon_pkg'
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['colcon_meta']
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'colcon_meta'
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['ros']
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'ros'
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['cmake', 'python']
+[0.598s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'cmake'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'python'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extensions ['python_setup_py']
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/plans) by extension 'python_setup_py'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['ignore', 'ignore_ament_install']
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'ignore'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'ignore_ament_install'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['colcon_pkg']
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'colcon_pkg'
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['colcon_meta']
+[0.599s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'colcon_meta'
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['ros']
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'ros'
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['cmake', 'python']
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'cmake'
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'python'
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extensions ['python_setup_py']
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers) by extension 'python_setup_py'
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['ignore', 'ignore_ament_install']
+[0.600s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'ignore'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'ignore_ament_install'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['colcon_pkg']
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'colcon_pkg'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['colcon_meta']
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'colcon_meta'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['ros']
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'ros'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['cmake', 'python']
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'cmake'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'python'
+[0.601s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extensions ['python_setup_py']
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/plans) by extension 'python_setup_py'
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['ignore', 'ignore_ament_install']
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'ignore'
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'ignore_ament_install'
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['colcon_pkg']
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'colcon_pkg'
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['colcon_meta']
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'colcon_meta'
+[0.602s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['ros']
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'ros'
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['cmake', 'python']
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'cmake'
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'python'
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extensions ['python_setup_py']
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/superpowers/specs) by extension 'python_setup_py'
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['ignore', 'ignore_ament_install']
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'ignore'
+[0.603s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'ignore_ament_install'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['colcon_pkg']
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'colcon_pkg'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['colcon_meta']
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'colcon_meta'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['ros']
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'ros'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['cmake', 'python']
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'cmake'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'python'
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extensions ['python_setup_py']
+[0.604s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/docs/windows) by extension 'python_setup_py'
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['ignore', 'ignore_ament_install']
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'ignore'
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'ignore_ament_install'
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['colcon_pkg']
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'colcon_pkg'
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['colcon_meta']
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'colcon_meta'
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['ros']
+[0.605s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'ros'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['cmake', 'python']
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'cmake'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'python'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extensions ['python_setup_py']
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/hooks) by extension 'python_setup_py'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['ignore', 'ignore_ament_install']
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'ignore'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'ignore_ament_install'
+[0.606s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['colcon_pkg']
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'colcon_pkg'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['colcon_meta']
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'colcon_meta'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['ros']
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'ros'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['cmake', 'python']
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'cmake'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'python'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extensions ['python_setup_py']
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib) by extension 'python_setup_py'
+[0.607s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['ignore', 'ignore_ament_install']
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'ignore'
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'ignore_ament_install'
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['colcon_pkg']
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'colcon_pkg'
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['colcon_meta']
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'colcon_meta'
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['ros']
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'ros'
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['cmake', 'python']
+[0.608s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'cmake'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'python'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extensions ['python_setup_py']
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/lib/brainstorm-server) by extension 'python_setup_py'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['ignore', 'ignore_ament_install']
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'ignore'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'ignore_ament_install'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['colcon_pkg']
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'colcon_pkg'
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['colcon_meta']
+[0.609s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'colcon_meta'
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['ros']
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'ros'
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['cmake', 'python']
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'cmake'
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'python'
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extensions ['python_setup_py']
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills) by extension 'python_setup_py'
+[0.610s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['ignore', 'ignore_ament_install']
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'ignore'
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'ignore_ament_install'
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['colcon_pkg']
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'colcon_pkg'
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['colcon_meta']
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'colcon_meta'
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['ros']
+[0.611s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'ros'
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['cmake', 'python']
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'cmake'
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'python'
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extensions ['python_setup_py']
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/brainstorming) by extension 'python_setup_py'
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['ignore', 'ignore_ament_install']
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'ignore'
+[0.612s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'ignore_ament_install'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['colcon_pkg']
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'colcon_pkg'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['colcon_meta']
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'colcon_meta'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['ros']
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'ros'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['cmake', 'python']
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'cmake'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'python'
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extensions ['python_setup_py']
+[0.613s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/dispatching-parallel-agents) by extension 'python_setup_py'
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['ignore', 'ignore_ament_install']
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'ignore'
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'ignore_ament_install'
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['colcon_pkg']
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'colcon_pkg'
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['colcon_meta']
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'colcon_meta'
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['ros']
+[0.614s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'ros'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['cmake', 'python']
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'cmake'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'python'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extensions ['python_setup_py']
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/executing-plans) by extension 'python_setup_py'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['ignore', 'ignore_ament_install']
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'ignore'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'ignore_ament_install'
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['colcon_pkg']
+[0.615s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'colcon_pkg'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['colcon_meta']
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'colcon_meta'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['ros']
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'ros'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['cmake', 'python']
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'cmake'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'python'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extensions ['python_setup_py']
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/finishing-a-development-branch) by extension 'python_setup_py'
+[0.616s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['ignore', 'ignore_ament_install']
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'ignore'
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'ignore_ament_install'
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['colcon_pkg']
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'colcon_pkg'
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['colcon_meta']
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'colcon_meta'
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['ros']
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'ros'
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['cmake', 'python']
+[0.617s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'cmake'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'python'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extensions ['python_setup_py']
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/receiving-code-review) by extension 'python_setup_py'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['ignore', 'ignore_ament_install']
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'ignore'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'ignore_ament_install'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['colcon_pkg']
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'colcon_pkg'
+[0.618s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['colcon_meta']
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'colcon_meta'
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['ros']
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'ros'
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['cmake', 'python']
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'cmake'
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'python'
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extensions ['python_setup_py']
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/requesting-code-review) by extension 'python_setup_py'
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['ignore', 'ignore_ament_install']
+[0.619s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'ignore'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'ignore_ament_install'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['colcon_pkg']
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'colcon_pkg'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['colcon_meta']
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'colcon_meta'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['ros']
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'ros'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['cmake', 'python']
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'cmake'
+[0.620s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'python'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extensions ['python_setup_py']
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/subagent-driven-development) by extension 'python_setup_py'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['ignore', 'ignore_ament_install']
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'ignore'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'ignore_ament_install'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['colcon_pkg']
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'colcon_pkg'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['colcon_meta']
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'colcon_meta'
+[0.621s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['ros']
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'ros'
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['cmake', 'python']
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'cmake'
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'python'
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extensions ['python_setup_py']
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/systematic-debugging) by extension 'python_setup_py'
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['ignore', 'ignore_ament_install']
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'ignore'
+[0.622s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'ignore_ament_install'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['colcon_pkg']
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'colcon_pkg'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['colcon_meta']
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'colcon_meta'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['ros']
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'ros'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['cmake', 'python']
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'cmake'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'python'
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extensions ['python_setup_py']
+[0.623s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/test-driven-development) by extension 'python_setup_py'
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['ignore', 'ignore_ament_install']
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'ignore'
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'ignore_ament_install'
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['colcon_pkg']
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'colcon_pkg'
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['colcon_meta']
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'colcon_meta'
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['ros']
+[0.624s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'ros'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['cmake', 'python']
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'cmake'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'python'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extensions ['python_setup_py']
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-git-worktrees) by extension 'python_setup_py'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['ignore', 'ignore_ament_install']
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'ignore'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'ignore_ament_install'
+[0.625s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['colcon_pkg']
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'colcon_pkg'
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['colcon_meta']
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'colcon_meta'
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['ros']
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'ros'
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['cmake', 'python']
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'cmake'
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'python'
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extensions ['python_setup_py']
+[0.626s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers) by extension 'python_setup_py'
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['ignore', 'ignore_ament_install']
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'ignore'
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'ignore_ament_install'
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['colcon_pkg']
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'colcon_pkg'
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['colcon_meta']
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'colcon_meta'
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['ros']
+[0.627s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'ros'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['cmake', 'python']
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'cmake'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'python'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extensions ['python_setup_py']
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/using-superpowers/references) by extension 'python_setup_py'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['ignore', 'ignore_ament_install']
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'ignore'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'ignore_ament_install'
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['colcon_pkg']
+[0.628s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'colcon_pkg'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['colcon_meta']
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'colcon_meta'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['ros']
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'ros'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['cmake', 'python']
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'cmake'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'python'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extensions ['python_setup_py']
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/verification-before-completion) by extension 'python_setup_py'
+[0.629s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['ignore', 'ignore_ament_install']
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'ignore'
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'ignore_ament_install'
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['colcon_pkg']
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'colcon_pkg'
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['colcon_meta']
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'colcon_meta'
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['ros']
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'ros'
+[0.630s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['cmake', 'python']
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'cmake'
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'python'
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extensions ['python_setup_py']
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-plans) by extension 'python_setup_py'
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['ignore', 'ignore_ament_install']
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'ignore'
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'ignore_ament_install'
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['colcon_pkg']
+[0.631s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'colcon_pkg'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['colcon_meta']
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'colcon_meta'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['ros']
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'ros'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['cmake', 'python']
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'cmake'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'python'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extensions ['python_setup_py']
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills) by extension 'python_setup_py'
+[0.632s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['ignore', 'ignore_ament_install']
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'ignore'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'ignore_ament_install'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['colcon_pkg']
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'colcon_pkg'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['colcon_meta']
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'colcon_meta'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['ros']
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'ros'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['cmake', 'python']
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'cmake'
+[0.633s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'python'
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extensions ['python_setup_py']
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/skills/writing-skills/examples) by extension 'python_setup_py'
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['ignore', 'ignore_ament_install']
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'ignore'
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'ignore_ament_install'
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['colcon_pkg']
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'colcon_pkg'
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['colcon_meta']
+[0.634s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'colcon_meta'
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['ros']
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'ros'
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['cmake', 'python']
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'cmake'
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'python'
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extensions ['python_setup_py']
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests) by extension 'python_setup_py'
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['ignore', 'ignore_ament_install']
+[0.635s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'ignore'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'ignore_ament_install'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['colcon_pkg']
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'colcon_pkg'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['colcon_meta']
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'colcon_meta'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['ros']
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'ros'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['cmake', 'python']
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'cmake'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'python'
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extensions ['python_setup_py']
+[0.636s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/brainstorm-server) by extension 'python_setup_py'
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['ignore', 'ignore_ament_install']
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'ignore'
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'ignore_ament_install'
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['colcon_pkg']
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'colcon_pkg'
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['colcon_meta']
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'colcon_meta'
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['ros']
+[0.637s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'ros'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['cmake', 'python']
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'cmake'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'python'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extensions ['python_setup_py']
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/claude-code) by extension 'python_setup_py'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['ignore', 'ignore_ament_install']
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'ignore'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'ignore_ament_install'
+[0.638s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['colcon_pkg']
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'colcon_pkg'
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['colcon_meta']
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'colcon_meta'
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['ros']
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'ros'
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['cmake', 'python']
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'cmake'
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'python'
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extensions ['python_setup_py']
+[0.639s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests) by extension 'python_setup_py'
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['ignore', 'ignore_ament_install']
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'ignore'
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'ignore_ament_install'
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['colcon_pkg']
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'colcon_pkg'
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['colcon_meta']
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'colcon_meta'
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['ros']
+[0.640s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'ros'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['cmake', 'python']
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'cmake'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'python'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extensions ['python_setup_py']
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/explicit-skill-requests/prompts) by extension 'python_setup_py'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['ignore', 'ignore_ament_install']
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'ignore'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'ignore_ament_install'
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['colcon_pkg']
+[0.641s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'colcon_pkg'
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['colcon_meta']
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'colcon_meta'
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['ros']
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'ros'
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['cmake', 'python']
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'cmake'
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'python'
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extensions ['python_setup_py']
+[0.642s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/opencode) by extension 'python_setup_py'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['ignore', 'ignore_ament_install']
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'ignore'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'ignore_ament_install'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['colcon_pkg']
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'colcon_pkg'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['colcon_meta']
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'colcon_meta'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['ros']
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'ros'
+[0.643s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['cmake', 'python']
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'cmake'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'python'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extensions ['python_setup_py']
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering) by extension 'python_setup_py'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['ignore', 'ignore_ament_install']
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'ignore'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'ignore_ament_install'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['colcon_pkg']
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'colcon_pkg'
+[0.644s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['colcon_meta']
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'colcon_meta'
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['ros']
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'ros'
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['cmake', 'python']
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'cmake'
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'python'
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extensions ['python_setup_py']
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/skill-triggering/prompts) by extension 'python_setup_py'
+[0.645s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['ignore', 'ignore_ament_install']
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'ignore'
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'ignore_ament_install'
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['colcon_pkg']
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'colcon_pkg'
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['colcon_meta']
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'colcon_meta'
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['ros']
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'ros'
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['cmake', 'python']
+[0.646s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'cmake'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'python'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extensions ['python_setup_py']
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev) by extension 'python_setup_py'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['ignore', 'ignore_ament_install']
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'ignore'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'ignore_ament_install'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['colcon_pkg']
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'colcon_pkg'
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['colcon_meta']
+[0.647s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'colcon_meta'
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['ros']
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'ros'
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['cmake', 'python']
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'cmake'
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'python'
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extensions ['python_setup_py']
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/go-fractals) by extension 'python_setup_py'
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['ignore', 'ignore_ament_install']
+[0.648s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'ignore'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'ignore_ament_install'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['colcon_pkg']
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'colcon_pkg'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['colcon_meta']
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'colcon_meta'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['ros']
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'ros'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['cmake', 'python']
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'cmake'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'python'
+[0.649s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extensions ['python_setup_py']
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(skills/tests/subagent-driven-dev/svelte-todo) by extension 'python_setup_py'
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[0.650s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extension 'ignore'
+[0.651s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extension 'ignore_ament_install'
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extensions ['colcon_pkg']
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extension 'colcon_pkg'
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extensions ['colcon_meta']
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extension 'colcon_meta'
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extensions ['ros']
+[0.652s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_camera) by extension 'ros'
+[0.658s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_camera' with type 'ros.ament_cmake' and name 'bishe_camera'[0m
+[0.658s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extensions ['ignore', 'ignore_ament_install']
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extension 'ignore'
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extension 'ignore_ament_install'
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extensions ['colcon_pkg']
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extension 'colcon_pkg'
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extensions ['colcon_meta']
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extension 'colcon_meta'
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extensions ['ros']
+[0.659s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_detector) by extension 'ros'
+[0.661s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_detector' with type 'ros.ament_cmake' and name 'bishe_detector'[0m
+[0.661s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extensions ['ignore', 'ignore_ament_install']
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extension 'ignore'
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extension 'ignore_ament_install'
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extensions ['colcon_pkg']
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extension 'colcon_pkg'
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extensions ['colcon_meta']
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extension 'colcon_meta'
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extensions ['ros']
+[0.662s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_launch) by extension 'ros'
+[0.663s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_launch' with type 'ros.ament_python' and name 'bishe_launch'[0m
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extensions ['ignore', 'ignore_ament_install']
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extension 'ignore'
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extension 'ignore_ament_install'
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extensions ['colcon_pkg']
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extension 'colcon_pkg'
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extensions ['colcon_meta']
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extension 'colcon_meta'
+[0.664s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extensions ['ros']
+[0.665s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_monitor) by extension 'ros'
+[0.666s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_monitor' with type 'ros.ament_cmake' and name 'bishe_monitor'[0m
+[0.666s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extensions ['ignore', 'ignore_ament_install']
+[0.666s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extension 'ignore'
+[0.666s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extension 'ignore_ament_install'
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extensions ['colcon_pkg']
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extension 'colcon_pkg'
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extensions ['colcon_meta']
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extension 'colcon_meta'
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extensions ['ros']
+[0.667s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_mqtt) by extension 'ros'
+[0.668s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_mqtt' with type 'ros.ament_cmake' and name 'bishe_mqtt'[0m
+[0.668s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.668s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extension 'ignore'
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extension 'ignore_ament_install'
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extensions ['colcon_pkg']
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extension 'colcon_pkg'
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extensions ['colcon_meta']
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extension 'colcon_meta'
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extensions ['ros']
+[0.669s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_msgs) by extension 'ros'
+[0.670s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_msgs' with type 'ros.ament_cmake' and name 'bishe_msgs'[0m
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extensions ['ignore', 'ignore_ament_install']
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extension 'ignore'
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extension 'ignore_ament_install'
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extensions ['colcon_pkg']
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extension 'colcon_pkg'
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extensions ['colcon_meta']
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extension 'colcon_meta'
+[0.671s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extensions ['ros']
+[0.672s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/bishe_streamer) by extension 'ros'
+[0.673s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/bishe_streamer' with type 'ros.ament_cmake' and name 'bishe_streamer'[0m
+[0.673s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.674s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.674s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.674s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.674s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.735s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) check parameters
+[0.735s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) discover
+[0.740s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 7 installed packages in /home/jetson/projects/bishe/install[0m
+[0.743s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 271 installed packages in /opt/ros/humble[0m
+[0.745s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) using defaults
+[0.811s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_args' from command line to 'None'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_target' from command line to 'None'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_clean_first' from command line to 'False'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'cmake_force_configure' from command line to 'False'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'ament_cmake_args' from command line to 'None'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.812s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_camera', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_camera', 'symlink_install': False, 'test_result_base': None}[0m
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_args' from command line to 'None'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_target' from command line to 'None'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_clean_cache' from command line to 'False'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_clean_first' from command line to 'False'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'cmake_force_configure' from command line to 'False'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'ament_cmake_args' from command line to 'None'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'catkin_cmake_args' from command line to 'None'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_launch' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.813s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_launch' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_launch', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_launch', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_launch', 'symlink_install': False, 'test_result_base': None}[0m
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_args' from command line to 'None'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_target' from command line to 'None'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_clean_cache' from command line to 'False'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_clean_first' from command line to 'False'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'cmake_force_configure' from command line to 'False'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'ament_cmake_args' from command line to 'None'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'catkin_cmake_args' from command line to 'None'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_mqtt' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.814s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_mqtt' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_mqtt', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_mqtt', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_mqtt', 'symlink_install': False, 'test_result_base': None}[0m
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_args' from command line to 'None'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_target' from command line to 'None'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.815s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_msgs', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_msgs', 'symlink_install': False, 'test_result_base': None}[0m
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_args' from command line to 'None'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_target' from command line to 'None'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_clean_cache' from command line to 'False'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_clean_first' from command line to 'False'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'cmake_force_configure' from command line to 'False'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'ament_cmake_args' from command line to 'None'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'catkin_cmake_args' from command line to 'None'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_detector' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.816s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_detector' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_detector', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_detector', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_detector', 'symlink_install': False, 'test_result_base': None}[0m
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_args' from command line to 'None'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_target' from command line to 'None'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_clean_cache' from command line to 'False'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_clean_first' from command line to 'False'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'cmake_force_configure' from command line to 'False'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'ament_cmake_args' from command line to 'None'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'catkin_cmake_args' from command line to 'None'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_monitor' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.817s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_monitor' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_monitor', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_monitor', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_monitor', 'symlink_install': False, 'test_result_base': None}[0m
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_args' from command line to 'None'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_target' from command line to 'None'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_clean_cache' from command line to 'False'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_clean_first' from command line to 'False'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'cmake_force_configure' from command line to 'False'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'ament_cmake_args' from command line to 'None'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'catkin_cmake_args' from command line to 'None'
+[0.818s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'bishe_streamer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.819s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'bishe_streamer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/build/bishe_streamer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/install/bishe_streamer', 'merge_install': False, 'path': '/home/jetson/projects/bishe/src/bishe_streamer', 'symlink_install': False, 'test_result_base': None}[0m
+[0.819s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.820s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.821s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_msgs' with build type 'ament_cmake'
+[0.821s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_msgs'
+[0.828s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.828s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.828s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.835s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_camera' with build type 'ament_cmake'
+[0.835s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_camera'
+[0.836s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.836s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.842s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_launch' with build type 'ament_python'
+[0.842s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_launch', 'ament_prefix_path')
+[0.843s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/ament_prefix_path.ps1'
+[0.844s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/ament_prefix_path.dsv'
+[0.845s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/ament_prefix_path.sh'
+[0.847s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.847s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.852s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_mqtt' with build type 'ament_cmake'
+[0.852s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_mqtt'
+[0.853s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.853s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.866s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_msgs -- -j6 -l6[0m
+[0.873s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_camera -- -j6 -l6[0m
+[1.337s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mWARNING[0m [33mPackage 'bishe_launch' doesn't explicitly install a marker in the package index (colcon-ros currently does it implicitly but that fallback will be removed in the future)[0m
+[1.338s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/jetson/projects/bishe/src/bishe_launch'
+[1.338s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.338s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.358s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_mqtt -- -j6 -l6[0m
+[1.359s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_camera -- -j6 -l6[0m
+[1.375s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_camera[0m
+[1.414s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_camera)
+[1.415s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_camera[0m
+[1.422s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera' for CMake module files
+[1.424s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera' for CMake config files
+[1.425s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_camera', 'cmake_prefix_path')
+[1.426s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.ps1'
+[1.427s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.dsv'
+[1.427s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.sh'
+[1.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib'
+[1.429s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/bin'
+[1.430s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib/pkgconfig/bishe_camera.pc'
+[1.430s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib/python3.10/site-packages'
+[1.431s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/bin'
+[1.431s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.ps1'
+[1.433s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.dsv'
+[1.434s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.sh'
+[1.436s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.bash'
+[1.437s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.zsh'
+[1.439s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_camera/share/colcon-core/packages/bishe_camera)
+[1.440s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_camera)
+[1.440s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera' for CMake module files
+[1.441s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera' for CMake config files
+[1.442s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_camera', 'cmake_prefix_path')
+[1.442s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.ps1'
+[1.443s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.dsv'
+[1.443s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/hook/cmake_prefix_path.sh'
+[1.445s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib'
+[1.445s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/bin'
+[1.445s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib/pkgconfig/bishe_camera.pc'
+[1.445s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/lib/python3.10/site-packages'
+[1.446s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_camera/bin'
+[1.447s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.ps1'
+[1.448s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.dsv'
+[1.449s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.sh'
+[1.450s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.bash'
+[1.451s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_camera/share/bishe_camera/package.zsh'
+[1.452s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_camera/share/colcon-core/packages/bishe_camera)
+[1.467s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_mqtt -- -j6 -l6[0m
+[1.469s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_mqtt[0m
+[1.492s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_mqtt)
+[1.492s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_mqtt[0m
+[1.493s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt' for CMake module files
+[1.494s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt' for CMake config files
+[1.494s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_mqtt', 'cmake_prefix_path')
+[1.495s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.ps1'
+[1.496s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.dsv'
+[1.496s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.sh'
+[1.498s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib'
+[1.498s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/bin'
+[1.498s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib/pkgconfig/bishe_mqtt.pc'
+[1.498s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib/python3.10/site-packages'
+[1.499s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/bin'
+[1.499s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.ps1'
+[1.500s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.dsv'
+[1.501s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.sh'
+[1.502s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.bash'
+[1.503s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.zsh'
+[1.503s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_mqtt/share/colcon-core/packages/bishe_mqtt)
+[1.506s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_mqtt)
+[1.507s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt' for CMake module files
+[1.507s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt' for CMake config files
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_mqtt', 'cmake_prefix_path')
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.ps1'
+[1.509s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.dsv'
+[1.510s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/hook/cmake_prefix_path.sh'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/bin'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib/pkgconfig/bishe_mqtt.pc'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/lib/python3.10/site-packages'
+[1.512s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_mqtt/bin'
+[1.513s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.ps1'
+[1.514s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.dsv'
+[1.515s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.sh'
+[1.516s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.bash'
+[1.516s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_mqtt/share/bishe_mqtt/package.zsh'
+[1.517s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_mqtt/share/colcon-core/packages/bishe_mqtt)
+[1.546s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_msgs -- -j6 -l6[0m
+[1.549s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_msgs[0m
+[1.683s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_msgs)
+[1.684s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs' for CMake module files
+[1.685s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_msgs[0m
+[1.686s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs' for CMake config files
+[1.688s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_msgs', 'cmake_prefix_path')
+[1.688s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.ps1'
+[1.689s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.dsv'
+[1.690s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.sh'
+[1.691s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib'
+[1.691s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_msgs', 'ld_library_path_lib')
+[1.691s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.ps1'
+[1.692s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.dsv'
+[1.692s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.sh'
+[1.693s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/bin'
+[1.693s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib/pkgconfig/bishe_msgs.pc'
+[1.694s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib/python3.10/site-packages'
+[1.694s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/bin'
+[1.695s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.ps1'
+[1.696s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.dsv'
+[1.697s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.sh'
+[1.698s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.bash'
+[1.698s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.zsh'
+[1.699s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_msgs/share/colcon-core/packages/bishe_msgs)
+[1.700s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_msgs)
+[1.700s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs' for CMake module files
+[1.702s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs' for CMake config files
+[1.703s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_msgs', 'cmake_prefix_path')
+[1.704s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.ps1'
+[1.704s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.dsv'
+[1.705s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/cmake_prefix_path.sh'
+[1.706s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib'
+[1.707s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_msgs', 'ld_library_path_lib')
+[1.707s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.ps1'
+[1.708s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.dsv'
+[1.708s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/hook/ld_library_path_lib.sh'
+[1.709s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/bin'
+[1.709s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib/pkgconfig/bishe_msgs.pc'
+[1.709s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/lib/python3.10/site-packages'
+[1.710s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_msgs/bin'
+[1.711s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.ps1'
+[1.712s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.dsv'
+[1.713s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.sh'
+[1.713s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.bash'
+[1.714s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_msgs/share/bishe_msgs/package.zsh'
+[1.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_msgs/share/colcon-core/packages/bishe_msgs)
+[1.715s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_detector' with build type 'ament_cmake'
+[1.716s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_detector'
+[1.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.716s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.723s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_monitor' with build type 'ament_cmake'
+[1.723s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_monitor'
+[1.723s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.724s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.729s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/jetson/projects/bishe/src/bishe_streamer' with build type 'ament_cmake'
+[1.729s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/jetson/projects/bishe/src/bishe_streamer'
+[1.730s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.730s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.741s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_detector': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_detector -- -j6 -l6[0m
+[1.747s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_monitor': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_monitor -- -j6 -l6[0m
+[1.753s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_streamer': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_streamer -- -j6 -l6[0m
+[1.867s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_detector' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_detector -- -j6 -l6[0m
+[1.871s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_detector': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_detector[0m
+[1.872s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_streamer' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_streamer -- -j6 -l6[0m
+[1.875s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_streamer': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_streamer[0m
+[1.877s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_monitor' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_monitor -- -j6 -l6[0m
+[1.881s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/build/bishe_monitor': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_monitor[0m
+[1.911s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_detector)
+[1.912s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector' for CMake module files
+[1.913s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector' for CMake config files
+[1.913s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_detector', 'cmake_prefix_path')
+[1.914s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.ps1'
+[1.915s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_detector' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_detector[0m
+[1.916s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.dsv'
+[1.916s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.sh'
+[1.917s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib'
+[1.918s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/bin'
+[1.918s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib/pkgconfig/bishe_detector.pc'
+[1.918s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib/python3.10/site-packages'
+[1.919s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/bin'
+[1.920s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.ps1'
+[1.921s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.dsv'
+[1.921s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.sh'
+[1.922s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.bash'
+[1.923s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.zsh'
+[1.924s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_detector/share/colcon-core/packages/bishe_detector)
+[1.925s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_detector)
+[1.925s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector' for CMake module files
+[1.926s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector' for CMake config files
+[1.927s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_detector', 'cmake_prefix_path')
+[1.927s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.ps1'
+[1.928s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.dsv'
+[1.929s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/hook/cmake_prefix_path.sh'
+[1.930s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib'
+[1.930s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/bin'
+[1.930s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib/pkgconfig/bishe_detector.pc'
+[1.931s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/lib/python3.10/site-packages'
+[1.931s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_detector/bin'
+[1.932s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.ps1'
+[1.933s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.dsv'
+[1.933s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.sh'
+[1.934s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.bash'
+[1.935s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_detector/share/bishe_detector/package.zsh'
+[1.936s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_detector/share/colcon-core/packages/bishe_detector)
+[1.937s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_streamer)
+[1.938s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer' for CMake module files
+[1.939s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_streamer' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_streamer[0m
+[1.939s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer' for CMake config files
+[1.940s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_streamer', 'cmake_prefix_path')
+[1.941s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.ps1'
+[1.941s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.dsv'
+[1.942s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.sh'
+[1.943s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib'
+[1.943s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/bin'
+[1.943s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib/pkgconfig/bishe_streamer.pc'
+[1.944s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib/python3.10/site-packages'
+[1.944s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/bin'
+[1.945s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.ps1'
+[1.946s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.dsv'
+[1.947s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.sh'
+[1.947s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.bash'
+[1.948s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.zsh'
+[1.949s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_streamer/share/colcon-core/packages/bishe_streamer)
+[1.950s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_streamer)
+[1.950s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer' for CMake module files
+[1.951s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer' for CMake config files
+[1.952s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_streamer', 'cmake_prefix_path')
+[1.952s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.ps1'
+[1.953s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.dsv'
+[1.954s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.sh'
+[1.955s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib'
+[1.955s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/bin'
+[1.955s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib/pkgconfig/bishe_streamer.pc'
+[1.956s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/lib/python3.10/site-packages'
+[1.956s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_streamer/bin'
+[1.957s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.ps1'
+[1.958s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.dsv'
+[1.959s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.sh'
+[1.960s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.bash'
+[1.961s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_streamer/share/bishe_streamer/package.zsh'
+[1.961s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_streamer/share/colcon-core/packages/bishe_streamer)
+[1.963s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_monitor)
+[1.964s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor' for CMake module files
+[1.966s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor' for CMake config files
+[1.966s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/build/bishe_monitor' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/home/jetson/projects/bishe/install/bishe_streamer:/home/jetson/projects/bishe/install/bishe_monitor:/home/jetson/projects/bishe/install/bishe_detector:/home/jetson/projects/bishe/install/bishe_mqtt:/home/jetson/projects/bishe/install/bishe_camera:/home/jetson/projects/bishe/install/bishe_launch:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 /usr/bin/cmake --install /home/jetson/projects/bishe/build/bishe_monitor[0m
+[1.967s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_monitor', 'cmake_prefix_path')
+[1.967s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.ps1'
+[1.969s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.dsv'
+[1.969s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.sh'
+[1.971s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib'
+[1.971s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/bin'
+[1.971s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib/pkgconfig/bishe_monitor.pc'
+[1.971s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib/python3.10/site-packages'
+[1.972s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/bin'
+[1.973s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.ps1'
+[1.974s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.dsv'
+[1.974s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.sh'
+[1.975s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.bash'
+[1.976s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.zsh'
+[1.977s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_monitor/share/colcon-core/packages/bishe_monitor)
+[1.978s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_monitor)
+[1.978s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor' for CMake module files
+[1.979s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor' for CMake config files
+[1.980s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_monitor', 'cmake_prefix_path')
+[1.980s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.ps1'
+[1.981s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.dsv'
+[1.981s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/hook/cmake_prefix_path.sh'
+[1.983s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib'
+[1.983s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/bin'
+[1.983s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib/pkgconfig/bishe_monitor.pc'
+[1.983s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/lib/python3.10/site-packages'
+[1.984s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_monitor/bin'
+[1.984s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.ps1'
+[1.986s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.dsv'
+[1.986s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.sh'
+[1.987s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.bash'
+[1.988s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_monitor/share/bishe_monitor/package.zsh'
+[1.989s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_monitor/share/colcon-core/packages/bishe_monitor)
+[2.017s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/jetson/projects/bishe/src/bishe_launch': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/build/bishe_launch/build install --record /home/jetson/projects/bishe/build/bishe_launch/install.log --single-version-externally-managed install_data[0m
+[2.532s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch' for CMake module files
+[2.533s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/jetson/projects/bishe/src/bishe_launch' returned '0': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/build/bishe_launch/build install --record /home/jetson/projects/bishe/build/bishe_launch/install.log --single-version-externally-managed install_data[0m
+[2.533s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch' for CMake config files
+[2.534s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch/lib'
+[2.535s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch/bin'
+[2.535s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch/lib/pkgconfig/bishe_launch.pc'
+[2.535s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages'
+[2.535s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('bishe_launch', 'pythonpath')
+[2.536s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/pythonpath.ps1'
+[2.537s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/pythonpath.dsv'
+[2.537s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/hook/pythonpath.sh'
+[2.539s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/jetson/projects/bishe/install/bishe_launch/bin'
+[2.539s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(bishe_launch)
+[2.539s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/package.ps1'
+[2.540s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/package.dsv'
+[2.541s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/package.sh'
+[2.542s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/package.bash'
+[2.542s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/package.zsh'
+[2.543s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/jetson/projects/bishe/install/bishe_launch/share/colcon-core/packages/bishe_launch)
+[2.543s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[2.544s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[2.544s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[2.545s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[2.555s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.556s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.556s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[2.580s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[2.581s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/jetson/projects/bishe/install/local_setup.ps1'
+[2.583s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/jetson/projects/bishe/install/_local_setup_util_ps1.py'
+[2.586s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/jetson/projects/bishe/install/setup.ps1'
+[2.589s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/jetson/projects/bishe/install/local_setup.sh'
+[2.590s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/jetson/projects/bishe/install/_local_setup_util_sh.py'
+[2.591s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/jetson/projects/bishe/install/setup.sh'
+[2.593s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/jetson/projects/bishe/install/local_setup.bash'
+[2.594s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/jetson/projects/bishe/install/setup.bash'
+[2.597s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/jetson/projects/bishe/install/local_setup.zsh'
+[2.598s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/jetson/projects/bishe/install/setup.zsh'

@@ -1,0 +1,10 @@
+[0.032s] Invoking command in '/home/jetson/projects/bishe/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_detector -- -j6 -l6
+[0.188s] [ 16%] Building CXX object CMakeFiles/detector_node.dir/src/detector_node.cpp.o
+[7.889s] /home/jetson/projects/bishe/src/bishe_detector/src/detector_node.cpp: In member function ‘void DetectorNode::workerLoop(int)’:
+[7.892s] /home/jetson/projects/bishe/src/bishe_detector/src/detector_node.cpp:162:30: error: ‘struct std::atomic<double>’ has no member named ‘fetch_add’
+[7.893s]   162 |       inference_time_ms_acc_.fetch_add(inf_ms);
+[7.893s]       |                              ^~~~~~~~~
+[10.938s] gmake[2]: *** [CMakeFiles/detector_node.dir/build.make:76：CMakeFiles/detector_node.dir/src/detector_node.cpp.o] 错误 1
+[10.940s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/detector_node.dir/all] 错误 2
+[10.940s] gmake: *** [Makefile:146：all] 错误 2
+[10.944s] Invoked command in '/home/jetson/projects/bishe/build/bishe_detector' returned '2': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/build/bishe_detector -- -j6 -l6

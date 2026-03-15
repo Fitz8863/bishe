@@ -1,0 +1,7 @@
+/home/jetson/projects/bishe/src/bishe_detector/src/detector_node.cpp: In member function ‘void DetectorNode::workerLoop(int)’:
+/home/jetson/projects/bishe/src/bishe_detector/src/detector_node.cpp:162:30: error: ‘struct std::atomic<double>’ has no member named ‘fetch_add’
+  162 |       inference_time_ms_acc_.fetch_add(inf_ms);
+      |                              ^~~~~~~~~
+gmake[2]: *** [CMakeFiles/detector_node.dir/build.make:76：CMakeFiles/detector_node.dir/src/detector_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/detector_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

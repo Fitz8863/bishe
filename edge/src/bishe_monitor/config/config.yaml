@@ -1,0 +1,20 @@
+camera:
+  device: "/dev/video0"
+  width: 1280
+  height: 720
+  framerate: 60
+
+detector:
+  confidence_threshold: 0.5
+
+monitor:
+  window_seconds: 5
+  violation_ratio_threshold: 0.4
+  location: "生产车间A区"
+  camera_id: "001"
+
+upload:
+  server_url: "http://YOUR_SERVER_IP:5000/capture/upload"
+
+alarm:
+  audio_file: "/path/to/alarm.mp3"

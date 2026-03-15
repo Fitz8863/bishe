@@ -1,0 +1,30 @@
+[INFO] [launch]: All log files can be found below /home/jetson/.ros/log/2026-03-14-14-39-39-008362-jetson-orin-nano-288520
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_node-1]: process started with pid [288528]
+[INFO] [detector_node-2]: process started with pid [288530]
+[INFO] [streamer_node-3]: process started with pid [288532]
+[streamer_node-3] [INFO] [1773470379.560118598] [streamer_node]: Opening writer pipeline: appsrc do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! x264enc bitrate=4000 speed-preset=ultrafast tune=zerolatency ! h264parse ! queue ! sink. alsasrc device=hw:1,0 ! audioconvert ! audioresample ! voaacenc bitrate=128000 ! aacparse ! queue ! sink. rtspclientsink location=rtsp://localhost:8554/stream name=sink protocols=tcp
+[detector_node-2] [INFO] [1773470379.635317013] [detector_node]: Loading YOLO engine from: /home/jetson/projects/bishe/models/yolov8s.engine
+[camera_node-1] [INFO] [1773470379.683395708] [camera_node]: Opening pipeline: v4l2src device=/dev/video0 do-timestamp=true ! image/jpeg, width=1280, height=720, framerate=60/1 ! jpegparse ! nvv4l2decoder mjpegdecode=1 ! nvvidconv ! video/x-raw, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink drop=true
+[streamer_node-3] [ WARN:0@0.274] global cap_gstreamer.cpp:2839 handleMessage OpenCV | GStreamer warning: Embedded video playback halted; module alsasrc0 reported: Could not open audio device for recording. Device is being used by another application.
+[streamer_node-3] [ WARN:0@0.275] global cap_gstreamer.cpp:2629 open OpenCV | GStreamer warning: GStreamer: cannot put pipeline to play
+[streamer_node-3] [ERROR] [1773470379.710504068] [streamer_node]: Failed to open video writer with GStreamer composite pipeline. Check if audio device hw:1,0 is available.
+[streamer_node-3] [INFO] [1773470379.710616488] [streamer_node]: Streamer node started, pushing Audio(hw:1,0) and Video to rtsp://localhost:8554/stream
+[detector_node-2] NvMapMemAllocInternalTagged: 1075072515 error 12
+[detector_node-2] NvMapMemHandleAlloc: error 0
+[detector_node-2] NvMapMemAllocInternalTagged: 1075072515 error 12
+[detector_node-2] NvMapMemHandleAlloc: error 0
+[detector_node-2] NvMapMemAllocInternalTagged: 1075072515 error 12
+[detector_node-2] NvMapMemHandleAlloc: error 0
+[detector_node-2] createInferRuntime: Error Code 6: API Usage Error (CUDA initialization failure with error: 2)
+[detector_node-2] [checkMacros.cpp::catchCudaError::212] Error Code 1: Cuda Runtime (out of memory)
+[camera_node-1] Opening in BLOCKING MODE 
+[camera_node-1] [ WARN:0@0.388] global cap_gstreamer.cpp:2839 handleMessage OpenCV | GStreamer warning: Embedded video playback halted; module v4l2src0 reported: Device '/dev/video0' is busy
+[camera_node-1] [ WARN:0@0.392] global cap_gstreamer.cpp:1698 open OpenCV | GStreamer warning: unable to start pipeline
+[camera_node-1] [ WARN:0@0.394] global cap_gstreamer.cpp:1173 isPipelinePlaying OpenCV | GStreamer warning: GStreamer: pipeline have not been created
+[camera_node-1] [ WARN:0@0.395] global cap.cpp:204 open VIDEOIO(GSTREAMER): backend is generally available but can't be used to capture by name
+[camera_node-1] [ERROR] [1773470379.904128849] [camera_node]: Failed to open camera /dev/video0 with GStreamer
+[camera_node-1] terminate called after throwing an instance of 'std::runtime_error'
+[camera_node-1]   what():  Failed to open camera
+[ERROR] [detector_node-2]: process has died [pid 288530, exit code -11, cmd '/home/jetson/projects/bishe/install/bishe_detector/lib/bishe_detector/detector_node --ros-args -r __node:=detector_node --params-file /tmp/launch_params_65vndfhl'].
+[ERROR] [camera_node-1]: process has died [pid 288528, exit code -6, cmd '/home/jetson/projects/bishe/install/bishe_camera/lib/bishe_camera/camera_node --ros-args -r __node:=camera_node --params-file /tmp/launch_params_uy9owdjk'].

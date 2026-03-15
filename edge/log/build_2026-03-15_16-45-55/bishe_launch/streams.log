@@ -1,0 +1,32 @@
+[1.112s] Invoking command in '/home/jetson/projects/bishe/build/bishe_launch': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/jetson/projects/bishe/build/bishe_launch/build
+[1.551s] running develop
+[1.824s] Removing /home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages/bishe-launch.egg-link (link to .)
+[1.888s] Invoked command in '/home/jetson/projects/bishe/build/bishe_launch' returned '0': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/jetson/projects/bishe/build/bishe_launch/build
+[1.891s] Invoking command in '/home/jetson/projects/bishe/src/bishe_launch': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/build/bishe_launch/build install --record /home/jetson/projects/bishe/build/bishe_launch/install.log --single-version-externally-managed install_data --force
+[2.298s] running egg_info
+[2.299s] writing ../../build/bishe_launch/bishe_launch.egg-info/PKG-INFO
+[2.299s] writing dependency_links to ../../build/bishe_launch/bishe_launch.egg-info/dependency_links.txt
+[2.299s] writing entry points to ../../build/bishe_launch/bishe_launch.egg-info/entry_points.txt
+[2.300s] writing requirements to ../../build/bishe_launch/bishe_launch.egg-info/requires.txt
+[2.300s] writing top-level names to ../../build/bishe_launch/bishe_launch.egg-info/top_level.txt
+[2.303s] reading manifest file '../../build/bishe_launch/bishe_launch.egg-info/SOURCES.txt'
+[2.304s] writing manifest file '../../build/bishe_launch/bishe_launch.egg-info/SOURCES.txt'
+[2.305s] running build
+[2.305s] running build_py
+[2.305s] running install
+[2.305s] running install_lib
+[2.307s] creating /home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages/bishe_launch
+[2.307s] copying /home/jetson/projects/bishe/build/bishe_launch/build/lib/bishe_launch/__init__.py -> /home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages/bishe_launch
+[2.308s] byte-compiling /home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages/bishe_launch/__init__.py to __init__.cpython-310.pyc
+[2.308s] running install_data
+[2.308s] copying resource/bishe_launch/ros2 -> /home/jetson/projects/bishe/install/bishe_launch/share/ament_index/resource_index/packages
+[2.309s] copying launch/vision_only.launch.py -> /home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/launch
+[2.309s] copying launch/bishe.launch.py -> /home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/launch
+[2.309s] copying launch/multicamera.launch.py -> /home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/launch
+[2.309s] copying config/cameras.yaml -> /home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch/config
+[2.310s] copying package.xml -> /home/jetson/projects/bishe/install/bishe_launch/share/bishe_launch
+[2.310s] running install_egg_info
+[2.313s] Copying ../../build/bishe_launch/bishe_launch.egg-info to /home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages/bishe_launch-0.1.0-py3.10.egg-info
+[2.315s] running install_scripts
+[2.351s] writing list of installed files to '/home/jetson/projects/bishe/build/bishe_launch/install.log'
+[2.406s] Invoked command in '/home/jetson/projects/bishe/src/bishe_launch' returned '0': PYTHONPATH=/home/jetson/projects/bishe/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/build/bishe_launch/build install --record /home/jetson/projects/bishe/build/bishe_launch/install.log --single-version-externally-managed install_data --force

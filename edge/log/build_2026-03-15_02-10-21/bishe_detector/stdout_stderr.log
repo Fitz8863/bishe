@@ -1,0 +1,3 @@
+Consolidate compiler generated dependencies of target detector_node
+[ 16%] Building CXX object CMakeFiles/detector_node.dir/src/yolov8.cc.o
+[ 33%] Building CXX object CMakeFiles/detector_node.dir/src/detector_node.cpp.o
