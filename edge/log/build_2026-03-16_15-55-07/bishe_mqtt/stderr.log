@@ -1,0 +1,18 @@
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::nodeExists(const string&) const’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:404:48: error: passing ‘const MqttNode’ as ‘this’ argument discards qualifiers [-fpermissive]
+  404 |     auto graph = this->get_node_graph_interface();
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1141:3: note:   in call to ‘rclcpp::node_interfaces::NodeGraphInterface::SharedPtr rclcpp::Node::get_node_graph_interface()’
+ 1141 |   get_node_graph_interface();
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:406:41: error: ‘using element_type = class rclcpp::node_interfaces::NodeGraphInterface’ {aka ‘class rclcpp::node_interfaces::NodeGraphInterface’} has no member named ‘get_node_namespaces’; did you mean ‘get_node_names’?
+  406 |     const auto node_namespaces = graph->get_node_namespaces();
+      |                                         ^~~~~~~~~~~~~~~~~~~
+      |                                         get_node_names
+gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

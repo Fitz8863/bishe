@@ -1,0 +1,27 @@
+[1.146s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_launch': PYTHONPATH=/home/jetson/projects/bishe/edge/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/jetson/projects/bishe/edge/build/bishe_launch/build --no-deps symlink_data
+[1.597s] running develop
+[1.874s] running egg_info
+[1.876s] creating bishe_launch.egg-info
+[1.876s] writing bishe_launch.egg-info/PKG-INFO
+[1.877s] writing dependency_links to bishe_launch.egg-info/dependency_links.txt
+[1.877s] writing entry points to bishe_launch.egg-info/entry_points.txt
+[1.877s] writing requirements to bishe_launch.egg-info/requires.txt
+[1.877s] writing top-level names to bishe_launch.egg-info/top_level.txt
+[1.877s] writing manifest file 'bishe_launch.egg-info/SOURCES.txt'
+[1.880s] reading manifest file 'bishe_launch.egg-info/SOURCES.txt'
+[1.880s] writing manifest file 'bishe_launch.egg-info/SOURCES.txt'
+[1.883s] running build_ext
+[1.883s] Creating /home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages/bishe-launch.egg-link (link to .)
+[1.885s] 
+[1.885s] Installed /home/jetson/projects/bishe/edge/build/bishe_launch
+[1.885s] running symlink_data
+[1.886s] creating /home/jetson/projects/bishe/edge/install/bishe_launch/share/ament_index
+[1.886s] creating /home/jetson/projects/bishe/edge/install/bishe_launch/share/ament_index/resource_index
+[1.886s] creating /home/jetson/projects/bishe/edge/install/bishe_launch/share/ament_index/resource_index/packages
+[1.886s] symbolically linking /home/jetson/projects/bishe/edge/build/bishe_launch/resource/bishe_launch -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/ament_index/resource_index/packages
+[1.887s] creating /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/launch
+[1.889s] symbolically linking /home/jetson/projects/bishe/edge/build/bishe_launch/launch/multicamera.launch.py -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/launch
+[1.889s] creating /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/config
+[1.889s] symbolically linking /home/jetson/projects/bishe/edge/build/bishe_launch/config/cameras.yaml -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/config
+[1.889s] symbolically linking /home/jetson/projects/bishe/edge/build/bishe_launch/package.xml -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch
+[1.960s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_launch' returned '0': PYTHONPATH=/home/jetson/projects/bishe/edge/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/jetson/projects/bishe/edge/build/bishe_launch/build --no-deps symlink_data

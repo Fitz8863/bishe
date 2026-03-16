@@ -1,1 +1,0 @@
-/home/jetson/projects/bishe/edge/build/bishe_launch/launch/bishe.launch.py

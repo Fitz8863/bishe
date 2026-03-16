@@ -18,6 +18,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/parameter_client.hpp>
+#include <rclcpp/executors/multi_threaded_executor.hpp>
 
 #include <mqtt/async_client.h>
 
@@ -155,7 +156,7 @@ private:
     std::string http_url;              ///< HTTP 流地址（用于 Web 预览）
     int width{0};                      ///< 视频分辨率宽度
     int height{0};                     ///< 视频分辨率高度
-    int fps{0};                        ///< 帧率
+    double fps{0.0};
     double scale{1.0};                 ///< 流媒体缩放比例
     double confidence_threshold{0.5};  ///< 目标检测置信度阈值
     double nms_threshold{0.5};        ///< NMS 非极大值抑制阈值
@@ -262,7 +263,8 @@ private:
     const int interval_ms = std::max(100, static_cast<int>(std::round(report_interval_sec_ * 1000.0)));
     report_timer_ = this->create_wall_timer(
       std::chrono::milliseconds(interval_ms),
-      std::bind(&MqttNode::reportInfoTimerCallback, this));
+      std::bind(&MqttNode::reportInfoTimerCallback, this),
+      report_callback_group_);
     RCLCPP_INFO(this->get_logger(), "Info report timer started, interval: %.2f sec", report_interval_sec_);
   }
 
@@ -393,9 +395,27 @@ private:
       return it->second;
     }
 
-    auto client = std::make_shared<rclcpp::AsyncParametersClient>(this, node_name);
+    auto client = std::make_shared<rclcpp::AsyncParametersClient>(
+      this, node_name, rmw_qos_profile_parameters, param_callback_group_);
     param_clients_[node_name] = client;
     return client;
+  }
+
+  bool nodeExists(const std::string &node_name)
+  {
+    auto graph = this->get_node_graph_interface();
+    const auto node_names_and_namespaces = graph->get_node_names_and_namespaces();
+    for (const auto &item : node_names_and_namespaces) {
+      std::string full_name = item.second;
+      if (full_name.empty() || full_name.back() != '/') {
+        full_name += '/';
+      }
+      full_name += item.first;
+      if (full_name == node_name) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -412,24 +432,39 @@ private:
     const std::vector<std::string> &parameter_names,
     std::vector<rclcpp::Parameter> &parameters)
   {
+    const auto now = std::chrono::steady_clock::now();
+    const auto backoff_it = next_query_time_.find(node_name);
+    if (backoff_it != next_query_time_.end() && now < backoff_it->second) {
+      return false;
+    }
+
+    if (!nodeExists(node_name)) {
+      next_query_time_[node_name] = now + std::chrono::seconds(10);
+      return false;
+    }
+
     auto client = getOrCreateParamClient(node_name);
     if (!client->service_is_ready()) {
+      next_query_time_[node_name] = now + std::chrono::seconds(2);
       return false;
     }
 
     auto future = client->get_parameters(parameter_names);
-    const auto status = future.wait_for(std::chrono::milliseconds(200));
+    const auto status = future.wait_for(std::chrono::milliseconds(1000));
     if (status != std::future_status::ready) {
+      next_query_time_[node_name] = now + std::chrono::seconds(30);
       RCLCPP_WARN_THROTTLE(
-        this->get_logger(), *this->get_clock(), 3000,
+        this->get_logger(), *this->get_clock(), 120000,
         "Timed out fetching parameters from %s", node_name.c_str());
       return false;
     }
 
     try {
       parameters = future.get();
+      next_query_time_[node_name] = now;
       return true;
     } catch (const std::exception &e) {
+      next_query_time_[node_name] = now + std::chrono::seconds(2);
       RCLCPP_WARN(this->get_logger(), "Failed to fetch parameters from %s: %s", node_name.c_str(), e.what());
       return false;
     }
@@ -472,21 +507,12 @@ private:
     return escaped;
   }
 
-  /**
-   * @brief 请求摄像头分辨率和帧率参数
-   * @param camera_id 摄像头 ID
-   *
-   * 通过异步参数服务从 camera_node 获取：
-   * - width: 视频宽度
-   * - height: 视频高度
-   * - framerate: 帧率
-   */
-  void requestCameraResolution(const std::string &camera_id)
+  void requestStreamerRuntimeInfo(const std::string &camera_id)
   {
-    const auto candidates = cameraNodeCandidates(camera_id);
+    const auto candidates = streamerNodeCandidates(camera_id);
     for (const auto &node_name : candidates) {
       std::vector<rclcpp::Parameter> params;
-      if (!fetchParametersSync(node_name, {"width", "height", "framerate"}, params)) {
+      if (!fetchParametersSync(node_name, {"output_width", "output_height", "output_fps", "scale"}, params)) {
         continue;
       }
 
@@ -498,12 +524,22 @@ private:
 
       // 解析参数值
       for (const auto &p : params) {
-        if (p.get_name() == "width" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+        if (p.get_name() == "output_width" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
           info.width = static_cast<int>(p.as_int());
-        } else if (p.get_name() == "height" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+        } else if (p.get_name() == "output_height" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
           info.height = static_cast<int>(p.as_int());
-        } else if (p.get_name() == "framerate" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
-          info.fps = static_cast<int>(p.as_int());
+        } else if (p.get_name() == "output_fps") {
+          if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+            info.fps = p.as_double();
+          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+            info.fps = static_cast<double>(p.as_int());
+          }
+        } else if (p.get_name() == "scale") {
+          if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+            info.scale = p.as_double();
+          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+            info.scale = static_cast<double>(p.as_int());
+          }
         }
       }
 
@@ -562,59 +598,10 @@ private:
     }
   }
 
-  /**
-   * @brief 请求流媒体缩放参数
-   * @param camera_id 摄像头 ID
-   *
-   * 通过异步参数服务从 streamer_node 获取：
-   * - scale: 视频流缩放比例
-   */
-  void requestStreamerScale(const std::string &camera_id)
-  {
-    const auto candidates = streamerNodeCandidates(camera_id);
-    for (const auto &node_name : candidates) {
-      std::vector<rclcpp::Parameter> params;
-      if (!fetchParametersSync(node_name, {"scale"}, params)) {
-        continue;
-      }
-
-      CameraInfo info;
-      {
-        std::lock_guard<std::mutex> lock(info_mutex_);
-        info = info_cache_[camera_id];
-      }
-
-      for (const auto &p : params) {
-        if (p.get_name() == "scale") {
-          if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
-            info.scale = p.as_double();
-          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
-            info.scale = static_cast<double>(p.as_int());
-          }
-        }
-      }
-
-      {
-        std::lock_guard<std::mutex> lock(info_mutex_);
-        info_cache_[camera_id] = info;
-      }
-      return;
-    }
-  }
-
-  /**
-   * @brief 请求所有摄像头的运行时信息
-   *
-   * 遍历所有摄像头，分别获取：
-   * 1. 分辨率和帧率（从 camera_node）
-   * 2. 流媒体缩放比例（从 streamer_node）
-   * 3. 检测阈值（从 detector_node）
-   */
   void requestRuntimeInfo()
   {
     for (const auto &camera_id : camera_ids_) {
-      requestCameraResolution(camera_id);
-      requestStreamerScale(camera_id);
+      requestStreamerRuntimeInfo(camera_id);
       requestDetectorThresholds(camera_id);
     }
   }
@@ -734,10 +721,15 @@ private:
   std::vector<std::string> camera_ids_;           ///< 摄像头 ID 列表
   std::vector<std::string> camera_locations_;     ///< 摄像头位置列表
   std::vector<std::string> camera_http_urls_;    ///< HTTP URL 列表
+  rclcpp::CallbackGroup::SharedPtr report_callback_group_{
+    this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
+  rclcpp::CallbackGroup::SharedPtr param_callback_group_{
+    this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};
 
   // 内部状态
   rclcpp::TimerBase::SharedPtr report_timer_;      ///< 定时上报计时器
   std::unordered_map<std::string, std::shared_ptr<rclcpp::AsyncParametersClient>> param_clients_;  ///< 参数客户端缓存
+  std::unordered_map<std::string, std::chrono::steady_clock::time_point> next_query_time_;
   std::unordered_map<std::string, CameraInfo> info_cache_;  ///< 摄像头信息缓存
   std::mutex info_mutex_;  ///< 保护 info_cache_ 的互斥锁
 };
@@ -751,7 +743,10 @@ private:
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MqttNode>());
+  auto node = std::make_shared<MqttNode>();
+  rclcpp::executors::MultiThreadedExecutor executor;
+  executor.add_node(node);
+  executor.spin();
   rclcpp::shutdown();
   return 0;
 }

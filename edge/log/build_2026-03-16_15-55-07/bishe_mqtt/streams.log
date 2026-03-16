@@ -1,0 +1,21 @@
+[0.013s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[0.111s] [ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o
+[5.440s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::nodeExists(const string&) const’:
+[5.440s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:404:48: error: passing ‘const MqttNode’ as ‘this’ argument discards qualifiers [-fpermissive]
+[5.441s]   404 |     auto graph = this->get_node_graph_interface();
+[5.441s]       |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+[5.441s] In file included from /opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28,
+[5.441s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22,
+[5.441s]                  from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+[5.441s]                  from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+[5.441s] /opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1141:3: note:   in call to ‘rclcpp::node_interfaces::NodeGraphInterface::SharedPtr rclcpp::Node::get_node_graph_interface()’
+[5.441s]  1141 |   get_node_graph_interface();
+[5.441s]       |   ^~~~~~~~~~~~~~~~~~~~~~~~
+[5.443s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:406:41: error: ‘using element_type = class rclcpp::node_interfaces::NodeGraphInterface’ {aka ‘class rclcpp::node_interfaces::NodeGraphInterface’} has no member named ‘get_node_namespaces’; did you mean ‘get_node_names’?
+[5.444s]   406 |     const auto node_namespaces = graph->get_node_namespaces();
+[5.444s]       |                                         ^~~~~~~~~~~~~~~~~~~
+[5.444s]       |                                         get_node_names
+[7.340s] gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+[7.340s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+[7.340s] gmake: *** [Makefile:146：all] 错误 2
+[7.344s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6

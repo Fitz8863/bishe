@@ -3,6 +3,7 @@
 #include <image_transport/image_transport.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
+#include <rclcpp/executors/multi_threaded_executor.hpp>
 #include "bishe_msgs/msg/detector_result.hpp"
 #include <chrono>
 
@@ -16,14 +17,21 @@ public:
         this->declare_parameter<std::string>("rtsp_url", "rtsp://localhost:8554/stream");
         this->declare_parameter<std::string>("audio_device", "hw:1,0");
         this->declare_parameter<int>("framerate", 60);
+        this->declare_parameter<int>("output_width", 0);
+        this->declare_parameter<int>("output_height", 0);
+        this->declare_parameter<double>("output_fps", 0.0);
 
         this->get_parameter("rtsp_url", rtsp_url_);
         this->get_parameter("scale", scale_);
         this->get_parameter("audio_device", audio_device_);
         this->get_parameter("framerate", framerate_);
 
+        stream_callback_group_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
+        rclcpp::SubscriptionOptions sub_options;
+        sub_options.callback_group = stream_callback_group_;
+
         result_sub_ = this->create_subscription<bishe_msgs::msg::DetectorResult>(
-            "detector/result", 10, std::bind(&StreamerNode::resultCallback, this, std::placeholders::_1));
+            "detector/result", 10, std::bind(&StreamerNode::resultCallback, this, std::placeholders::_1), sub_options);
 
         RCLCPP_INFO(this->get_logger(), "推流节点开启, 推流地址: %s", rtsp_url_.c_str());
     }
@@ -51,6 +59,28 @@ private:
             current_fps_ = static_cast<double>(written_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
             written_frames_ = 0;
             fps_window_start_ = now;
+            syncRuntimeParameters();
+        }
+    }
+
+    void syncRuntimeParameters()
+    {
+        const std::vector<rclcpp::Parameter> runtime_params = {
+            rclcpp::Parameter("output_width", output_width_),
+            rclcpp::Parameter("output_height", output_height_),
+            rclcpp::Parameter("output_fps", current_fps_)
+        };
+
+        const auto results = this->set_parameters(runtime_params);
+        for (size_t i = 0; i < results.size(); ++i)
+        {
+            if (!results[i].successful)
+            {
+                RCLCPP_WARN_THROTTLE(
+                    this->get_logger(), *this->get_clock(), 5000,
+                    "更新推流运行时参数 %s 失败: %s",
+                    runtime_params[i].get_name().c_str(), results[i].reason.c_str());
+            }
         }
     }
 
@@ -104,6 +134,13 @@ private:
             int target_height = static_cast<int>(height * scale_);
             cv::Size target_size(target_width, target_height);
 
+            if (target_width != output_width_ || target_height != output_height_)
+            {
+                output_width_ = target_width;
+                output_height_ = target_height;
+                syncRuntimeParameters();
+            }
+
             if (!writer_.isOpened())
             {
                 initWriter(target_width, target_height);
@@ -148,17 +185,23 @@ private:
     }
 
     rclcpp::Subscription<bishe_msgs::msg::DetectorResult>::SharedPtr result_sub_;
+    rclcpp::CallbackGroup::SharedPtr stream_callback_group_;
     cv::VideoWriter writer_;
     std::string rtsp_url_;
     std::string audio_device_;
     float scale_;
     int framerate_;
+    int output_width_{0};
+    int output_height_{0};
 };
 
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<StreamerNode>());
+    auto node = std::make_shared<StreamerNode>();
+    rclcpp::executors::MultiThreadedExecutor executor;
+    executor.add_node(node);
+    executor.spin();
     rclcpp::shutdown();
     return 0;
 }

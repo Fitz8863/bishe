@@ -10,7 +10,7 @@ setup(
     packages=[package_name],
     data_files=[
         (os.path.join('share', 'ament_index', 'resource_index', 'packages'),
-            [os.path.join('resource', package_name, 'ros2')]),
+            [os.path.join('resource', package_name)]),
         (os.path.join('share', package_name, 'launch'),
             glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'config'),
