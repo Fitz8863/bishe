@@ -1,0 +1,5 @@
+[0.488s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[0.562s] [35m[1mConsolidate compiler generated dependencies of target mqtt_node[0m
+[0.593s] [ 50%] [32mBuilding CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o[0m
+[8.788s] [100%] [32m[1mLinking CXX executable mqtt_node[0m
+[9.153s] [100%] Built target mqtt_node

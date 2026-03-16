@@ -1,0 +1,151 @@
+[0.064s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_msgs -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_msgs
+[0.658s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.659s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.659s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.659s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.659s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.659s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.659s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.184s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.746s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.436s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.482s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[2.524s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.524s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[2.524s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[2.664s] -- Configuring done
+[2.760s] -- Generating done
+[2.796s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_msgs
+[2.816s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_msgs -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_msgs
+[2.817s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_msgs -- -j6 -l6
+[2.884s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_generator_c[0m
+[2.902s] [  3%] Built target bishe_msgs__cpp
+[2.910s] [ 12%] Built target bishe_msgs__rosidl_generator_c
+[2.916s] [ 12%] Built target ament_cmake_python_symlink_bishe_msgs
+[2.923s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_cpp[0m
+[2.930s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_fastrtps_cpp[0m
+[2.930s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_introspection_cpp[0m
+[2.931s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_fastrtps_c[0m
+[2.936s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_introspection_c[0m
+[2.963s] [ 35%] Built target bishe_msgs__rosidl_typesupport_fastrtps_cpp
+[2.963s] [ 35%] Built target bishe_msgs__rosidl_typesupport_introspection_cpp
+[2.963s] [ 45%] Built target bishe_msgs__rosidl_typesupport_introspection_c
+[2.964s] [ 51%] Built target bishe_msgs__rosidl_typesupport_cpp
+[2.982s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_c[0m
+[2.982s] [ 61%] Built target bishe_msgs__rosidl_typesupport_fastrtps_c
+[3.002s] [ 70%] Built target bishe_msgs__rosidl_typesupport_c
+[3.039s] [ 70%] Built target bishe_msgs
+[3.084s] [ 74%] Built target bishe_msgs__py
+[3.104s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_generator_py[0m
+[3.128s] [ 80%] Built target bishe_msgs__rosidl_generator_py
+[3.151s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_introspection_c__pyext[0m
+[3.161s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_fastrtps_c__pyext[0m
+[3.183s] [35m[1mConsolidate compiler generated dependencies of target bishe_msgs__rosidl_typesupport_c__pyext[0m
+[3.192s] [ 87%] Built target bishe_msgs__rosidl_typesupport_introspection_c__pyext
+[3.201s] [ 93%] Built target bishe_msgs__rosidl_typesupport_fastrtps_c__pyext
+[3.212s] [100%] Built target bishe_msgs__rosidl_typesupport_c__pyext
+[3.419s] running egg_info
+[3.421s] writing bishe_msgs.egg-info/PKG-INFO
+[3.421s] writing dependency_links to bishe_msgs.egg-info/dependency_links.txt
+[3.422s] writing top-level names to bishe_msgs.egg-info/top_level.txt
+[3.426s] reading manifest file 'bishe_msgs.egg-info/SOURCES.txt'
+[3.428s] writing manifest file 'bishe_msgs.egg-info/SOURCES.txt'
+[3.490s] [100%] Built target ament_cmake_python_build_bishe_msgs_egg
+[3.510s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_msgs -- -j6 -l6
+[3.514s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_msgs
+[3.527s] -- Install configuration: ""
+[3.528s] -- Execute custom install script
+[3.528s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/ament_index/resource_index/rosidl_interfaces/bishe_msgs
+[3.529s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__functions.h
+[3.529s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__struct.h
+[3.529s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__type_support.h
+[3.530s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detector_result.h
+[3.530s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/rosidl_generator_c__visibility_control.h
+[3.531s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/library_path.sh
+[3.531s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/library_path.dsv
+[3.532s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_fastrtps_c.h
+[3.533s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.533s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_introspection_c.h
+[3.533s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.534s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__builder.hpp
+[3.535s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__struct.hpp
+[3.535s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__traits.hpp
+[3.535s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__type_support.hpp
+[3.535s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detector_result.hpp
+[3.536s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.536s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_fastrtps_cpp.hpp
+[3.536s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.537s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/include/bishe_msgs/bishe_msgs/msg/detail/detector_result__rosidl_typesupport_introspection_cpp.hpp
+[3.537s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/pythonpath.sh
+[3.538s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/pythonpath.dsv
+[3.538s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs-0.1.0-py3.10.egg-info/PKG-INFO
+[3.538s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs-0.1.0-py3.10.egg-info/SOURCES.txt
+[3.539s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs-0.1.0-py3.10.egg-info/dependency_links.txt
+[3.541s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs-0.1.0-py3.10.egg-info/top_level.txt
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/__init__.py
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/_bishe_msgs_s.ep.rosidl_typesupport_c.c
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/_bishe_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/_bishe_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.542s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.543s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/libbishe_msgs__rosidl_generator_py.so
+[3.543s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/msg/__init__.py
+[3.543s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/msg/_detector_result.py
+[3.545s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/msg/_detector_result_s.c
+[3.546s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.547s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.547s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/bishe_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.547s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/msg/DetectorResult.idl
+[3.548s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/msg/DetectorResult.msg
+[3.548s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/ament_index/resource_index/package_run_dependencies/bishe_msgs
+[3.548s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/ament_index/resource_index/parent_prefix_path/bishe_msgs
+[3.548s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/ament_prefix_path.sh
+[3.549s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/ament_prefix_path.dsv
+[3.549s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/path.sh
+[3.549s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/environment/path.dsv
+[3.550s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/local_setup.bash
+[3.550s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/local_setup.sh
+[3.551s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/local_setup.zsh
+[3.551s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/local_setup.dsv
+[3.551s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/package.dsv
+[3.568s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/ament_index/resource_index/packages/bishe_msgs
+[3.568s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/rosidl_cmake-extras.cmake
+[3.568s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.568s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.569s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[3.569s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[3.569s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.569s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.570s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgsConfig.cmake
+[3.570s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgsConfig-version.cmake
+[3.570s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/package.xml
+[3.571s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_generator_c.so
+[3.571s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_fastrtps_c.so
+[3.572s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_introspection_c.so
+[3.572s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_c.so
+[3.573s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_fastrtps_cpp.so
+[3.573s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_introspection_cpp.so
+[3.573s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_typesupport_cpp.so
+[3.639s] Listing '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs'...
+[3.640s] Compiling '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/__init__.py'...
+[3.640s] Listing '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages/bishe_msgs/msg'...
+[3.654s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/lib/libbishe_msgs__rosidl_generator_py.so
+[3.654s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_generator_cExport.cmake
+[3.654s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_generator_cExport-noconfig.cmake
+[3.654s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_introspection_cExport.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_cExport.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_generator_cppExport.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[3.655s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[3.656s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.662s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_cppExport.cmake
+[3.663s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/bishe_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[3.663s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_generator_pyExport.cmake
+[3.663s] -- Up-to-date: /home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake/export_bishe_msgs__rosidl_generator_pyExport-noconfig.cmake
+[3.664s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_msgs

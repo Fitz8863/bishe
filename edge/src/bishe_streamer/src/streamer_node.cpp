@@ -39,16 +39,16 @@ public:
 private:
     uint64_t written_frames_{0};
     std::chrono::steady_clock::time_point fps_window_start_{std::chrono::steady_clock::now()};
+    double current_fps_{0.0};
 
-    void reportFps()
+    void updateFps()
     {
         ++written_frames_;
         const auto now = std::chrono::steady_clock::now();
         const auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(now - fps_window_start_).count();
         if (elapsed_ms >= 1000)
         {
-            const double fps = static_cast<double>(written_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
-            RCLCPP_INFO(this->get_logger(), "streamer输出FPS: %.2f", fps);
+            current_fps_ = static_cast<double>(written_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
             written_frames_ = 0;
             fps_window_start_ = now;
         }
@@ -110,16 +110,32 @@ private:
                 if (!writer_.isOpened()) return;
             }
 
+            cv::Mat out_frame;
             if (scale_ == 1.0f) {
-                writer_.write(frame);
+                out_frame = frame;
             } 
             else {
                 static cv::Mat resized_frame;
                 cv::resize(frame, resized_frame, target_size, 0.0, 0.0, cv::INTER_LINEAR);
-                writer_.write(resized_frame);
+                out_frame = resized_frame;
             }
             
-            // reportFps();
+            updateFps();
+
+            if (current_fps_ > 0.0) {
+                std::string fps_text = cv::format("FPS: %.1f", current_fps_);
+                int font_face = cv::FONT_HERSHEY_SIMPLEX;
+                double font_scale = std::max(0.5, out_frame.rows / 720.0);
+                int thickness = std::max(1, static_cast<int>(2 * font_scale));
+                int baseline = 0;
+                cv::Size text_size = cv::getTextSize(fps_text, font_face, font_scale, thickness, &baseline);
+                
+                cv::Point text_org(out_frame.cols - text_size.width - 20, text_size.height + 20);
+                
+                cv::putText(out_frame, fps_text, text_org, font_face, font_scale, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
+            }
+
+            writer_.write(out_frame);
         }
         catch (const cv_bridge::Exception &e)
         {

@@ -1,0 +1,6 @@
+Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_msgs
+Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_msgs
+Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_msgs -- -j6 -l6
+Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_msgs -- -j6 -l6
+Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_msgs
+Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_msgs

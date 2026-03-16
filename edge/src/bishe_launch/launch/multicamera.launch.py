@@ -35,13 +35,19 @@ def _generate_nodes(context):
         selected_ids = list(camera_map.keys())
 
     actions = []
+    selected_camera_ids_for_mqtt = []
+    selected_camera_locations_for_mqtt = []
+    selected_camera_http_urls_for_mqtt = []
     for camera_id in selected_ids:
         if camera_id not in camera_map:
             raise RuntimeError(f"Camera id '{camera_id}' not found in config: {config_path}")
 
         camera = camera_map[camera_id]
+        selected_camera_ids_for_mqtt.append(str(camera_id))
+        selected_camera_locations_for_mqtt.append(camera.get("location", f"camera_{camera_id}"))
         detector = camera.get("detector", {})
         streamer = camera.get("streamer", {})
+        selected_camera_http_urls_for_mqtt.append(streamer.get("http_url", ""))
         namespace = f"camera_{camera_id}"
 
         group_actions = [
@@ -112,6 +118,29 @@ def _generate_nodes(context):
             )
 
         actions.append(GroupAction(group_actions))
+
+    actions.append(
+        Node(
+            package="bishe_mqtt",
+            executable="mqtt_node",
+            name="mqtt_node",
+            parameters=[
+                {
+                    "broker": "fnas",
+                    "port": 1883,
+                    "client_id": "jetson",
+                    "subscribe_topic": "factory/camera/001/command",
+                    "publish_topic": "factory/camera_001/status",
+                    "info_topic": "/jetson/info",
+                    "report_interval_sec": 1.5,
+                    "camera_ids": selected_camera_ids_for_mqtt,
+                    "camera_locations": selected_camera_locations_for_mqtt,
+                    "camera_http_urls": selected_camera_http_urls_for_mqtt,
+                }
+            ],
+            output="screen",
+        )
+    )
 
     return actions
 

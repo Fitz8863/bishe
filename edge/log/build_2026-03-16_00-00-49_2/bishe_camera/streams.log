@@ -1,0 +1,43 @@
+[0.031s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_camera -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_camera
+[0.542s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.542s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.542s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.542s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.542s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.542s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.543s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.543s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.543s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.543s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.713s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.800s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.848s] -- Found image_transport: 3.1.12 (/opt/ros/humble/share/image_transport/cmake)
+[0.882s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[1.074s] -- Configuring done
+[1.110s] -- Generating done
+[1.120s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_camera
+[1.145s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_camera -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_camera
+[1.146s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_camera -- -j6 -l6
+[1.258s] Consolidate compiler generated dependencies of target camera_node
+[1.296s] [100%] Built target camera_node
+[1.331s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_camera -- -j6 -l6
+[1.348s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_camera
+[1.363s] -- Install configuration: ""
+[1.377s] -- Execute custom install script
+[1.379s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/lib/bishe_camera/camera_node
+[1.380s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/ament_index/resource_index/package_run_dependencies/bishe_camera
+[1.381s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/ament_index/resource_index/parent_prefix_path/bishe_camera
+[1.381s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/environment/ament_prefix_path.sh
+[1.382s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/environment/ament_prefix_path.dsv
+[1.383s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/environment/path.sh
+[1.384s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/environment/path.dsv
+[1.385s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/local_setup.bash
+[1.386s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/local_setup.sh
+[1.386s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/local_setup.zsh
+[1.387s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/local_setup.dsv
+[1.389s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/package.dsv
+[1.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/ament_index/resource_index/packages/bishe_camera
+[1.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/cmake/bishe_cameraConfig.cmake
+[1.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/cmake/bishe_cameraConfig-version.cmake
+[1.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_camera/share/bishe_camera/package.xml
+[1.456s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_camera
