@@ -1,4 +1,5 @@
 import json
+import time
 import paho.mqtt.client as mqtt
 from flask import jsonify
 
@@ -11,6 +12,8 @@ class MQTTManager:
         self.topic_prefix = topic_prefix
         self.client = None
         self.connected = False
+        self.latest_jetson_info = None
+        self.last_info_time = 0
     
     def connect(self):
         """连接MQTT服务器"""
@@ -20,6 +23,7 @@ class MQTTManager:
         
         self.client.on_connect = self._on_connect
         self.client.on_disconnect = self._on_disconnect
+        self.client.on_message = self._on_message
         
         try:
             self.client.connect(self.broker, self.port, 60)
@@ -33,8 +37,23 @@ class MQTTManager:
         if rc == 0:
             self.connected = True
             print("MQTT连接成功")
+            # 订阅设备信息主题
+            self.client.subscribe("/jetson/info")
         else:
             print(f"MQTT连接失败, 返回码: {rc}")
+            
+    def _on_message(self, client, userdata, msg):
+        if msg.topic == "/jetson/info":
+            try:
+                payload = json.loads(msg.payload.decode('utf-8'))
+                # print(payload)
+                # 移除不需要的字段
+                if 'timestamp_ns' in payload:
+                    del payload['timestamp_ns']
+                self.latest_jetson_info = payload
+                self.last_info_time = time.time()
+            except Exception as e:
+                print(f"解析 /jetson/info 消息失败: {e}")
     
     def _on_disconnect(self, client, userdata, rc):
         self.connected = False
@@ -64,6 +83,17 @@ class MQTTManager:
         if self.client:
             self.client.loop_stop()
             self.client.disconnect()
+
+    def get_active_cameras(self):
+        """获取当前在线的摄像头列表"""
+        if not self.connected or not self.latest_jetson_info:
+            return []
+        
+        # 检查是否超时 (10秒未收到心跳包视为断开)
+        if (time.time() - self.last_info_time) > 10:
+            return []
+            
+        return self.latest_jetson_info.get('cameras', [])
 
 
 mqtt_manager = None

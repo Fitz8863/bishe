@@ -125,72 +125,137 @@
     请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看实时监控画面
 </div>
 {% else %}
-<h4 class="mb-4">
-    <i class="fas fa-video me-2" style="color: var(--primary-light);"></i>实时视频监控
-</h4>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">
+        <i class="fas fa-video me-2" style="color: var(--primary-light);"></i>实时视频监控
+    </h4>
+</div>
 
 <div class="monitor-grid" id="monitorGrid">
     <div id="emptyState" class="empty-state">
-        <i class="fas fa-video-slash"></i>
-        <h5>暂无视频流</h5>
-        <p>请检查 cameras.json 配置文件</p>
+        <i class="fas fa-server"></i>
+        <h5 id="emptyStateTitle">请先连接服务器</h5>
+        <p id="emptyStateDesc">前往“系统设置”连接 FNAS 远程服务器以获取实时监控</p>
     </div>
 </div>
 {% endif %}
 
 {% block extra_js %}
 <script>
-    let camerasLoaded = false;
+    let activeCameras = new Map(); // Store camera info by ID
+    let pollInterval = null;
     
     document.addEventListener('DOMContentLoaded', function() {
-        if (camerasLoaded) return;
-        camerasLoaded = true;
+        if (!document.getElementById('monitorGrid')) return;
         
+        syncCameras();
+        pollInterval = setInterval(syncCameras, 10000); // 10秒后台同步一次
+    });
+
+    function syncCameras() {
         fetch('/api/cameras')
             .then(response => response.json())
             .then(data => {
                 const cameras = data.cameras || [];
+                const mqttConnected = data.mqtt_connected;
                 const emptyState = document.getElementById('emptyState');
+                const emptyStateTitle = document.getElementById('emptyStateTitle');
+                const emptyStateDesc = document.getElementById('emptyStateDesc');
+                const monitorGrid = document.getElementById('monitorGrid');
                 
-                if (cameras.length === 0) {
+                if (!mqttConnected) {
+                    // MQTT未连接状态
+                    activeCameras.forEach(card => card.remove());
+                    activeCameras.clear();
                     emptyState.style.display = 'block';
+                    emptyState.querySelector('i').className = 'fas fa-server';
+                    emptyStateTitle.innerText = '请先连接服务器';
+                    emptyStateDesc.innerText = '前往“系统设置”连接 FNAS 远程服务器以获取实时监控';
                     return;
                 }
-                
-                emptyState.style.display = 'none';
-                
-                cameras.forEach(camera => {
-                    addCameraCard(camera.id, camera.name, camera.webrtc_url);
-                });
+
+                // 追踪当前响应中的 ID
+                const currentIds = new Set(cameras.map(c => c.id));
+
+                // 1. 移除已掉线的摄像头
+                for (let [id, card] of activeCameras) {
+                    if (!currentIds.has(id)) {
+                        card.remove();
+                        activeCameras.delete(id);
+                    }
+                }
+
+                // 2. 添加或更新摄像头
+                if (cameras.length === 0) {
+                    emptyState.style.display = 'block';
+                    emptyState.querySelector('i').className = 'fas fa-video-slash';
+                    emptyStateTitle.innerText = '暂无视频流';
+                    emptyStateDesc.innerText = '服务器已连接，正在等待设备上线并发送心跳包数据...';
+                } else {
+                    emptyState.style.display = 'none';
+                    
+                    cameras.forEach(camera => {
+                        if (!activeCameras.has(camera.id)) {
+                            // 发现新上线的设备
+                            const card = createCameraCard(camera.id, camera.name, camera.webrtc_url);
+                            monitorGrid.appendChild(card);
+                            activeCameras.set(camera.id, card);
+                        } else {
+                            // 如果信息有变化则更新
+                            updateCameraCard(camera.id, camera.name, camera.webrtc_url);
+                        }
+                    });
+                }
             })
             .catch(error => {
                 console.error('获取摄像头列表失败:', error);
             });
-    });
+    }
 
-    function addCameraCard(id, name, webrtcUrl) {
-        const monitorGrid = document.getElementById('monitorGrid');
+    function createCameraCard(id, name, webrtcUrl) {
         const card = document.createElement('div');
         card.className = 'monitor-card';
+        card.id = `camera-card-${id}`;
         
         card.innerHTML = `
             <div class="monitor-header">
-                <span><i class="fas fa-map-marker-alt me-2"></i>${name}</span>
+                <span class="camera-name"><i class="fas fa-map-marker-alt me-2"></i>${name}</span>
                 <span class="status-badge status-normal">
-                    <span class="status-dot"></span>在线
+                    <span class="status-dot"></span>实时
                 </span>
             </div>
             <div class="monitor-body">
-                <iframe src="${webrtcUrl}" allowfullscreen></iframe>
+                <iframe src="${webrtcUrl}" allowfullscreen data-url="${webrtcUrl}"></iframe>
             </div>
             <div class="monitor-stats">
-                <span><i class="fas fa-video"></i> WebRTC</span>
-                <span><i class="fas fa-link"></i> ${webrtcUrl}</span>
+                <span><i class="fas fa-video"></i> 远程视频流</span>
+                <span class="camera-url-label text-truncate" style="max-width: 200px;"><i class="fas fa-link"></i> ${webrtcUrl}</span>
             </div>
         `;
-        
-        monitorGrid.appendChild(card);
+        return card;
     }
+
+    function updateCameraCard(id, name, webrtcUrl) {
+        const card = activeCameras.get(id);
+        if (!card) return;
+
+        const nameEl = card.querySelector('.camera-name');
+        if (nameEl && nameEl.innerText !== name) {
+            nameEl.innerHTML = `<i class="fas fa-map-marker-alt me-2"></i>${name}`;
+        }
+
+        const iframe = card.querySelector('iframe');
+        if (iframe && iframe.getAttribute('data-url') !== webrtcUrl) {
+            iframe.src = webrtcUrl;
+            iframe.setAttribute('data-url', webrtcUrl);
+            const urlLabel = card.querySelector('.camera-url-label');
+            if (urlLabel) urlLabel.innerHTML = `<i class="fas fa-link"></i> ${webrtcUrl}`;
+        }
+    }
+
+    window.onbeforeunload = function() {
+        if (pollInterval) clearInterval(pollInterval);
+    };
 </script>
 {% endblock %}
 {% endblock %}

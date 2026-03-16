@@ -80,6 +80,29 @@ def get_camera_info(camera_id):
 
 
 def list_cameras():
-    """列出所有摄像头"""
-    cameras = stream_manager.get_all_cameras()
-    return jsonify({'cameras': cameras}), 200
+    """列出所有摄像头 (仅使用动态MQTT发现)"""
+    from blueprints.mqtt_manager import mqtt_manager
+    
+    # 检查是否连接了MQTT服务器
+    if not mqtt_manager or not mqtt_manager.connected:
+        return jsonify({
+            'cameras': [],
+            'mqtt_connected': False,
+            'error': '请先在系统设置中连接远程服务器'
+        }), 200
+
+    # 获取动态MQTT发现的摄像头
+    dynamic_cameras = []
+    active_info = mqtt_manager.get_active_cameras()
+    for cam in active_info:
+        dynamic_cameras.append({
+            'id': cam['id'],
+            'name': cam.get('location', f"摄像头 {cam['id']}"),
+            'webrtc_url': cam.get('http_url'), # 兼容前端
+            'is_dynamic': True
+        })
+    
+    return jsonify({
+        'cameras': dynamic_cameras,
+        'mqtt_connected': True
+    }), 200

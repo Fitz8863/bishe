@@ -4,187 +4,211 @@
 
 {% block extra_css %}
 <style>
-    .mqtt-card {
+    :root {
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .settings-header {
+        margin-bottom: 2rem;
+    }
+
+    .status-card {
         background: var(--bg-card);
         border: 1px solid var(--border-color);
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        cursor: pointer;
-        transition: all 0.3s ease;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        margin-bottom: 1.5rem;
     }
-    .mqtt-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 8px 25px rgba(14, 165, 233, 0.15);
+
+    .status-card.connected {
+        border-left: 5px solid #10b981;
+    }
+
+    .status-card.disconnected {
+        border-left: 5px solid #f87171;
+    }
+
+    .status-indicator-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    .dot-connected { background-color: #10b981; box-shadow: 0 0 10px #10b981; }
+    .dot-disconnected { background-color: #f87171; box-shadow: 0 0 10px #f87171; }
+
+    .control-panel {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+    }
+
+    .panel-header {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--border-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dashboard-camera-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 15px;
+        transition: var(--transition);
+        height: 100%;
+    }
+
+    .dashboard-camera-card:hover {
+        background: rgba(255, 255, 255, 0.06);
         border-color: var(--primary-color);
     }
-    .mqtt-card.connected {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        border: none;
-        color: white;
-    }
-    .mqtt-icon {
-        font-size: 2.5rem;
-    }
-    .mqtt-icon.connected {
-        color: #4ade80;
-    }
-    .mqtt-icon.disconnected {
-        color: #f87171;
-    }
+
+    .x-small { font-size: 0.75rem; }
+    .shadow-inner { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+
     .wifi-list-item {
-        padding: 12px 15px;
-        border-bottom: 1px solid var(--border-color);
-        cursor: pointer;
-        transition: all 0.2s ease;
+        padding: 12px;
         border-radius: 8px;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: var(--transition);
     }
+
     .wifi-list-item:hover {
-        background: var(--bg-card-hover);
+        background: rgba(14, 165, 233, 0.1);
+        border-color: var(--primary-color);
     }
-    .wifi-list-item:last-child {
-        border-bottom: none;
-    }
-    .wifi-name {
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-    .wifi-address {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-    }
-    .accordion-item {
-        background: var(--bg-card);
+
+    .form-control, .form-select {
+        background-color: rgba(255, 255, 255, 0.05);
         border: 1px solid var(--border-color);
-        border-radius: 15px;
-        overflow: hidden;
-        margin-top: 15px;
-    }
-    .accordion-button {
-        background: var(--bg-card);
         color: var(--text-primary);
-        border: none;
-        padding: 20px;
-        font-weight: 600;
+        border-radius: 8px;
     }
-    .accordion-button:not(.collapsed) {
-        background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-        color: var(--primary-light);
-        box-shadow: none;
-    }
-    .accordion-button:focus {
-        box-shadow: none;
-        border: none;
-    }
-    .accordion-button::after {
-        filter: invert(1);
-    }
-    .accordion-body {
-        background: var(--bg-card);
-        border-top: 1px solid var(--border-color);
-        padding: 25px;
+
+    .form-control:focus, .form-select:focus {
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: var(--primary-color);
         color: var(--text-primary);
+        box-shadow: 0 0 0 0.25rem rgba(14, 165, 233, 0.25);
     }
-    {% if not current_user.is_authenticated %}
-    .alert-info {
-        background: rgba(14, 165, 233, 0.15);
-        border: none;
+
+    .progress {
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
-        padding: 20px;
+    }
+
+    .section-title {
+        color: var(--text-primary);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-title i {
+        margin-right: 12px;
         color: var(--primary-light);
     }
-    .alert-info a {
-        color: var(--accent-color);
-        font-weight: 600;
-    }
-    {% endif %}
-    .card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-    }
-    .card-body {
-        color: var(--text-primary);
+
+    #dashboardSection.d-none {
+        display: none !important;
     }
 </style>
 {% endblock %}
 
 {% block content %}
 {% if not current_user.is_authenticated %}
-<div class="alert alert-info">
+<div class="alert alert-info border-0 shadow-sm" style="background: rgba(14, 165, 233, 0.1); color: var(--primary-light);">
     <i class="fas fa-info-circle me-2"></i>
-    请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看系统设置
+    请 <a href="{{ url_for('auth.login') }}" class="fw-bold text-decoration-none" style="color: var(--accent-color);">登录</a> 后查看系统设置
 </div>
 {% else %}
+<div class="settings-header">
+    <h3 class="fw-bold text-white mb-1">系统设置中心</h3>
+    <p class="text-muted mb-0">管理 MQTT 通信服务及远程边缘设备运行状态</p>
+</div>
+
 <div class="row">
-    <div class="col-12">
-        <h4 class="mb-4">
-            <i class="fas fa-cog me-2" style="color: var(--primary-light);"></i>系统设置
-        </h4>
-        <div class="mqtt-card" id="mqttCard" onclick="toggleCollapse()">
+    <!-- MQTT 状态卡片 -->
+    <div class="col-lg-8">
+        <div class="status-card" id="mqttCard">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
-                    <div class="mqtt-icon" id="mqttIcon">
-                        <i class="fas fa-server"></i>
+                    <div class="rounded-circle p-3 d-flex align-items-center justify-content-center" style="background: rgba(255,255,255,0.05); width: 60px; height: 60px;">
+                        <i class="fas fa-network-wired fa-2x" id="mqttIcon" style="color: var(--text-secondary);"></i>
                     </div>
-                    <div class="ms-3">
-                        <div id="connectionStatus" style="font-size: 1.2rem; font-weight: bold;">未连接</div>
-                        <small id="connectionBroker" class="opacity-75">点击设置连接</small>
+                    <div class="ms-4">
+                        <div class="d-flex align-items-center mb-1">
+                            <span class="status-indicator-dot dot-disconnected" id="statusDot"></span>
+                            <h5 class="mb-0 fw-bold" id="connectionStatus">未连接</h5>
+                        </div>
+                        <p class="text-muted mb-0 small" id="connectionBroker">远程 FNAS 服务器尚未配置</p>
                     </div>
                 </div>
                 <div>
-                    <i class="fas fa-chevron-down" id="collapseIcon"></i>
+                    <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="toggleSettingsCollapse()">
+                        <i class="fas fa-sliders-h me-2"></i>配置服务器
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <div class="accordion" id="mqttAccordion">
-            <div class="accordion-item">
-                <div id="collapseMqtt" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6 class="fw-bold mb-3" style="color: var(--primary-light);">
-                                    <i class="fas fa-plus-circle me-2"></i>添加新连接
-                                </h6>
-                                <div class="mb-3">
-                                    <label class="form-label">MQTT Broker地址</label>
-                                    <input type="text" class="form-control" id="mqttBroker" placeholder="如: 127.0.0.1 或 emqx.abc.com">
+        <!-- 服务器配置折叠区 -->
+        <div class="collapse mb-4" id="mqttSettingsCollapse">
+            <div class="control-panel">
+                <div class="panel-header">
+                    <span><i class="fas fa-cog me-2"></i>MQTT 详细配置</span>
+                    <button type="button" class="btn-close btn-close-white" onclick="toggleSettingsCollapse()"></button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-7">
+                            <h6 class="text-uppercase x-small fw-bold tracking-wider mb-3 text-muted">服务器信息</h6>
+                            <div class="row g-3">
+                                <div class="col-sm-8">
+                                    <label class="form-label x-small">Broker 地址</label>
+                                    <input type="text" class="form-control" id="mqttBroker" placeholder="127.0.0.1">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">端口</label>
+                                <div class="col-sm-4">
+                                    <label class="form-label x-small">端口</label>
                                     <input type="number" class="form-control" id="mqttPort" value="1883">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">用户名（可选）</label>
-                                    <input type="text" class="form-control" id="mqttUsername" placeholder="请输入用户名">
+                                <div class="col-sm-6">
+                                    <label class="form-label x-small">用户名 (可选)</label>
+                                    <input type="text" class="form-control" id="mqttUsername">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">密码（可选）</label>
-                                    <input type="password" class="form-control" id="mqttPassword" placeholder="请输入密码">
+                                <div class="col-sm-6">
+                                    <label class="form-label x-small">密码 (可选)</label>
+                                    <input type="password" class="form-control" id="mqttPassword">
                                 </div>
-                                <button class="btn btn-success w-100" onclick="saveAndConnect()">
-                                    <i class="fas fa-plug me-2"></i>连接
+                            </div>
+                            <div class="mt-4 d-flex gap-2">
+                                <button class="btn btn-primary flex-grow-1 py-2 fw-bold" onclick="saveAndConnect()">
+                                    <i class="fas fa-link me-2"></i>连接服务器
+                                </button>
+                                <button class="btn btn-outline-danger px-4" onclick="disconnectMqtt()">
+                                    <i class="fas fa-unlink"></i>
                                 </button>
                             </div>
-                            <div class="col-md-6 d-flex flex-column">
-                                <h6 class="fw-bold mb-3" style="color: var(--accent-color);">
-                                    <i class="fas fa-history me-2"></i>连接记录
-                                </h6>
-                                <div id="wifiList" class="flex-grow-1" style="max-height: 340px; overflow-y: auto;">
-                                    <div class="text-center text-muted py-3">
-                                        <i class="fas fa-server me-2"></i>暂无连接记录
-                                    </div>
-                                </div>
-                                <div class="text-end mt-2">
-                                    <button class="btn btn-danger w-100" onclick="disconnectMqtt()">
-                                        <i class="fas fa-plug me-2"></i>断开连接
-                                    </button>
-                                </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h6 class="text-uppercase x-small fw-bold tracking-wider mb-3 text-muted">连接历史</h6>
+                            <div id="wifiList" style="max-height: 200px; overflow-y: auto; padding-right: 5px;">
+                                <!-- 历史记录加载 -->
                             </div>
                         </div>
                     </div>
@@ -192,16 +216,47 @@
             </div>
         </div>
     </div>
+
+    <!-- 侧边辅助说明 -->
+    <div class="col-lg-4">
+        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%); border: 1px solid var(--border-color) !important;">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-3"><i class="fas fa-lightbulb me-2 text-warning"></i>操作说明</h6>
+                <ul class="text-muted small ps-3 mb-0">
+                    <li class="mb-2">连接 MQTT 服务器是管理边缘设备的前提。</li>
+                    <li class="mb-2">成功连接后，系统将自动订阅 <code class="text-info">/jetson/info</code> 主题以获取实时数据。</li>
+                    <li>双击历史记录可以快速填入并尝试重连。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 实时仪表盘部分 -->
+<div id="dashboardSection" class="mt-5 d-none">
+    <div class="section-title">
+        <i class="fas fa-tachometer-alt"></i>
+        <h4 class="mb-0">边缘设备实时仪表盘</h4>
+        <span class="ms-3 badge rounded-pill bg-success shadow-sm" style="font-size: 0.6rem; animation: pulse-green 2s infinite;">LIVE DATA</span>
+    </div>
     
-    <div class="row mt-4">
-        <div class="col-12">
-            <h5 class="mb-3" style="color: var(--text-primary);">
-                <i class="fas fa-video me-2" style="color: var(--primary-light);"></i>远程摄像头参数设置
-            </h5>
-            <div id="cameraConfigSection">
-                <div class="alert alert-warning" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; color: #fbbf24;">
-                    <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
-                </div>
+    <div class="row" id="dashboardContainer">
+        <!-- 摄像头卡片动态插入 -->
+    </div>
+</div>
+
+<!-- 摄像头参数配置区 -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="section-title">
+            <i class="fas fa-sliders-h"></i>
+            <h4 class="mb-0">远程摄像头参数控制</h4>
+        </div>
+        
+        <div id="cameraConfigSection">
+            <div class="status-card text-center py-5">
+                <i class="fas fa-lock fa-3x mb-3 text-muted opacity-25"></i>
+                <p class="text-muted">请先建立 MQTT 通信连接以启用控制权限</p>
             </div>
         </div>
     </div>
@@ -212,74 +267,211 @@
 <script>
 let settingsLoaded = false;
 let isMqttConnected = false;
+let dashboardInterval = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     if (settingsLoaded) return;
     settingsLoaded = true;
     
     checkConnectionStatus();
-    loadWifiList();
+    loadHistoryList();
 });
 
 function checkConnectionStatus() {
     fetch('/settings/api/mqtt/status')
         .then(res => res.json())
         .then(data => {
-            isMqttConnected = data.connected;
             if (data.connected) {
                 updateUI(true, data.broker, data.port);
-                renderCameraConfigSection(true);
             } else {
                 updateUI(false);
-                renderCameraConfigSection(false);
             }
         });
+}
+
+function updateUI(connected, broker, port) {
+    const dot = document.getElementById('statusDot');
+    const statusText = document.getElementById('connectionStatus');
+    const brokerText = document.getElementById('connectionBroker');
+    const icon = document.getElementById('mqttIcon');
+    const card = document.getElementById('mqttCard');
+    
+    isMqttConnected = connected;
+
+    if (connected) {
+        dot.className = 'status-indicator-dot dot-connected';
+        statusText.textContent = '已连接';
+        statusText.style.color = '#10b981';
+        brokerText.textContent = `在线: ${broker}:${port}`;
+        icon.style.color = '#10b981';
+        card.classList.add('connected');
+        card.classList.remove('disconnected');
+        
+        renderCameraConfigSection(true);
+        startDashboardPolling();
+    } else {
+        dot.className = 'status-indicator-dot dot-disconnected';
+        statusText.textContent = '未连接';
+        statusText.style.color = '#f87171';
+        brokerText.textContent = '远程 FNAS 服务器尚未配置';
+        icon.style.color = 'var(--text-secondary)';
+        card.classList.remove('connected');
+        card.classList.add('disconnected');
+        
+        renderCameraConfigSection(false);
+        stopDashboardPolling();
+        document.getElementById('dashboardSection').classList.add('d-none');
+    }
+}
+
+// 仪表盘逻辑
+function startDashboardPolling() {
+    if (dashboardInterval) return;
+    fetchDashboardData(); // 立即执行一次
+    dashboardInterval = setInterval(fetchDashboardData, 2000);
+}
+
+function stopDashboardPolling() {
+    if (dashboardInterval) {
+        clearInterval(dashboardInterval);
+        dashboardInterval = null;
+    }
+}
+
+function fetchDashboardData() {
+    if (!isMqttConnected) return;
+    
+    fetch('/settings/api/jetson/info')
+        .then(res => res.json())
+        .then(data => {
+            if (data.data) {
+                renderDashboard(data.data, data.is_online);
+            }
+        })
+        .catch(err => console.error("仪表盘数据拉取失败:", err));
+}
+
+function renderDashboard(info, isOnline) {
+    const container = document.getElementById('dashboardContainer');
+    const dashboardSection = document.getElementById('dashboardSection');
+    dashboardSection.classList.remove('d-none');
+    
+    let html = '';
+    if (info.cameras && info.cameras.length > 0) {
+        info.cameras.forEach(cam => {
+            const statusBadge = isOnline 
+                ? '<span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 x-small">ACTIVE</span>'
+                : '<span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 x-small">OFFLINE</span>';
+            
+            const cardStyle = isOnline ? '' : 'filter: grayscale(0.5); opacity: 0.8;';
+            const fpsColor = isOnline ? 'text-info' : 'text-muted';
+
+            html += `
+                <div class="col-md-6 col-lg-4 mb-4" style="${cardStyle}">
+                    <div class="dashboard-camera-card">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0 fw-bold" style="color: ${isOnline ? 'var(--primary-light)' : '#888'};">
+                                <i class="fas fa-video me-2"></i>设备 ${cam.id}
+                            </h6>
+                            ${statusBadge}
+                        </div>
+                        <div class="mb-3">
+                            <p class="text-white small mb-1"><i class="fas fa-map-marker-alt me-2 text-muted"></i>${cam.location}</p>
+                            <p class="text-muted x-small text-truncate mb-0">${cam.http_url}</p>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <div class="p-2 rounded bg-black bg-opacity-25 shadow-inner text-center">
+                                    <div class="text-muted x-small">分辨率</div>
+                                    <div class="fw-bold small">${cam.resolution.width}x${cam.resolution.height}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 rounded bg-black bg-opacity-25 shadow-inner text-center">
+                                    <div class="text-muted x-small">采集速率</div>
+                                    <div class="fw-bold small ${fpsColor}">${cam.resolution.fps} FPS</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between x-small mb-1">
+                                <span class="text-muted">置信度阈值</span>
+                                <span class="fw-bold text-white">${cam.confidence_threshold}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar ${isOnline ? 'bg-primary' : 'bg-secondary'}" role="progressbar" style="width: ${cam.confidence_threshold * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between x-small mb-1">
+                                <span class="text-muted">NMS 抑制阈值</span>
+                                <span class="fw-bold text-white">${cam.nms_threshold}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar ${isOnline ? 'bg-info' : 'bg-secondary'}" role="progressbar" style="width: ${cam.nms_threshold * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span class="text-muted x-small">AI 缩放比例</span>
+                            <span class="badge bg-secondary bg-opacity-25 text-white x-small">${cam.scale}x</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="col-12 text-center text-muted py-5"><i class="fas fa-sync fa-spin me-2"></i>等待设备上报数据...</div>';
+    }
+    container.innerHTML = html;
 }
 
 function renderCameraConfigSection(connected) {
     const section = document.getElementById('cameraConfigSection');
     if (!connected) {
         section.innerHTML = `
-            <div class="alert alert-warning" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; color: #fbbf24;">
-                <i class="fas fa-exclamation-triangle me-2"></i>请先连接MQTT服务器后才能使用此功能
+            <div class="status-card text-center py-5">
+                <i class="fas fa-lock fa-3x mb-3 text-muted opacity-25"></i>
+                <p class="text-muted">请先建立 MQTT 通信连接以启用控制权限</p>
             </div>
         `;
     } else {
         section.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">选择摄像头</h6>
+            <div class="control-panel">
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small">1. 选择目标摄像头</label>
                             <select class="form-select mb-3" id="cameraSelect">
-                                <option value="">请选择摄像头</option>
+                                <option value="">正在加载摄像头列表...</option>
                             </select>
-                            
-                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">阈值设置</h6>
-                            <div class="mb-3">
-                                <label class="form-label">置信度阈值 (0-1)</label>
-                                <input type="number" class="form-control" id="confidenceThreshold" value="0.7" step="0.1" min="0" max="1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">检测框阈值 (0-1)</label>
-                                <input type="number" class="form-control" id="iouThreshold" value="0.5" step="0.1" min="0" max="1">
+                            <div class="alert alert-info py-2 px-3 x-small mb-0 border-0" style="background: rgba(14, 165, 233, 0.1);">
+                                <i class="fas fa-info-circle me-1"></i> 指令将通过 MQTT 即时下发。
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="fw-bold mb-3" style="color: var(--primary-light);">缩放设置</h6>
-                            <div class="mb-3">
-                                <label class="form-label">缩放比例 (0.5-2.0)</label>
-                                <input type="number" class="form-control" id="scaleRatio" value="1.0" min="0.5" max="2.0" step="0.1">
+                        <div class="col-md-8">
+                            <label class="fw-bold small mb-3">2. 调整运行参数</label>
+                            <div class="row g-3">
+                                <div class="col-sm-4">
+                                    <label class="form-label x-small text-muted">置信度 (Confidence)</label>
+                                    <input type="number" class="form-control" id="confidenceThreshold" value="0.7" step="0.05" min="0" max="1">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label x-small text-muted">检测框 (IoU)</label>
+                                    <input type="number" class="form-control" id="iouThreshold" value="0.45" step="0.05" min="0" max="1">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label x-small text-muted">AI 缩放比 (Scale)</label>
+                                    <input type="number" class="form-control" id="scaleRatio" value="1.0" min="0.1" max="2.0" step="0.1">
+                                </div>
                             </div>
+                            <button class="btn btn-success w-100 mt-4 py-2 fw-bold" onclick="sendCameraConfig()">
+                                <i class="fas fa-paper-plane me-2"></i>下发配置指令
+                            </button>
                         </div>
                     </div>
-                    <button class="btn btn-success w-100 mt-3" onclick="sendCameraConfig()">
-                        <i class="fas fa-paper-plane me-2"></i>发送配置
-                    </button>
                 </div>
             </div>
         `;
-        
         loadCameraList();
     }
 }
@@ -289,12 +481,13 @@ function loadCameraList() {
         .then(res => res.json())
         .then(data => {
             const select = document.getElementById('cameraSelect');
+            if (!select) return;
             select.innerHTML = '<option value="">请选择摄像头</option>';
             const cameras = data.cameras || [];
             cameras.forEach(cam => {
                 const option = document.createElement('option');
                 option.value = cam.id;
-                option.textContent = cam.name || cam.id;
+                option.textContent = cam.location ? `${cam.location} (${cam.id})` : cam.id;
                 select.appendChild(option);
             });
         });
@@ -331,29 +524,27 @@ function sendCameraConfig() {
             alert('配置发送失败: ' + data.error);
         }
     })
-    .catch(err => {
-        alert('发送失败: ' + err);
-    });
+    .catch(err => alert('发送错误: ' + err));
 }
 
-function loadWifiList() {
+function loadHistoryList() {
     fetch('/settings/api/mqtt/configs')
         .then(res => res.json())
         .then(data => {
             const list = document.getElementById('wifiList');
             const configs = data.configs || [];
-            
             if (configs.length === 0) {
-                list.innerHTML = '<div class="text-center text-muted py-4"><i class="fas fa-wifi me-2"></i>暂无连接记录</div>';
+                list.innerHTML = '<div class="text-center text-muted py-3 x-small">无历史记录</div>';
                 return;
             }
-            
             let html = '';
             configs.forEach(config => {
                 html += `
-                    <div class="wifi-list-item" ondblclick="connectToWifi('${config.broker}', ${config.port}, '${config.username || ''}', ${config.is_active})">
-                        <div class="wifi-name">${config.broker}</div>
-                        <div class="wifi-address">端口: ${config.port}</div>
+                    <div class="wifi-list-item" ondblclick="fillFormAndConnect('${config.broker}', ${config.port}, '${config.username || ''}')">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold small text-white">${config.broker}</span>
+                            <span class="text-muted x-small">${config.port}</span>
+                        </div>
                     </div>
                 `;
             });
@@ -361,33 +552,11 @@ function loadWifiList() {
         });
 }
 
-function connectToWifi(broker, port, username, isActive) {
-    if (!broker) return;
-    
-    fetch('/settings/api/mqtt/connect', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            broker: broker,
-            port: port,
-            username: username,
-            password: '',
-            save: false
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.connected) {
-            updateUI(true, broker, port);
-            alert('连接成功!');
-        } else {
-            document.getElementById('mqttBroker').value = broker;
-            document.getElementById('mqttPort').value = port;
-            document.getElementById('mqttUsername').value = username;
-            new bootstrap.Collapse(document.getElementById('collapseMqtt')).show();
-            alert('该连接需要密码，请输入密码后连接');
-        }
-    });
+function fillFormAndConnect(broker, port, username) {
+    document.getElementById('mqttBroker').value = broker;
+    document.getElementById('mqttPort').value = port;
+    document.getElementById('mqttUsername').value = username;
+    saveAndConnect();
 }
 
 function saveAndConnect() {
@@ -397,7 +566,7 @@ function saveAndConnect() {
     const password = document.getElementById('mqttPassword').value;
     
     if (!broker) {
-        alert('请输入MQTT服务器地址');
+        alert('请输入服务器地址');
         return;
     }
     
@@ -405,74 +574,46 @@ function saveAndConnect() {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            broker: broker,
-            port: port,
-            username: username,
-            password: password,
-            save: true
+            broker: broker, port: port, username: username, password: password, save: true
         })
     })
     .then(res => res.json())
     .then(data => {
         if (data.connected) {
             updateUI(true, broker, port);
-            loadWifiList();
-            alert('连接成功!');
+            loadHistoryList();
+            const collapseEl = document.getElementById('mqttSettingsCollapse');
+            bootstrap.Collapse.getInstance(collapseEl)?.hide();
         } else {
             alert('连接失败: ' + data.error);
         }
-    })
-    .catch(err => {
-        alert('连接失败: ' + err);
     });
 }
 
 function disconnectMqtt() {
-    fetch('/settings/api/mqtt/disconnect', {
-        method: 'POST'
-    })
+    fetch('/settings/api/mqtt/disconnect', { method: 'POST' })
     .then(res => res.json())
     .then(data => {
         if (data.message) {
             updateUI(false);
-            renderCameraConfigSection(false);
             alert('已断开连接');
         }
-    })
-    .catch(err => {
-        alert('断开失败: ' + err);
     });
 }
 
-function toggleCollapse() {
-    const collapse = document.getElementById('collapseMqtt');
-    new bootstrap.Collapse(collapse).toggle();
-}
-
-function updateUI(connected, broker, port) {
-    const mqttCard = document.getElementById('mqttCard');
-    const mqttIcon = document.getElementById('mqttIcon');
-    const connectionStatus = document.getElementById('connectionStatus');
-    const connectionBroker = document.getElementById('connectionBroker');
-    
-    if (connected) {
-        mqttCard.classList.add('connected');
-        mqttIcon.className = 'mqtt-icon connected';
-        mqttIcon.innerHTML = '<i class="fas fa-server"></i>';
-        connectionStatus.textContent = '已连接';
-        connectionBroker.textContent = broker;
-        isMqttConnected = true;
-        renderCameraConfigSection(true);
-    } else {
-        mqttCard.classList.remove('connected');
-        mqttIcon.className = 'mqtt-icon disconnected';
-        mqttIcon.innerHTML = '<i class="fas fa-server"></i>';
-        connectionStatus.textContent = '未连接';
-        connectionBroker.textContent = '点击设置连接';
-        isMqttConnected = false;
-        renderCameraConfigSection(false);
-    }
+function toggleSettingsCollapse() {
+    const collapseEl = document.getElementById('mqttSettingsCollapse');
+    const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, { toggle: false });
+    bsCollapse.toggle();
 }
 </script>
+
+<style>
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+</style>
 {% endblock %}
 {% endblock %}

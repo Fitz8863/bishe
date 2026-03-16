@@ -160,3 +160,26 @@ def send_camera_config():
             
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@settings_bp.route('/api/jetson/info', methods=['GET'])
+def get_jetson_info():
+    """获取最新的Jetson设备信息"""
+    try:
+        import time
+        from blueprints.mqtt_manager import mqtt_manager
+        if not mqtt_manager or not mqtt_manager.connected:
+            return jsonify({'error': 'MQTT未连接'}), 400
+            
+        if not mqtt_manager.latest_jetson_info:
+            return jsonify({'message': '等待数据中...', 'data': None}), 200
+            
+        # 检查是否超时 (10秒未收到心跳包视为断开)
+        is_online = (time.time() - mqtt_manager.last_info_time) < 10
+        
+        return jsonify({
+            'message': 'success',
+            'data': mqtt_manager.latest_jetson_info,
+            'is_online': is_online
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
