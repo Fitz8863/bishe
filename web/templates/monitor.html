@@ -135,7 +135,7 @@
     <div id="emptyState" class="empty-state">
         <i class="fas fa-server"></i>
         <h5 id="emptyStateTitle">请先连接服务器</h5>
-        <p id="emptyStateDesc">前往“系统设置”连接 FNAS 远程服务器以获取实时监控</p>
+        <p id="emptyStateDesc">前往“系统设置”连接远程服务器以获取实时监控</p>
     </div>
 </div>
 {% endif %}
@@ -170,7 +170,7 @@
                     emptyState.style.display = 'block';
                     emptyState.querySelector('i').className = 'fas fa-server';
                     emptyStateTitle.innerText = '请先连接服务器';
-                    emptyStateDesc.innerText = '前往“系统设置”连接 FNAS 远程服务器以获取实时监控';
+                    emptyStateDesc.innerText = '前往“系统设置”连接远程服务器以获取实时监控';
                     return;
                 }
 

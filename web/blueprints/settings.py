@@ -151,7 +151,7 @@ def send_camera_config():
             'value': config_value
         }
         
-        success, message = mqtt_module.mqtt_manager.publish(f"{camera_id}/command", payload)
+        success, message = mqtt_module.mqtt_manager.send_camera_command(camera_id, payload)
         
         if success:
             return jsonify({'message': '配置发送成功'}), 200

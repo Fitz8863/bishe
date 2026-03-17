@@ -56,27 +56,27 @@ class StreamManager:
 stream_manager = StreamManager()
 
 
-def init_cameras(config_path=None):
-    """初始化摄像头，从配置文件加载"""
-    if config_path is None:
-        config_path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-            'cameras.json'
-        )
-    print(f"[DEBUG] Loading cameras from: {config_path}")
-    stream_manager.load_from_config(config_path)
+# def init_cameras(config_path=None):
+#     """初始化摄像头，从配置文件加载"""
+#     if config_path is None:
+#         config_path = os.path.join(
+#             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+#             'cameras.json'
+#         )
+#     # print(f"[DEBUG] Loading cameras from: {config_path}")
+#     stream_manager.load_from_config(config_path)
 
 
-def get_camera_info(camera_id):
-    """获取摄像头信息"""
-    camera = stream_manager.get_camera(camera_id)
-    if camera:
-        return jsonify({
-            'id': camera['id'],
-            'name': camera['name'],
-            'webrtc_url': camera['webrtc_url']
-        }), 200
-    return jsonify({'error': 'Camera not found'}), 404
+# def get_camera_info(camera_id):
+#     """获取摄像头信息"""
+#     camera = stream_manager.get_camera(camera_id)
+#     if camera:
+#         return jsonify({
+#             'id': camera['id'],
+#             'name': camera['name'],
+#             'webrtc_url': camera['webrtc_url']
+#         }), 200
+#     return jsonify({'error': 'Camera not found'}), 404
 
 
 def list_cameras():

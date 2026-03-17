@@ -14,8 +14,6 @@ bcrypt = Bcrypt(app)
 from blueprints import init_db
 init_db(app)
 
-from blueprints.video_stream import init_cameras
-init_cameras()
 
 from blueprints.main import main_bp
 from blueprints.auth import auth_bp

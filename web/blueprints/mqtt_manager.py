@@ -75,8 +75,10 @@ class MQTTManager:
             return False, str(e)
     
     def send_camera_command(self, camera_id, command):
-        """发送摄像头控制命令""" # {camera_id}/
-        return self.publish(f"command", command)
+        """发送摄像头控制命令 (固定主题，Payload包含ID)"""
+        if isinstance(command, dict):
+            command['camera_id'] = camera_id
+        return self.publish("command", command)
     
     def disconnect(self):
         """断开连接"""

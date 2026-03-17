@@ -30,9 +30,9 @@ def list_cameras():
     """获取摄像头列表"""
     return video_stream.list_cameras()
 
-@main_bp.route('/api/cameras/<camera_id>')
-@login_required
-@admin_required
-def get_camera(camera_id):
-    """获取单个摄像头信息"""
-    return video_stream.get_camera_info(camera_id)
+# @main_bp.route('/api/cameras/<camera_id>')
+# @login_required
+# @admin_required
+# def get_camera(camera_id):
+#     """获取单个摄像头信息"""
+#     return video_stream.get_camera_info(camera_id)
