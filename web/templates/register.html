@@ -8,33 +8,37 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0ea5e9;
-            --primary-dark: #0284c7;
-            --primary-light: #38bdf8;
-            --accent-color: #06b6d4;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border-color: #334155;
+            --primary-color: #f472b6;
+            --primary-dark: #db2777;
+            --primary-light: #fbcfe8;
+            --accent-color: #22d3ee;
+            --bg-dark: rgba(25, 25, 35, 0.4);
+            --bg-card: rgba(30, 30, 40, 0.6);
+            --text-primary: #fdf2f8;
+            --text-secondary: #fbcfe8;
+            --border-color: rgba(255, 255, 255, 0.2);
         }
         
         body {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e3a8a 50%, #0f172a 100%);
+            background: url('{{ url_for('static', filename='image/background.jpeg') }}') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            font-family: "Microsoft YaHei", -apple-system, sans-serif;
+            color: var(--text-primary);
         }
         
         .login-card {
-            background: rgba(30, 41, 59, 0.9);
+            background: var(--bg-card);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
             border-radius: 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
-                        0 0 30px rgba(14, 165, 233, 0.1);
+                        0 0 30px rgba(244, 114, 182, 0.1);
             overflow: hidden;
             max-width: 420px;
             width: 100%;
@@ -47,7 +51,7 @@
         }
         
         .login-header {
-            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #22d3ee 0%, #f472b6 50%, #22d3ee 100%);
             padding: 40px 30px;
             text-align: center;
             position: relative;
@@ -107,7 +111,7 @@
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
             background: var(--bg-card);
             color: var(--text-primary);
             outline: none;
@@ -125,7 +129,7 @@
         }
         
         .btn-login {
-            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+            background: linear-gradient(135deg, #22d3ee 0%, #f472b6 100%);
             border: none;
             color: white;
             padding: 14px;
@@ -133,13 +137,13 @@
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
         }
         
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4);
+            background: linear-gradient(135deg, #f472b6 0%, #22d3ee 100%);
         }
         
         .btn-login:active {
@@ -164,7 +168,7 @@
         
         .text-center a:hover {
             color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+            text-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
         }
         
         .alert {

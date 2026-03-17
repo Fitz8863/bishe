@@ -15,6 +15,8 @@
 
     .status-card {
         background: var(--bg-card);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 20px;
@@ -44,6 +46,8 @@
 
     .control-panel {
         background: var(--bg-card);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--border-color);
         border-radius: 16px;
         overflow: hidden;
@@ -51,7 +55,8 @@
     }
 
     .panel-header {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
         padding: 15px 20px;
         border-bottom: 1px solid var(--border-color);
         font-weight: 600;
@@ -61,17 +66,22 @@
     }
 
     .dashboard-camera-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border: 1px solid var(--border-color);
         border-radius: 12px;
         padding: 15px;
         transition: var(--transition);
         height: 100%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .dashboard-camera-card:hover {
-        background: rgba(255, 255, 255, 0.06);
+        background: var(--bg-card-hover);
         border-color: var(--primary-color);
+        box-shadow: 0 8px 25px rgba(244, 114, 182, 0.2);
+        transform: translateY(-3px);
     }
 
     .x-small { font-size: 0.75rem; }
@@ -88,7 +98,7 @@
     }
 
     .wifi-list-item:hover {
-        background: rgba(14, 165, 233, 0.1);
+        background: rgba(244, 114, 182, 0.1);
         border-color: var(--primary-color);
     }
 
@@ -108,7 +118,7 @@
         background-color: #1e2227;
         border-color: var(--primary-color);
         color: var(--text-primary);
-        box-shadow: 0 0 0 0.25rem rgba(14, 165, 233, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(244, 114, 182, 0.25);
     }
 
     .progress {
@@ -137,7 +147,7 @@
 
 {% block content %}
 {% if not current_user.is_authenticated %}
-<div class="alert alert-info border-0 shadow-sm" style="background: rgba(14, 165, 233, 0.1); color: var(--primary-light);">
+<div class="alert alert-info border-0 shadow-sm" style="background: rgba(244, 114, 182, 0.1); color: var(--primary-light);">
     <i class="fas fa-info-circle me-2"></i>
     请 <a href="{{ url_for('auth.login') }}" class="fw-bold text-decoration-none" style="color: var(--accent-color);">登录</a> 后查看系统设置
 </div>
@@ -224,7 +234,7 @@
 
     <!-- 侧边辅助说明 -->
     <div class="col-lg-4">
-        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%); border: 1px solid var(--border-color) !important;">
+        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(244, 114, 182, 0.1) 0%, rgba(34, 211, 238, 0.05) 100%); border: 1px solid var(--border-color) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
             <div class="card-body p-4">
                 <h6 class="fw-bold mb-3"><i class="fas fa-lightbulb me-2 text-warning"></i>操作说明</h6>
                 <ul class="text-muted small ps-3 mb-0">
@@ -489,7 +499,7 @@ function renderCameraConfigSection(connected) {
                             <select class="form-select mb-3" id="cameraSelect">
                                 <option value="">正在加载摄像头列表...</option>
                             </select>
-                            <div class="alert alert-info py-2 px-3 x-small mb-0 border-0" style="background: rgba(14, 165, 233, 0.1);">
+                            <div class="alert alert-info py-2 px-3 x-small mb-0 border-0" style="background: rgba(244, 114, 182, 0.1);">
                                 <i class="fas fa-info-circle me-1"></i> 指令将通过 MQTT 即时下发。
                             </div>
                         </div>
