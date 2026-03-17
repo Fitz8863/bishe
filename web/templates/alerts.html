@@ -4,74 +4,104 @@
 
 {% block extra_css %}
 <style>
-    .capture-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-    }
-    .capture-card {
+    .alerts-container {
         background: var(--bg-card);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         border: 1px solid var(--border-color);
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .table {
+        margin-bottom: 0;
+        color: var(--text-primary);
+        vertical-align: middle;
+    }
+
+    .table td {
+        padding: 12px 20px;
+        border-bottom: none;
+        background: transparent !important;
+        color: var(--text-primary) !important; /* 强制使用浅色文本 */
+    }
+
+    .table td.small {
+        color: var(--text-secondary) !important; /* 地点使用略淡的粉紫色，增加层级感 */
+    }
+
+    .table thead th {
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid var(--border-color);
+        color: var(--primary-light);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.85rem;
+        padding: 15px 20px;
+    }
+
+    .table tbody tr {
+        background: rgba(0, 0, 0, 0.4) !important; /* 使用 !important 强制覆盖 Bootstrap 默认背景 */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         transition: all 0.3s ease;
     }
-    .capture-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(244, 114, 182, 0.15);
-        border-color: var(--primary-color);
+
+    .table tbody tr:hover {
+        background: rgba(0, 0, 0, 0.6) !important;
+        transform: none !important;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
     }
-    .capture-image {
-        width: 100%;
-        height: 200px;
+
+    .table td {
+        padding: 12px 20px;
+        border-bottom: none;
+        background: transparent !important; /* 确保单元格不带背景 */
+    }
+
+    .preview-img {
+        width: 80px;
+        height: 45px;
         object-fit: cover;
-        background: #0a0a0f;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
     }
-    .capture-body {
-        padding: 15px;
+
+    .preview-img:hover {
+        transform: scale(1.1);
     }
-    .capture-title {
-        font-weight: bold;
-        color: var(--text-primary);
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .capture-meta {
-        color: var(--text-secondary);
-        font-size: 0.85rem;
-    }
-    .capture-meta i {
-        margin-right: 5px;
-        color: var(--primary-light);
-    }
-    .capture-badge {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 15px;
-        font-size: 0.75rem;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-    .capture-badge.danger {
+
+    .badge-danger {
         background: rgba(239, 68, 68, 0.2);
-        color: #f87171;
+        color: #fb7185;
+        border: 1px solid rgba(239, 68, 68, 0.3);
     }
-    .capture-badge.warning {
-        background: rgba(245, 158, 11, 0.2);
-        color: #fbbf24;
+
+    .btn-delete {
+        color: #fb7185;
+        background: transparent;
+        border: 1px solid rgba(251, 113, 133, 0.3);
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
     }
+
+    .btn-delete:hover {
+        background: #fb7185;
+        color: white;
+        box-shadow: 0 0 15px rgba(251, 113, 133, 0.4);
+    }
+
     .empty-state {
         text-align: center;
         padding: 60px 20px;
         color: var(--text-secondary);
-        grid-column: 1 / -1;
-        background: var(--bg-card);
-        border-radius: 15px;
-        border: 1px solid var(--border-color);
     }
+
     .empty-state i {
         font-size: 4rem;
         margin-bottom: 15px;
@@ -80,94 +110,119 @@
         -webkit-text-fill-color: transparent;
         opacity: 0.5;
     }
-    .empty-state h5 {
-        color: var(--text-primary);
-    }
-    .refresh-btn {
-        padding: 8px 20px;
+
+    /* 弹窗样式 */
+    .modal-content {
+        background: rgba(25, 25, 35, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
         border-radius: 20px;
-        border: none;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
         color: white;
-        cursor: pointer;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .refresh-btn {
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-light);
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(244, 114, 182, 0.3);
     }
+
     .refresh-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(244, 114, 182, 0.4);
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 15px var(--glow-color);
     }
-    .refresh-btn.loading {
-        pointer-events: none;
-        opacity: 0.7;
+    
+    .loading i {
+        animation: spin 1s linear infinite;
     }
-    .refresh-btn.loading i {
-        animation: spin 0.5s ease-in-out infinite;
-        display: inline-block;
-    }
+
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
-    .api-info {
-        background: rgba(244, 114, 182, 0.1);
-        border: 1px solid rgba(244, 114, 182, 0.3);
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    .api-info code {
-        background: var(--bg-dark);
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        color: var(--primary-light);
-    }
-    .api-info strong {
-        color: var(--text-primary);
-    }
-    {% if not current_user.is_authenticated %}
-    .alert-info {
-        background: rgba(244, 114, 182, 0.15);
-        border: none;
-        border-radius: 10px;
-        padding: 20px;
-        color: var(--primary-light);
-    }
-    .alert-info a {
-        color: var(--accent-color);
-        font-weight: 600;
-    }
-    {% endif %}
 </style>
 {% endblock %}
 
 {% block content %}
 {% if not current_user.is_authenticated %}
-<div class="alert alert-info">
+<div class="alert alert-info" style="background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); color: #cffafe;">
     <i class="fas fa-info-circle me-2"></i>
-    请 <a href="{{ url_for('auth.login') }}">登录</a> 后查看抓拍记录
+    请 <a href="{{ url_for('auth.login') }}" style="color: var(--accent-color); font-weight: bold;">登录</a> 后查看抓拍记录
 </div>
 {% else %}
-<h4 class="mb-4">
-    <i class="fas fa-bell me-2" style="color: #f87171;"></i>抓拍记录
-    <button class="refresh-btn float-end" onclick="loadCaptures()">
-        <i class="fas fa-sync-alt me-1"></i>刷新
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-bold">
+        <i class="fas fa-bell me-2" style="color: #fb7185;"></i>告警抓拍流水
+    </h4>
+    <button class="refresh-btn" onclick="loadCaptures()">
+        <i class="fas fa-sync-alt me-1"></i>刷新数据
     </button>
-</h4>
-
-<div class="api-info">
-    <strong><i class="fas fa-plug me-2" style="color: var(--primary-light);"></i>远程设备上传接口:</strong>
-    <code>POST http://YOUR_SERVER_IP:5000/capture/upload</code>
-    <br>
-    <small class="text-muted">参数: file(图片文件), camera_id(摄像头ID), location(地点), violation_type(违规类型)</small>
 </div>
 
-<div class="capture-grid" id="captureGrid">
-    <div id="emptyState" class="empty-state">
+<div class="alerts-container">
+    <div class="table-responsive">
+        <table class="table" id="capturesTable">
+            <thead>
+                <tr>
+                    <th>预览</th>
+                    <th>违规类型</th>
+                    <th>抓拍地点</th>
+                    <th>摄像头设备 ID</th>
+                    <th>抓拍时间</th>
+                    <th class="text-end">操作</th>
+                </tr>
+            </thead>
+            <tbody id="captureList">
+                <!-- 动态加载 -->
+            </tbody>
+        </table>
+    </div>
+    <div id="emptyState" class="empty-state" style="display: none;">
         <i class="fas fa-camera-slash"></i>
-        <h5>暂无抓拍记录</h5>
-        <p>远程摄像头发送的抓拍记录将会显示在这里</p>
+        <h5>暂无违规记录</h5>
+        <p class="small text-muted">目前尚未接收到任何摄像头的告警抓拍数据</p>
+    </div>
+</div>
+
+<!-- 图片放大模态框 -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <img id="modalImage" src="" class="img-fluid rounded-4" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除确认模态框 -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fas fa-shield-alt me-2 text-danger"></i>管理员安全确认</h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="x-small text-muted mb-3">此操作不可撤销，请输出管理员密码以确认删除该条抓拍记录。</p>
+                <input type="password" class="form-control" id="adminPassword" placeholder="请输入管理员密码">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" id="confirmDeleteBtn">确认删除</button>
+            </div>
+        </div>
     </div>
 </div>
 {% endif %}
@@ -175,62 +230,115 @@
 {% block extra_js %}
 <script>
     let capturesLoaded = false;
+    let deleteTargetId = null;
     
     document.addEventListener('DOMContentLoaded', function() {
         if (capturesLoaded) return;
         capturesLoaded = true;
         loadCaptures();
+        
+        // 绑定删除确认按钮
+        document.getElementById('confirmDeleteBtn')?.addEventListener('click', executeDelete);
     });
 
     function loadCaptures() {
         const btn = document.querySelector('.refresh-btn');
-        btn.classList.add('loading');
+        if (btn) btn.classList.add('loading');
         
         fetch('/capture/list')
             .then(response => response.json())
             .then(data => {
                 const captures = data.captures || [];
-                const grid = document.getElementById('captureGrid');
+                const list = document.getElementById('captureList');
                 const emptyState = document.getElementById('emptyState');
+                const table = document.getElementById('capturesTable');
                 
-                const oldCards = grid.querySelectorAll('.capture-card');
-                oldCards.forEach(card => card.remove());
+                list.innerHTML = '';
                 
                 if (captures.length === 0) {
                     emptyState.style.display = 'block';
+                    table.style.display = 'none';
                 } else {
                     emptyState.style.display = 'none';
+                    table.style.display = 'table';
                     
                     captures.forEach(capture => {
-                        const card = document.createElement('div');
-                        card.className = 'capture-card';
-                        
-                        card.innerHTML = `
-                            <img class="capture-image" src="/static/${capture.image_path}" alt="抓拍图片" onerror="this.src='/static/img/placeholder.png'">
-                            <div class="capture-body">
-                                <div class="capture-title">
-                                    <i class="fas fa-exclamation-triangle" style="color: #f87171;"></i>
-                                    ${capture.violation_type || '违规行为'}
-                                </div>
-                                <div class="capture-meta">
-                                    <div><i class="fas fa-map-marker-alt"></i>${capture.location}</div>
-                                    <div><i class="fas fa-video"></i>${capture.camera_id}</div>
-                                    <div><i class="fas fa-clock"></i>${capture.capture_time}</div>
-                                </div>
-                                <span class="capture-badge danger">危险</span>
-                            </div>
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>
+                                <img class="preview-img" src="/static/${capture.image_path}" 
+                                     onclick="showImage('/static/${capture.image_path}')"
+                                     onerror="this.src='/static/img/placeholder.png'">
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>${capture.violation_type || '违规行为'}
+                                </span>
+                            </td>
+                            <td class="small">${capture.location}</td>
+                            <td><code class="text-info">${capture.camera_id}</code></td>
+                            <td class="x-small text-muted">${capture.capture_time}</td>
+                            <td class="text-end">
+                                <button class="btn-delete" onclick="prepareDelete(${capture.id})">
+                                    <i class="fas fa-trash-alt me-1"></i>删除
+                                </button>
+                            </td>
                         `;
-                        
-                        grid.appendChild(card);
+                        list.appendChild(row);
                     });
                 }
             })
-            .catch(error => {
-                console.error('获取抓拍记录失败:', error);
-            })
+            .catch(error => console.error('获取抓拍记录失败:', error))
             .finally(() => {
-                btn.classList.remove('loading');
+                if (btn) btn.classList.remove('loading');
             });
+    }
+
+    function showImage(src) {
+        document.getElementById('modalImage').src = src;
+        new bootstrap.Modal(document.getElementById('imageModal')).show();
+    }
+
+    function prepareDelete(id) {
+        deleteTargetId = id;
+        document.getElementById('adminPassword').value = '';
+        new bootstrap.Modal(document.getElementById('deleteModal')).show();
+    }
+
+    function executeDelete() {
+        const password = document.getElementById('adminPassword').value;
+        if (!password) {
+            alert('请输入密码');
+            return;
+        }
+
+        const btn = document.getElementById('confirmDeleteBtn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 处理中...';
+
+        fetch(`/capture/delete/${deleteTargetId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: password })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.code === 200) {
+                // 关闭弹窗
+                const modalEl = document.getElementById('deleteModal');
+                bootstrap.Modal.getInstance(modalEl).hide();
+                // 重新加载列表
+                loadCaptures();
+            } else {
+                alert(data.error || '删除失败');
+            }
+        })
+        .catch(err => alert('网络错误: ' + err))
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        });
     }
 </script>
 {% endblock %}

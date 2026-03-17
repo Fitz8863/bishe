@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask import redirect, url_for, request
+from flask import redirect, url_for, request, jsonify
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -19,20 +19,17 @@ def init_db(app):
     
     @app.before_request
     def check_login():
-        allowed_routes = ['auth.login', 'auth.register', 'static']
+        # 允许的路由：登录、注册、静态文件、上传接口
+        allowed_routes = ['auth.login', 'auth.register', 'static', 'capture.upload_capture']
         if request.endpoint in allowed_routes:
             return
         
-        if request.endpoint == 'capture.upload':
-            return
-
         from flask_login import current_user
         if not current_user.is_authenticated:
-            if request.path.startswith('/api/') or request.path.startswith('/settings/api/') or request.path.startswith('/capture/'):
-                 from flask import jsonify
-                 if request.endpoint != 'capture.upload':
-                    return jsonify({'error': 'Unauthorized'}), 401
-            
+            # API 路由返回 JSON 错误
+            if request.path.startswith('/api/') or request.path.startswith('/settings/api/'):
+                return jsonify({'error': 'Unauthorized'}), 401
+            # 其他路由重定向到登录页
             return redirect(url_for('auth.login'))
     
     with app.app_context():
