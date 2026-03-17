@@ -131,7 +131,7 @@ def _generate_nodes(context):
                     "client_id": "jetson",
                     "subscribe_topic": "factory/camera/command",
                     "publish_topic": "factory/camera/command",
-                    "info_topic": "/jetson/info",
+                    "info_topic": "jetson/info",
                     "report_interval_sec": 1.5,
                     "camera_ids": selected_camera_ids_for_mqtt,
                     "camera_locations": selected_camera_locations_for_mqtt,

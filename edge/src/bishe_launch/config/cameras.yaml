@@ -9,7 +9,7 @@ cameras:
       confidence_threshold: 0.45
       nms_threshold: 0.5
       engine_path: "models/yolov8s.engine"
-      worker_threads: 2
+      worker_threads: 1
       max_queue_size: 8
     streamer:
       rtsp_url: "rtsp://localhost:8554/stream_001"

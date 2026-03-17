@@ -194,7 +194,7 @@ private:
     this->declare_parameter<std::string>("publish_topic", "/factory/camera/command");    // 发布主题（目前未使用）
 
     // 状态上报配置
-    this->declare_parameter<std::string>("info_topic", "/jetson/info");       // 状态信息发布主题
+    this->declare_parameter<std::string>("info_topic", "jetson/info");       // 状态信息发布主题
     this->declare_parameter<double>("report_interval_sec", 1.0);              // 上报间隔（秒）
 
     // 摄像头配置（支持多摄像头）
@@ -909,7 +909,7 @@ private:
   void publishToInfoTopic(const std::string& payload)
   {
     if (client_ == nullptr || !client_->is_connected()) {
-      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 3000, "Cannot publish /jetson/info, MQTT not connected");
+      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 3000, "Cannot publish jetson/info, MQTT not connected");
       return;
     }
 
@@ -918,7 +918,7 @@ private:
       client_->publish(msg)->wait();
     }
     catch (const mqtt::exception& e) {
-      RCLCPP_ERROR(this->get_logger(), "Publish /jetson/info failed: %s", e.what());
+      RCLCPP_ERROR(this->get_logger(), "Publish jetson/info failed: %s", e.what());
     }
   }
 
