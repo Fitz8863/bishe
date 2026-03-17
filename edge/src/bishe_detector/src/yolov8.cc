@@ -22,6 +22,11 @@ YOLOv8::~YOLOv8() {
     ReleaseBuffers();
 }
 
+void YOLOv8::SetThresholds(float score_treshold, float nms_treshold) {
+    score_treshold_.store(score_treshold);
+    nms_treshold_.store(nms_treshold);
+}
+
 void YOLOv8::AllocateBuffers() {
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&input_tensor_), sizeof(float) * 3 * input_size_ * input_size_));
     CUDA_CHECK(cudaMalloc(reinterpret_cast<void**>(&output_tensor_), sizeof(float) * bbox_pred_dim_ * num_anchors_));
@@ -93,6 +98,8 @@ std::vector<cv::Rect> YOLOv8::RescaleBoxes(const std::vector<cv::Rect>& boxes, c
 
 
 DetectionResult YOLOv8::BuildDetectionResult(cv::Mat& output, const cv::Mat& original_img, const cv::Size& original_size) {
+    const float score_treshold = score_treshold_.load();
+    const float nms_treshold = nms_treshold_.load();
 
     std::vector<cv::Rect> boxes;
     std::vector<int> class_ids;
@@ -109,7 +116,7 @@ DetectionResult YOLOv8::BuildDetectionResult(cv::Mat& output, const cv::Mat& ori
         // compute argmax which is class_id
         cv::minMaxLoc(row_scores, 0, &max_score, 0, &class_id);
 
-        if (max_score < score_treshold_) continue;
+        if (max_score < score_treshold) continue;
 
         // int x1 = static_cast<int>(output.at<float>(i, 0));
         // int y1 = static_cast<int>(output.at<float>(i, 1));
@@ -132,7 +139,7 @@ DetectionResult YOLOv8::BuildDetectionResult(cv::Mat& output, const cv::Mat& ori
     }
 
     std::vector<int> nms_result;
-    cv::dnn::NMSBoxes(boxes, scores, score_treshold_, nms_treshold_, nms_result);
+    cv::dnn::NMSBoxes(boxes, scores, score_treshold, nms_treshold, nms_result);
 
     std::vector<cv::Rect> filtered_boxes;
     std::vector<int> filtered_class_ids;

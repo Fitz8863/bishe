@@ -4,6 +4,8 @@
 #include <opencv2/core/cuda.hpp>
 #include <opencv2/cudawarping.hpp>
 
+#include <atomic>
+
 #include "yolo.h"
 
 class YOLOv8 : public YOLO {
@@ -16,6 +18,7 @@ public:
     DetectionResult Detect(cv::Mat& input_img) override;
     cv::Mat PreprocessImage(const cv::Mat& original_img) override;
     cv::Mat PostprocessImage(cv::Mat& output, const cv::Mat& original_img, const cv::Size& original_size) override;
+    void SetThresholds(float score_treshold, float nms_treshold);
 
 protected:
 
@@ -26,8 +29,8 @@ protected:
     size_t bbox_pred_dim_; //dimension of bounding box encoding
     size_t num_anchors_; 
     size_t input_size_; // input_size of the nn
-    float score_treshold_; 
-    float nms_treshold_;
+    std::atomic<float> score_treshold_;
+    std::atomic<float> nms_treshold_;
     float* input_tensor_{nullptr};
     float* output_tensor_{nullptr};
     cv::Mat host_output_tensor_;

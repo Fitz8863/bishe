@@ -7,14 +7,18 @@ endif()
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(PkgConfig REQUIRED)
 find_package(rclcpp REQUIRED)
+pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 
 # MQTT - use system installed EMQX SDK
 set(MQTT_LIBRARIES paho-mqtt3as paho-mqttpp3)
 
 add_executable(mqtt_node src/mqtt_node.cpp)
 
-target_link_libraries(mqtt_node ${MQTT_LIBRARIES})
+target_include_directories(mqtt_node PUBLIC ${JSONCPP_INCLUDE_DIRS})
+
+target_link_libraries(mqtt_node ${MQTT_LIBRARIES} ${JSONCPP_LIBRARIES})
 
 ament_target_dependencies(mqtt_node
   rclcpp

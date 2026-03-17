@@ -78,7 +78,7 @@
 ### 5. bishe_mqtt（MQTT节点）
 
 - **功能：** MQTT 通信
-- **订阅：** `factory/camera/001/command`
+- **订阅：** `factory/camera/command`
 - **发布（预留）：** `factory/camera/001/status`
 - **消息格式：** JSON
 
@@ -121,7 +121,7 @@ upload:
 mqtt:
   broker: "YOUR_MQTT_BROKER_IP"
   port: 1883
-  subscribe_topic: "factory/camera/001/command"
+  subscribe_topic: "factory/camera/command"
   publish_topic: "factory/camera/001/status"
 
 alarm:

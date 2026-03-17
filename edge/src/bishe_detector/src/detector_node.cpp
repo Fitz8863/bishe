@@ -11,6 +11,7 @@
 #include <condition_variable>
 #include <atomic>
 #include <cmath>
+#include <algorithm>
 
 // YOLO Headers
 #include "trt_engine.h"
@@ -29,11 +30,15 @@ public:
     this->declare_parameter<int>("worker_threads", 1);
     this->declare_parameter<int>("max_queue_size", 8);
 
-    this->get_parameter("confidence_threshold", confidence_threshold_);
-    this->get_parameter("nms_threshold", nms_threshold_);
+    float confidence_threshold = 0.5f;
+    float nms_threshold = 0.5f;
+    this->get_parameter("confidence_threshold", confidence_threshold);
+    this->get_parameter("nms_threshold", nms_threshold);
     this->get_parameter("engine_path", engine_path_);
     this->get_parameter("worker_threads", worker_threads_);
     this->get_parameter("max_queue_size", max_queue_size_);
+    confidence_threshold_.store(confidence_threshold);
+    nms_threshold_.store(nms_threshold);
 
     if (worker_threads_ < 1) {
       worker_threads_ = 1;
@@ -47,7 +52,7 @@ public:
       Logger logger;
       auto trt_engine = std::make_unique<TrtEngine>(logger);
       trt_engine->LoadEngine(engine_path_);
-      workers_.push_back(std::make_unique<WorkerContext>(WorkerContext{std::make_unique<YOLOv8>(std::move(trt_engine), confidence_threshold_, nms_threshold_)}));
+      workers_.push_back(std::make_unique<WorkerContext>(WorkerContext{std::make_unique<YOLOv8>(std::move(trt_engine), confidence_threshold_.load(), nms_threshold_.load())}));
     }
 
     for (int i = 0; i < worker_threads_; ++i) {
@@ -60,7 +65,10 @@ public:
     // Publisher for detection results
     result_pub_ = this->create_publisher<bishe_msgs::msg::DetectorResult>("detector/result", 10);
 
-    RCLCPP_INFO(this->get_logger(), "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, worker_threads: %d, max_queue_size: %d", confidence_threshold_, nms_threshold_, worker_threads_, max_queue_size_);
+    parameter_callback_handle_ = this->add_on_set_parameters_callback(
+      std::bind(&DetectorNode::handleParameterUpdate, this, std::placeholders::_1));
+
+    RCLCPP_INFO(this->get_logger(), "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, worker_threads: %d, max_queue_size: %d", confidence_threshold_.load(), nms_threshold_.load(), worker_threads_, max_queue_size_);
   }
 
   ~DetectorNode() override
@@ -90,8 +98,8 @@ private:
 
   image_transport::Subscriber image_sub_;
   rclcpp::Publisher<bishe_msgs::msg::DetectorResult>::SharedPtr result_pub_;
-  float confidence_threshold_;
-  float nms_threshold_;
+  std::atomic<float> confidence_threshold_{0.5f};
+  std::atomic<float> nms_threshold_{0.5f};
   std::string engine_path_;
   int worker_threads_{1};
   int max_queue_size_{8};
@@ -109,6 +117,72 @@ private:
   double inference_time_ms_acc_{0.0};
   std::mutex stats_mutex_;
   std::chrono::steady_clock::time_point stats_window_start_{std::chrono::steady_clock::now()};
+  rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr parameter_callback_handle_;
+
+  rcl_interfaces::msg::SetParametersResult handleParameterUpdate(const std::vector<rclcpp::Parameter> &parameters)
+  {
+    rcl_interfaces::msg::SetParametersResult result;
+    result.successful = true;
+
+    float new_confidence_threshold = confidence_threshold_.load();
+    float new_nms_threshold = nms_threshold_.load();
+    bool thresholds_changed = false;
+
+    for (const auto &parameter : parameters) {
+      if (parameter.get_name() == "confidence_threshold") {
+        double value = 0.0;
+        if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+          value = parameter.as_double();
+        } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          value = static_cast<double>(parameter.as_int());
+        } else {
+          result.successful = false;
+          result.reason = "confidence_threshold 必须是数字";
+          return result;
+        }
+
+        if (value < 0.0 || value > 1.0) {
+          result.successful = false;
+          result.reason = "confidence_threshold 必须在 0 到 1 之间";
+          return result;
+        }
+
+        new_confidence_threshold = static_cast<float>(value);
+        thresholds_changed = true;
+      } else if (parameter.get_name() == "nms_threshold") {
+        double value = 0.0;
+        if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+          value = parameter.as_double();
+        } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          value = static_cast<double>(parameter.as_int());
+        } else {
+          result.successful = false;
+          result.reason = "nms_threshold 必须是数字";
+          return result;
+        }
+
+        if (value < 0.0 || value > 1.0) {
+          result.successful = false;
+          result.reason = "nms_threshold 必须在 0 到 1 之间";
+          return result;
+        }
+
+        new_nms_threshold = static_cast<float>(value);
+        thresholds_changed = true;
+      }
+    }
+
+    if (thresholds_changed) {
+      confidence_threshold_.store(new_confidence_threshold);
+      nms_threshold_.store(new_nms_threshold);
+      for (auto &worker : workers_) {
+        worker->yolo->SetThresholds(new_confidence_threshold, new_nms_threshold);
+      }
+      RCLCPP_INFO(this->get_logger(), "检测参数已更新: confidence_threshold=%.2f, nms_threshold=%.2f", new_confidence_threshold, new_nms_threshold);
+    }
+
+    return result;
+  }
 
   void reportStats()
   {
@@ -175,7 +249,7 @@ private:
       auto result = bishe_msgs::msg::DetectorResult();
       result.has_violation = !detection_result.detections.empty();
       result.confidence = detection_result.detections.empty() ? 0.0f : detection_result.detections.front().confidence;
-      result.nms_threshold = this->nms_threshold_;
+      result.nms_threshold = this->nms_threshold_.load();
       result.violation_type = detection_result.detections.empty() ? "" : detection_result.detections.front().class_name;
       result.annotated_image = *cv_bridge::CvImage(task.msg->header, "bgr8", detection_result.annotated_image).toImageMsg();
 

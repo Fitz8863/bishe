@@ -20,24 +20,27 @@
 #include <rclcpp/parameter_client.hpp>
 #include <rclcpp/executors/multi_threaded_executor.hpp>
 
+#include <jsoncpp/json/json.h>
 #include <mqtt/async_client.h>
 
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <functional>
 #include <future>
 #include <mutex>
+#include <optional>
 #include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-/**
- * @brief MQTT 消息回调处理类
- *
- * 当收到来自 MQTT broker 的消息时，此类负责处理。
- * 目前主要用于日志记录收到的消息内容。
- */
+ /**
+  * @brief MQTT 消息回调处理类
+  *
+  * 当收到来自 MQTT broker 的消息时，此类负责处理。
+  * 目前主要用于日志记录收到的消息内容。
+  */
 class MqttCallback : public virtual mqtt::callback
 {
 public:
@@ -45,8 +48,10 @@ public:
    * @brief 构造函数
    * @param logger ROS2 日志器实例
    */
-  explicit MqttCallback(rclcpp::Logger logger)
-  : logger_(std::move(logger))
+  explicit MqttCallback(
+    rclcpp::Logger logger,
+    std::function<void(const std::string &, const std::string &)> on_message)
+    : logger_(std::move(logger)), on_message_(std::move(on_message))
   {
   }
 
@@ -61,10 +66,14 @@ public:
     const std::string topic = msg->get_topic();
     const std::string payload = msg->get_payload_str();
     RCLCPP_INFO(logger_, "Received on %s: %s", topic.c_str(), payload.c_str());
+    if (on_message_) {
+      on_message_(topic, payload);
+    }
   }
 
 private:
   rclcpp::Logger logger_;  ///< ROS2 日志器
+  std::function<void(const std::string &, const std::string &)> on_message_;
 };
 
 /**
@@ -87,7 +96,11 @@ public:
    * 5. 创建定时上报计时器
    */
   MqttNode()
-  : Node("mqtt_node"), cb_(this->get_logger())
+    : Node("mqtt_node"), cb_(
+        this->get_logger(),
+        [this](const std::string &topic, const std::string &payload) {
+          handleMqttMessage(topic, payload);
+        })
   {
     // 步骤1: 声明所有可配置参数
     declareParameters();
@@ -115,7 +128,8 @@ public:
       // 步骤5: 订阅控制命令主题
       client_->subscribe(subscribe_topic_, 1)->wait();
       RCLCPP_INFO(this->get_logger(), "Subscribed to: %s", subscribe_topic_.c_str());
-    } catch (const mqtt::exception &e) {
+    }
+    catch (const mqtt::exception& e) {
       RCLCPP_ERROR(this->get_logger(), "MQTT connection failed: %s", e.what());
     }
 
@@ -139,7 +153,8 @@ public:
       if (client_->is_connected()) {
         client_->disconnect()->wait();
       }
-    } catch (const mqtt::exception &e) {
+    }
+    catch (const mqtt::exception& e) {
       RCLCPP_ERROR(this->get_logger(), "MQTT disconnect error: %s", e.what());
     }
   }
@@ -154,12 +169,12 @@ private:
   {
     std::string location;              ///< 摄像头物理位置描述
     std::string http_url;              ///< HTTP 流地址（用于 Web 预览）
-    int width{0};                      ///< 视频分辨率宽度
-    int height{0};                     ///< 视频分辨率高度
-    double fps{0.0};
-    double scale{1.0};                 ///< 流媒体缩放比例
-    double confidence_threshold{0.5};  ///< 目标检测置信度阈值
-    double nms_threshold{0.5};        ///< NMS 非极大值抑制阈值
+    int width{ 0 };                      ///< 视频分辨率宽度
+    int height{ 0 };                     ///< 视频分辨率高度
+    double fps{ 0.0 };
+    double scale{ 1.0 };                 ///< 流媒体缩放比例
+    double confidence_threshold{ 0.5 };  ///< 目标检测置信度阈值
+    double nms_threshold{ 0.5 };        ///< NMS 非极大值抑制阈值
   };
 
   /**
@@ -175,8 +190,8 @@ private:
     this->declare_parameter<std::string>("client_id", "jetson");     // 客户端标识符
 
     // MQTT 主题配置
-    this->declare_parameter<std::string>("subscribe_topic", "factory/camera/001/command");   // 订阅主题（接收上位机命令）
-    this->declare_parameter<std::string>("publish_topic", "factory/camera_001/status");    // 发布主题（目前未使用）
+    this->declare_parameter<std::string>("subscribe_topic", "/factory/camera/command");   // 订阅主题（接收上位机命令）
+    this->declare_parameter<std::string>("publish_topic", "/factory/camera/command");    // 发布主题（目前未使用）
 
     // 状态上报配置
     this->declare_parameter<std::string>("info_topic", "/jetson/info");       // 状态信息发布主题
@@ -228,7 +243,7 @@ private:
   {
     std::lock_guard<std::mutex> lock(info_mutex_);
     for (size_t i = 0; i < camera_ids_.size(); ++i) {
-      auto &info = info_cache_[camera_ids_[i]];
+      auto& info = info_cache_[camera_ids_[i]];
       // 位置信息：从 camera_locations 数组中按索引获取
       info.location = i < camera_locations_.size() ? camera_locations_[i] : "";
       // HTTP URL：从 camera_http_urls 数组中按索引获取
@@ -341,7 +356,7 @@ private:
    * - 有命名空间：/camera_xxx/camera_node
    * - 无命名空间：/camera_node
    */
-  std::vector<std::string> cameraNodeCandidates(const std::string &camera_id) const
+  std::vector<std::string> cameraNodeCandidates(const std::string& camera_id) const
   {
     std::vector<std::string> names;
     if (!camera_id.empty()) {
@@ -356,7 +371,7 @@ private:
    * @param camera_id 摄像头 ID
    * @return 节点名称向量
    */
-  std::vector<std::string> detectorNodeCandidates(const std::string &camera_id) const
+  std::vector<std::string> detectorNodeCandidates(const std::string& camera_id) const
   {
     std::vector<std::string> names;
     if (!camera_id.empty()) {
@@ -371,7 +386,7 @@ private:
    * @param camera_id 摄像头 ID
    * @return 节点名称向量
    */
-  std::vector<std::string> streamerNodeCandidates(const std::string &camera_id) const
+  std::vector<std::string> streamerNodeCandidates(const std::string& camera_id) const
   {
     std::vector<std::string> names;
     if (!camera_id.empty()) {
@@ -388,7 +403,7 @@ private:
    *
    * 使用缓存机制避免重复创建相同的参数客户端
    */
-  std::shared_ptr<rclcpp::AsyncParametersClient> getOrCreateParamClient(const std::string &node_name)
+  std::shared_ptr<rclcpp::AsyncParametersClient> getOrCreateParamClient(const std::string& node_name)
   {
     const auto it = param_clients_.find(node_name);
     if (it != param_clients_.end()) {
@@ -401,11 +416,11 @@ private:
     return client;
   }
 
-  bool nodeExists(const std::string &node_name)
+  bool nodeExists(const std::string& node_name)
   {
     auto graph = this->get_node_graph_interface();
     const auto node_names_and_namespaces = graph->get_node_names_and_namespaces();
-    for (const auto &item : node_names_and_namespaces) {
+    for (const auto& item : node_names_and_namespaces) {
       std::string full_name = item.second;
       if (full_name.empty() || full_name.back() != '/') {
         full_name += '/';
@@ -428,9 +443,9 @@ private:
    * 使用 200ms 超时等待，避免异步调用导致的阻塞问题
    */
   bool fetchParametersSync(
-    const std::string &node_name,
-    const std::vector<std::string> &parameter_names,
-    std::vector<rclcpp::Parameter> &parameters)
+    const std::string& node_name,
+    const std::vector<std::string>& parameter_names,
+    std::vector<rclcpp::Parameter>& parameters)
   {
     const auto now = std::chrono::steady_clock::now();
     const auto backoff_it = next_query_time_.find(node_name);
@@ -463,11 +478,223 @@ private:
       parameters = future.get();
       next_query_time_[node_name] = now;
       return true;
-    } catch (const std::exception &e) {
+    }
+    catch (const std::exception& e) {
       next_query_time_[node_name] = now + std::chrono::seconds(2);
       RCLCPP_WARN(this->get_logger(), "Failed to fetch parameters from %s: %s", node_name.c_str(), e.what());
       return false;
     }
+  }
+
+  bool setParametersSync(
+    const std::string &node_name,
+    const std::vector<rclcpp::Parameter> &parameters)
+  {
+    if (!nodeExists(node_name)) {
+      return false;
+    }
+
+    auto client = getOrCreateParamClient(node_name);
+    if (!client->service_is_ready()) {
+      return false;
+    }
+
+    auto future = client->set_parameters(parameters);
+    const auto status = future.wait_for(std::chrono::milliseconds(1500));
+    if (status != std::future_status::ready) {
+      RCLCPP_WARN(this->get_logger(), "Timed out setting parameters on %s", node_name.c_str());
+      return false;
+    }
+
+    try {
+      const auto results = future.get();
+      for (size_t i = 0; i < results.size(); ++i) {
+        if (!results[i].successful) {
+          RCLCPP_WARN(
+            this->get_logger(), "Failed to set %s on %s: %s",
+            parameters[i].get_name().c_str(), node_name.c_str(), results[i].reason.c_str());
+          return false;
+        }
+      }
+      return true;
+    }
+    catch (const std::exception& e) {
+      RCLCPP_WARN(this->get_logger(), "Failed to set parameters on %s: %s", node_name.c_str(), e.what());
+      return false;
+    }
+  }
+
+  bool cameraIdConfigured(const std::string &camera_id) const
+  {
+    return std::find(camera_ids_.begin(), camera_ids_.end(), camera_id) != camera_ids_.end();
+  }
+
+  void updateCacheForCommand(
+    const std::string &camera_id,
+    const std::optional<double> &confidence_threshold,
+    const std::optional<double> &nms_threshold)
+  {
+    std::lock_guard<std::mutex> lock(info_mutex_);
+    auto &info = info_cache_[camera_id];
+    if (confidence_threshold.has_value()) {
+      info.confidence_threshold = *confidence_threshold;
+    }
+    if (nms_threshold.has_value()) {
+      info.nms_threshold = *nms_threshold;
+    }
+  }
+
+  bool extractNumericField(const Json::Value &value, const char *field_name, std::optional<double> &output)
+  {
+    if (!value.isMember(field_name) || value[field_name].isNull()) {
+      return true;
+    }
+
+    const auto &field = value[field_name];
+    if (!field.isNumeric()) {
+      RCLCPP_WARN(this->get_logger(), "Field %s must be numeric", field_name);
+      return false;
+    }
+
+    output = field.asDouble();
+    return true;
+  }
+
+  bool handleParameterCommand(const Json::Value &root)
+  {
+    if (!root["camera_id"].isString()) {
+      RCLCPP_WARN(this->get_logger(), "Missing valid camera_id in parameters command");
+      return false;
+    }
+    if (!root["value"].isObject()) {
+      RCLCPP_WARN(this->get_logger(), "Missing valid value object in parameters command");
+      return false;
+    }
+
+    const std::string camera_id = root["camera_id"].asString();
+    if (!cameraIdConfigured(camera_id)) {
+      RCLCPP_WARN(this->get_logger(), "Unknown camera_id in MQTT command: %s", camera_id.c_str());
+      return false;
+    }
+
+    const Json::Value &value = root["value"];
+    std::optional<double> confidence_threshold;
+    std::optional<double> nms_threshold;
+    if (!extractNumericField(value, "confidence_threshold", confidence_threshold) ||
+      !extractNumericField(value, "iou_threshold", nms_threshold)) {
+      return false;
+    }
+
+    if (!confidence_threshold.has_value() && !nms_threshold.has_value()) {
+      RCLCPP_WARN(this->get_logger(), "No supported parameter fields found in MQTT command");
+      return false;
+    }
+
+    if (confidence_threshold.has_value() && (*confidence_threshold < 0.0 || *confidence_threshold > 1.0)) {
+      RCLCPP_WARN(this->get_logger(), "confidence_threshold must be between 0 and 1");
+      return false;
+    }
+    if (nms_threshold.has_value() && (*nms_threshold < 0.0 || *nms_threshold > 1.0)) {
+      RCLCPP_WARN(this->get_logger(), "iou_threshold must be between 0 and 1");
+      return false;
+    }
+
+    bool success = true;
+    bool any_change_applied = false;
+    if (confidence_threshold.has_value() || nms_threshold.has_value()) {
+      bool detector_updated = false;
+      for (const auto &node_name : detectorNodeCandidates(camera_id)) {
+        std::vector<rclcpp::Parameter> current_parameters;
+        bool current_loaded = fetchParametersSync(node_name, { "confidence_threshold", "nms_threshold" }, current_parameters);
+        std::vector<rclcpp::Parameter> detector_parameters;
+        if (current_loaded) {
+          std::optional<double> current_confidence_threshold;
+          std::optional<double> current_nms_threshold;
+          for (const auto &parameter : current_parameters) {
+            if (parameter.get_name() == "confidence_threshold") {
+              if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+                current_confidence_threshold = parameter.as_double();
+              } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+                current_confidence_threshold = static_cast<double>(parameter.as_int());
+              }
+            } else if (parameter.get_name() == "nms_threshold") {
+              if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+                current_nms_threshold = parameter.as_double();
+              } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+                current_nms_threshold = static_cast<double>(parameter.as_int());
+              }
+            }
+          }
+
+          if (confidence_threshold.has_value() && (!current_confidence_threshold.has_value() || std::abs(*current_confidence_threshold - *confidence_threshold) > 1e-6)) {
+            detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
+          }
+          if (nms_threshold.has_value() && (!current_nms_threshold.has_value() || std::abs(*current_nms_threshold - *nms_threshold) > 1e-6)) {
+            detector_parameters.emplace_back("nms_threshold", *nms_threshold);
+          }
+        } else {
+          if (confidence_threshold.has_value()) {
+            detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
+          }
+          if (nms_threshold.has_value()) {
+            detector_parameters.emplace_back("nms_threshold", *nms_threshold);
+          }
+        }
+
+        if (detector_parameters.empty()) {
+          detector_updated = true;
+          break;
+        }
+
+        if (setParametersSync(node_name, detector_parameters)) {
+          detector_updated = true;
+          any_change_applied = true;
+          break;
+        }
+      }
+      success = success && detector_updated;
+    }
+
+    if (success) {
+      updateCacheForCommand(camera_id, confidence_threshold, nms_threshold);
+      if (any_change_applied) {
+        RCLCPP_INFO(this->get_logger(), "Applied MQTT parameter command to camera_%s", camera_id.c_str());
+      } else {
+        RCLCPP_INFO(this->get_logger(), "Skipped MQTT parameter command for camera_%s because all values are unchanged", camera_id.c_str());
+      }
+    }
+
+    return success;
+  }
+
+  void handleMqttMessage(const std::string &topic, const std::string &payload)
+  {
+    if (topic != subscribe_topic_) {
+      return;
+    }
+
+    Json::CharReaderBuilder builder;
+    builder["collectComments"] = false;
+    std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+    Json::Value root;
+    std::string errors;
+    if (!reader->parse(payload.data(), payload.data() + payload.size(), &root, &errors) || !root.isObject()) {
+      RCLCPP_WARN(this->get_logger(), "Failed to parse MQTT JSON: %s", errors.c_str());
+      return;
+    }
+
+    if (!root["type"].isString()) {
+      RCLCPP_WARN(this->get_logger(), "MQTT command missing type field");
+      return;
+    }
+
+    const std::string type = root["type"].asString();
+    if (type == "parameters") {
+      (void)handleParameterCommand(root);
+      return;
+    }
+
+    RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type: %s", type.c_str());
   }
 
   /**
@@ -478,41 +705,41 @@ private:
    * 处理 JSON 特殊字符：\ " \n \r \t
    * 防止 JSON 解析错误
    */
-  static std::string escapeJson(const std::string &value)
+  static std::string escapeJson(const std::string& value)
   {
     std::string escaped;
     escaped.reserve(value.size());
     for (const char c : value) {
       switch (c) {
-        case '\\':
-          escaped += "\\\\";
-          break;
-        case '"':
-          escaped += "\\\"";
-          break;
-        case '\n':
-          escaped += "\\n";
-          break;
-        case '\r':
-          escaped += "\\r";
-          break;
-        case '\t':
-          escaped += "\\t";
-          break;
-        default:
-          escaped += c;
-          break;
+      case '\\':
+        escaped += "\\\\";
+        break;
+      case '"':
+        escaped += "\\\"";
+        break;
+      case '\n':
+        escaped += "\\n";
+        break;
+      case '\r':
+        escaped += "\\r";
+        break;
+      case '\t':
+        escaped += "\\t";
+        break;
+      default:
+        escaped += c;
+        break;
       }
     }
     return escaped;
   }
 
-  void requestStreamerRuntimeInfo(const std::string &camera_id)
+  void requestStreamerRuntimeInfo(const std::string& camera_id)
   {
     const auto candidates = streamerNodeCandidates(camera_id);
-    for (const auto &node_name : candidates) {
+    for (const auto& node_name : candidates) {
       std::vector<rclcpp::Parameter> params;
-      if (!fetchParametersSync(node_name, {"output_width", "output_height", "output_fps", "scale"}, params)) {
+      if (!fetchParametersSync(node_name, { "output_width", "output_height", "output_fps", "scale" }, params)) {
         continue;
       }
 
@@ -523,21 +750,26 @@ private:
       }
 
       // 解析参数值
-      for (const auto &p : params) {
+      for (const auto& p : params) {
         if (p.get_name() == "output_width" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
           info.width = static_cast<int>(p.as_int());
-        } else if (p.get_name() == "output_height" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+        }
+        else if (p.get_name() == "output_height" && p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
           info.height = static_cast<int>(p.as_int());
-        } else if (p.get_name() == "output_fps") {
+        }
+        else if (p.get_name() == "output_fps") {
           if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
             info.fps = p.as_double();
-          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          }
+          else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
             info.fps = static_cast<double>(p.as_int());
           }
-        } else if (p.get_name() == "scale") {
+        }
+        else if (p.get_name() == "scale") {
           if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
             info.scale = p.as_double();
-          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          }
+          else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
             info.scale = static_cast<double>(p.as_int());
           }
         }
@@ -559,12 +791,12 @@ private:
    * - confidence_threshold: 置信度阈值
    * - nms_threshold: NMS 阈值
    */
-  void requestDetectorThresholds(const std::string &camera_id)
+  void requestDetectorThresholds(const std::string& camera_id)
   {
     const auto candidates = detectorNodeCandidates(camera_id);
-    for (const auto &node_name : candidates) {
+    for (const auto& node_name : candidates) {
       std::vector<rclcpp::Parameter> params;
-      if (!fetchParametersSync(node_name, {"confidence_threshold", "nms_threshold"}, params)) {
+      if (!fetchParametersSync(node_name, { "confidence_threshold", "nms_threshold" }, params)) {
         continue;
       }
 
@@ -574,17 +806,20 @@ private:
         info = info_cache_[camera_id];
       }
 
-      for (const auto &p : params) {
+      for (const auto& p : params) {
         if (p.get_name() == "confidence_threshold") {
           if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
             info.confidence_threshold = p.as_double();
-          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          }
+          else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
             info.confidence_threshold = static_cast<double>(p.as_int());
           }
-        } else if (p.get_name() == "nms_threshold") {
+        }
+        else if (p.get_name() == "nms_threshold") {
           if (p.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
             info.nms_threshold = p.as_double();
-          } else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+          }
+          else if (p.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
             info.nms_threshold = static_cast<double>(p.as_int());
           }
         }
@@ -600,7 +835,7 @@ private:
 
   void requestRuntimeInfo()
   {
-    for (const auto &camera_id : camera_ids_) {
+    for (const auto& camera_id : camera_ids_) {
       requestStreamerRuntimeInfo(camera_id);
       requestDetectorThresholds(camera_id);
     }
@@ -640,7 +875,7 @@ private:
     std::ostringstream oss;
     oss << "{\"timestamp_ns\":" << this->now().nanoseconds() << ",\"cameras\":[";
     for (size_t i = 0; i < camera_ids_.size(); ++i) {
-      const auto &camera_id = camera_ids_[i];
+      const auto& camera_id = camera_ids_[i];
       const auto it = snapshot.find(camera_id);
       CameraInfo info;
       if (it != snapshot.end()) {
@@ -671,7 +906,7 @@ private:
    *
    * 将构建好的 JSON payload 发布到 info_topic 指定的 MQTT 主题
    */
-  void publishToInfoTopic(const std::string &payload)
+  void publishToInfoTopic(const std::string& payload)
   {
     if (client_ == nullptr || !client_->is_connected()) {
       RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 3000, "Cannot publish /jetson/info, MQTT not connected");
@@ -681,7 +916,8 @@ private:
     try {
       auto msg = mqtt::make_message(info_topic_, payload, 1, false);
       client_->publish(msg)->wait();
-    } catch (const mqtt::exception &e) {
+    }
+    catch (const mqtt::exception& e) {
       RCLCPP_ERROR(this->get_logger(), "Publish /jetson/info failed: %s", e.what());
     }
   }
@@ -710,21 +946,21 @@ private:
 
   // MQTT 连接配置
   std::string broker_;            ///< MQTT broker 地址
-  int port_{1883};                 ///< MQTT 端口
+  int port_{ 1883 };                 ///< MQTT 端口
   std::string client_id_;         ///< 客户端 ID
   std::string subscribe_topic_;   ///< 订阅主题（命令）
   std::string publish_topic_;      ///< 发布主题（状态）
 
   // 上报配置
   std::string info_topic_;              ///< 信息发布主题
-  double report_interval_sec_{1.0};     ///< 上报间隔（秒）
+  double report_interval_sec_{ 1.0 };     ///< 上报间隔（秒）
   std::vector<std::string> camera_ids_;           ///< 摄像头 ID 列表
   std::vector<std::string> camera_locations_;     ///< 摄像头位置列表
   std::vector<std::string> camera_http_urls_;    ///< HTTP URL 列表
   rclcpp::CallbackGroup::SharedPtr report_callback_group_{
-    this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
+    this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive) };
   rclcpp::CallbackGroup::SharedPtr param_callback_group_{
-    this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};
+    this->create_callback_group(rclcpp::CallbackGroupType::Reentrant) };
 
   // 内部状态
   rclcpp::TimerBase::SharedPtr report_timer_;      ///< 定时上报计时器
@@ -740,7 +976,7 @@ private:
  * @param argv 参数列表
  * @return 程序退出码
  */
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   rclcpp::init(argc, argv);
   auto node = std::make_shared<MqttNode>();
