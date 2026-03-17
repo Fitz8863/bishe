@@ -161,7 +161,7 @@ def send_camera_config():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@settings_bp.route('/api/jetson/info', methods=['GET'])
+@settings_bp.route('/apijetson/info', methods=['GET'])
 def get_jetson_info():
     """获取最新的Jetson设备信息"""
     try:

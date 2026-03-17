@@ -38,12 +38,12 @@ class MQTTManager:
             self.connected = True
             print("MQTT连接成功")
             # 订阅设备信息主题
-            self.client.subscribe("/jetson/info")
+            self.client.subscribe("jetson/info")
         else:
             print(f"MQTT连接失败, 返回码: {rc}")
             
     def _on_message(self, client, userdata, msg):
-        if msg.topic == "/jetson/info":
+        if msg.topic == "jetson/info":
             try:
                 payload = json.loads(msg.payload.decode('utf-8'))
                 # print(payload)
@@ -53,7 +53,7 @@ class MQTTManager:
                 self.latest_jetson_info = payload
                 self.last_info_time = time.time()
             except Exception as e:
-                print(f"解析 /jetson/info 消息失败: {e}")
+                print(f"解析 jetson/info 消息失败: {e}")
     
     def _on_disconnect(self, client, userdata, rc):
         self.connected = False

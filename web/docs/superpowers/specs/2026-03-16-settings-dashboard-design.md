@@ -23,15 +23,15 @@
 ### 3.2 后端数据流设计
 1. **MQTT 订阅更新 (`mqtt_manager.py`)**：
    - 增加 `on_message` 回调函数。
-   - 连接成功后，订阅主题 `/jetson/info`。
+   - 连接成功后，订阅主题 `jetson/info`。
    - 当接收到消息时，将 JSON 负载存储在 `MQTTManager` 类的属性中（例如 `self.latest_jetson_info`），自动忽略掉 `timestamp_ns`。
 2. **新 API 端点 (`settings.py`)**：
-   - 新增 `GET /settings/api/jetson/info` 路由。
+   - 新增 `GET /settings/apijetson/info` 路由。
    - 读取并返回最新的 `latest_jetson_info` 数据，供前端 AJAX 轮询。
 
 ## 4. 实施步骤
 1. 修改 `blueprints/mqtt_manager.py` 实现订阅和消息保存逻辑。
-2. 修改 `blueprints/settings.py` 暴露 `/api/jetson/info` 接口。
+2. 修改 `blueprints/settings.py` 暴露 `/apijetson/info` 接口。
 3. 重写 `templates/settings.html`：
    - 引入 Bootstrap 卡片和更具现代感的 CSS 样式。
    - 编写 JS 定时器（`setInterval`），连接成功时每隔 1~2 秒拉取最新仪表盘数据。

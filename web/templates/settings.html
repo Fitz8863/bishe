@@ -239,7 +239,7 @@
                 <h6 class="fw-bold mb-3"><i class="fas fa-lightbulb me-2 text-warning"></i>操作说明</h6>
                 <ul class="text-muted small ps-3 mb-0">
                     <li class="mb-2">连接 MQTT 服务器是管理边缘设备的前提。</li>
-                    <li class="mb-2">成功连接后，系统将自动订阅 <code class="text-info">/jetson/info</code> 主题以获取实时数据。</li>
+                    <li class="mb-2">成功连接后，系统将自动订阅 <code class="text-info">jetson/info</code> 主题以获取实时数据。</li>
                     <li>双击历史记录可以快速填入并尝试重连。</li>
                 </ul>
             </div>
@@ -356,7 +356,7 @@ function stopDashboardPolling() {
 function fetchDashboardData() {
     if (!isMqttConnected) return;
     
-    fetch('/settings/api/jetson/info')
+    fetch('/settings/apijetson/info')
         .then(res => res.json())
         .then(data => {
             if (data.data) {
