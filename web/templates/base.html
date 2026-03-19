@@ -83,10 +83,179 @@
     <!-- 实时通知容器 -->
     <div id="notification-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; width: 320px;"></div>
 
+    <div id="alarm-btn" style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; cursor: pointer; display: flex; align-items: center;">
+        <div class="alarm-icon-part" style="
+            width: 40px;
+            height: 40px;
+            background: rgba(25, 25, 35, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2;
+            flex-shrink: 0;
+        ">
+            <i class="fas fa-volume-up" id="alarm-icon" style="font-size: 1.1rem; color: #10b981;"></i>
+        </div>
+        <div class="alarm-text-part" style="
+            background: rgba(25, 25, 35, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-left: none;
+            border-radius: 12px;
+            padding: 8px 16px;
+            color: white;
+            font-size: 0.75rem;
+            margin-left: -12px;
+            padding-left: 24px;
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1;
+        ">
+            <span id="alarm-text">点击静音</span>
+        </div>
+    </div>
+
+    <div id="stop-alarm-btn" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10001; display: none; cursor: pointer;">
+        <div style="
+            background: rgba(239, 68, 68, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #fca5a5;
+            border-radius: 20px;
+            padding: 20px 40px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: pulse-border 1s infinite;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+        ">
+            <i class="fas fa-bell me-2"></i>点击停止报警
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     
     <script>
+        // ==================== 报警声音系统 ====================
+        class AlarmSound {
+            constructor() {
+                this.audioCtx = null;
+                this.isPlaying = false;
+                this.alarmInterval = null;
+                this.autoStopTimer = null;
+                this.isMuted = false;
+            }
+
+            init() {
+                if (!this.audioCtx) {
+                    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (this.audioCtx.state === 'suspended') {
+                    this.audioCtx.resume();
+                }
+            }
+
+            playSiren() {
+                if (!this.audioCtx || this.isMuted) return;
+                
+                const now = this.audioCtx.currentTime;
+                const oscillator = this.audioCtx.createOscillator();
+                const gainNode = this.audioCtx.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioCtx.destination);
+                
+                oscillator.type = 'sine';
+                gainNode.gain.value = 0.3;
+                
+                oscillator.frequency.setValueAtTime(800, now);
+                oscillator.frequency.linearRampToValueAtTime(1200, now + 0.15);
+                oscillator.frequency.linearRampToValueAtTime(800, now + 0.3);
+                
+                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                
+                oscillator.start(now);
+                oscillator.stop(now + 0.3);
+            }
+
+            startAlarm() {
+                this.init();
+                
+                if (this.isPlaying) {
+                    this.resetAutoStop();
+                    return;
+                }
+                
+                this.isPlaying = true;
+                document.getElementById('stop-alarm-btn').style.display = 'block';
+                this.playSiren();
+                
+                this.alarmInterval = setInterval(() => {
+                    this.playSiren();
+                }, 400);
+                
+                this.resetAutoStop();
+            }
+
+            resetAutoStop() {
+                if (this.autoStopTimer) {
+                    clearTimeout(this.autoStopTimer);
+                }
+                this.autoStopTimer = setTimeout(() => {
+                    this.stopAlarm();
+                }, 3000);
+            }
+
+            stopAlarm() {
+                this.isPlaying = false;
+                if (this.alarmInterval) {
+                    clearInterval(this.alarmInterval);
+                    this.alarmInterval = null;
+                }
+                if (this.autoStopTimer) {
+                    clearTimeout(this.autoStopTimer);
+                    this.autoStopTimer = null;
+                }
+                document.getElementById('stop-alarm-btn').style.display = 'none';
+            }
+
+            toggleMute() {
+                this.isMuted = !this.isMuted;
+                if (this.isMuted) {
+                    this.stopAlarm();
+                    document.getElementById('alarm-icon').className = 'fas fa-volume-mute';
+                    document.getElementById('alarm-icon').style.color = '#ef4444';
+                    document.getElementById('alarm-text').textContent = '点击开启';
+                } else {
+                    document.getElementById('alarm-icon').className = 'fas fa-volume-up';
+                    document.getElementById('alarm-icon').style.color = '#10b981';
+                    document.getElementById('alarm-text').textContent = '点击静音';
+                }
+                return this.isMuted;
+            }
+        }
+
+        // 创建全局报警实例
+        const alarmSound = new AlarmSound();
+
+        // 点击静音按钮
+        document.getElementById('alarm-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            alarmSound.toggleMute();
+        });
+
+        // 点击停止报警按钮
+        document.getElementById('stop-alarm-btn').addEventListener('click', () => {
+            alarmSound.stopAlarm();
+        });
+
         // 初始化 Socket.IO
         const socket = io();
 
@@ -97,8 +266,8 @@
         socket.on('new_capture', (data) => {
             console.log('New capture received:', data);
             showNotification(data);
+            alarmSound.startAlarm();
             
-            // 如果在抓拍记录页面，自动触发刷新（由子页面处理）
             if (typeof onNewCapture === 'function') {
                 onNewCapture(data);
             }
@@ -155,6 +324,17 @@
         @keyframes progress {
             from { width: 100%; }
             to { width: 0%; }
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+        }
+        
+        #alarm-btn:hover .alarm-text-part {
+            transform: translateX(0);
+            opacity: 1;
         }
     </style>
     
