@@ -188,6 +188,7 @@ private:
     this->declare_parameter<std::string>("broker", "fnas");           // MQTT broker 地址或域名
     this->declare_parameter<int>("port", 1883);                      // MQTT 端口号
     this->declare_parameter<std::string>("client_id", "jetson");     // 客户端标识符
+    this->declare_parameter<std::string>("device", "jetson-orin-nano"); // 设备标识符 (如: jetson-orin-nano)
 
     // MQTT 主题配置
     this->declare_parameter<std::string>("subscribe_topic", "/factory/camera/command");   // 订阅主题（接收上位机命令）
@@ -214,6 +215,7 @@ private:
     this->get_parameter("broker", broker_);
     this->get_parameter("port", port_);
     this->get_parameter("client_id", client_id_);
+    this->get_parameter("device", device_);
     this->get_parameter("subscribe_topic", subscribe_topic_);
     this->get_parameter("publish_topic", publish_topic_);
 
@@ -873,7 +875,9 @@ private:
 
     // 构建 JSON 字符串
     std::ostringstream oss;
-    oss << "{\"timestamp_ns\":" << this->now().nanoseconds() << ",\"cameras\":[";
+    oss << "{\"timestamp_ns\":" << this->now().nanoseconds() << ",";
+    oss << "\"device\":\"" << escapeJson(device_) << "\",";
+    oss << "\"cameras\":[";
     for (size_t i = 0; i < camera_ids_.size(); ++i) {
       const auto& camera_id = camera_ids_[i];
       const auto it = snapshot.find(camera_id);
@@ -948,6 +952,7 @@ private:
   std::string broker_;            ///< MQTT broker 地址
   int port_{ 1883 };                 ///< MQTT 端口
   std::string client_id_;         ///< 客户端 ID
+  std::string device_;            ///< 设备标识符
   std::string subscribe_topic_;   ///< 订阅主题（命令）
   std::string publish_topic_;      ///< 发布主题（状态）
 

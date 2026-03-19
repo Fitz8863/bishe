@@ -24,6 +24,7 @@ def _generate_nodes(context):
     config_path = LaunchConfiguration("config_path").perform(context)
     selected_ids_value = LaunchConfiguration("camera_ids").perform(context).strip()
     enable_monitor = _to_bool(LaunchConfiguration("enable_monitor").perform(context))
+    device_name = LaunchConfiguration("device").perform(context)
 
     camera_map = _load_camera_config(config_path)
     if not camera_map:
@@ -129,6 +130,7 @@ def _generate_nodes(context):
                     "broker": "fnas",
                     "port": 1883,
                     "client_id": "jetson",
+                    "device": "jetson-orin-nano",
                     "subscribe_topic": "factory/camera/command",
                     "publish_topic": "factory/camera/command",
                     "info_topic": "jetson/info",
@@ -157,6 +159,7 @@ def generate_launch_description():
             DeclareLaunchArgument("config_path", default_value=default_config_path),
             DeclareLaunchArgument("camera_ids", default_value=""),
             DeclareLaunchArgument("enable_monitor", default_value="false"),
+            DeclareLaunchArgument("device", default_value="jetson-orin-nano"),
             OpaqueFunction(function=_generate_nodes),
         ]
     )
