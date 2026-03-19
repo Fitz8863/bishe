@@ -3,13 +3,16 @@ from flask_bcrypt import Bcrypt
 import config
 import os
 
-app = Flask(__name__, 
-            template_folder=os.path.join(os.path.dirname(__file__), 'templates'),
-            static_folder=os.path.join(os.path.dirname(__file__), 'static'))
+from exts import socketio
+
+app = Flask(__name__,
+template_folder=os.path.join(os.path.dirname(__file__), 'templates'),
+static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 
 app.config.from_object(config)
 
 bcrypt = Bcrypt(app)
+socketio.init_app(app)
 
 from blueprints import init_db
 init_db(app)
@@ -27,4 +30,4 @@ app.register_blueprint(settings_bp)
 app.register_blueprint(user_mgmt_bp)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)

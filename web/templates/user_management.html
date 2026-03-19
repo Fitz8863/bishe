@@ -38,7 +38,7 @@
                                         {% elif user.role == 'assistant' %}
                                             <span class="badge bg-warning text-dark">辅助管理员</span>
                                         {% else %}
-                                            <span class="badge bg-secondary">普通用户</span>
+                                            <span class="badge bg-secondary">游客</span>
                                         {% endif %}
                                     </td>
                                     <td>
@@ -82,7 +82,7 @@
                 <div class="mb-3">
                     <label class="form-label">身份角色</label>
                     <select id="add_role" class="form-select bg-secondary text-white border-0">
-                        <option value="user">普通用户</option>
+                        <option value="user">游客</option>
                         <option value="assistant">辅助管理员</option>
                     </select>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="mb-3" id="role_select_container">
                     <label class="form-label">身份角色</label>
                     <select id="edit_role" class="form-select bg-secondary text-white border-0">
-                        <option value="user">普通用户</option>
+                        <option value="user">游客</option>
                         <option value="assistant">辅助管理员</option>
                     </select>
                 </div>

@@ -394,6 +394,26 @@ footer {
     margin-top: auto;
 }
 
+/* 分页样式 */
+.pagination .page-link {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-secondary) !important;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.pagination .page-item.disabled .page-link {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    color: rgba(255, 255, 255, 0.2) !important;
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
     .stat-number {

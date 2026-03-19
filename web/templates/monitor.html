@@ -40,11 +40,51 @@
         padding: 0;
         background: rgba(0, 0, 0, 0.5);
         min-height: 350px;
+        position: relative;
     }
     .monitor-body iframe {
         width: 100%;
         height: 350px;
         border: none;
+    }
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 15, 25, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.5s ease;
+    }
+    .video-overlay i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: var(--primary-light);
+    }
+    .video-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .btn-refresh-stream {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-light);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+    .btn-refresh-stream:hover {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 15px var(--glow-color);
     }
     .status-badge {
         padding: 5px 12px;
@@ -231,14 +271,44 @@
                 </span>
             </div>
             <div class="monitor-body">
-                <iframe src="${webrtcUrl}" allowfullscreen data-url="${webrtcUrl}"></iframe>
+                <div class="video-overlay" id="overlay-${id}">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    <div class="x-small text-primary">正在建立安全视频链路...</div>
+                </div>
+                <iframe src="${webrtcUrl}" allowfullscreen data-url="${webrtcUrl}" onload="hideOverlay('${id}')"></iframe>
             </div>
             <div class="monitor-stats">
-                <span><i class="fas fa-video"></i> 远程视频流</span>
-                <span class="camera-url-label text-truncate" style="max-width: 200px;"><i class="fas fa-link"></i> ${webrtcUrl}</span>
+                <div class="d-flex justify-content-between w-100 align-items-center">
+                    <span><i class="fas fa-video"></i> 远程视频流</span>
+                    <button class="btn-refresh-stream" onclick="refreshStream('${id}')">
+                        <i class="fas fa-sync-alt me-1"></i>重新连接
+                    </button>
+                </div>
             </div>
         `;
         return card;
+    }
+
+    function hideOverlay(id) {
+        const overlay = document.getElementById(`overlay-${id}`);
+        if (overlay) {
+            overlay.classList.add('hidden');
+        }
+    }
+
+    function refreshStream(id) {
+        const card = document.getElementById(`camera-card-${id}`);
+        if (!card) return;
+        
+        const overlay = document.getElementById(`overlay-${id}`);
+        const iframe = card.querySelector('iframe');
+        const url = iframe.getAttribute('data-url');
+        
+        if (overlay) overlay.classList.remove('hidden');
+        iframe.src = '';
+        setTimeout(() => {
+            iframe.src = url;
+        }, 100);
     }
 
     function updateCameraCard(id, name, webrtcUrl) {

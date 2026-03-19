@@ -3,95 +3,117 @@
 {% block title %}首页 - 化工厂危险行为检测系统{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="mb-4">
-                <i class="fas fa-shield-alt me-2" style="color: var(--primary-light);"></i>
-                欢迎使用化工厂危险行为检测系统
+<div class="container-fluid fade-in">
+    <!-- 顶部欢迎语和概览 -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2 class="fw-bold">
+                <i class="fas fa-shield-alt me-2 text-primary pulse-glow"></i>
+                <span class="text-gradient">危险行为监控中心</span>
             </h2>
-            
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 glow-border">
-                        <div class="card-body text-center">
-                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(244, 114, 182, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);">
-                                <i class="fas fa-video fa-3x" style="color: var(--primary-light);"></i>
-                            </div>
-                            <h5 class="card-title" style="color: var(--text-primary);">实时监控</h5>
-                            <p class="card-text" style="color: var(--text-secondary);">实时监控各个关键区域，及时发现安全隐患</p>
-                            <a href="{{ url_for('main.monitor') }}" class="btn btn-info">进入监控</a>
-                        </div>
-                    </div>
+            <p class="text-muted small">欢迎回来, 管理员。当前系统运行状态: <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-3 rounded-pill">正常</span></p>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="glass-card d-inline-flex align-items-center px-4 py-2">
+                <div class="me-3">
+                    <div class="x-small text-muted text-uppercase">系统时间</div>
+                    <div class="fw-bold" id="clock">00:00:00</div>
                 </div>
-                
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 glow-border">
-                        <div class="card-body text-center">
-                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);">
-                                <i class="fas fa-camera fa-3x" style="color: #f87171;"></i>
-                            </div>
-                            <h5 class="card-title" style="color: var(--text-primary);">抓拍记录</h5>
-                            <p class="card-text" style="color: var(--text-secondary);">自动识别危险行为并及时抓拍</p>
-                            <a href="{{ url_for('main.alerts') }}" class="btn btn-danger">查看记录</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 glow-border">
-                        <div class="card-body text-center">
-                            <div class="icon-container mb-3" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);">
-                                <i class="fas fa-cog fa-3x" style="color: #34d399;"></i>
-                            </div>
-                            <h5 class="card-title" style="color: var(--text-primary);">系统设置</h5>
-                            <p class="card-text" style="color: var(--text-secondary);">配置远程摄像头参数和MQTT连接</p>
-                            <a href="{{ url_for('settings.index') }}" class="btn btn-success">进入设置</a>
-                        </div>
+                <i class="fas fa-clock fa-2x text-primary opacity-50"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心统计数字 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon bg-info-gradient"><i class="fas fa-video"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="cameraCount">-</div>
+                        <div class="stat-label">总摄像头</div>
                     </div>
                 </div>
             </div>
-            
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0"><i class="fas fa-history me-2" style="color: var(--primary-light);"></i>最近抓拍</h5>
-                        </div>
-                        <div class="card-body" id="recentActivity">
-                            <div class="text-center text-muted">
-                                <i class="fas fa-spinner fa-spin me-2"></i>加载中...
-                            </div>
-                        </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon bg-success-gradient"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value text-success" id="onlineCount">-</div>
+                        <div class="stat-label">在线设备</div>
                     </div>
                 </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0"><i class="fas fa-tachometer-alt me-2" style="color: var(--accent-color);"></i>系统状态</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-around text-center">
-                                <div>
-                                    <div class="stat-number" id="cameraCount">-</div>
-                                    <div class="stat-label">摄像头</div>
-                                </div>
-                                <div>
-                                    <div class="stat-number" style="background: linear-gradient(135deg, #34d399 0%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="onlineCount">-</div>
-                                    <div class="stat-label">在线</div>
-                                </div>
-                                <div>
-                                    <div class="stat-number" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="captureCount">-</div>
-                                    <div class="stat-label">抓拍记录</div>
-                                </div>
-                                <div>
-                                    <div class="stat-number" style="background: linear-gradient(135deg, #f87171 0%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="todayCount">-</div>
-                                    <div class="stat-label">今日抓拍</div>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon bg-warning-gradient"><i class="fas fa-camera"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value text-warning" id="captureCount">-</div>
+                        <div class="stat-label">累计抓拍</div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon bg-danger-gradient"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value text-danger" id="todayCount">-</div>
+                        <div class="stat-label">今日告警</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 可视化大屏图表区 -->
+    <div class="row mb-4">
+        <!-- 趋势图 -->
+        <div class="col-lg-8">
+            <div class="chart-container glass-card h-100">
+                <div class="chart-header">
+                    <h6 class="mb-0"><i class="fas fa-chart-line me-2 text-primary"></i>告警趋势 (最近7天)</h6>
+                    <span class="badge bg-secondary bg-opacity-25 text-white x-small">实时数据</span>
+                </div>
+                <div id="trendChart" style="height: 350px; width: 100%;"></div>
+            </div>
+        </div>
+        <!-- 违规排行 -->
+        <div class="col-lg-4">
+            <div class="chart-container glass-card h-100">
+                <div class="chart-header">
+                    <h6 class="mb-0"><i class="fas fa-chart-pie me-2 text-accent"></i>违规类型分布</h6>
+                </div>
+                <div id="typeChart" style="height: 350px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- 地点热度 -->
+        <div class="col-lg-4 mb-4">
+            <div class="chart-container glass-card h-100">
+                <div class="chart-header">
+                    <h6 class="mb-0"><i class="fas fa-map-marker-alt me-2 text-danger"></i>高危地点排行</h6>
+                </div>
+                <div id="locationChart" style="height: 300px; width: 100%;"></div>
+            </div>
+        </div>
+        <!-- 最近动态列表 -->
+        <div class="col-lg-8 mb-4">
+            <div class="chart-container glass-card h-100">
+                <div class="chart-header d-flex justify-content-between">
+                    <h6 class="mb-0"><i class="fas fa-history me-2 text-success"></i>最新告警流水</h6>
+                    <a href="{{ url_for('main.alerts') }}" class="x-small text-primary text-decoration-none">查看更多 <i class="fas fa-chevron-right ms-1"></i></a>
+                </div>
+                <div class="p-3" id="recentActivity">
+                    <!-- 动态加载 -->
                 </div>
             </div>
         </div>
@@ -101,152 +123,332 @@
 
 {% block extra_css %}
 <style>
-.card {
-    border-radius: 12px;
-}
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-.icon-container {
-    display: inline-block;
-    padding: 20px;
-    border-radius: 50%;
-}
+    .glass-card {
+        background: rgba(25, 25, 35, 0.4);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
 
-.activity-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
-}
+    .stat-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
 
-.activity-item:last-child {
-    border-bottom: none;
-}
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-color);
+        box-shadow: 0 10px 25px rgba(244, 114, 182, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+    }
 
-.activity-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    flex-shrink: 0;
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
-    color: #f87171;
-}
+    .stat-card-body {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-.activity-icon img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
 
-.activity-content {
-    flex: 1;
-    min-width: 0;
-}
+    .bg-info-gradient { background: linear-gradient(135deg, #0ea5e9, #06b6d4); }
+    .bg-success-gradient { background: linear-gradient(135deg, #10b981, #059669); }
+    .bg-warning-gradient { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .bg-danger-gradient { background: linear-gradient(135deg, #ef4444, #dc2626); }
 
-.activity-title {
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    .stat-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
 
-.activity-meta {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
+    .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-.activity-time {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    margin-left: 10px;
-}
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .chart-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .activity-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        margin-bottom: 8px;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .activity-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .activity-thumb {
+        width: 60px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .activity-info { flex: 1; min-width: 0; }
+    .activity-type { font-weight: bold; font-size: 0.85rem; color: #fb7185; }
+    .activity-loc { font-size: 0.75rem; color: var(--text-secondary); }
+    .activity-time { font-size: 0.7rem; color: rgba(255, 255, 255, 0.3); white-space: nowrap; }
+
+    #clock {
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 1px;
+        color: var(--primary-light);
+    }
 </style>
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    loadDashboardData();
-});
+    let trendChart, typeChart, locationChart;
 
-function loadDashboardData() {
-    fetch('/api/cameras')
-        .then(res => res.json())
-        .then(data => {
-            const cameras = data.cameras || [];
-            document.getElementById('cameraCount').textContent = cameras.length;
-            document.getElementById('onlineCount').textContent = cameras.length;
-        })
-        .catch(err => {
-            document.getElementById('cameraCount').textContent = '0';
-            document.getElementById('onlineCount').textContent = '0';
-        });
-    
-    fetch('/capture/list')
-        .then(res => res.json())
-        .then(data => {
-            const captures = data.captures || [];
-            document.getElementById('captureCount').textContent = captures.length;
-            
-            const today = new Date().toDateString();
-            const todayCount = captures.filter(c => new Date(c.capture_time).toDateString() === today).length;
-            document.getElementById('todayCount').textContent = todayCount;
-            
-            renderRecentActivity(captures.slice(0, 5));
-        })
-        .catch(err => {
-            document.getElementById('captureCount').textContent = '0';
-            document.getElementById('todayCount').textContent = '0';
-        });
-}
-
-function renderRecentActivity(captures) {
-    const container = document.getElementById('recentActivity');
-    
-    if (captures.length === 0) {
-        container.innerHTML = '<div class="text-center text-muted">暂无抓拍记录</div>';
-        return;
-    }
-    
-    let html = '';
-    captures.forEach(capture => {
-        const timeAgo = getTimeAgo(capture.capture_time);
-        html += `
-            <div class="activity-item fade-in">
-                <div class="activity-icon">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-title">${capture.violation_type || '违规行为'}</div>
-                    <div class="activity-meta">
-                        <i class="fas fa-map-marker-alt me-1"></i>${capture.location}
-                    </div>
-                </div>
-                <div class="activity-time">${timeAgo}</div>
-            </div>
-        `;
+    document.addEventListener('DOMContentLoaded', function() {
+        initCharts();
+        loadDashboardData();
+        startClock();
+        
+        // 监听 Socket.IO 事件以更新图表
+        if (typeof socket !== 'undefined') {
+            socket.on('new_capture', () => {
+                console.log('Dashboard updating via WebSocket...');
+                loadDashboardData();
+            });
+        }
     });
-    
-    container.innerHTML = html;
-}
 
-function getTimeAgo(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const seconds = Math.floor((now - date) / 1000);
-    
-    if (seconds < 60) return '刚刚';
-    if (seconds < 3600) return Math.floor(seconds / 60) + '分钟前';
-    if (seconds < 86400) return Math.floor(seconds / 3600) + '小时前';
-    if (seconds < 604800) return Math.floor(seconds / 86400) + '天前';
-    return date.toLocaleDateString('zh-CN');
-}
+    function startClock() {
+        const update = () => {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
+        };
+        setInterval(update, 1000);
+        update();
+    }
+
+    function initCharts() {
+        const themeColor = '#f472b6'; // 樱花粉
+        const accentColor = '#22d3ee'; // 科技青
+
+        // 通用配置项
+        const commonOption = {
+            backgroundColor: 'transparent',
+            textStyle: { color: '#fbcfe8' }
+        };
+
+        // 1. 趋势图
+        trendChart = echarts.init(document.getElementById('trendChart'));
+        trendChart.setOption({
+            ...commonOption,
+            tooltip: { trigger: 'axis' },
+            grid: { top: 40, bottom: 40, left: 50, right: 30 },
+            xAxis: { 
+                type: 'category', 
+                data: [], 
+                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } } 
+            },
+            yAxis: { 
+                type: 'value', 
+                splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } 
+            },
+            series: [{
+                data: [],
+                type: 'line',
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: themeColor },
+                lineStyle: { width: 3, shadowBlur: 10, shadowColor: themeColor },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(244, 114, 182, 0.3)' },
+                        { offset: 1, color: 'rgba(244, 114, 182, 0)' }
+                    ])
+                }
+            }]
+        });
+
+        // 2. 类型分布 (环形图)
+        typeChart = echarts.init(document.getElementById('typeChart'));
+        typeChart.setOption({
+            ...commonOption,
+            tooltip: { trigger: 'item' },
+            legend: { bottom: '0', textStyle: { color: '#94a3b8', fontSize: 10 } },
+            series: [{
+                name: '违规类型',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: { borderRadius: 10, borderColor: '#191923', borderWidth: 2 },
+                label: { show: false },
+                emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
+                data: []
+            }]
+        });
+
+        // 3. 地点排行 (横向柱状图)
+        locationChart = echarts.init(document.getElementById('locationChart'));
+        locationChart.setOption({
+            ...commonOption,
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { top: 20, bottom: 20, left: 80, right: 40 },
+            xAxis: { 
+                type: 'value', 
+                show: false 
+            },
+            yAxis: { 
+                type: 'category', 
+                data: [], 
+                axisLine: { show: false },
+                axisTick: { show: false },
+                textStyle: { fontSize: 11 }
+            },
+            series: [{
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    borderRadius: [0, 10, 10, 0],
+                    color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                        { offset: 0, color: accentColor },
+                        { offset: 1, color: 'rgba(34, 211, 238, 0.1)' }
+                    ])
+                },
+                label: { show: true, position: 'right', color: '#fff' }
+            }]
+        });
+
+        window.addEventListener('resize', () => {
+            trendChart.resize();
+            typeChart.resize();
+            locationChart.resize();
+        });
+    }
+
+    function loadDashboardData() {
+        // 加载摄像头状态
+        fetch('/settings/api/jetson/info')
+            .then(res => res.json())
+            .then(data => {
+                const cameras = Object.values(data.data?.cameras || {});
+                document.getElementById('cameraCount').textContent = cameras.length;
+                document.getElementById('onlineCount').textContent = cameras.length; // 仪表盘返回的都是活跃的
+            });
+
+        // 加载列表基础数据
+        fetch('/capture/list?per_page=5')
+            .then(res => res.json())
+            .then(data => {
+                const captures = data.captures || [];
+                const total = data.pagination?.total || 0;
+                document.getElementById('captureCount').textContent = total;
+                
+                // 计算今日告警
+                const today = new Date().toISOString().split('T')[0];
+                fetch(`/capture/list?start_time=${today}T00:00&per_page=1`)
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('todayCount').textContent = data.pagination?.total || 0;
+                    });
+
+                renderRecentActivity(captures);
+            });
+
+        // 加载 ECharts 统计数据
+        fetch('/capture/api/stats')
+            .then(res => res.json())
+            .then(data => {
+                updateCharts(data);
+            });
+    }
+
+    function updateCharts(data) {
+        // 更新趋势图
+        const trendKeys = Object.keys(data.trends).sort();
+        trendChart.setOption({
+            xAxis: { data: trendKeys },
+            series: [{ data: trendKeys.map(k => data.trends[k]) }]
+        });
+
+        // 更新类型图
+        const typeData = Object.entries(data.types).map(([name, value]) => ({ name, value }));
+        typeChart.setOption({
+            series: [{ data: typeData }]
+        });
+
+        // 更新地点图
+        const locEntries = Object.entries(data.locations).sort((a, b) => a[1] - b[1]);
+        locationChart.setOption({
+            yAxis: { data: locEntries.map(e => e[0]) },
+            series: [{ data: locEntries.map(e => e[1]) }]
+        });
+    }
+
+    function renderRecentActivity(captures) {
+        const container = document.getElementById('recentActivity');
+        if (captures.length === 0) {
+            container.innerHTML = '<div class="text-center text-muted p-4">暂无告警记录</div>';
+            return;
+        }
+
+        let html = '';
+        captures.forEach(c => {
+            const timeStr = c.capture_time.split(' ')[1]; // 只取时间部分
+            html += `
+                <div class="activity-item">
+                    <img src="/static/${c.thumbnail_path || c.image_path}" class="activity-thumb">
+                    <div class="activity-info">
+                        <div class="activity-type">${c.violation_type}</div>
+                        <div class="activity-loc">${c.location} · ${c.camera_id}</div>
+                    </div>
+                    <div class="activity-time">${timeStr}</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
 </script>
 {% endblock %}

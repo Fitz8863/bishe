@@ -38,26 +38,36 @@ class MQTTManager:
             self.connected = True
             print("MQTT连接成功")
             # 订阅设备信息主题
-            self.client.subscribe("jetson/info")
+            client.subscribe("jetson/info")
         else:
+            self.connected = False
             print(f"MQTT连接失败, 返回码: {rc}")
-            
+
     def _on_message(self, client, userdata, msg):
         if msg.topic == "jetson/info":
             try:
                 payload = json.loads(msg.payload.decode('utf-8'))
-                # print(payload)
                 # 移除不需要的字段
                 if 'timestamp_ns' in payload:
                     del payload['timestamp_ns']
                 self.latest_jetson_info = payload
                 self.last_info_time = time.time()
+                self.connected = True # 收到消息说明连接肯定正常
             except Exception as e:
                 print(f"解析 jetson/info 消息失败: {e}")
-    
+            
     def _on_disconnect(self, client, userdata, rc):
         self.connected = False
-        print("MQTT断开连接")
+        print(f"MQTT断开连接, 返回码: {rc}")
+        if rc != 0:
+            print("尝试自动重连...")
+            # loop_start 会处理自动重连，我们只需要更新状态
+    
+    def check_connection(self):
+        """主动检查连接状态"""
+        if self.client:
+            self.connected = self.client.is_connected()
+        return self.connected
     
     def publish(self, topic, payload):
         """发布消息"""

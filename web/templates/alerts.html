@@ -165,9 +165,39 @@
     <h4 class="mb-0 fw-bold">
         <i class="fas fa-bell me-2" style="color: #fb7185;"></i>告警抓拍流水
     </h4>
-    <button class="refresh-btn" onclick="loadCaptures()">
+    <button class="refresh-btn" onclick="loadCaptures(1)">
         <i class="fas fa-sync-alt me-1"></i>刷新数据
     </button>
+</div>
+
+<!-- 筛选栏 -->
+<div class="alerts-container p-3 mb-4">
+    <form id="filterForm" class="row g-3 align-items-end">
+        <div class="col-md-2">
+            <label class="form-label x-small text-muted">摄像头 ID</label>
+            <input type="text" class="form-control form-control-sm" id="filterCameraId" placeholder="搜索 ID...">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label x-small text-muted">拍摄地点</label>
+            <input type="text" class="form-control form-control-sm" id="filterLocation" placeholder="搜索地点...">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label x-small text-muted">起始时间</label>
+            <input type="datetime-local" class="form-control form-control-sm" id="filterStartTime">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label x-small text-muted">截止时间</label>
+            <input type="datetime-local" class="form-control form-control-sm" id="filterEndTime">
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-primary flex-grow-1" onclick="loadCaptures(1)">
+                <i class="fas fa-search me-1"></i>筛选
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetFilters()">
+                <i class="fas fa-undo"></i>
+            </button>
+        </div>
+    </form>
 </div>
 
 <div class="alerts-container">
@@ -191,7 +221,27 @@
     <div id="emptyState" class="empty-state" style="display: none;">
         <i class="fas fa-camera-slash"></i>
         <h5>暂无违规记录</h5>
-        <p class="small text-muted">目前尚未接收到任何摄像头的告警抓拍数据</p>
+        <p class="small text-muted">目前尚未接收到符合条件的告警抓拍数据</p>
+    </div>
+    
+    <!-- 分页控件 -->
+    <div id="paginationControls" class="d-flex justify-content-between align-items-center p-3 border-top border-secondary border-opacity-10" style="display: none !important;">
+        <div class="text-muted x-small">
+            共 <span id="totalRecords">0</span> 条记录
+        </div>
+        <nav>
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item" id="prevPageBtn">
+                    <a class="page-link bg-transparent border-secondary text-light" href="javascript:void(0)" onclick="changePage(-1)">上一页</a>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link bg-transparent border-secondary text-primary fw-bold" id="pageInfo">1 / 1</span>
+                </li>
+                <li class="page-item" id="nextPageBtn">
+                    <a class="page-link bg-transparent border-secondary text-light" href="javascript:void(0)" onclick="changePage(1)">下一页</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -231,43 +281,83 @@
 <script>
     let capturesLoaded = false;
     let deleteTargetId = null;
+    let currentPage = 1;
     
     document.addEventListener('DOMContentLoaded', function() {
         if (capturesLoaded) return;
         capturesLoaded = true;
-        loadCaptures();
+        loadCaptures(1);
         
         // 绑定删除确认按钮
         document.getElementById('confirmDeleteBtn')?.addEventListener('click', executeDelete);
     });
 
-    function loadCaptures() {
+    function resetFilters() {
+        document.getElementById('filterForm').reset();
+        loadCaptures(1);
+    }
+
+    function changePage(delta) {
+        loadCaptures(currentPage + delta);
+    }
+
+    function loadCaptures(page = 1) {
         const btn = document.querySelector('.refresh-btn');
         if (btn) btn.classList.add('loading');
         
-        fetch('/capture/list')
+        currentPage = page;
+        
+        // 构建查询参数
+        const cameraId = document.getElementById('filterCameraId')?.value || '';
+        const location = document.getElementById('filterLocation')?.value || '';
+        const startTime = document.getElementById('filterStartTime')?.value || '';
+        const endTime = document.getElementById('filterEndTime')?.value || '';
+        
+        const params = new URLSearchParams({
+            page: page,
+            camera_id: cameraId,
+            location: location,
+            start_time: startTime,
+            end_time: endTime
+        });
+        
+        fetch(`/capture/list?${params.toString()}`)
             .then(response => response.json())
             .then(data => {
                 const captures = data.captures || [];
                 const list = document.getElementById('captureList');
                 const emptyState = document.getElementById('emptyState');
                 const table = document.getElementById('capturesTable');
+                const pagination = data.pagination || {};
                 
                 list.innerHTML = '';
                 
                 if (captures.length === 0) {
                     emptyState.style.display = 'block';
                     table.style.display = 'none';
+                    document.getElementById('paginationControls').style.setProperty('display', 'none', 'important');
                 } else {
                     emptyState.style.display = 'none';
                     table.style.display = 'table';
                     
+                    // 更新分页 UI
+                    const pagControls = document.getElementById('paginationControls');
+                    pagControls.style.setProperty('display', 'flex', 'important');
+                    document.getElementById('totalRecords').textContent = pagination.total || 0;
+                    document.getElementById('pageInfo').textContent = `${pagination.current_page} / ${pagination.pages}`;
+                    
+                    document.getElementById('prevPageBtn').classList.toggle('disabled', !pagination.has_prev);
+                    document.getElementById('nextPageBtn').classList.toggle('disabled', !pagination.has_next);
+                    
                     captures.forEach(capture => {
+                        const previewPath = capture.thumbnail_path ? `/static/${capture.thumbnail_path}` : `/static/${capture.image_path}`;
+                        const fullPath = `/static/${capture.image_path}`;
+                        
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>
-                                <img class="preview-img" src="/static/${capture.image_path}" 
-                                     onclick="showImage('/static/${capture.image_path}')"
+                                <img class="preview-img" src="${previewPath}" 
+                                     onclick="showImage('${fullPath}')"
                                      onerror="this.src='/static/img/placeholder.png'">
                             </td>
                             <td>
@@ -293,6 +383,18 @@
                 if (btn) btn.classList.remove('loading');
             });
     }
+
+    // 处理来自 Socket.IO 的实时新捕获事件
+    window.onNewCapture = function(data) {
+        // 如果当前正在第一页，且没有活动筛选条件，则刷新列表
+        const cameraId = document.getElementById('filterCameraId')?.value || '';
+        const locationInput = document.getElementById('filterLocation')?.value || '';
+        
+        if (currentPage === 1 && !cameraId && !locationInput) {
+            console.log('Refreshing list for new capture...');
+            loadCaptures(1);
+        }
+    };
 
     function showImage(src) {
         document.getElementById('modalImage').src = src;
