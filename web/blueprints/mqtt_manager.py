@@ -14,6 +14,8 @@ class MQTTManager:
         self.connected = False
         self.latest_jetson_info = None
         self.last_info_time = 0
+        # 存储多个设备的最新心跳数据: { device_id: {info: {...}, last_seen: timestamp} }
+        self.devices = {}
     
     def connect(self):
         """连接MQTT服务器"""
@@ -47,9 +49,19 @@ class MQTTManager:
         if msg.topic == "jetson/info":
             try:
                 payload = json.loads(msg.payload.decode('utf-8'))
+                device_id = payload.get('device', 'unknown')
+                
                 # 移除不需要的字段
                 if 'timestamp_ns' in payload:
                     del payload['timestamp_ns']
+                
+                # 保存到设备字典（支持多设备）
+                self.devices[device_id] = {
+                    'info': payload,
+                    'last_seen': time.time()
+                }
+                
+                # 兼容旧逻辑
                 self.latest_jetson_info = payload
                 self.last_info_time = time.time()
                 self.connected = True # 收到消息说明连接肯定正常
@@ -106,6 +118,36 @@ class MQTTManager:
             return []
             
         return self.latest_jetson_info.get('cameras', [])
+    
+    def get_active_data(self):
+        """获取所有在线设备的数据统计"""
+        now = time.time()
+        active_devices = []
+        total_cameras = 0
+        all_cameras = []
+        
+        # 清理超时的设备
+        expired_devices = []
+        for device_id, data in list(self.devices.items()):
+            if now - data['last_seen'] < 10:
+                active_devices.append(device_id)
+                cameras = data['info'].get('cameras', [])
+                total_cameras += len(cameras)
+                all_cameras.extend(cameras)
+            else:
+                expired_devices.append(device_id)
+        
+        # 删除超时的设备记录
+        for dev_id in expired_devices:
+            if now - self.devices[dev_id]['last_seen'] > 60:
+                del self.devices[dev_id]
+
+        return {
+            'device_count': len(active_devices),
+            'camera_count': total_cameras,
+            'cameras': all_cameras,
+            'devices': active_devices
+        }
 
 
 mqtt_manager = None

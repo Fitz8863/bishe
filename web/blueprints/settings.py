@@ -161,6 +161,32 @@ def send_camera_config():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@settings_bp.route('/api/mqtt/realtime-stats', methods=['GET'])
+def get_mqtt_realtime_stats():
+    """获取MQTT实时设备统计（在线设备数、摄像头数）"""
+    try:
+        import time
+        from blueprints.mqtt_manager import mqtt_manager
+        if not mqtt_manager:
+            return jsonify({
+                'connected': False,
+                'device_count': 0,
+                'camera_count': 0,
+                'devices': []
+            }), 200
+        
+        # 获取活跃设备数据
+        data = mqtt_manager.get_active_data()
+        
+        return jsonify({
+            'connected': mqtt_manager.connected,
+            'device_count': data.get('device_count', 0),
+            'camera_count': data.get('camera_count', 0),
+            'devices': data.get('devices', [])
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @settings_bp.route('/apijetson/info', methods=['GET'])
 def get_jetson_info():
     """获取最新的Jetson设备信息"""

@@ -15,7 +15,9 @@ bcrypt = Bcrypt(app)
 socketio.init_app(app)
 
 from blueprints import init_db
+from blueprints.mqtt_manager import init_mqtt
 init_db(app)
+init_mqtt(app)
 
 
 from blueprints.main import main_bp

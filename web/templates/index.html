@@ -259,6 +259,22 @@
                 loadDashboardData();
             });
         }
+        
+        // 每 5 秒刷新 MQTT 设备统计
+        setInterval(() => {
+            fetch('/settings/api/mqtt/realtime-stats')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.connected) {
+                        document.getElementById('cameraCount').textContent = data.camera_count;
+                        document.getElementById('onlineCount').textContent = data.device_count;
+                    } else {
+                        document.getElementById('cameraCount').innerHTML = '<span class="x-small">未连接</span>';
+                        document.getElementById('onlineCount').innerHTML = '<span class="x-small">未连接</span>';
+                    }
+                })
+                .catch(() => {});
+        }, 5000);
     });
 
     function startClock() {
@@ -369,13 +385,21 @@
     }
 
     function loadDashboardData() {
-        // 加载摄像头状态
-        fetch('/settings/api/jetson/info')
+        // 从 MQTT 获取实时设备统计（在线设备数、摄像头数）
+        fetch('/settings/api/mqtt/realtime-stats')
             .then(res => res.json())
             .then(data => {
-                const cameras = Object.values(data.data?.cameras || {});
-                document.getElementById('cameraCount').textContent = cameras.length;
-                document.getElementById('onlineCount').textContent = cameras.length; // 仪表盘返回的都是活跃的
+                if (data.connected) {
+                    document.getElementById('cameraCount').textContent = data.camera_count;
+                    document.getElementById('onlineCount').textContent = data.device_count;
+                } else {
+                    document.getElementById('cameraCount').innerHTML = '<span class="x-small">未连接</span>';
+                    document.getElementById('onlineCount').innerHTML = '<span class="x-small">未连接</span>';
+                }
+            })
+            .catch(() => {
+                document.getElementById('cameraCount').innerHTML = '<span class="x-small">未连接</span>';
+                document.getElementById('onlineCount').innerHTML = '<span class="x-small">未连接</span>';
             });
 
         // 加载列表基础数据
