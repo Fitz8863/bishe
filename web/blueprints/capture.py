@@ -94,7 +94,7 @@ def upload_capture():
         'location': location,
         'violation_type': violation_type,
         'capture_time': capture.capture_time.strftime('%Y-%m-%d %H:%M:%S'),
-        'thumbnail': f"captures/thumbnails/{thumbnail_filename}" if thumbnail_filename else None
+        'thumbnail': f"/static/captures/thumbnails/{thumbnail_filename}" if thumbnail_filename else None
     }, namespace='/')
 
     return jsonify({'code': 200, 'message': '上传成功'}), 200

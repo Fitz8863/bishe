@@ -24,6 +24,7 @@ def super_admin_required(f):
     return decorated_function
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
+@super_admin_required
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
