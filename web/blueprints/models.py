@@ -36,5 +36,7 @@ class MqttConfig(db.Model):
     username = db.Column(db.String(100))
     password = db.Column(db.String(100))
     topic_prefix = db.Column(db.String(100), default='factory/camera')
+    mediamtx_whip_port = db.Column(db.Integer, default=8889)
+    mediamtx_rtsp_port = db.Column(db.Integer, default=8554)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.now)

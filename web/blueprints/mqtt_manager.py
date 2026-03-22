@@ -88,7 +88,7 @@ class MQTTManager:
         
         try:
             full_topic = f"{self.topic_prefix}/{topic}"
-            result = self.client.publish(full_topic, json.dumps(payload))
+            result = self.client.publish(full_topic, json.dumps(payload),qos=2)
             if result.rc == mqtt.MQTT_ERR_SUCCESS:
                 return True, "消息发送成功"
             else:
@@ -102,6 +102,30 @@ class MQTTManager:
             command['camera_id'] = camera_id
         return self.publish("command", command)
     
+    def send_intercom_command(self, device_id, action, url=None):
+        payload = {
+            'type': f'intercom_{action}',
+            'device': device_id,
+            'timestamp': int(time.time())
+        }
+        if url:
+            payload['url'] = url
+            
+        return self.publish_raw("jetson/call/command", payload)
+    
+    def publish_raw(self, topic, payload):
+        if not self.connected or not self.client:
+            return False, "MQTT未连接"
+        
+        try:
+            result = self.client.publish(topic, json.dumps(payload),qos=1)
+            if result.rc == mqtt.MQTT_ERR_SUCCESS:
+                return True, "消息发送成功"
+            else:
+                return False, "消息发送失败"
+        except Exception as e:
+            return False, str(e)
+
     def disconnect(self):
         """断开连接"""
         if self.client:

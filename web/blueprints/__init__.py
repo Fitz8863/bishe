@@ -20,7 +20,7 @@ def init_db(app):
     @app.before_request
     def check_login():
         # 允许的路由：登录、注册、静态文件、上传接口
-        allowed_routes = ['auth.login', 'auth.register', 'static', 'capture.upload_capture']
+        allowed_routes = ['auth.login', 'auth.register', 'static', 'capture.upload_capture', 'settings.intercom_webhook_stop']
         if request.endpoint in allowed_routes:
             return
         

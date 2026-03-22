@@ -161,6 +161,75 @@
             grid-template-columns: 1fr;
         }
     }
+    
+    .intercom-bar {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+        display: none; /* 默认隐藏，连接成功后显示 */
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .intercom-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+    .status-dot-intercom {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #94a3b8;
+    }
+    .status-active {
+        background: #ef4444;
+        animation: pulse 1s infinite;
+    }
+    .status-connecting {
+        background: #f59e0b;
+        animation: pulse 1s infinite;
+    }
+    #intercomDeviceSelect {
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 6px 12px;
+        width: 250px;
+    }
+    .btn-intercom {
+        padding: 6px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .btn-intercom-start {
+        background: #10b981;
+        border: none;
+        color: white;
+    }
+    .btn-intercom-start:hover {
+        background: #059669;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    .btn-intercom-stop {
+        background: #ef4444;
+        border: none;
+        color: white;
+    }
+    .btn-intercom-stop:hover {
+        background: #dc2626;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
+    .btn-intercom:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 </style>
 {% endblock %}
 
@@ -177,6 +246,27 @@
     </h4>
 </div>
 
+<div class="intercom-bar">
+    <div style="color: var(--primary-light); font-weight: 600;">
+        <i class="fas fa-microphone me-2"></i>远程对讲
+    </div>
+    <select id="intercomDeviceSelect">
+        <option value="">请选择对讲设备...</option>
+    </select>
+    <div class="d-flex gap-2">
+        <button id="btnStartIntercom" class="btn-intercom btn-intercom-start" onclick="startIntercom()">
+            <i class="fas fa-phone-alt me-1"></i>开始通话
+        </button>
+        <button id="btnStopIntercom" class="btn-intercom btn-intercom-stop" onclick="stopIntercom()" disabled>
+            <i class="fas fa-phone-slash me-1"></i>结束通话
+        </button>
+    </div>
+    <div class="intercom-status">
+        <div id="intercomStatusDot" class="status-dot-intercom"></div>
+        <span id="intercomStatusText">状态：等待中</span>
+    </div>
+</div>
+
 <div class="monitor-grid" id="monitorGrid">
     <div id="emptyState" class="empty-state">
         <i class="fas fa-server"></i>
@@ -190,12 +280,211 @@
 <script>
     let activeCameras = new Map(); // Store camera info by ID
     let pollInterval = null;
+    let intercomPollInterval = null;
+    let intercomClient = null;
     
+    class IntercomClient {
+        constructor() {
+            this.pc = null;
+            this.stream = null;
+            this.deviceId = null;
+            this.config = null;
+        }
+        
+        async start(deviceId) {
+            this.deviceId = deviceId;
+            try {
+                // 1. 获取配置
+                const configResp = await fetch('/settings/api/intercom/config');
+                this.config = await configResp.json();
+                if (this.config.error) throw new Error(this.config.error);
+                
+                // 2. 获取麦克风权限
+                this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                
+                // 3. 创建 PeerConnection
+                this.pc = new RTCPeerConnection();
+                this.stream.getTracks().forEach(track => this.pc.addTrack(track, this.stream));
+                
+                // 4. 创建 Offer
+                const offer = await this.pc.createOffer();
+                await this.pc.setLocalDescription(offer);
+                
+                // 5. 等待 ICE 收集完成 (WHIP 简化版通常需要完整的 SDP)
+                await new Promise((resolve) => {
+                    if (this.pc.iceGatheringState === 'complete') resolve();
+                    else {
+                        const checkState = () => {
+                            if (this.pc.iceGatheringState === 'complete') {
+                                this.pc.removeEventListener('icegatheringstatechange', checkState);
+                                resolve();
+                            }
+                        };
+                        this.pc.addEventListener('icegatheringstatechange', checkState);
+                    }
+                });
+                
+                // 6. 发送 WHIP 请求到 MediaMTX
+                const whipUrl = `http://${this.config.mediamtx_ip}:${this.config.mediamtx_whip_port}/${deviceId}/whip`;
+                const response = await fetch(whipUrl, {
+                    method: 'POST',
+                    body: this.pc.localDescription.sdp,
+                    headers: { 'Content-Type': 'application/sdp' }
+                });
+                
+                if (!response.ok) throw new Error('MediaMTX 拒绝了推流请求');
+                
+                const answerSdp = await response.text();
+                await this.pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+                
+                // 7. 等待连接成功
+                await new Promise((resolve, reject) => {
+                    const checkStatus = () => {
+                        if (this.pc.connectionState === 'connected') {
+                            this.pc.removeEventListener('connectionstatechange', checkStatus);
+                            resolve();
+                        } else if (this.pc.connectionState === 'failed') {
+                            reject(new Error('WebRTC 连接失败'));
+                        }
+                    };
+                    this.pc.addEventListener('connectionstatechange', checkStatus);
+                    setTimeout(() => reject(new Error('连接超时')), 10000);
+                });
+                
+                // 8. 通知后端下发 MQTT 指令
+                const startResp = await fetch('/settings/api/intercom/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ device_id: deviceId })
+                });
+                const startData = await startResp.json();
+                if (startData.error) throw new Error(startData.error);
+                
+                return true;
+            } catch (err) {
+                this.stop();
+                throw err;
+            }
+        }
+        
+        async stop() {
+            if (this.deviceId) {
+                fetch('/settings/api/intercom/stop', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ device_id: this.deviceId })
+                }).catch(e => console.error('停止对讲指令下发失败', e));
+            }
+            
+            if (this.pc) {
+                this.pc.close();
+                this.pc = null;
+            }
+            if (this.stream) {
+                this.stream.getTracks().forEach(track => track.stop());
+                this.stream = null;
+            }
+            this.deviceId = null;
+        }
+    }
+
+    function updateIntercomStatus(status, message) {
+        const dot = document.getElementById('intercomStatusDot');
+        const text = document.getElementById('intercomStatusText');
+        
+        dot.className = 'status-dot-intercom';
+        if (status === 'active') dot.classList.add('status-active');
+        if (status === 'connecting') dot.classList.add('status-connecting');
+        
+        text.innerText = `状态：${message}`;
+    }
+
+    async function startIntercom() {
+        const deviceSelect = document.getElementById('intercomDeviceSelect');
+        const deviceId = deviceSelect.value;
+        
+        if (!deviceId) {
+            alert('请先选择一个对讲设备');
+            return;
+        }
+        
+        const startBtn = document.getElementById('btnStartIntercom');
+        const stopBtn = document.getElementById('btnStopIntercom');
+        
+        startBtn.disabled = true;
+        deviceSelect.disabled = true;
+        updateIntercomStatus('connecting', '正在建立通话...');
+        
+        if (!intercomClient) intercomClient = new IntercomClient();
+        
+        try {
+            await intercomClient.start(deviceId);
+            updateIntercomStatus('active', '正在通话中...');
+            stopBtn.disabled = false;
+        } catch (err) {
+            console.error('对讲失败:', err);
+            alert(`对讲失败: ${err.message}`);
+            updateIntercomStatus('idle', '等待中');
+            startBtn.disabled = false;
+            deviceSelect.disabled = false;
+        }
+    }
+
+    async function stopIntercom() {
+        const startBtn = document.getElementById('btnStartIntercom');
+        const stopBtn = document.getElementById('btnStopIntercom');
+        const deviceSelect = document.getElementById('intercomDeviceSelect');
+        
+        stopBtn.disabled = true;
+        if (intercomClient) {
+            await intercomClient.stop();
+        }
+        
+        updateIntercomStatus('idle', '等待中');
+        startBtn.disabled = false;
+        deviceSelect.disabled = false;
+    }
+
+    function updateIntercomDevices() {
+        fetch('/settings/api/mqtt/realtime-stats')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.getElementById('intercomDeviceSelect');
+                const currentVal = select.value;
+                const devices = data.devices || [];
+                
+                // 如果正在对讲，检查选中的设备是否仍然在线
+                if (intercomClient && intercomClient.deviceId) {
+                    if (!devices.includes(intercomClient.deviceId)) {
+                        console.warn('对讲设备已离线，自动停止通话');
+                        stopIntercom();
+                        alert('对讲设备已离线，通话已自动结束');
+                        return;
+                    }
+                }
+                
+                // 仅在未通话且未在连接中时更新下拉列表
+                if (document.getElementById('btnStartIntercom').disabled) return;
+                
+                select.innerHTML = '<option value="">请选择对讲设备...</option>';
+                devices.forEach(dev => {
+                    const opt = document.createElement('option');
+                    opt.value = dev;
+                    opt.innerText = dev;
+                    if (dev === currentVal) opt.selected = true;
+                    select.appendChild(opt);
+                });
+            });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         if (!document.getElementById('monitorGrid')) return;
         
         syncCameras();
         pollInterval = setInterval(syncCameras, 10000); // 10秒后台同步一次
+        
+        updateIntercomDevices();
+        intercomPollInterval = setInterval(updateIntercomDevices, 5000);
     });
 
     function syncCameras() {
@@ -208,6 +497,12 @@
                 const emptyStateTitle = document.getElementById('emptyStateTitle');
                 const emptyStateDesc = document.getElementById('emptyStateDesc');
                 const monitorGrid = document.getElementById('monitorGrid');
+                const intercomBar = document.querySelector('.intercom-bar');
+                
+                // 根据连接状态显示/隐藏对讲控制栏
+                if (intercomBar) {
+                    intercomBar.style.display = mqttConnected ? 'flex' : 'none';
+                }
                 
                 if (!mqttConnected) {
                     // MQTT未连接状态

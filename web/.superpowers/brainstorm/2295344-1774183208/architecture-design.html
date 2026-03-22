@@ -1,0 +1,63 @@
+<h2>远程语音对讲：方案 A 架构设计</h2>
+<p class="subtitle">基于 WebRTC WHIP 的超低延迟对讲架构</p>
+
+<div class="section">
+  <h3>1. 实时数据流向</h3>
+  <div class="mockup">
+    <div class="mockup-header">数据流图 (Data Flow)</div>
+    <div class="mockup-body" style="background: #0f172a; color: #cbd5e1; padding: 20px; font-family: monospace;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <div style="border: 2px solid #34d399; padding: 10px; border-radius: 5px;">[ 浏览器 (Frontend) ]</div>
+        <div style="color: #64748b;">↓ (WebRTC WHIP - 音频流)</div>
+        <div style="border: 2px solid #38bdf8; padding: 10px; border-radius: 5px;">[ MediaMTX (NAS 服务器) ]</div>
+        <div style="color: #64748b;">↓ (RTSP / WebRTC - 音频流)</div>
+        <div style="border: 2px solid #f472b6; padding: 10px; border-radius: 5px;">[ Jetson (边缘设备) ]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>2. 核心组件说明</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3>前端对讲组件</h3>
+        <p>监听“开始通话”事件，调用 <code>getUserMedia</code> 采集音频。通过 <code>fetch</code> 将 SDP 发送到 MediaMTX 的 WHIP 接口。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>MQTT 指令下发</h3>
+        <p>点击通话时，后端通过 MQTT 向指定设备发送 <code>intercom_start</code> 指令。Payload 包含 <code>rtsp_url</code>。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>配置管理</h3>
+        <p>在“系统设置”中新增 <code>MediaMTX_IP</code> 配置项，用于生成推流和拉流地址。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>3. 异常处理逻辑</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>预期行为</h4>
+      <ul>
+        <li>点击开始：麦克风指示灯亮起，设备端即时出声。</li>
+        <li>点击停止：推流结束，MQTT 下发 <code>intercom_stop</code> 指令。</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>可能的问题</h4>
+      <ul>
+        <li>麦克风权限未开启：前端弹窗提示。</li>
+        <li>MediaMTX 无法连接：重试逻辑。</li>
+        <li>设备端拉流失败：MQTT 反馈状态（进阶功能）。</li>
+      </ul>
+    </div>
+  </div>
+</div>

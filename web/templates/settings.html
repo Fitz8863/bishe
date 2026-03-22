@@ -210,6 +210,20 @@
                                     <label class="form-label x-small">密码 (可选)</label>
                                     <input type="password" class="form-control" id="mqttPassword">
                                 </div>
+                                <div class="col-12 mt-3">
+                                    <h6 class="text-uppercase x-small fw-bold tracking-wider mb-3 text-muted">MediaMTX (语音对讲) 端口配置</h6>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <label class="form-label x-small">WHIP 端口</label>
+                                            <input type="number" class="form-control" id="mediamtxWhipPort" value="8889">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label x-small">RTSP 端口</label>
+                                            <input type="number" class="form-control" id="mediamtxRtspPort" value="8554">
+                                        </div>
+                                    </div>
+                                    <p class="x-small text-muted mt-2"><i class="fas fa-info-circle"></i> 系统将自动使用上述 Broker 地址作为对讲服务器 IP。</p>
+                                </div>
                             </div>
                             <div class="mt-4 d-flex gap-2">
                                 <button class="btn btn-primary flex-grow-1 py-2 fw-bold" onclick="saveAndConnect()">
@@ -595,7 +609,7 @@ function loadHistoryList() {
             let html = '';
             configs.forEach(config => {
                 html += `
-                    <div class="wifi-list-item" ondblclick="fillFormAndConnect('${config.broker}', ${config.port}, '${config.username || ''}')">
+                    <div class="wifi-list-item" ondblclick="fillFormAndConnect('${config.broker}', ${config.port}, '${config.username || ''}', '${config.mediamtx_ip || ''}', ${config.mediamtx_whip_port || 8889}, ${config.mediamtx_rtsp_port || 8554})">
                         <div class="d-flex justify-content-between">
                             <span class="fw-bold small text-white">${config.broker}</span>
                             <span class="text-muted x-small">${config.port}</span>
@@ -607,10 +621,12 @@ function loadHistoryList() {
         });
 }
 
-function fillFormAndConnect(broker, port, username) {
+function fillFormAndConnect(broker, port, username, mediamtxIp, whipPort, rtspPort) {
     document.getElementById('mqttBroker').value = broker;
     document.getElementById('mqttPort').value = port;
     document.getElementById('mqttUsername').value = username;
+    document.getElementById('mediamtxWhipPort').value = whipPort || 8889;
+    document.getElementById('mediamtxRtspPort').value = rtspPort || 8554;
     saveAndConnect();
 }
 
@@ -619,6 +635,8 @@ function saveAndConnect() {
     const port = parseInt(document.getElementById('mqttPort').value) || 1883;
     const username = document.getElementById('mqttUsername').value;
     const password = document.getElementById('mqttPassword').value;
+    const mediamtx_whip_port = parseInt(document.getElementById('mediamtxWhipPort').value) || 8889;
+    const mediamtx_rtsp_port = parseInt(document.getElementById('mediamtxRtspPort').value) || 8554;
     
     if (!broker) {
         alert('请输入服务器地址');
@@ -629,7 +647,14 @@ function saveAndConnect() {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            broker: broker, port: port, username: username, password: password, save: true
+            broker: broker, 
+            port: port, 
+            username: username, 
+            password: password, 
+            mediamtx_ip: broker, // 自动复用 broker 地址
+            mediamtx_whip_port: mediamtx_whip_port,
+            mediamtx_rtsp_port: mediamtx_rtsp_port,
+            save: true
         })
     })
     .then(res => res.json())

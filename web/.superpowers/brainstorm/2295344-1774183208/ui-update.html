@@ -1,0 +1,55 @@
+<h2>远程语音对讲：UI 布局更新</h2>
+<p class="subtitle">新增了“结束通话”按钮，优化了交互逻辑</p>
+
+<div class="section">
+  <h3>1. 更新后的全局对讲控制栏</h3>
+  <div class="mockup">
+    <div class="mockup-header">监控页面 - 顶部控制区</div>
+    <div class="mockup-body">
+      <div style="background: #1e1e2e; padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 15px; border: 1px solid #444;">
+        <div style="color: #f472b6; font-weight: bold;"><i class="fas fa-microphone"></i> 语音对讲</div>
+        
+        <select class="mock-input" id="device-select" style="width: 250px; margin: 0; background: #2d2d3d; color: white; border: 1px solid #555;">
+          <option value="">请选择对讲设备...</option>
+          <option value="jetson-orin-nano">jetson-orin-nano (生产车间A区)</option>
+          <option value="jetson-nano-02">jetson-nano-02 (仓库B区)</option>
+        </select>
+        
+        <div id="action-buttons" style="display: flex; gap: 10px;">
+          <button class="mock-button" id="start-btn" style="background: #10b981; color: white; padding: 8px 20px;">
+            <i class="fas fa-phone-alt"></i> 开始通话
+          </button>
+          <button class="mock-button" id="stop-btn" style="background: #ef4444; color: white; padding: 8px 20px; opacity: 0.5;" disabled>
+            <i class="fas fa-phone-slash"></i> 结束通话
+          </button>
+        </div>
+        
+        <div id="status-indicator" style="font-size: 0.85rem; color: #94a3b8; display: flex; align-items: center; gap: 5px;">
+          <span class="status-dot" style="background: #94a3b8; width: 8px; height: 8px; border-radius: 50%;"></span>
+          状态：等待中
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>2. 交互流程</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>操作步骤</h4>
+      <ul>
+        <li>1. 下拉框选择目标设备（自动从 MQTT 获取在线列表）。</li>
+        <li>2. 点击“开始通话”：按钮变灰，开始推流，发送 MQTT 指令。</li>
+        <li>3. 点击“结束通话”：停止推流，发送 MQTT 停止指令，恢复初始状态。</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>状态反馈</h4>
+      <ul>
+        <li>通通话中...：红色呼吸灯闪烁。</li>
+        <li>连接失败：状态栏变红并显示错误。</li>
+      </ul>
+    </div>
+  </div>
+</div>

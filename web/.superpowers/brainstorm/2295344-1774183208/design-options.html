@@ -1,0 +1,59 @@
+<h2>远程语音对讲功能方案</h2>
+<p class="subtitle">针对局域网 HTTP 环境与 MediaMTX 服务器的优化设计</p>
+
+<div class="section">
+  <h3>1. UI 布局：全局对讲控制栏</h3>
+  <div class="mockup">
+    <div class="mockup-header">监控页面 - 顶部控制区</div>
+    <div class="mockup-body">
+      <div style="background: #1e1e2e; padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 15px; border: 1px solid #444;">
+        <div style="color: #f472b6; font-weight: bold;"><i class="fas fa-microphone"></i> 语音对讲</div>
+        <select class="mock-input" style="width: 200px; margin: 0;">
+          <option>选择对讲设备...</option>
+          <option>jetson-orin-nano (生产车间A区)</option>
+          <option>jetson-nano-02 (仓库B区)</option>
+        </select>
+        <button class="mock-button" style="background: #10b981; color: white;">开始通话</button>
+        <div style="font-size: 0.8rem; color: #94a3b8;"><i class="fas fa-info-circle"></i> 状态：等待中</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>2. 技术路径选择</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="webrtc" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>WebRTC WHIP (推荐)</h3>
+        <p><strong>优点：</strong> 毫秒级延迟，性能最强，直接对接 MediaMTX。<br><strong>注意：</strong> 需要在浏览器开启 HTTP 麦克风白名单。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="websocket" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>WebSocket 中转</h3>
+        <p><strong>优点：</strong> 后端可控，无需直接暴露 MediaMTX 给前端。<br><strong>注意：</strong> 延迟略高于 WebRTC，实现复杂度较高。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons">
+  <div class="pros">
+    <h4>推荐理由 (方案 A)</h4>
+    <ul>
+      <li>架构最简洁：前端 -> MediaMTX -> 设备</li>
+      <li>MediaMTX 原生支持 WHIP，无需额外开发中转逻辑</li>
+      <li>极低延迟，对讲体验最接近“打电话”</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>实现难点</h4>
+    <ul>
+      <li>浏览器 HTTP 限制（需手动开启白名单）</li>
+      <li>需要处理 WebRTC 的 ICE 打洞（局域网通常没问题）</li>
+    </ul>
+  </div>
+</div>
