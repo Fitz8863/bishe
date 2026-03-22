@@ -200,4 +200,4 @@ def admin_feature():
 - Avoid circular imports by leveraging `exts.py` or localizing imports inside functions if necessary.
 - Before committing, verify your changes using `flake8` and `pytest` (if tests exist).
 - If asked to implement a feature, always create a `TodoWrite` list first to break down the task.
-- Follow the existing Flask factory/Blueprint pattern rigidly.
+- Follow the existing Flask jetson/Blueprint pattern rigidly.

@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 from flask import jsonify
 
 class MQTTManager:
-    def __init__(self, broker, port, username='', password='', topic_prefix='factory/camera'):
+    def __init__(self, broker, port, username='', password='', topic_prefix='jetson/camera'):
         self.broker = broker
         self.port = port
         self.username = username
@@ -96,9 +96,9 @@ class MQTTManager:
         except Exception as e:
             return False, str(e)
     
-    def send_camera_command(self, camera_id, command):
-        """发送摄像头控制命令 (固定主题，Payload包含ID)"""
+    def send_camera_command(self, device_id, camera_id, command):
         if isinstance(command, dict):
+            command['device'] = device_id
             command['camera_id'] = camera_id
         return self.publish("command", command)
     
@@ -170,7 +170,8 @@ class MQTTManager:
             'device_count': len(active_devices),
             'camera_count': total_cameras,
             'cameras': all_cameras,
-            'devices': active_devices
+            'devices': active_devices,
+            'device_details': {dev_id: self.devices[dev_id]['info'] for dev_id in active_devices}
         }
 
 
@@ -184,7 +185,7 @@ def init_mqtt(app):
         port=1883,
         username='',
         password='',
-        topic_prefix=app.config.get('MQTT_TOPIC_PREFIX', 'factory/camera')
+        topic_prefix=app.config.get('MQTT_TOPIC_PREFIX', 'jetson/camera')
     )
     return mqtt_manager
 
@@ -198,8 +199,8 @@ def get_mqtt_status():
         }
     return {'connected': False}
 
-def send_camera_command(camera_id, command):
+def send_camera_command(device_id, camera_id, command):
     """发送摄像头命令"""
     if mqtt_manager:
-        return mqtt_manager.send_camera_command(camera_id, command)
+        return mqtt_manager.send_camera_command(device_id, camera_id, command)
     return False, "MQTT未初始化"

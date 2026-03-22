@@ -297,6 +297,7 @@
 let settingsLoaded = false;
 let isMqttConnected = false;
 let dashboardInterval = null;
+let lastDeviceDetailsJson = '';
 
 document.addEventListener('DOMContentLoaded', function() {
     if (settingsLoaded) return;
@@ -353,10 +354,9 @@ function updateUI(connected, broker, port) {
     }
 }
 
-// 仪表盘逻辑
 function startDashboardPolling() {
     if (dashboardInterval) return;
-    fetchDashboardData(); // 立即执行一次
+    fetchDashboardData();
     dashboardInterval = setInterval(fetchDashboardData, 2000);
 }
 
@@ -370,17 +370,23 @@ function stopDashboardPolling() {
 function fetchDashboardData() {
     if (!isMqttConnected) return;
     
-    fetch('/settings/apijetson/info')
+    fetch('/settings/api/mqtt/realtime-stats')
         .then(res => res.json())
         .then(data => {
-            if (data.data) {
-                renderDashboard(data.data, data.is_online);
+            if (data.device_details) {
+                const allCameras = [];
+                Object.values(data.device_details).forEach(device => {
+                    if (device.cameras) {
+                        allCameras.push(...device.cameras);
+                    }
+                });
+                renderDashboard({ cameras: allCameras }, data.connected, data.device_details);
             }
         })
-        .catch(err => console.error("仪表盘数据拉取失败:", err));
+        .catch(err => console.error("数据拉取失败:", err));
 }
 
-function renderDashboard(info, isOnline) {
+function renderDashboard(info, isOnline, deviceDetails) {
     const container = document.getElementById('dashboardContainer');
     const dashboardSection = document.getElementById('dashboardSection');
     dashboardSection.classList.remove('d-none');
@@ -441,7 +447,7 @@ function renderDashboard(info, isOnline) {
                             </div>
                         </div>
                         <div class="mt-3 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
-                            <span class="text-muted x-small">不安全行为检测判定的时长</span>
+                            <span class="text-muted x-small">判定时长</span>
                             <span class="badge bg-secondary bg-opacity-25 text-white x-small">${cam.duration || 5} 秒</span>
                         </div>
                     </div>
@@ -453,45 +459,54 @@ function renderDashboard(info, isOnline) {
     }
     container.innerHTML = html;
     
-    // 同步更新摄像头下拉列表
-    updateCameraSelectDropdown(info.cameras, isOnline);
+    updateDeviceCameraDropdowns(deviceDetails, isOnline);
 }
 
-let currentCameraIds = [];
-
-function updateCameraSelectDropdown(cameras, isOnline) {
-    const select = document.getElementById('cameraSelect');
-    if (!select) return;
+function updateDeviceCameraDropdowns(deviceDetails, isOnline) {
+    const deviceSelect = document.getElementById('deviceSelect');
+    if (!deviceSelect) return;
     
-    if (!isOnline || !cameras || cameras.length === 0) {
-        if (currentCameraIds.length !== 0 || select.options.length <= 1) {
-            select.innerHTML = '<option value="">当前设备已掉线，无可用在线摄像头</option>';
-            currentCameraIds = [];
-        }
-        return;
-    }
+    const detailsJson = JSON.stringify(deviceDetails);
+    if (detailsJson === lastDeviceDetailsJson) return;
+    lastDeviceDetailsJson = detailsJson;
 
-    const newCameraIds = cameras.map(c => c.id).sort();
+    const currentDeviceId = deviceSelect.value;
+    deviceSelect.innerHTML = '<option value="">选择目标设备...</option>';
     
-    // 如果摄像头列表没有变化，则不重新渲染，防止打断用户选择操作
-    if (JSON.stringify(currentCameraIds) === JSON.stringify(newCameraIds)) {
-        return;
-    }
-
-    const currentVal = select.value;
-    let html = '<option value="">请选择摄像头</option>';
-    
-    cameras.forEach(cam => {
-        html += `<option value="${cam.id}">${cam.location ? `${cam.location} (设备 ${cam.id})` : `设备 ${cam.id}`}</option>`;
+    Object.keys(deviceDetails).forEach(devId => {
+        const opt = document.createElement('option');
+        opt.value = devId;
+        opt.innerText = devId;
+        if (devId === currentDeviceId) opt.selected = true;
+        deviceSelect.appendChild(opt);
     });
+
+    window.allDeviceDetails = deviceDetails; 
+    onDeviceChange();
+}
+
+function onDeviceChange() {
+    const deviceSelect = document.getElementById('deviceSelect');
+    const cameraSelect = document.getElementById('cameraSelect');
+    if (!deviceSelect || !cameraSelect || !window.allDeviceDetails) return;
+
+    const deviceId = deviceSelect.value;
+    const currentCamId = cameraSelect.value;
     
-    select.innerHTML = html;
+    cameraSelect.innerHTML = '<option value="">选择目标摄像头...</option>';
     
-    if (currentVal && Array.from(select.options).some(opt => opt.value === currentVal)) {
-        select.value = currentVal;
+    if (deviceId && window.allDeviceDetails[deviceId]) {
+        const cameras = window.allDeviceDetails[deviceId].cameras || [];
+        cameras.forEach(cam => {
+            const opt = document.createElement('option');
+            opt.value = cam.id;
+            opt.innerText = cam.location ? `${cam.location} (ID: ${cam.id})` : cam.id;
+            if (cam.id === currentCamId) opt.selected = true;
+            cameraSelect.appendChild(opt);
+        });
+    } else {
+        cameraSelect.innerHTML = '<option value="">请先选择设备</option>';
     }
-    
-    currentCameraIds = newCameraIds;
 }
 
 function renderCameraConfigSection(connected) {
@@ -509,16 +524,22 @@ function renderCameraConfigSection(connected) {
                 <div class="card-body p-4">
                     <div class="row g-4">
                         <div class="col-md-4">
-                            <label class="form-label fw-bold small">1. 选择目标摄像头</label>
-                            <select class="form-select mb-3" id="cameraSelect">
+                            <label class="form-label fw-bold small">1. 选择目标设备</label>
+                            <select class="form-select mb-3" id="deviceSelect" onchange="onDeviceChange()">
                                 <option value="">等待远程设备上线...</option>
                             </select>
+
+                            <label class="form-label fw-bold small">2. 选择目标摄像头</label>
+                            <select class="form-select mb-3" id="cameraSelect">
+                                <option value="">请先选择设备</option>
+                            </select>
+
                             <div class="alert alert-info py-2 px-3 x-small mb-0 border-0" style="background: rgba(244, 114, 182, 0.1);">
                                 <i class="fas fa-info-circle me-1"></i> 指令将通过 MQTT 即时下发。
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <label class="fw-bold small mb-3">2. 调整运行参数</label>
+                            <label class="fw-bold small mb-3">3. 调整运行参数</label>
                             <div class="row g-3">
                                 <div class="col-sm-4">
                                     <label class="form-label x-small text-muted">置信度 (Confidence)</label>
@@ -541,32 +562,15 @@ function renderCameraConfigSection(connected) {
                 </div>
             </div>
         `;
-        // 下拉列表数据现在由 dashboard 轮询动态更新，不需要初始加载静态列表
-        // loadCameraList();
     }
 }
 
-function loadCameraList() {
-    fetch('/api/cameras')
-        .then(res => res.json())
-        .then(data => {
-            const select = document.getElementById('cameraSelect');
-            if (!select) return;
-            select.innerHTML = '<option value="">请选择摄像头</option>';
-            const cameras = data.cameras || [];
-            cameras.forEach(cam => {
-                const option = document.createElement('option');
-                option.value = cam.id;
-                option.textContent = cam.location ? `${cam.location} (${cam.id})` : cam.id;
-                select.appendChild(option);
-            });
-        });
-}
-
 function sendCameraConfig() {
+    const device_id = document.getElementById('deviceSelect').value;
     const camera_id = document.getElementById('cameraSelect').value;
-    if (!camera_id) {
-        alert('请选择摄像头');
+    
+    if (!device_id || !camera_id) {
+        alert('请选择目标设备和摄像头');
         return;
     }
     
@@ -580,6 +584,7 @@ function sendCameraConfig() {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+            device_id: device_id,
             camera_id: camera_id,
             config_type: 'parameters',
             config_value: config
@@ -609,7 +614,7 @@ function loadHistoryList() {
             let html = '';
             configs.forEach(config => {
                 html += `
-                    <div class="wifi-list-item" ondblclick="fillFormAndConnect('${config.broker}', ${config.port}, '${config.username || ''}', '${config.mediamtx_ip || ''}', ${config.mediamtx_whip_port || 8889}, ${config.mediamtx_rtsp_port || 8554})">
+                    <div class="wifi-list-item" ondblclick="fillFormAndConnect('${config.broker}', ${config.port}, '${config.username || ''}', ${config.mediamtx_whip_port || 8889}, ${config.mediamtx_rtsp_port || 8554})">
                         <div class="d-flex justify-content-between">
                             <span class="fw-bold small text-white">${config.broker}</span>
                             <span class="text-muted x-small">${config.port}</span>
@@ -621,7 +626,7 @@ function loadHistoryList() {
         });
 }
 
-function fillFormAndConnect(broker, port, username, mediamtxIp, whipPort, rtspPort) {
+function fillFormAndConnect(broker, port, username, whipPort, rtspPort) {
     document.getElementById('mqttBroker').value = broker;
     document.getElementById('mqttPort').value = port;
     document.getElementById('mqttUsername').value = username;
@@ -651,7 +656,7 @@ function saveAndConnect() {
             port: port, 
             username: username, 
             password: password, 
-            mediamtx_ip: broker, // 自动复用 broker 地址
+            mediamtx_ip: broker,
             mediamtx_whip_port: mediamtx_whip_port,
             mediamtx_rtsp_port: mediamtx_rtsp_port,
             save: true

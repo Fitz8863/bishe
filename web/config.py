@@ -23,4 +23,4 @@ MQTT_BROKER='127.0.0.1'
 MQTT_PORT=1883
 MQTT_USERNAME=''
 MQTT_PASSWORD=''
-MQTT_TOPIC_PREFIX='/jetson/camera/command'
+MQTT_TOPIC_PREFIX='jetson/camera/command'

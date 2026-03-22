@@ -145,7 +145,7 @@ requests.post(url, files=files, data=data)
 
 ### 2. MQTT 配置指令下发
 边缘设备需订阅特定主题，以接收来自本 Web 系统的配置更改指令。
-- **下发主题规则**: `{MQTT_TOPIC_PREFIX}/{camera_id}/command` (默认: `factory/camera/{camera_id}/command`)
+- **下发主题规则**: `{MQTT_TOPIC_PREFIX}/{camera_id}/command` (默认: `jetson/camera/{camera_id}/command`)
 - **Payload 示例**:
 ```json
 {

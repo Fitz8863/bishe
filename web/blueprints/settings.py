@@ -83,7 +83,7 @@ def mqtt_connect():
             port=port,
             username=username,
             password=password,
-            topic_prefix='factory/camera'
+            topic_prefix='jetson/camera'
         )
         
         success = mqtt_module.mqtt_manager.connect()
@@ -219,11 +219,12 @@ def intercom_stop():
 def send_camera_config():
     """发送摄像头配置到MQTT"""
     data = request.json
+    device_id = data.get('device_id')
     camera_id = data.get('camera_id')
     config_type = data.get('config_type')
     config_value = data.get('config_value')
     
-    if not camera_id or not config_type:
+    if not device_id or not camera_id or not config_type:
         return jsonify({'error': '缺少必要参数'}), 400
     
     try:
@@ -236,7 +237,7 @@ def send_camera_config():
             'value': config_value
         }
         
-        success, message = mqtt_module.mqtt_manager.send_camera_command(camera_id, payload)
+        success, message = mqtt_module.mqtt_manager.send_camera_command(device_id, camera_id, payload)
         
         if success:
             return jsonify({'message': '配置发送成功'}), 200
@@ -267,7 +268,8 @@ def get_mqtt_realtime_stats():
             'connected': mqtt_manager.connected,
             'device_count': data.get('device_count', 0),
             'camera_count': data.get('camera_count', 0),
-            'devices': data.get('devices', [])
+            'devices': data.get('devices', []),
+            'device_details': data.get('device_details', {})
         }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
