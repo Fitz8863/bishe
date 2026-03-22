@@ -1,0 +1,10 @@
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::reportInfoTimerCallback()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:945:33: error: ‘buildInfoPayload’ was not declared in this scope
+  945 |     const std::string payload = buildInfoPayload();  // 构建 JSON
+      |                                 ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:946:5: error: ‘publishToInfoTopic’ was not declared in this scope
+  946 |     publishToInfoTopic(payload);        // 发布到 MQTT
+      |     ^~~~~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

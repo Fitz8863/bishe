@@ -1,0 +1,2 @@
+Consolidate compiler generated dependencies of target mqtt_node
+[ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o

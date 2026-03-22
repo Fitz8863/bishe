@@ -1,0 +1,30 @@
+[0.018s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_mqtt -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_mqtt
+[0.055s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.285s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.311s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.373s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.377s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.389s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.408s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.431s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.493s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.496s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.673s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.889s] -- Configuring done
+[0.906s] -- Generating done
+[0.912s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_mqtt
+[0.927s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_mqtt -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_mqtt
+[0.930s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[1.003s] Consolidate compiler generated dependencies of target mqtt_node
+[1.026s] [ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o
+[5.978s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::reportInfoTimerCallback()’:
+[5.979s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:945:33: error: ‘buildInfoPayload’ was not declared in this scope
+[5.979s]   945 |     const std::string payload = buildInfoPayload();  // 构建 JSON
+[5.979s]       |                                 ^~~~~~~~~~~~~~~~
+[5.997s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:946:5: error: ‘publishToInfoTopic’ was not declared in this scope
+[5.998s]   946 |     publishToInfoTopic(payload);        // 发布到 MQTT
+[5.998s]       |     ^~~~~~~~~~~~~~~~~~
+[11.474s] gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+[11.474s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+[11.474s] gmake: *** [Makefile:146：all] 错误 2
+[11.478s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6

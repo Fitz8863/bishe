@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000463] (bishe_mqtt) JobQueued: {'identifier': 'bishe_mqtt', 'dependencies': OrderedDict([('bishe_mqtt', '/home/jetson/projects/bishe/edge/install/bishe_mqtt')])}
+[0.000963] (bishe_mqtt) JobStarted: {'identifier': 'bishe_mqtt'}
+[0.070325] (bishe_mqtt) JobEnded: {'identifier': 'bishe_mqtt', 'rc': 0}
+[0.071401] (-) EventReactorShutdown: {}

@@ -1,0 +1,13 @@
+[0.018s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[0.096s] Consolidate compiler generated dependencies of target mqtt_node
+[0.119s] [ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o
+[4.890s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1064:15: error: redeclaration of ‘std::string MqttNode::device_’
+[4.890s]  1064 |   std::string device_;            ///< 设备标识符
+[4.890s]       |               ^~~~~~~
+[4.890s] /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1063:15: note: previous declaration ‘std::string MqttNode::device_’
+[4.890s]  1063 |   std::string device_;            ///< 设备标识符
+[4.891s]       |               ^~~~~~~
+[10.710s] gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+[10.710s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+[10.711s] gmake: *** [Makefile:146：all] 错误 2
+[10.714s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6

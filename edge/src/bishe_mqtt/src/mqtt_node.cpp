@@ -19,6 +19,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/parameter_client.hpp>
 #include <rclcpp/executors/multi_threaded_executor.hpp>
+#include <rcl_interfaces/msg/parameter_event.hpp>
 
 #include <jsoncpp/json/json.h>
 #include <mqtt/async_client.h>
@@ -135,6 +136,15 @@ public:
 
     // 步骤6: 创建定时器用于周期性上报状态
     createReportTimer();
+    
+    // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
+    rclcpp::SubscriptionOptions sub_options;
+    sub_options.callback_group = param_callback_group_;
+    param_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+      "/parameter_events", rclcpp::QoS(10),
+      std::bind(&MqttNode::onParameterEvent, this, std::placeholders::_1),
+      sub_options
+    );
     RCLCPP_INFO(this->get_logger(), "MQTT node started");
   }
 
@@ -345,6 +355,15 @@ private:
     if (std::abs(latest_interval - report_interval_sec_) > 1e-6) {
       report_interval_sec_ = latest_interval;
       createReportTimer();
+    
+    // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
+    rclcpp::SubscriptionOptions sub_options;
+    sub_options.callback_group = param_callback_group_;
+    param_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+      "/parameter_events", rclcpp::QoS(10),
+      std::bind(&MqttNode::onParameterEvent, this, std::placeholders::_1),
+      sub_options
+    );
       RCLCPP_INFO(this->get_logger(), "Report interval updated to %.2f sec", report_interval_sec_);
     }
   }
@@ -736,7 +755,84 @@ private:
     return escaped;
   }
 
-  void requestStreamerRuntimeInfo(const std::string& camera_id)
+
+  void onParameterEvent(const rcl_interfaces::msg::ParameterEvent::SharedPtr event)
+  {
+    const std::string& node_name = event->node;
+    std::string target_camera_id;
+    bool is_streamer = false;
+    bool is_detector = false;
+
+    for (const auto& camera_id : camera_ids_) {
+      auto det_candidates = detectorNodeCandidates(camera_id);
+      if (std::find(det_candidates.begin(), det_candidates.end(), node_name) != det_candidates.end()) {
+        target_camera_id = camera_id;
+        is_detector = true;
+        break;
+      }
+      auto str_candidates = streamerNodeCandidates(camera_id);
+      if (std::find(str_candidates.begin(), str_candidates.end(), node_name) != str_candidates.end()) {
+        target_camera_id = camera_id;
+        is_streamer = true;
+        break;
+      }
+    }
+
+    if (target_camera_id.empty()) {
+      return;
+    }
+
+    std::lock_guard<std::mutex> lock(info_mutex_);
+    auto& info = info_cache_[target_camera_id];
+    bool updated = false;
+
+    auto process_params = [&](const std::vector<rcl_interfaces::msg::Parameter>& params) {
+      for (const auto& p : params) {
+        if (is_detector) {
+          if (p.name == "confidence_threshold" && p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE) {
+            info.confidence_threshold = p.value.double_value;
+            updated = true;
+          } else if (p.name == "nms_threshold" && p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE) {
+            info.nms_threshold = p.value.double_value;
+            updated = true;
+          }
+        } else if (is_streamer) {
+          if (p.name == "output_width" && p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_INTEGER) {
+            info.width = static_cast<int>(p.value.integer_value);
+            updated = true;
+          } else if (p.name == "output_height" && p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_INTEGER) {
+            info.height = static_cast<int>(p.value.integer_value);
+            updated = true;
+          } else if (p.name == "output_fps") {
+            if (p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE) {
+              info.fps = p.value.double_value;
+              updated = true;
+            } else if (p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_INTEGER) {
+              info.fps = static_cast<double>(p.value.integer_value);
+              updated = true;
+            }
+          } else if (p.name == "scale") {
+            if (p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE) {
+              info.scale = p.value.double_value;
+              updated = true;
+            } else if (p.value.type == rcl_interfaces::msg::ParameterType::PARAMETER_INTEGER) {
+              info.scale = static_cast<double>(p.value.integer_value);
+              updated = true;
+            }
+          }
+        }
+      }
+    };
+
+    process_params(event->new_parameters);
+    process_params(event->changed_parameters);
+
+    if (updated) {
+      // RCLCPP_INFO(this->get_logger(), "Cache updated via parameter event from %s", node_name.c_str());
+    }
+  }
+
+  bool requestStreamerRuntimeInfo(const std::string& camera_id)
   {
     const auto candidates = streamerNodeCandidates(camera_id);
     for (const auto& node_name : candidates) {
@@ -781,8 +877,9 @@ private:
         std::lock_guard<std::mutex> lock(info_mutex_);
         info_cache_[camera_id] = info;
       }
-      return;
+      return true;
     }
+    return false;
   }
 
   /**
@@ -793,7 +890,7 @@ private:
    * - confidence_threshold: 置信度阈值
    * - nms_threshold: NMS 阈值
    */
-  void requestDetectorThresholds(const std::string& camera_id)
+  bool requestDetectorThresholds(const std::string& camera_id)
   {
     const auto candidates = detectorNodeCandidates(camera_id);
     for (const auto& node_name : candidates) {
@@ -831,17 +928,12 @@ private:
         std::lock_guard<std::mutex> lock(info_mutex_);
         info_cache_[camera_id] = info;
       }
-      return;
+      return true;
     }
+    return false;
   }
 
-  void requestRuntimeInfo()
-  {
-    for (const auto& camera_id : camera_ids_) {
-      requestStreamerRuntimeInfo(camera_id);
-      requestDetectorThresholds(camera_id);
-    }
-  }
+
 
   /**
    * @brief 构建状态信息 JSON payload
@@ -938,7 +1030,21 @@ private:
   void reportInfoTimerCallback()
   {
     refreshLocalDynamicParameters();  // 检查参数是否有更新
-    requestRuntimeInfo();               // 获取最新运行时状态
+    
+    // 仅在未成功获取过初始参数时，才去主动拉取（彻底消除定时的 IPC 轮询开销）
+    for (const auto& camera_id : camera_ids_) {
+      if (!initial_fetch_streamer_[camera_id]) {
+        if (requestStreamerRuntimeInfo(camera_id)) {
+          initial_fetch_streamer_[camera_id] = true;
+        }
+      }
+      if (!initial_fetch_detector_[camera_id]) {
+        if (requestDetectorThresholds(camera_id)) {
+          initial_fetch_detector_[camera_id] = true;
+        }
+      }
+    }
+
     const std::string payload = buildInfoPayload();  // 构建 JSON
     publishToInfoTopic(payload);        // 发布到 MQTT
   }
@@ -969,6 +1075,9 @@ private:
 
   // 内部状态
   rclcpp::TimerBase::SharedPtr report_timer_;      ///< 定时上报计时器
+  rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr param_event_sub_; ///< 参数事件订阅器
+  std::unordered_map<std::string, bool> initial_fetch_streamer_; ///< 记录推流器是否已完成初始参数获取
+  std::unordered_map<std::string, bool> initial_fetch_detector_; ///< 记录检测器是否已完成初始参数获取
   std::unordered_map<std::string, std::shared_ptr<rclcpp::AsyncParametersClient>> param_clients_;  ///< 参数客户端缓存
   std::unordered_map<std::string, std::chrono::steady_clock::time_point> next_query_time_;
   std::unordered_map<std::string, CameraInfo> info_cache_;  ///< 摄像头信息缓存

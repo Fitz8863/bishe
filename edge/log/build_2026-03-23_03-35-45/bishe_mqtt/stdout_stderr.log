@@ -1,0 +1,11 @@
+Consolidate compiler generated dependencies of target mqtt_node
+[ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1064:15: error: redeclaration of ‘std::string MqttNode::device_’
+ 1064 |   std::string device_;            ///< 设备标识符
+      |               ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1063:15: note: previous declaration ‘std::string MqttNode::device_’
+ 1063 |   std::string device_;            ///< 设备标识符
+      |               ^~~~~~~
+gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2
