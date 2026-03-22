@@ -1186,7 +1186,7 @@ public:
     this->declare_parameter<std::string>("broker", "localhost");
     this->declare_parameter<int>("port", 1883);
     this->declare_parameter<std::string>("client_id", "bishe_camera_001");
-    this->declare_parameter<std::string>("subscribe_topic", "factory/camera/command");
+    this->declare_parameter<std::string>("subscribe_topic", "jetson/camera/command");
     this->declare_parameter<std::string>("publish_topic", "factory/camera/001/status");
 
     this->get_parameter("broker", broker_);
@@ -1484,7 +1484,7 @@ def generate_launch_description():
                 'broker': 'YOUR_MQTT_BROKER_IP',
                 'port': 1883,
                 'client_id': 'bishe_camera_001',
-                'subscribe_topic': 'factory/camera/command',
+                'subscribe_topic': 'jetson/camera/command',
                 'publish_topic': 'factory/camera_001/status',
             }],
             output='screen',

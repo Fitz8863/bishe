@@ -191,8 +191,8 @@ private:
     this->declare_parameter<std::string>("device", "jetson-orin-nano"); // 设备标识符 (如: jetson-orin-nano)
 
     // MQTT 主题配置
-    this->declare_parameter<std::string>("subscribe_topic", "/factory/camera/command");   // 订阅主题（接收上位机命令）
-    this->declare_parameter<std::string>("publish_topic", "/factory/camera/command");    // 发布主题（目前未使用）
+    this->declare_parameter<std::string>("subscribe_topic", "/jetson/camera/command");   // 订阅主题（接收上位机命令）
+    this->declare_parameter<std::string>("publish_topic", "/jetson/camera/command");    // 发布主题（目前未使用）
 
     // 状态上报配置
     this->declare_parameter<std::string>("info_topic", "jetson/info");       // 状态信息发布主题
