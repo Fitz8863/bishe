@@ -246,16 +246,17 @@
         </div>
     </div>
 
-    <!-- 侧边辅助说明 -->
-    <div class="col-lg-4">
-        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(244, 114, 182, 0.1) 0%, rgba(34, 211, 238, 0.05) 100%); border: 1px solid var(--border-color) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-            <div class="card-body p-4">
-                <h6 class="fw-bold mb-3"><i class="fas fa-lightbulb me-2 text-warning"></i>操作说明</h6>
-                <ul class="text-muted small ps-3 mb-0">
-                    <li class="mb-2">连接 MQTT 服务器是管理边缘设备的前提。</li>
-                    <li class="mb-2">成功连接后，系统将自动订阅 <code class="text-info">jetson/info</code> 主题以获取实时数据。</li>
-                    <li>双击历史记录可以快速填入并尝试重连。</li>
-                </ul>
+    <div class="col-lg-4" id="emqxCard" style="display: none;">
+        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(244, 114, 182, 0.05) 100%); border: 1px solid var(--border-color) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="rounded-circle p-3 mb-3" style="background: rgba(34, 211, 238, 0.1); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-external-link-alt fa-2x text-info"></i>
+                </div>
+                <h6 class="fw-bold mb-2">MQTT 后台管理</h6>
+                <p class="text-muted small mb-4">一键跳转至 EMQX 仪表盘，管理 MQTT 客户端与监控消息流量</p>
+                <a href="http://fnas:18083/" target="_blank" class="btn btn-outline-info rounded-pill px-4">
+                    <i class="fas fa-rocket me-2"></i>打开 EMQX 后台
+                </a>
             </div>
         </div>
     </div>
@@ -337,6 +338,7 @@ function updateUI(connected, broker, port) {
         card.classList.add('connected');
         card.classList.remove('disconnected');
         
+        document.getElementById('emqxCard').style.display = 'block';
         renderCameraConfigSection(true);
         startDashboardPolling();
     } else {
@@ -348,6 +350,7 @@ function updateUI(connected, broker, port) {
         card.classList.remove('connected');
         card.classList.add('disconnected');
         
+        document.getElementById('emqxCard').style.display = 'none';
         renderCameraConfigSection(false);
         stopDashboardPolling();
         document.getElementById('dashboardSection').classList.add('d-none');
@@ -515,7 +518,7 @@ function renderCameraConfigSection(connected) {
         section.innerHTML = `
             <div class="status-card text-center py-5">
                 <i class="fas fa-lock fa-3x mb-3 text-muted opacity-25"></i>
-                <p class="text-muted">请先建立 MQTT 通信连接以启用控制权限</p>
+                <p class="text-muted">请先连接云端服务器</p>
             </div>
         `;
     } else {
