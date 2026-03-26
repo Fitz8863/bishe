@@ -11,12 +11,12 @@ public:
   CameraNode()
       : Node("camera_node")
   {
-    this->declare_parameter<std::string>("device", "/dev/video0");
+    this->declare_parameter<std::string>("video_device", "/dev/video0");
     this->declare_parameter<int>("width", 1280);
     this->declare_parameter<int>("height", 720);
     this->declare_parameter<int>("framerate", 60);
 
-    this->get_parameter("device", device_);
+    this->get_parameter("video_device", device_);
     this->get_parameter("width", width_);
     this->get_parameter("height", height_);
     this->get_parameter("framerate", framerate_);

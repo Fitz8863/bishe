@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 
 # MQTT - use system installed EMQX SDK
@@ -22,6 +23,7 @@ target_link_libraries(mqtt_node ${MQTT_LIBRARIES} ${JSONCPP_LIBRARIES})
 
 ament_target_dependencies(mqtt_node
   rclcpp
+  std_msgs
 )
 
 install(TARGETS mqtt_node

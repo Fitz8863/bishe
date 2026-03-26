@@ -13,10 +13,12 @@ find_package(image_transport REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(bishe_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 include_directories(/opt/ros/humble/include)
 
 add_executable(streamer_node src/streamer_node.cpp)
+add_executable(intercom_node src/intercom_node.cpp)
 
 ament_target_dependencies(streamer_node
   rclcpp
@@ -27,7 +29,12 @@ ament_target_dependencies(streamer_node
   bishe_msgs
 )
 
-install(TARGETS streamer_node
+ament_target_dependencies(intercom_node
+  rclcpp
+  std_msgs
+)
+
+install(TARGETS streamer_node intercom_node
   DESTINATION lib/${PROJECT_NAME}
 )
 

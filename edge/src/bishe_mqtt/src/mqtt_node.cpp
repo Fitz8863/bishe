@@ -20,6 +20,7 @@
 #include <rclcpp/parameter_client.hpp>
 #include <rclcpp/executors/multi_threaded_executor.hpp>
 #include <rcl_interfaces/msg/parameter_event.hpp>
+#include <std_msgs/msg/string.hpp>
 
 #include <jsoncpp/json/json.h>
 #include <mqtt/async_client.h>
@@ -129,6 +130,8 @@ public:
       // 步骤5: 订阅控制命令主题
       client_->subscribe(subscribe_topic_, 1)->wait();
       RCLCPP_INFO(this->get_logger(), "Subscribed to: %s", subscribe_topic_.c_str());
+      client_->subscribe(call_topic_, 1)->wait();
+      RCLCPP_INFO(this->get_logger(), "Subscribed to: %s", call_topic_.c_str());
     }
     catch (const mqtt::exception& e) {
       RCLCPP_ERROR(this->get_logger(), "MQTT connection failed: %s", e.what());
@@ -136,6 +139,9 @@ public:
 
     // 步骤6: 创建定时器用于周期性上报状态
     createReportTimer();
+
+    // 初始化通话控制发布器
+    intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
     
     // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
     rclcpp::SubscriptionOptions sub_options;
@@ -202,6 +208,7 @@ private:
 
     // MQTT 主题配置
     this->declare_parameter<std::string>("subscribe_topic", "/jetson/camera/command");   // 订阅主题（接收上位机命令）
+    this->declare_parameter<std::string>("call_topic", "jetson/call/command"); // 通话控制主题
     this->declare_parameter<std::string>("publish_topic", "/jetson/camera/command");    // 发布主题（目前未使用）
 
     // 状态上报配置
@@ -227,6 +234,7 @@ private:
     this->get_parameter("client_id", client_id_);
     this->get_parameter("device", device_);
     this->get_parameter("subscribe_topic", subscribe_topic_);
+    this->get_parameter("call_topic", call_topic_);
     this->get_parameter("publish_topic", publish_topic_);
 
     // 加载上报配置
@@ -355,6 +363,9 @@ private:
     if (std::abs(latest_interval - report_interval_sec_) > 1e-6) {
       report_interval_sec_ = latest_interval;
       createReportTimer();
+
+    // 初始化通话控制发布器
+    intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
     
     // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
     rclcpp::SubscriptionOptions sub_options;
@@ -688,9 +699,45 @@ private:
     return success;
   }
 
+
+  bool handleCallCommand(const Json::Value &root)
+  {
+    if (!root["device"].isString()) {
+      RCLCPP_WARN(this->get_logger(), "Call command missing device field");
+      return false;
+    }
+
+    const std::string target_device = root["device"].asString();
+    if (target_device != device_) {
+      RCLCPP_INFO(this->get_logger(), "Call command ignored. Target device '%s' does not match current device '%s'", target_device.c_str(), device_.c_str());
+      return false;
+    }
+
+    const std::string type = root["type"].asString();
+    std_msgs::msg::String msg;
+
+    if (type == "intercom_start") {
+      if (!root["url"].isString()) {
+        RCLCPP_WARN(this->get_logger(), "intercom_start missing url field");
+        return false;
+      }
+      msg.data = root["url"].asString();
+      RCLCPP_INFO(this->get_logger(), "Starting intercom with url: %s", msg.data.c_str());
+      intercom_pub_->publish(msg);
+      return true;
+    } else if (type == "intercom_stop") {
+      msg.data = "STOP";
+      RCLCPP_INFO(this->get_logger(), "Stopping intercom");
+      intercom_pub_->publish(msg);
+      return true;
+    }
+
+    return false;
+  }
+
   void handleMqttMessage(const std::string &topic, const std::string &payload)
   {
-    if (topic != subscribe_topic_) {
+    if (topic != subscribe_topic_ && topic != call_topic_) {
       return;
     }
 
@@ -710,12 +757,20 @@ private:
     }
 
     const std::string type = root["type"].asString();
-    if (type == "parameters") {
-      (void)handleParameterCommand(root);
-      return;
+    
+    if (topic == subscribe_topic_) {
+      if (type == "parameters") {
+        (void)handleParameterCommand(root);
+        return;
+      }
+    } else if (topic == call_topic_) {
+      if (type == "intercom_start" || type == "intercom_stop") {
+        (void)handleCallCommand(root);
+        return;
+      }
     }
 
-    RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type: %s", type.c_str());
+    RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());
   }
 
   /**
@@ -1060,6 +1115,7 @@ private:
   std::string client_id_;         ///< 客户端 ID
   std::string device_;            ///< 设备标识符
   std::string subscribe_topic_;   ///< 订阅主题（命令）
+  std::string call_topic_;        ///< 远程通话主题
   std::string publish_topic_;      ///< 发布主题（状态）
 
   // 上报配置
@@ -1075,6 +1131,7 @@ private:
 
   // 内部状态
   rclcpp::TimerBase::SharedPtr report_timer_;      ///< 定时上报计时器
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr intercom_pub_; ///< 通话控制发布器
   rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr param_event_sub_; ///< 参数事件订阅器
   std::unordered_map<std::string, bool> initial_fetch_streamer_; ///< 记录推流器是否已完成初始参数获取
   std::unordered_map<std::string, bool> initial_fetch_detector_; ///< 记录检测器是否已完成初始参数获取

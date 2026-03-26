@@ -59,7 +59,8 @@ def _generate_nodes(context):
                 name="camera_node",
                 parameters=[
                     {
-                        "device": camera["device"],
+                        "video_device": camera["device"],
+                        "device": device_name,
                         "width": camera.get("width", 1280),
                         "height": camera.get("height", 720),
                         "framerate": camera.get("framerate", 60),
@@ -73,6 +74,7 @@ def _generate_nodes(context):
                 name="detector_node",
                 parameters=[
                     {
+                        "device": device_name,
                         "confidence_threshold": detector.get("confidence_threshold", 0.5),
                         "nms_threshold": detector.get("nms_threshold", 0.5),
                         "engine_path": detector.get("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine"),
@@ -88,6 +90,7 @@ def _generate_nodes(context):
                 name="streamer_node",
                 parameters=[
                     {
+                        "device": device_name,
                         "rtsp_url": streamer.get("rtsp_url", f"rtsp://localhost:8554/stream_{camera_id}"),
                         "scale": streamer.get("scale", 1.0),
                         "audio_device": streamer.get("audio_device", "hw:0,0"),
@@ -106,6 +109,7 @@ def _generate_nodes(context):
                     name="monitor_node",
                     parameters=[
                         {
+                            "device": device_name,
                             "window_seconds": 5,
                             "violation_ratio_threshold": 0.4,
                             "location": camera.get("location", f"camera_{camera_id}"),
@@ -140,6 +144,15 @@ def _generate_nodes(context):
                     "camera_http_urls": selected_camera_http_urls_for_mqtt,
                 }
             ],
+            output="screen",
+        )
+    )
+
+    actions.append(
+        Node(
+            package="bishe_streamer",
+            executable="intercom_node",
+            name="intercom_node",
             output="screen",
         )
     )
