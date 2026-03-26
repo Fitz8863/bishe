@@ -90,7 +90,7 @@ def _generate_nodes(context):
                     {
                         "rtsp_url": streamer.get("rtsp_url", f"rtsp://localhost:8554/stream_{camera_id}"),
                         "scale": streamer.get("scale", 1.0),
-                        "audio_device": streamer.get("audio_device", "hw:1,0"),
+                        "audio_device": streamer.get("audio_device", "hw:0,0"),
                         "framerate": streamer.get("framerate", camera.get("framerate", 60)),
                     }
                 ],

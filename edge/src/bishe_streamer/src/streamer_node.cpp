@@ -26,6 +26,8 @@ public:
         this->get_parameter("audio_device", audio_device_);
         this->get_parameter("framerate", framerate_);
 
+        std::cout << "8555555555555555555" << this->audio_device_ << std::endl;
+
         stream_callback_group_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
         rclcpp::SubscriptionOptions sub_options;
         sub_options.callback_group = stream_callback_group_;
@@ -45,9 +47,9 @@ public:
     }
 
 private:
-    uint64_t written_frames_{0};
-    std::chrono::steady_clock::time_point fps_window_start_{std::chrono::steady_clock::now()};
-    double current_fps_{0.0};
+    uint64_t written_frames_{ 0 };
+    std::chrono::steady_clock::time_point fps_window_start_{ std::chrono::steady_clock::now() };
+    double current_fps_{ 0.0 };
 
     void updateFps()
     {
@@ -102,7 +104,7 @@ private:
         if (!writer_.isOpened())
         {
             RCLCPP_WARN(this->get_logger(), "音视频复合管线开启失败（可能是音频设备 %s 被占用或不存在），尝试纯视频模式...", audio_device_.c_str());
-            
+
             std::string rtsp_out_video_only =
                 "appsrc is-live=true do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! "
                 "x264enc bitrate=8000 speed-preset=ultrafast tune=zerolatency key-int-max=30 ! h264parse ! "
@@ -121,7 +123,7 @@ private:
         }
     }
 
-    void resultCallback(const bishe_msgs::msg::DetectorResult::ConstSharedPtr &msg)
+    void resultCallback(const bishe_msgs::msg::DetectorResult::ConstSharedPtr& msg)
     {
         try
         {
@@ -150,13 +152,13 @@ private:
             cv::Mat out_frame;
             if (scale_ == 1.0f) {
                 out_frame = frame;
-            } 
+            }
             else {
                 static cv::Mat resized_frame;
                 cv::resize(frame, resized_frame, target_size, 0.0, 0.0, cv::INTER_LINEAR);
                 out_frame = resized_frame;
             }
-            
+
             updateFps();
 
             if (current_fps_ > 0.0) {
@@ -166,19 +168,19 @@ private:
                 int thickness = std::max(1, static_cast<int>(2 * font_scale));
                 int baseline = 0;
                 cv::Size text_size = cv::getTextSize(fps_text, font_face, font_scale, thickness, &baseline);
-                
+
                 cv::Point text_org(out_frame.cols - text_size.width - 20, text_size.height + 20);
-                
+
                 cv::putText(out_frame, fps_text, text_org, font_face, font_scale, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
             }
 
             writer_.write(out_frame);
         }
-        catch (const cv_bridge::Exception &e)
+        catch (const cv_bridge::Exception& e)
         {
             RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
         }
-        catch (const std::exception &e)
+        catch (const std::exception& e)
         {
             RCLCPP_ERROR(this->get_logger(), "Exception during video write: %s", e.what());
         }
@@ -191,11 +193,11 @@ private:
     std::string audio_device_;
     float scale_;
     int framerate_;
-    int output_width_{0};
-    int output_height_{0};
+    int output_width_{ 0 };
+    int output_height_{ 0 };
 };
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<StreamerNode>();

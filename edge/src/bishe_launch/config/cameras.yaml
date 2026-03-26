@@ -15,7 +15,7 @@ cameras:
       rtsp_url: "rtsp://localhost:8554/stream_001"
       http_url: "http://fnas:8889/jetson-stream1"
       scale: 1.0
-      audio_device: "hw:1,0"
+      audio_device: "hw:0,0"
       framerate: 30
 
   # - id: "002"
