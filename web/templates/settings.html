@@ -10,133 +10,77 @@
     }
 
     .settings-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
     }
 
     .status-card {
-        background: var(--bg-card);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: #1e293b;
         border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: var(--card-shadow);
-        transition: var(--transition);
-        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s;
     }
 
     .status-card.connected {
-        border-left: 5px solid #10b981;
+        border-left: 4px solid var(--success-color);
     }
 
     .status-card.disconnected {
-        border-left: 5px solid #f87171;
+        border-left: 4px solid var(--danger-color);
     }
 
     .status-indicator-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
+        width: 8px;
+        height: 8px;
         display: inline-block;
         margin-right: 8px;
     }
 
-    .dot-connected { background-color: #10b981; box-shadow: 0 0 10px #10b981; }
-    .dot-disconnected { background-color: #f87171; box-shadow: 0 0 10px #f87171; }
+    .dot-connected { background-color: var(--success-color); }
+    .dot-disconnected { background-color: var(--danger-color); }
 
     .control-panel {
-        background: var(--bg-card);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: #1e293b;
         border: 1px solid var(--border-color);
-        border-radius: 16px;
         overflow: hidden;
-        box-shadow: var(--card-shadow);
     }
 
     .panel-header {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
-        padding: 15px 20px;
+        background: #0f172a;
+        padding: 0.875rem 1.25rem;
         border-bottom: 1px solid var(--border-color);
-        font-weight: 600;
+        font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.85rem;
     }
 
     .dashboard-camera-card {
-        background: var(--bg-card);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: #0f172a;
         border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 15px;
-        transition: var(--transition);
+        padding: 1rem;
+        transition: border-color 0.2s;
         height: 100%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .dashboard-camera-card:hover {
-        background: var(--bg-card-hover);
         border-color: var(--primary-color);
-        box-shadow: 0 8px 25px rgba(244, 114, 182, 0.2);
-        transform: translateY(-3px);
-    }
-
-    .x-small { font-size: 0.75rem; }
-    .shadow-inner { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
-
-    .wifi-list-item {
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 8px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: var(--transition);
-    }
-
-    .wifi-list-item:hover {
-        background: rgba(244, 114, 182, 0.1);
-        border-color: var(--primary-color);
-    }
-
-    .form-control, .form-select {
-        background-color: #1a1d21;
-        border: 1px solid var(--border-color);
-        color: var(--text-primary);
-        border-radius: 8px;
-    }
-
-    .form-select option {
-        background-color: #1a1d21;
-        color: white;
-    }
-
-    .form-control:focus, .form-select:focus {
-        background-color: #1e2227;
-        border-color: var(--primary-color);
-        color: var(--text-primary);
-        box-shadow: 0 0 0 0.25rem rgba(244, 114, 182, 0.25);
-    }
-
-    .progress {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
     }
 
     .section-title {
         color: var(--text-primary);
         font-weight: 700;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         display: flex;
         align-items: center;
-    }
-
-    .section-title i {
-        margin-right: 12px;
-        color: var(--primary-light);
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
     }
 
     #dashboardSection.d-none {
@@ -158,25 +102,24 @@
 </div>
 
 <div class="row">
-    <!-- MQTT 状态卡片 -->
     <div class="col-lg-8">
         <div class="status-card" id="mqttCard">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
-                    <div class="rounded-circle p-3 d-flex align-items-center justify-content-center" style="background: rgba(255,255,255,0.05); width: 60px; height: 60px;">
-                        <i class="fas fa-network-wired fa-2x" id="mqttIcon" style="color: var(--text-secondary);"></i>
+                    <div class="bg-dark p-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; border: 1px solid var(--border-color);">
+                        <i class="fas fa-network-wired fa-lg" id="mqttIcon" style="color: var(--text-secondary);"></i>
                     </div>
                     <div class="ms-4">
                         <div class="d-flex align-items-center mb-1">
                             <span class="status-indicator-dot dot-disconnected" id="statusDot"></span>
-                            <h5 class="mb-0 fw-bold" id="connectionStatus">未连接</h5>
+                            <h5 class="mb-0 fw-bold" id="connectionStatus" style="font-size: 1rem; letter-spacing: 0.05em;">OFFLINE</h5>
                         </div>
-                        <p class="text-muted mb-0 small" id="connectionBroker">远程 FNAS 服务器尚未配置</p>
+                        <p class="text-secondary mb-0 small" id="connectionBroker" style="font-family: monospace;">Server not configured</p>
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="toggleSettingsCollapse()">
-                        <i class="fas fa-sliders-h me-2"></i>配置服务器
+                    <button class="btn btn-outline-light btn-sm px-3" onclick="toggleSettingsCollapse()">
+                        <i class="fas fa-sliders-h me-2"></i>Configure
                     </button>
                 </div>
             </div>
@@ -247,15 +190,15 @@
     </div>
 
     <div class="col-lg-4" id="emqxCard" style="display: none;">
-        <div class="card border-0 rounded-4 shadow-sm h-100" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(244, 114, 182, 0.05) 100%); border: 1px solid var(--border-color) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+        <div class="card h-100" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0) 100%);">
             <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center text-center">
-                <div class="rounded-circle p-3 mb-3" style="background: rgba(34, 211, 238, 0.1); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-external-link-alt fa-2x text-info"></i>
+                <div class="bg-primary bg-opacity-10 p-3 mb-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; border: 1px solid var(--primary-color);">
+                    <i class="fas fa-external-link-alt fa-xl text-primary"></i>
                 </div>
                 <h6 class="fw-bold mb-2">MQTT 后台管理</h6>
-                <p class="text-muted small mb-4">一键跳转至 EMQX 仪表盘，管理 MQTT 客户端与监控消息流量</p>
-                <a href="http://fnas:18083/" target="_blank" class="btn btn-outline-info rounded-pill px-4">
-                    <i class="fas fa-rocket me-2"></i>打开 EMQX 后台
+                <p class="text-secondary small mb-4">管理 MQTT 客户端与监控实时消息流量</p>
+                <a href="http://fnas:18083/" target="_blank" class="btn btn-primary w-100 py-2">
+                    <i class="fas fa-rocket me-2"></i>EMQX 控制台
                 </a>
             </div>
         </div>

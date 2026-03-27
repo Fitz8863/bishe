@@ -8,207 +8,125 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #f472b6;
-            --primary-dark: #db2777;
-            --primary-light: #fbcfe8;
-            --accent-color: #22d3ee;
-            --bg-dark: rgba(25, 25, 35, 0.4);
-            --bg-card: rgba(30, 30, 40, 0.6);
-            --text-primary: #fdf2f8;
-            --text-secondary: #fbcfe8;
-            --border-color: rgba(255, 255, 255, 0.2);
+            --bg-main: #020617;
+            --bg-card: #1e293b;
+            --primary-color: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
         }
         
         body {
-            background: url('{{ url_for('static', filename='image/back.png') }}') no-repeat center center fixed;
-            background-size: cover;
+            background-color: var(--bg-main);
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            font-family: "Microsoft YaHei", -apple-system, sans-serif;
+            font-family: "Inter", -apple-system, sans-serif;
             color: var(--text-primary);
         }
         
         .login-card {
             background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
-                        0 0 30px rgba(244, 114, 182, 0.1);
-            overflow: hidden;
-            max-width: 420px;
+            max-width: 400px;
             width: 100%;
-            animation: fadeIn 0.6s ease;
+            animation: fadeIn 0.4s ease-out;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .login-header {
-            background: linear-gradient(135deg, #f472b6 0%, #22d3ee 50%, #f472b6 100%);
-            padding: 40px 30px;
+            background: #0f172a;
+            padding: 2.5rem 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .login-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            border-bottom: 1px solid var(--border-color);
         }
         
         .login-header h3 {
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.25rem;
             margin: 0;
-            position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
         .login-header p {
-            color: rgba(255,255,255,0.9);
-            margin-top: 8px;
-            position: relative;
-        }
-        
-        .login-header i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-            position: relative;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         
         .login-body {
-            padding: 35px;
+            padding: 2.5rem 2rem;
         }
         
         .form-control {
-            background: var(--bg-dark);
+            background: #0f172a;
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            border-radius: 10px;
-            padding: 14px 16px;
-            transition: all 0.3s ease;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
         }
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
-            background: var(--bg-card);
+            background: #0f172a;
             color: var(--text-primary);
-            outline: none;
-        }
-        
-        .form-control::placeholder {
-            color: var(--text-secondary);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
         }
         
         .form-label {
             color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .form-check-input {
-            background-color: var(--bg-dark);
-            border-color: var(--border-color);
-        }
-        
-        .form-check-input:checked {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .form-check-label {
-            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
         }
         
         .btn-login {
-            background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+            background: var(--primary-color);
             border: none;
-            color: white;
-            padding: 14px;
-            font-weight: 600;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.3);
+            color: #020617;
+            padding: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
         }
         
         .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(244, 114, 182, 0.4);
-            background: linear-gradient(135deg, #fbcfe8 0%, #f472b6 100%);
-        }
-        
-        .btn-login:active {
-            transform: translateY(0);
-        }
-        
-        hr {
-            border-color: var(--border-color);
-            margin: 25px 0;
-        }
-        
-        .text-center {
-            color: var(--text-secondary);
-        }
-        
-        .text-center a {
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .text-center a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+            background: #7dd3fc;
+            transform: translateY(-1px);
         }
         
         .alert {
-            border-radius: 10px;
-            border: none;
+            font-size: 0.85rem;
+            border: 1px solid transparent;
+            background: #0f172a;
         }
         
         .alert-danger {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
+            color: #fca5a5;
+            border-color: #7f1d1d;
             border-left: 4px solid #ef4444;
-        }
-        
-        .alert-success {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border-left: 4px solid #10b981;
         }
     </style>
 </head>
 <body>
     <div class="login-card">
         <div class="login-header">
-            <i class="fas fa-shield-alt"></i>
-            <h3>欢迎回来</h3>
-            <p>请登录您的账号</p>
+            <h3>System Access</h3>
+            <p>化工危险行为检测系统 · 身份认证</p>
         </div>
         <div class="login-body">
             {% with messages = get_flashed_messages(with_categories=true) %}

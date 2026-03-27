@@ -4,115 +4,93 @@
 
 {% block content %}
 <div class="container-fluid fade-in">
-    <!-- 顶部欢迎语和概览 -->
-    <div class="row mb-4">
+    <div class="row mb-4 align-items-center">
         <div class="col-md-8">
-            <h2 class="fw-bold">
-                <i class="fas fa-shield-alt me-2 text-primary pulse-glow"></i>
-                <span class="text-gradient">化工厂危险行为监控中心</span>
+            <h2 class="fw-bold mb-1 text-white">
+                <i class="fas fa-shield-alt me-2 text-primary"></i>监控数据概览
             </h2>
-            <p class="text-muted small">欢迎回来, 管理员。当前系统运行状态: <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-3 rounded-pill">正常</span></p>
+            <p class="text-secondary small mb-0">化工厂安全行为实时检测系统 · <span class="text-success fw-bold">运行中</span></p>
         </div>
         <div class="col-md-4 text-end">
-            <div class="glass-card d-inline-flex align-items-center px-4 py-2">
-                <div class="me-3">
-                    <div class="x-small text-muted text-uppercase">系统时间</div>
-                    <div class="fw-bold" id="clock">00:00:00</div>
+            <div class="d-inline-flex align-items-center px-3 py-1 border border-secondary rounded">
+                <div class="me-3 text-start">
+                    <div class="x-small text-secondary text-uppercase fw-bold" style="font-size: 0.65rem; letter-spacing: 0.05em;">System Time</div>
+                    <div class="fw-bold text-primary" id="clock" style="font-family: monospace;">00:00:00</div>
                 </div>
-                <i class="fas fa-clock fa-2x text-primary opacity-50"></i>
+                <i class="fas fa-clock text-secondary opacity-50"></i>
             </div>
         </div>
     </div>
 
-    <!-- 核心统计数字 -->
-    <div class="row mb-4">
+    <div class="row mb-4 g-3">
         <div class="col-md-3">
-            <div class="stat-card">
-                <div class="stat-card-body">
-                    <div class="stat-icon bg-info-gradient"><i class="fas fa-video"></i></div>
-                    <div class="stat-info">
-                        <div class="stat-value" id="cameraCount">-</div>
-                        <div class="stat-label">总摄像头</div>
-                    </div>
-                </div>
+            <div class="card p-3">
+                <div class="stat-label mb-1">总摄像头</div>
+                <div class="stat-number" id="cameraCount">-</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card">
-                <div class="stat-card-body">
-                    <div class="stat-icon bg-success-gradient"><i class="fas fa-check-circle"></i></div>
-                    <div class="stat-info">
-                        <div class="stat-value text-success" id="onlineCount">-</div>
-                        <div class="stat-label">在线设备</div>
-                    </div>
-                </div>
+            <div class="card p-3 border-start border-4 border-success">
+                <div class="stat-label mb-1">在线设备</div>
+                <div class="stat-number text-success" id="onlineCount">-</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card">
-                <div class="stat-card-body">
-                    <div class="stat-icon bg-warning-gradient"><i class="fas fa-camera"></i></div>
-                    <div class="stat-info">
-                        <div class="stat-value text-warning" id="captureCount">-</div>
-                        <div class="stat-label">累计抓拍</div>
-                    </div>
-                </div>
+            <div class="card p-3 border-start border-4 border-warning">
+                <div class="stat-label mb-1">累计抓拍</div>
+                <div class="stat-number text-warning" id="captureCount">-</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card">
-                <div class="stat-card-body">
-                    <div class="stat-icon bg-danger-gradient"><i class="fas fa-exclamation-triangle"></i></div>
-                    <div class="stat-info">
-                        <div class="stat-value text-danger" id="todayCount">-</div>
-                        <div class="stat-label">今日告警</div>
-                    </div>
-                </div>
+            <div class="card p-3 border-start border-4 border-danger">
+                <div class="stat-label mb-1">今日告警</div>
+                <div class="stat-number text-danger" id="todayCount">-</div>
             </div>
         </div>
     </div>
 
-    <!-- 可视化大屏图表区 -->
     <div class="row mb-4">
-        <!-- 趋势图 -->
         <div class="col-lg-8">
-            <div class="chart-container glass-card h-100">
-                <div class="chart-header">
-                    <h6 class="mb-0"><i class="fas fa-chart-line me-2 text-primary"></i>告警趋势 (最近7天)</h6>
-                    <span class="badge bg-secondary bg-opacity-25 text-white x-small">实时数据</span>
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-chart-line me-2"></i>告警趋势分析</span>
+                    <span class="badge bg-secondary rounded-0 x-small">实时统计</span>
                 </div>
-                <div id="trendChart" style="height: 350px; width: 100%;"></div>
+                <div class="card-body p-0">
+                    <div id="trendChart" style="height: 350px; width: 100%;"></div>
+                </div>
             </div>
         </div>
-        <!-- 违规排行 -->
         <div class="col-lg-4">
-            <div class="chart-container glass-card h-100">
-                <div class="chart-header">
-                    <h6 class="mb-0"><i class="fas fa-chart-pie me-2 text-accent"></i>违规类型分布</h6>
+            <div class="card h-100">
+                <div class="card-header">
+                    <span><i class="fas fa-chart-pie me-2"></i>违规类型分布</span>
                 </div>
-                <div id="typeChart" style="height: 350px; width: 100%;"></div>
+                <div class="card-body p-0">
+                    <div id="typeChart" style="height: 350px; width: 100%;"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <!-- 地点热度 -->
         <div class="col-lg-4 mb-4">
-            <div class="chart-container glass-card h-100">
-                <div class="chart-header">
-                    <h6 class="mb-0"><i class="fas fa-map-marker-alt me-2 text-danger"></i>高危地点排行</h6>
+            <div class="card h-100">
+                <div class="card-header">
+                    <span><i class="fas fa-map-marker-alt me-2"></i>高危风险区域</span>
                 </div>
-                <div id="locationChart" style="height: 300px; width: 100%;"></div>
+                <div class="card-body p-0">
+                    <div id="locationChart" style="height: 300px; width: 100%;"></div>
+                </div>
             </div>
         </div>
-        <!-- 最近动态列表 -->
         <div class="col-lg-8 mb-4">
-            <div class="chart-container glass-card h-100">
-                <div class="chart-header d-flex justify-content-between">
-                    <h6 class="mb-0"><i class="fas fa-history me-2 text-success"></i>最新告警流水</h6>
-                    <a href="{{ url_for('main.alerts') }}" class="x-small text-primary text-decoration-none">查看更多 <i class="fas fa-chevron-right ms-1"></i></a>
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-history me-2"></i>最新告警流水</span>
+                    <a href="{{ url_for('main.alerts') }}" class="btn btn-sm btn-outline-light py-0">明细 <i class="fas fa-chevron-right ms-1" style="font-size: 0.7rem;"></i></a>
                 </div>
-                <div class="p-3" id="recentActivity">
+                <div id="recentActivity" class="list-group list-group-flush bg-transparent">
                     <!-- 动态加载 -->
                 </div>
             </div>
@@ -287,93 +265,81 @@
     }
 
     function initCharts() {
-        const themeColor = '#f472b6'; // 樱花粉
-        const accentColor = '#22d3ee'; // 科技青
+        const themeColor = '#38bdf8'; // 主色蓝
+        const accentColor = '#94a3b8'; // 辅助色
 
-        // 通用配置项
         const commonOption = {
             backgroundColor: 'transparent',
-            textStyle: { color: '#fbcfe8' }
+            textStyle: { color: '#94a3b8', fontFamily: 'monospace' }
         };
 
         // 1. 趋势图
         trendChart = echarts.init(document.getElementById('trendChart'));
         trendChart.setOption({
             ...commonOption,
-            tooltip: { trigger: 'axis' },
+            tooltip: { trigger: 'axis', backgroundColor: '#1e293b', borderColor: '#334155', textStyle: { color: '#fff' } },
             grid: { top: 40, bottom: 40, left: 50, right: 30 },
             xAxis: { 
                 type: 'category', 
                 data: [], 
-                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } } 
+                axisLine: { lineStyle: { color: '#334155' } } 
             },
             yAxis: { 
                 type: 'value', 
-                splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } 
+                splitLine: { lineStyle: { color: '#1e293b' } } 
             },
             series: [{
                 data: [],
                 type: 'line',
                 smooth: true,
-                symbol: 'circle',
-                symbolSize: 8,
+                symbol: 'square',
+                symbolSize: 6,
                 itemStyle: { color: themeColor },
-                lineStyle: { width: 3, shadowBlur: 10, shadowColor: themeColor },
+                lineStyle: { width: 2 },
                 areaStyle: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(244, 114, 182, 0.3)' },
-                        { offset: 1, color: 'rgba(244, 114, 182, 0)' }
+                        { offset: 0, color: 'rgba(56, 189, 248, 0.1)' },
+                        { offset: 1, color: 'rgba(56, 189, 248, 0)' }
                     ])
                 }
             }]
         });
 
-        // 2. 类型分布 (环形图)
+        // 2. 类型分布
         typeChart = echarts.init(document.getElementById('typeChart'));
         typeChart.setOption({
             ...commonOption,
             tooltip: { trigger: 'item' },
-            legend: { bottom: '0', textStyle: { color: '#94a3b8', fontSize: 10 } },
+            legend: { bottom: '10', textStyle: { color: '#94a3b8', fontSize: 10 }, icon: 'rect' },
             series: [{
                 name: '违规类型',
                 type: 'pie',
-                radius: ['50%', '70%'],
-                avoidLabelOverlap: false,
-                itemStyle: { borderRadius: 10, borderColor: '#191923', borderWidth: 2 },
+                radius: ['45%', '65%'],
+                itemStyle: { borderColor: '#1e293b', borderWidth: 2 },
                 label: { show: false },
-                emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
                 data: []
             }]
         });
 
-        // 3. 地点排行 (横向柱状图)
+        // 3. 地点排行
         locationChart = echarts.init(document.getElementById('locationChart'));
         locationChart.setOption({
             ...commonOption,
-            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            tooltip: { trigger: 'axis' },
             grid: { top: 20, bottom: 20, left: 80, right: 40 },
-            xAxis: { 
-                type: 'value', 
-                show: false 
-            },
+            xAxis: { type: 'value', show: false },
             yAxis: { 
                 type: 'category', 
                 data: [], 
                 axisLine: { show: false },
-                axisTick: { show: false },
-                textStyle: { fontSize: 11 }
+                axisTick: { show: false }
             },
             series: [{
                 type: 'bar',
                 data: [],
-                itemStyle: {
-                    borderRadius: [0, 10, 10, 0],
-                    color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-                        { offset: 0, color: accentColor },
-                        { offset: 1, color: 'rgba(34, 211, 238, 0.1)' }
-                    ])
-                },
-                label: { show: true, position: 'right', color: '#fff' }
+                itemStyle: { color: themeColor },
+                barWidth: 12,
+                label: { show: true, position: 'right', color: '#94a3b8', fontSize: 10, fontFamily: 'monospace' }
             }]
         });
 
@@ -460,15 +426,17 @@
 
         let html = '';
         captures.forEach(c => {
-            const timeStr = c.capture_time.split(' ')[1]; // 只取时间部分
+            const timeStr = c.capture_time.split(' ')[1];
             html += `
-                <div class="activity-item">
-                    <img src="/static/${c.thumbnail_path || c.image_path}" class="activity-thumb">
-                    <div class="activity-info">
-                        <div class="activity-type">${c.violation_type}</div>
-                        <div class="activity-loc">${c.location} · ${c.camera_id}</div>
+                <div class="list-group-item bg-transparent border-secondary border-opacity-10 d-flex align-items-center py-2 px-3">
+                    <img src="/static/${c.thumbnail_path || c.image_path}" style="width: 50px; height: 34px; object-fit: cover; border: 1px solid #334155;">
+                    <div class="ms-3 flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-white" style="font-size: 0.85rem;">${c.violation_type}</span>
+                            <span class="x-small text-secondary" style="font-family: monospace;">${timeStr}</span>
+                        </div>
+                        <div class="x-small text-secondary mt-1"><i class="fas fa-map-marker-alt me-1"></i>${c.location}</div>
                     </div>
-                    <div class="activity-time">${timeStr}</div>
                 </div>
             `;
         });

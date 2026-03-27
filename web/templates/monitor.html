@@ -7,8 +7,165 @@
     .monitor-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 1.25rem;
     }
+    .monitor-card {
+        background: #1e293b;
+        border: 1px solid var(--border-color);
+        transition: border-color 0.2s;
+    }
+    .monitor-card:hover {
+        border-color: var(--primary-color);
+    }
+    .monitor-header {
+        background: #0f172a;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .monitor-body {
+        padding: 0;
+        background: #000;
+        aspect-ratio: 16/9;
+        position: relative;
+    }
+    .monitor-body iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f172a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+    .video-overlay i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+    .video-overlay.hidden {
+        display: none;
+    }
+    .btn-refresh-stream {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .btn-refresh-stream:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+    .status-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 2px 8px;
+        border: 1px solid currentColor;
+    }
+    .status-normal {
+        color: var(--success-color);
+    }
+    .status-dot {
+        width: 6px;
+        height: 6px;
+        background: currentColor;
+        display: inline-block;
+        margin-right: 4px;
+    }
+    .monitor-stats {
+        padding: 0.5rem 1rem;
+        background: rgba(15, 23, 42, 0.5);
+        border-top: 1px solid var(--border-color);
+    }
+    .monitor-stats span {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-family: monospace;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 5rem 2rem;
+        color: var(--text-secondary);
+        grid-column: 1 / -1;
+        background: #1e293b;
+        border: 1px dashed var(--border-color);
+    }
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--border-color);
+    }
+    .intercom-bar {
+        background: #1e293b;
+        border: 1px solid var(--border-color);
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        display: none;
+        align-items: center;
+        gap: 1.25rem;
+    }
+    .intercom-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+    }
+    .status-dot-intercom {
+        width: 8px;
+        height: 8px;
+        background: #475569;
+    }
+    .status-active {
+        background: var(--danger-color);
+        box-shadow: 0 0 8px var(--danger-color);
+    }
+    .status-connecting {
+        background: var(--warning-color);
+    }
+    #intercomDeviceSelect {
+        background: #0f172a;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 0.75rem;
+        width: 280px;
+        font-size: 0.875rem;
+    }
+    .btn-intercom {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .btn-intercom-start {
+        background: var(--success-color);
+        color: #fff;
+    }
+    .btn-intercom-stop {
+        background: var(--danger-color);
+        color: #fff;
+    }
+
     .monitor-card {
         background: var(--bg-card);
         backdrop-filter: blur(12px);
@@ -560,23 +717,25 @@
         
         card.innerHTML = `
             <div class="monitor-header">
-                <span class="camera-name"><i class="fas fa-map-marker-alt me-2"></i>${name}</span>
+                <span class="fw-bold" style="font-size: 0.85rem; letter-spacing: 0.025em;">
+                    <i class="fas fa-video me-2 text-primary"></i>${name}
+                </span>
                 <span class="status-badge status-normal">
-                    <span class="status-dot"></span>activate
+                    <span class="status-dot"></span>Online
                 </span>
             </div>
             <div class="monitor-body">
                 <div class="video-overlay" id="overlay-${id}">
                     <i class="fas fa-circle-notch fa-spin"></i>
-                    <div class="x-small text-primary">正在建立安全视频链路...</div>
+                    <div class="x-small text-secondary" style="font-family: monospace;">STREAMING_SYNC...</div>
                 </div>
                 <iframe src="${webrtcUrl}" allowfullscreen data-url="${webrtcUrl}" onload="hideOverlay('${id}')"></iframe>
             </div>
             <div class="monitor-stats">
-                <div class="d-flex justify-content-between w-100 align-items-center">
-                    <span><i class="fas fa-video"></i> 远程视频流</span>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-microchip me-1"></i>Node: ${id}</span>
                     <button class="btn-refresh-stream" onclick="refreshStream('${id}')">
-                        <i class="fas fa-sync-alt me-1"></i>重新连接
+                        <i class="fas fa-sync-alt me-1"></i>Reconnect
                     </button>
                 </div>
             </div>
@@ -610,9 +769,9 @@
         const card = activeCameras.get(id);
         if (!card) return;
 
-        const nameEl = card.querySelector('.camera-name');
-        if (nameEl && nameEl.innerText !== name) {
-            nameEl.innerHTML = `<i class="fas fa-map-marker-alt me-2"></i>${name}`;
+        const nameEl = card.querySelector('.fw-bold');
+        if (nameEl && nameEl.innerText.trim() !== name) {
+            nameEl.innerHTML = `<i class="fas fa-video me-2 text-primary"></i>${name}`;
         }
 
         const iframe = card.querySelector('iframe');

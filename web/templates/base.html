@@ -12,12 +12,15 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">
-                <i class="fas fa-shield-alt me-2"></i>化工厂危险行为检测系统
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.index') }}">
+                <div class="bg-primary-color rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                    <i class="fas fa-shield-alt text-dark" style="font-size: 1rem;"></i>
+                </div>
+                <span>化工厂危险行为检测系统</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: rgba(244, 114, 182, 0.2);">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -80,40 +83,34 @@
     <!-- 实时通知容器 -->
     <div id="notification-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; width: 320px;"></div>
 
-    <div id="alarm-btn" style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; cursor: pointer; display: flex; align-items: center;">
+    <div id="alarm-btn" style="position: fixed; bottom: 24px; left: 24px; z-index: 10000; cursor: pointer; display: flex; align-items: center;">
         <div class="alarm-icon-part" style="
-            width: 40px;
-            height: 40px;
-            background: rgba(25, 25, 35, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            background: #0f172a;
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 2;
-            flex-shrink: 0;
         ">
-            <i class="fas fa-volume-up" id="alarm-icon" style="font-size: 1.1rem; color: #10b981;"></i>
+            <i class="fas fa-volume-up" id="alarm-icon" style="font-size: 1.1rem; color: var(--success-color);"></i>
         </div>
         <div class="alarm-text-part" style="
-            background: rgba(25, 25, 35, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: #1e293b;
+            border: 1px solid var(--border-color);
             border-left: none;
-            border-radius: 12px;
-            padding: 8px 16px;
-            color: white;
-            font-size: 0.75rem;
-            margin-left: -12px;
-            padding-left: 24px;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            margin-left: -4px;
+            padding-left: 12px;
             transform: translateX(-100%);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 1;
+            font-weight: 600;
         ">
             <span id="alarm-text">点击静音</span>
         </div>
@@ -121,18 +118,16 @@
 
     <div id="stop-alarm-btn" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10001; display: none; cursor: pointer;">
         <div style="
-            background: rgba(239, 68, 68, 0.95);
-            backdrop-filter: blur(10px);
-            border: 2px solid #fca5a5;
-            border-radius: 20px;
-            padding: 20px 40px;
+            background: var(--danger-color);
+            border: 1px solid #fca5a5;
+            padding: 16px 32px;
             color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            animation: pulse-border 1s infinite;
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         ">
-            <i class="fas fa-bell me-2"></i>点击停止报警
+            <i class="fas fa-bell me-2"></i>停止报警
         </div>
     </div>
 
@@ -275,13 +270,9 @@
             const toast = document.createElement('div');
             toast.className = 'fade-in mb-3';
             toast.style.cssText = `
-                background: rgba(25, 25, 35, 0.85);
-                backdrop-filter: blur(15px);
-                -webkit-backdrop-filter: blur(15px);
+                background: #1e293b;
                 border: 1px solid var(--primary-color);
-                border-radius: 15px;
-                padding: 15px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 15px var(--glow-color);
+                padding: 12px 16px;
                 color: white;
                 overflow: hidden;
                 position: relative;
@@ -289,20 +280,18 @@
 
             toast.innerHTML = `
                 <div class="d-flex align-items-center mb-2">
-                    <div class="rounded-circle bg-danger pulse-glow me-2" style="width: 10px; height: 10px;"></div>
-                    <strong class="me-auto text-primary" style="font-size: 0.9rem;">检测到新违规行为!</strong>
-                    <small class="text-muted x-small">${data.camera_id}</small>
-                    <button type="button" class="btn-close btn-close-white ms-2" style="font-size: 0.6rem;" onclick="this.parentElement.parentElement.remove()"></button>
+                    <div class="bg-danger me-2" style="width: 8px; height: 8px; border-radius: 0;"></div>
+                    <strong class="me-auto text-primary" style="font-size: 0.85rem; letter-spacing: 0.05em;">警报：检测到新违规</strong>
+                    <button type="button" class="btn-close btn-close-white ms-2" style="font-size: 0.5rem;" onclick="this.parentElement.parentElement.remove()"></button>
                 </div>
-                <div class="d-flex gap-3">
-                    <img src="${data.thumbnail}" class="rounded border border-secondary" style="width: 80px; height: 60px; object-fit: cover;">
+                <div class="d-flex gap-3 align-items-center">
+                    <img src="${data.thumbnail}" style="width: 70px; height: 50px; object-fit: cover; border: 1px solid var(--border-color);">
                     <div>
-                        <div class="fw-bold mb-1" style="font-size: 0.85rem; color: #fb7185;">${data.violation_type}</div>
-                        <div class="x-small text-muted"><i class="fas fa-map-marker-alt me-1"></i>${data.location}</div>
-                        <div class="x-small text-muted"><i class="fas fa-clock me-1"></i>${data.capture_time.split(' ')[1]}</div>
+                        <div class="fw-bold mb-1" style="font-size: 0.8rem; color: var(--danger-color);">${data.violation_type}</div>
+                        <div class="x-small text-secondary" style="font-family: monospace;">[${data.location}] ${data.capture_time.split(' ')[1]}</div>
                     </div>
                 </div>
-                <div style="position: absolute; bottom: 0; left: 0; height: 3px; background: var(--primary-color); width: 100%; animation: progress 5s linear forwards;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; height: 2px; background: var(--primary-color); width: 100%; animation: progress 5s linear forwards;"></div>
             `;
 
             container.appendChild(toast);
