@@ -1,0 +1,14 @@
+[0.019s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_streamer': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_streamer -- -j6 -l6
+[0.092s] Consolidate compiler generated dependencies of target intercom_node
+[0.107s] [ 50%] Built target streamer_node
+[0.113s] [ 75%] Building CXX object CMakeFiles/intercom_node.dir/src/intercom_node.cpp.o
+[4.502s] /home/jetson/projects/bishe/edge/src/bishe_streamer/src/intercom_node.cpp: In member function ‘void IntercomNode::startStream(const string&)’:
+[4.502s] /home/jetson/projects/bishe/edge/src/bishe_streamer/src/intercom_node.cpp:50:36: error: invalid operands of types ‘const char [10]’ and ‘const char*’ to binary ‘operator+’
+[4.503s]    50 |             "rtspsrc", "location=" + url.c_str(), "latency=0",
+[4.503s]       |                        ~~~~~~~~~~~ ^ ~~~~~~~~~~~
+[4.503s]       |                        |                      |
+[4.503s]       |                        const char [10]        const char*
+[9.109s] gmake[2]: *** [CMakeFiles/intercom_node.dir/build.make:76：CMakeFiles/intercom_node.dir/src/intercom_node.cpp.o] 错误 1
+[9.109s] gmake[1]: *** [CMakeFiles/Makefile2:165：CMakeFiles/intercom_node.dir/all] 错误 2
+[9.110s] gmake: *** [Makefile:146：all] 错误 2
+[9.114s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_streamer' returned '2': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_streamer -- -j6 -l6

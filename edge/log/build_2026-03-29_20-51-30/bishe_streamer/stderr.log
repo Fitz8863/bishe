@@ -1,0 +1,9 @@
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/intercom_node.cpp: In member function ‘void IntercomNode::startStream(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/intercom_node.cpp:50:36: error: invalid operands of types ‘const char [10]’ and ‘const char*’ to binary ‘operator+’
+   50 |             "rtspsrc", "location=" + url.c_str(), "latency=0",
+      |                        ~~~~~~~~~~~ ^ ~~~~~~~~~~~
+      |                        |                      |
+      |                        const char [10]        const char*
+gmake[2]: *** [CMakeFiles/intercom_node.dir/build.make:76：CMakeFiles/intercom_node.dir/src/intercom_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:165：CMakeFiles/intercom_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

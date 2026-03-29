@@ -40,18 +40,17 @@ private:
   {
     stopStream();
 
-    RCLCPP_INFO(this->get_logger(), "使用 ffmpeg 拉流: %s", url.c_str());
+    RCLCPP_INFO(this->get_logger(), "使用 GStreamer 拉流: %s", url.c_str());
 
     pid_t pid = fork();
     if (pid < 0) {
       RCLCPP_ERROR(this->get_logger(), "无法创建子进程 (fork failed)");
     } else if (pid == 0) {
-      // 子进程：仅执行 execl，禁止调用任何 ROS 2 API
-      // ffmpeg -i <url> -vn -f alsa default：丢弃视频，音频通过 ALSA 输出到默认设备，不依赖 DISPLAY
-      execl("/usr/local/bin/ffmpeg", "ffmpeg",
-            "-i", url.c_str(),
-            "-vn",
-            "-f", "alsa", "default",
+      std::string location = "location=" + url;
+      execl("/usr/bin/gst-launch-1.0", "gst-launch-1.0",
+            "rtspsrc", location.c_str(), "latency=0",
+            "!", "decodebin", "!", "audioconvert", "!", 
+            "alsasink", "device=hw:0",
             nullptr);
       _exit(1);
     } else {

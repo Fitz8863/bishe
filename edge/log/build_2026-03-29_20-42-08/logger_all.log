@@ -1,0 +1,278 @@
+[0.251s] colcon DEBUG Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'bishe_streamer', '--symlink-install']
+[0.251s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=6, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['bishe_streamer'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffb4df1a20>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffb4df14e0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffb4df14e0>>)
+[0.607s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.607s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.607s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.607s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.607s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) discover
+[0.608s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.608s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/home/jetson/projects/bishe/edge'
+[0.608s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.608s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ignore'
+[0.608s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ignore_ament_install'
+[0.608s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['colcon_pkg']
+[0.609s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'colcon_pkg'
+[0.609s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['colcon_meta']
+[0.609s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'colcon_meta'
+[0.609s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['ros']
+[0.609s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ros'
+[0.635s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['cmake', 'python']
+[0.636s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'cmake'
+[0.636s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'python'
+[0.636s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['python_setup_py']
+[0.636s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'python_setup_py'
+[0.636s] colcon.colcon_core.package_identification Level 1 _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(build) by extension 'ignore'
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(build) ignored
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'ignore'
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'ignore_ament_install'
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['colcon_pkg']
+[0.637s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'colcon_pkg'
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['colcon_meta']
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'colcon_meta'
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['ros']
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'ros'
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['cmake', 'python']
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'cmake'
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'python'
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extensions ['python_setup_py']
+[0.638s] colcon.colcon_core.package_identification Level 1 _identify(docs) by extension 'python_setup_py'
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['ignore', 'ignore_ament_install']
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'ignore'
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'ignore_ament_install'
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['colcon_pkg']
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'colcon_pkg'
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['colcon_meta']
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'colcon_meta'
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['ros']
+[0.639s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'ros'
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['cmake', 'python']
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'cmake'
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'python'
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extensions ['python_setup_py']
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers) by extension 'python_setup_py'
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['ignore', 'ignore_ament_install']
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'ignore'
+[0.640s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'ignore_ament_install'
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['colcon_pkg']
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'colcon_pkg'
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['colcon_meta']
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'colcon_meta'
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['ros']
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'ros'
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['cmake', 'python']
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'cmake'
+[0.641s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'python'
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extensions ['python_setup_py']
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/plans) by extension 'python_setup_py'
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['ignore', 'ignore_ament_install']
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'ignore'
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'ignore_ament_install'
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['colcon_pkg']
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'colcon_pkg'
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['colcon_meta']
+[0.642s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'colcon_meta'
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['ros']
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'ros'
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['cmake', 'python']
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'cmake'
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'python'
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extensions ['python_setup_py']
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(docs/superpowers/specs) by extension 'python_setup_py'
+[0.643s] colcon.colcon_core.package_identification Level 1 _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.644s] colcon.colcon_core.package_identification Level 1 _identify(install) by extension 'ignore'
+[0.644s] colcon.colcon_core.package_identification Level 1 _identify(install) ignored
+[0.644s] colcon.colcon_core.package_identification Level 1 _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.644s] colcon.colcon_core.package_identification Level 1 _identify(log) by extension 'ignore'
+[0.644s] colcon.colcon_core.package_identification Level 1 _identify(log) ignored
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['ignore', 'ignore_ament_install']
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'ignore'
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'ignore_ament_install'
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['colcon_pkg']
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'colcon_pkg'
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['colcon_meta']
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'colcon_meta'
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['ros']
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'ros'
+[0.645s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['cmake', 'python']
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'cmake'
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'python'
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(models) by extensions ['python_setup_py']
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(models) by extension 'python_setup_py'
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.646s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ignore'
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ignore_ament_install'
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['colcon_pkg']
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'colcon_pkg'
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['colcon_meta']
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'colcon_meta'
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['ros']
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ros'
+[0.647s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['cmake', 'python']
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'cmake'
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'python'
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['python_setup_py']
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'python_setup_py'
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extension 'ignore'
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extension 'ignore_ament_install'
+[0.648s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extensions ['colcon_pkg']
+[0.649s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extension 'colcon_pkg'
+[0.649s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extensions ['colcon_meta']
+[0.649s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extension 'colcon_meta'
+[0.649s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extensions ['ros']
+[0.649s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_camera) by extension 'ros'
+[0.655s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_camera' with type 'ros.ament_cmake' and name 'bishe_camera'
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extensions ['ignore', 'ignore_ament_install']
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extension 'ignore'
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extension 'ignore_ament_install'
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extensions ['colcon_pkg']
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extension 'colcon_pkg'
+[0.656s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extensions ['colcon_meta']
+[0.657s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extension 'colcon_meta'
+[0.657s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extensions ['ros']
+[0.657s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_detector) by extension 'ros'
+[0.659s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_detector' with type 'ros.ament_cmake' and name 'bishe_detector'
+[0.659s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extensions ['ignore', 'ignore_ament_install']
+[0.659s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extension 'ignore'
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extension 'ignore_ament_install'
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extensions ['colcon_pkg']
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extension 'colcon_pkg'
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extensions ['colcon_meta']
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extension 'colcon_meta'
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extensions ['ros']
+[0.660s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_launch) by extension 'ros'
+[0.661s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_launch' with type 'ros.ament_python' and name 'bishe_launch'
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extensions ['ignore', 'ignore_ament_install']
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extension 'ignore'
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extension 'ignore_ament_install'
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extensions ['colcon_pkg']
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extension 'colcon_pkg'
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extensions ['colcon_meta']
+[0.662s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extension 'colcon_meta'
+[0.663s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extensions ['ros']
+[0.663s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_monitor) by extension 'ros'
+[0.665s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_monitor' with type 'ros.ament_cmake' and name 'bishe_monitor'
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extensions ['ignore', 'ignore_ament_install']
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extension 'ignore'
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extension 'ignore_ament_install'
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extensions ['colcon_pkg']
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extension 'colcon_pkg'
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extensions ['colcon_meta']
+[0.665s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extension 'colcon_meta'
+[0.666s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extensions ['ros']
+[0.666s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_mqtt) by extension 'ros'
+[0.667s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_mqtt' with type 'ros.ament_cmake' and name 'bishe_mqtt'
+[0.667s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extension 'ignore'
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extension 'ignore_ament_install'
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extensions ['colcon_pkg']
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extension 'colcon_pkg'
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extensions ['colcon_meta']
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extension 'colcon_meta'
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extensions ['ros']
+[0.668s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_msgs) by extension 'ros'
+[0.670s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_msgs' with type 'ros.ament_cmake' and name 'bishe_msgs'
+[0.670s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extensions ['ignore', 'ignore_ament_install']
+[0.670s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extension 'ignore'
+[0.670s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extension 'ignore_ament_install'
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extensions ['colcon_pkg']
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extension 'colcon_pkg'
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extensions ['colcon_meta']
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extension 'colcon_meta'
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extensions ['ros']
+[0.671s] colcon.colcon_core.package_identification Level 1 _identify(src/bishe_streamer) by extension 'ros'
+[0.673s] colcon.colcon_core.package_identification DEBUG Package 'src/bishe_streamer' with type 'ros.ament_cmake' and name 'bishe_streamer'
+[0.673s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults
+[0.673s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) discover
+[0.673s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) using defaults
+[0.673s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) discover
+[0.674s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) using defaults
+[0.741s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_camera' in 'src/bishe_camera'
+[0.741s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_launch' in 'src/bishe_launch'
+[0.741s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_mqtt' in 'src/bishe_mqtt'
+[0.741s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_msgs' in 'src/bishe_msgs'
+[0.741s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_detector' in 'src/bishe_detector'
+[0.742s] colcon.colcon_core.package_selection INFO Skipping not selected package 'bishe_monitor' in 'src/bishe_monitor'
+[0.743s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) check parameters
+[0.743s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) discover
+[0.749s] colcon.colcon_installed_package_information.package_discovery DEBUG Found 271 installed packages in /opt/ros/humble
+[0.752s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) using defaults
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_args' from command line to 'None'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_target' from command line to 'None'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_clean_cache' from command line to 'False'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_clean_first' from command line to 'False'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'cmake_force_configure' from command line to 'False'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'ament_cmake_args' from command line to 'None'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'catkin_cmake_args' from command line to 'None'
+[0.836s] colcon.colcon_core.verb Level 5 set package 'bishe_streamer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.837s] colcon.colcon_core.verb DEBUG Building package 'bishe_streamer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/projects/bishe/edge/install/bishe_streamer', 'merge_install': False, 'path': '/home/jetson/projects/bishe/edge/src/bishe_streamer', 'symlink_install': True, 'test_result_base': None}
+[0.837s] colcon.colcon_core.executor INFO Executing jobs using 'parallel' executor
+[0.839s] colcon.colcon_parallel_executor.executor.parallel DEBUG run_until_complete
+[0.841s] colcon.colcon_ros.task.ament_cmake.build INFO Building ROS package in '/home/jetson/projects/bishe/edge/src/bishe_streamer' with build type 'ament_cmake'
+[0.841s] colcon.colcon_cmake.task.cmake.build INFO Building CMake package in '/home/jetson/projects/bishe/edge/src/bishe_streamer'
+[0.846s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.847s] colcon.colcon_core.shell INFO Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.847s] colcon.colcon_core.shell DEBUG Skip shell extension 'dsv' for command environment
+[0.881s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_streamer': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_streamer -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_streamer
+[2.055s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_streamer' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_streamer -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_streamer
+[2.059s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_streamer': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_streamer -- -j6 -l6
+[23.860s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_streamer' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_streamer -- -j6 -l6
+[23.881s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_streamer': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_streamer
+[23.923s] colcon.colcon_core.environment Level 1 create_environment_scripts_only(bishe_streamer)
+[23.925s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_streamer' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_streamer
+[23.930s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer' for CMake module files
+[23.931s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer' for CMake config files
+[23.932s] colcon.colcon_core.shell Level 1 create_environment_hook('bishe_streamer', 'cmake_prefix_path')
+[23.933s] colcon.colcon_core.shell INFO Creating environment hook '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.ps1'
+[23.934s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.dsv'
+[23.936s] colcon.colcon_core.shell INFO Creating environment hook '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.sh'
+[23.938s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib'
+[23.938s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/bin'
+[23.938s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib/pkgconfig/bishe_streamer.pc'
+[23.939s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib/python3.10/site-packages'
+[23.940s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/bin'
+[23.940s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.ps1'
+[23.943s] colcon.colcon_core.shell INFO Creating package descriptor '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.dsv'
+[23.944s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.sh'
+[23.946s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.bash'
+[23.948s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.zsh'
+[23.949s] colcon.colcon_core.environment Level 1 create_file_with_runtime_dependencies(/home/jetson/projects/bishe/edge/install/bishe_streamer/share/colcon-core/packages/bishe_streamer)
+[23.950s] colcon.colcon_core.environment Level 1 create_environment_scripts_only(bishe_streamer)
+[23.951s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer' for CMake module files
+[23.952s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer' for CMake config files
+[23.952s] colcon.colcon_core.shell Level 1 create_environment_hook('bishe_streamer', 'cmake_prefix_path')
+[23.953s] colcon.colcon_core.shell INFO Creating environment hook '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.ps1'
+[23.953s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.dsv'
+[23.954s] colcon.colcon_core.shell INFO Creating environment hook '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/hook/cmake_prefix_path.sh'
+[23.955s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib'
+[23.956s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/bin'
+[23.956s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib/pkgconfig/bishe_streamer.pc'
+[23.956s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/lib/python3.10/site-packages'
+[23.957s] colcon.colcon_core.environment Level 1 checking '/home/jetson/projects/bishe/edge/install/bishe_streamer/bin'
+[23.957s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.ps1'
+[23.959s] colcon.colcon_core.shell INFO Creating package descriptor '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.dsv'
+[23.960s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.sh'
+[23.961s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.bash'
+[23.962s] colcon.colcon_core.shell INFO Creating package script '/home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.zsh'
+[23.963s] colcon.colcon_core.environment Level 1 create_file_with_runtime_dependencies(/home/jetson/projects/bishe/edge/install/bishe_streamer/share/colcon-core/packages/bishe_streamer)
+[23.964s] colcon.colcon_parallel_executor.executor.parallel DEBUG closing loop
+[23.964s] colcon.colcon_parallel_executor.executor.parallel DEBUG loop closed
+[23.965s] colcon.colcon_parallel_executor.executor.parallel DEBUG run_until_complete finished with '0'
+[23.965s] colcon.colcon_core.event_reactor DEBUG joining thread
+[23.975s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[23.975s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[23.975s] colcon.colcon_notification.desktop_notification INFO Sending desktop notification using 'notify2'
+[24.331s] colcon.colcon_core.event_reactor DEBUG joined thread
+[24.332s] colcon.colcon_core.shell INFO Creating prefix script '/home/jetson/projects/bishe/edge/install/local_setup.ps1'
+[24.334s] colcon.colcon_core.shell INFO Creating prefix util module '/home/jetson/projects/bishe/edge/install/_local_setup_util_ps1.py'
+[24.337s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/jetson/projects/bishe/edge/install/setup.ps1'
+[24.338s] colcon.colcon_core.shell INFO Creating prefix script '/home/jetson/projects/bishe/edge/install/local_setup.sh'
+[24.339s] colcon.colcon_core.shell INFO Creating prefix util module '/home/jetson/projects/bishe/edge/install/_local_setup_util_sh.py'
+[24.340s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/jetson/projects/bishe/edge/install/setup.sh'
+[24.343s] colcon.colcon_core.shell INFO Creating prefix script '/home/jetson/projects/bishe/edge/install/local_setup.bash'
+[24.344s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/jetson/projects/bishe/edge/install/setup.bash'
+[24.346s] colcon.colcon_core.shell INFO Creating prefix script '/home/jetson/projects/bishe/edge/install/local_setup.zsh'
+[24.347s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/jetson/projects/bishe/edge/install/setup.zsh'

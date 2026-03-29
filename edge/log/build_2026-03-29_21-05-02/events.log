@@ -1,0 +1,264 @@
+[0.000000] (-) TimerEvent: {}
+[0.000607] (-) JobUnselected: {'identifier': 'bishe_camera'}
+[0.001299] (-) JobUnselected: {'identifier': 'bishe_detector'}
+[0.001817] (-) JobUnselected: {'identifier': 'bishe_launch'}
+[0.002219] (-) JobUnselected: {'identifier': 'bishe_monitor'}
+[0.002581] (-) JobUnselected: {'identifier': 'bishe_mqtt'}
+[0.003477] (-) JobUnselected: {'identifier': 'bishe_msgs'}
+[0.003662] (bishe_streamer) JobQueued: {'identifier': 'bishe_streamer', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs')])}
+[0.003790] (bishe_streamer) JobStarted: {'identifier': 'bishe_streamer'}
+[0.022029] (bishe_streamer) JobProgress: {'identifier': 'bishe_streamer', 'progress': 'cmake'}
+[0.023664] (bishe_streamer) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_streamer', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_streamer'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 39628 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe/edge'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-79f786c2-12d5-4c56-9461-2a9678be98ee.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '22532'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-94240dfbd8.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_streamer'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 39628 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[0.047333] (bishe_streamer) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099353] (-) TimerEvent: {}
+[0.199821] (-) TimerEvent: {}
+[0.300186] (-) TimerEvent: {}
+[0.302316] (bishe_streamer) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.313850] (bishe_streamer) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.362548] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.367070] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.378954] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.399169] (bishe_streamer) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.400253] (-) TimerEvent: {}
+[0.421380] (bishe_streamer) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.478046] (bishe_streamer) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.480132] (bishe_streamer) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.500441] (-) TimerEvent: {}
+[0.600830] (-) TimerEvent: {}
+[0.676677] (bishe_streamer) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.701010] (-) TimerEvent: {}
+[0.774256] (bishe_streamer) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.801179] (-) TimerEvent: {}
+[0.822044] (bishe_streamer) StdoutLine: {'line': b'-- Found image_transport: 3.1.12 (/opt/ros/humble/share/image_transport/cmake)\n'}
+[0.856824] (bishe_streamer) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.902339] (-) TimerEvent: {}
+[0.917500] (bishe_streamer) StdoutLine: {'line': b'-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)\n'}
+[1.002487] (-) TimerEvent: {}
+[1.090709] (bishe_streamer) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.102662] (-) TimerEvent: {}
+[1.136091] (bishe_streamer) StdoutLine: {'line': b'-- Generating done\n'}
+[1.148347] (bishe_streamer) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_streamer\n'}
+[1.172876] (bishe_streamer) CommandEnded: {'returncode': 0}
+[1.174122] (bishe_streamer) JobProgress: {'identifier': 'bishe_streamer', 'progress': 'build'}
+[1.175316] (bishe_streamer) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_streamer', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 39628 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe/edge'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-79f786c2-12d5-4c56-9461-2a9678be98ee.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '22532'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-94240dfbd8.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_streamer'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 39628 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[1.202801] (-) TimerEvent: {}
+[1.265026] (bishe_streamer) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target intercom_node\n'}
+[1.266712] (bishe_streamer) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target streamer_node\n'}
+[1.292008] (bishe_streamer) StdoutLine: {'line': b'[ 50%] Built target streamer_node\n'}
+[1.292547] (bishe_streamer) StdoutLine: {'line': b'[ 75%] Building CXX object CMakeFiles/intercom_node.dir/src/intercom_node.cpp.o\n'}
+[1.305855] (-) TimerEvent: {}
+[1.407416] (-) TimerEvent: {}
+[1.507785] (-) TimerEvent: {}
+[1.608142] (-) TimerEvent: {}
+[1.708490] (-) TimerEvent: {}
+[1.808859] (-) TimerEvent: {}
+[1.909212] (-) TimerEvent: {}
+[2.009695] (-) TimerEvent: {}
+[2.110057] (-) TimerEvent: {}
+[2.210421] (-) TimerEvent: {}
+[2.310784] (-) TimerEvent: {}
+[2.411160] (-) TimerEvent: {}
+[2.511533] (-) TimerEvent: {}
+[2.611923] (-) TimerEvent: {}
+[2.712300] (-) TimerEvent: {}
+[2.812649] (-) TimerEvent: {}
+[2.913025] (-) TimerEvent: {}
+[3.013405] (-) TimerEvent: {}
+[3.113782] (-) TimerEvent: {}
+[3.214156] (-) TimerEvent: {}
+[3.314592] (-) TimerEvent: {}
+[3.414989] (-) TimerEvent: {}
+[3.515361] (-) TimerEvent: {}
+[3.615714] (-) TimerEvent: {}
+[3.716054] (-) TimerEvent: {}
+[3.817125] (-) TimerEvent: {}
+[3.917480] (-) TimerEvent: {}
+[4.017826] (-) TimerEvent: {}
+[4.118240] (-) TimerEvent: {}
+[4.218609] (-) TimerEvent: {}
+[4.318937] (-) TimerEvent: {}
+[4.419298] (-) TimerEvent: {}
+[4.519665] (-) TimerEvent: {}
+[4.623807] (-) TimerEvent: {}
+[4.724200] (-) TimerEvent: {}
+[4.824569] (-) TimerEvent: {}
+[4.924923] (-) TimerEvent: {}
+[5.025321] (-) TimerEvent: {}
+[5.125673] (-) TimerEvent: {}
+[5.226064] (-) TimerEvent: {}
+[5.326528] (-) TimerEvent: {}
+[5.426904] (-) TimerEvent: {}
+[5.527263] (-) TimerEvent: {}
+[5.627713] (-) TimerEvent: {}
+[5.728074] (-) TimerEvent: {}
+[5.828616] (-) TimerEvent: {}
+[5.929309] (-) TimerEvent: {}
+[6.029737] (-) TimerEvent: {}
+[6.130164] (-) TimerEvent: {}
+[6.230602] (-) TimerEvent: {}
+[6.330962] (-) TimerEvent: {}
+[6.431334] (-) TimerEvent: {}
+[6.531785] (-) TimerEvent: {}
+[6.632147] (-) TimerEvent: {}
+[6.732583] (-) TimerEvent: {}
+[6.832998] (-) TimerEvent: {}
+[6.933485] (-) TimerEvent: {}
+[7.033886] (-) TimerEvent: {}
+[7.134356] (-) TimerEvent: {}
+[7.234776] (-) TimerEvent: {}
+[7.335162] (-) TimerEvent: {}
+[7.435825] (-) TimerEvent: {}
+[7.536227] (-) TimerEvent: {}
+[7.636672] (-) TimerEvent: {}
+[7.737041] (-) TimerEvent: {}
+[7.837422] (-) TimerEvent: {}
+[7.937833] (-) TimerEvent: {}
+[8.039120] (-) TimerEvent: {}
+[8.139496] (-) TimerEvent: {}
+[8.239869] (-) TimerEvent: {}
+[8.340348] (-) TimerEvent: {}
+[8.440719] (-) TimerEvent: {}
+[8.541078] (-) TimerEvent: {}
+[8.641433] (-) TimerEvent: {}
+[8.741786] (-) TimerEvent: {}
+[8.842132] (-) TimerEvent: {}
+[8.942582] (-) TimerEvent: {}
+[9.042955] (-) TimerEvent: {}
+[9.143361] (-) TimerEvent: {}
+[9.243730] (-) TimerEvent: {}
+[9.344070] (-) TimerEvent: {}
+[9.444419] (-) TimerEvent: {}
+[9.544749] (-) TimerEvent: {}
+[9.645146] (-) TimerEvent: {}
+[9.745570] (-) TimerEvent: {}
+[9.845944] (-) TimerEvent: {}
+[9.946325] (-) TimerEvent: {}
+[10.046705] (-) TimerEvent: {}
+[10.147946] (-) TimerEvent: {}
+[10.248290] (-) TimerEvent: {}
+[10.348661] (-) TimerEvent: {}
+[10.449043] (-) TimerEvent: {}
+[10.549411] (-) TimerEvent: {}
+[10.649887] (-) TimerEvent: {}
+[10.750252] (-) TimerEvent: {}
+[10.850637] (-) TimerEvent: {}
+[10.951006] (-) TimerEvent: {}
+[11.051358] (-) TimerEvent: {}
+[11.151703] (-) TimerEvent: {}
+[11.252112] (-) TimerEvent: {}
+[11.352451] (-) TimerEvent: {}
+[11.452787] (-) TimerEvent: {}
+[11.553155] (-) TimerEvent: {}
+[11.653518] (-) TimerEvent: {}
+[11.753911] (-) TimerEvent: {}
+[11.854277] (-) TimerEvent: {}
+[11.954614] (-) TimerEvent: {}
+[12.054953] (-) TimerEvent: {}
+[12.155322] (-) TimerEvent: {}
+[12.255691] (-) TimerEvent: {}
+[12.356042] (-) TimerEvent: {}
+[12.456968] (-) TimerEvent: {}
+[12.557342] (-) TimerEvent: {}
+[12.657723] (-) TimerEvent: {}
+[12.758081] (-) TimerEvent: {}
+[12.858506] (-) TimerEvent: {}
+[12.958827] (-) TimerEvent: {}
+[13.059166] (-) TimerEvent: {}
+[13.159488] (-) TimerEvent: {}
+[13.260133] (-) TimerEvent: {}
+[13.362221] (-) TimerEvent: {}
+[13.462589] (-) TimerEvent: {}
+[13.562911] (-) TimerEvent: {}
+[13.663231] (-) TimerEvent: {}
+[13.763567] (-) TimerEvent: {}
+[13.863876] (-) TimerEvent: {}
+[13.964230] (-) TimerEvent: {}
+[14.064577] (-) TimerEvent: {}
+[14.167408] (-) TimerEvent: {}
+[14.267814] (-) TimerEvent: {}
+[14.368185] (-) TimerEvent: {}
+[14.468524] (-) TimerEvent: {}
+[14.568848] (-) TimerEvent: {}
+[14.669200] (-) TimerEvent: {}
+[14.769572] (-) TimerEvent: {}
+[14.869935] (-) TimerEvent: {}
+[14.970352] (-) TimerEvent: {}
+[15.071216] (-) TimerEvent: {}
+[15.171552] (-) TimerEvent: {}
+[15.274421] (-) TimerEvent: {}
+[15.374763] (-) TimerEvent: {}
+[15.475393] (-) TimerEvent: {}
+[15.575718] (-) TimerEvent: {}
+[15.676042] (-) TimerEvent: {}
+[15.776373] (-) TimerEvent: {}
+[15.877489] (-) TimerEvent: {}
+[15.977840] (-) TimerEvent: {}
+[16.078211] (-) TimerEvent: {}
+[16.178679] (-) TimerEvent: {}
+[16.279056] (-) TimerEvent: {}
+[16.379556] (-) TimerEvent: {}
+[16.479961] (-) TimerEvent: {}
+[16.580308] (-) TimerEvent: {}
+[16.680624] (-) TimerEvent: {}
+[16.780968] (-) TimerEvent: {}
+[16.881337] (-) TimerEvent: {}
+[16.981663] (-) TimerEvent: {}
+[17.082012] (-) TimerEvent: {}
+[17.182432] (-) TimerEvent: {}
+[17.282775] (-) TimerEvent: {}
+[17.383110] (-) TimerEvent: {}
+[17.483441] (-) TimerEvent: {}
+[17.583784] (-) TimerEvent: {}
+[17.684119] (-) TimerEvent: {}
+[17.784446] (-) TimerEvent: {}
+[17.884789] (-) TimerEvent: {}
+[17.985455] (-) TimerEvent: {}
+[18.085791] (-) TimerEvent: {}
+[18.186148] (-) TimerEvent: {}
+[18.286492] (-) TimerEvent: {}
+[18.386868] (-) TimerEvent: {}
+[18.487210] (-) TimerEvent: {}
+[18.587565] (-) TimerEvent: {}
+[18.688343] (-) TimerEvent: {}
+[18.788680] (-) TimerEvent: {}
+[18.889011] (-) TimerEvent: {}
+[18.989387] (-) TimerEvent: {}
+[19.089733] (-) TimerEvent: {}
+[19.190139] (-) TimerEvent: {}
+[19.290563] (-) TimerEvent: {}
+[19.390968] (-) TimerEvent: {}
+[19.425120] (bishe_streamer) StdoutLine: {'line': b'[100%] Linking CXX executable intercom_node\n'}
+[19.491136] (-) TimerEvent: {}
+[19.591529] (-) TimerEvent: {}
+[19.691888] (-) TimerEvent: {}
+[19.792286] (-) TimerEvent: {}
+[19.892628] (-) TimerEvent: {}
+[19.992961] (-) TimerEvent: {}
+[20.093318] (-) TimerEvent: {}
+[20.131366] (bishe_streamer) StdoutLine: {'line': b'[100%] Built target intercom_node\n'}
+[20.159670] (bishe_streamer) CommandEnded: {'returncode': 0}
+[20.160948] (bishe_streamer) JobProgress: {'identifier': 'bishe_streamer', 'progress': 'install'}
+[20.178895] (bishe_streamer) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jetson/projects/bishe/edge/build/bishe_streamer'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 39628 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe/edge'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-79f786c2-12d5-4c56-9461-2a9678be98ee.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '22532'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-94240dfbd8.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_streamer'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 39628 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[20.193297] (bishe_streamer) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.193662] (-) TimerEvent: {}
+[20.193887] (bishe_streamer) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[20.194369] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/lib/bishe_streamer/streamer_node\n'}
+[20.194892] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/lib/bishe_streamer/intercom_node\n'}
+[20.195362] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/package_run_dependencies/bishe_streamer\n'}
+[20.195616] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/parent_prefix_path/bishe_streamer\n'}
+[20.195887] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/ament_prefix_path.sh\n'}
+[20.196167] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/ament_prefix_path.dsv\n'}
+[20.196461] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/path.sh\n'}
+[20.196708] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/path.dsv\n'}
+[20.196949] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.bash\n'}
+[20.197217] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.sh\n'}
+[20.197455] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.zsh\n'}
+[20.197688] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.dsv\n'}
+[20.197883] (bishe_streamer) StdoutLine: {'line': b'-- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.dsv\n'}
+[20.215836] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/packages/bishe_streamer\n'}
+[20.216195] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/cmake/bishe_streamerConfig.cmake\n'}
+[20.216333] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/cmake/bishe_streamerConfig-version.cmake\n'}
+[20.216487] (bishe_streamer) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.xml\n'}
+[20.218526] (bishe_streamer) CommandEnded: {'returncode': 0}
+[20.254984] (bishe_streamer) JobEnded: {'identifier': 'bishe_streamer', 'rc': 0}
+[20.255723] (-) EventReactorShutdown: {}

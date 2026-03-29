@@ -15,7 +15,7 @@ public:
     {
         this->declare_parameter<float>("scale", 1.0);
         this->declare_parameter<std::string>("rtsp_url", "rtsp://localhost:8554/stream");
-        this->declare_parameter<std::string>("audio_device", "hw:1,0");
+        this->declare_parameter<std::string>("audio_device", "hw:0,0");
         this->declare_parameter<int>("framerate", 60);
         this->declare_parameter<int>("output_width", 0);
         this->declare_parameter<int>("output_height", 0);
@@ -25,8 +25,6 @@ public:
         this->get_parameter("scale", scale_);
         this->get_parameter("audio_device", audio_device_);
         this->get_parameter("framerate", framerate_);
-
-        std::cout << "8555555555555555555" << this->audio_device_ << std::endl;
 
         stream_callback_group_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
         rclcpp::SubscriptionOptions sub_options;
@@ -94,7 +92,7 @@ private:
         std::string rtsp_out_full =
             "appsrc is-live=true do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! "
             "x264enc bitrate=8000 speed-preset=ultrafast tune=zerolatency key-int-max=30 ! h264parse ! queue ! sink. "
-            "alsasrc device=" + audio_device_ + " ! audioconvert ! audioresample ! "
+            "pulsesrc ! audioconvert ! audioresample ! "
             "voaacenc bitrate=128000 ! aacparse ! queue ! sink. "
             "rtspclientsink location=" + rtsp_url_ + " name=sink";
 

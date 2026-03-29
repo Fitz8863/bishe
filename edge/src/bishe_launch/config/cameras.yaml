@@ -12,7 +12,7 @@ cameras:
       worker_threads: 1
       max_queue_size: 8
     streamer:
-      rtsp_url: "rtsp://localhost:8554/stream_001"
+      rtsp_url: "rtsp://localhost:8554/stream_001"  # rtsp://jetson-orin-nano:8554/stream_001
       http_url: "http://fnas:8889/jetson-stream1"
       scale: 1.0
       audio_device: "hw:0,0"

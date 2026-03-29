@@ -1,0 +1,40 @@
+[0.496s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[0.538s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.764s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.786s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.835s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.839s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.851s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.867s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.889s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.946s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.948s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.164s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.382s] -- Configuring done
+[1.399s] -- Generating done
+[1.405s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_mqtt
+[1.453s] [35m[1mConsolidate compiler generated dependencies of target mqtt_node[0m
+[1.484s] [ 50%] [32mBuilding CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o[0m
+[21.504s] [100%] [32m[1mLinking CXX executable mqtt_node[0m
+[22.413s] [100%] Built target mqtt_node
+[22.430s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[22.433s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_mqtt
+[22.445s] -- Install configuration: ""
+[22.445s] -- Execute custom install script
+[22.446s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/lib/bishe_mqtt/mqtt_node
+[22.446s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/ament_index/resource_index/package_run_dependencies/bishe_mqtt
+[22.447s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/ament_index/resource_index/parent_prefix_path/bishe_mqtt
+[22.447s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/environment/ament_prefix_path.sh
+[22.447s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/environment/ament_prefix_path.dsv
+[22.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/environment/path.sh
+[22.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/environment/path.dsv
+[22.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/local_setup.bash
+[22.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/local_setup.sh
+[22.448s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/local_setup.zsh
+[22.449s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/local_setup.dsv
+[22.449s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/package.dsv
+[22.463s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/ament_index/resource_index/packages/bishe_mqtt
+[22.463s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/cmake/bishe_mqttConfig.cmake
+[22.463s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/cmake/bishe_mqttConfig-version.cmake
+[22.464s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_mqtt/share/bishe_mqtt/package.xml
+[22.467s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_mqtt
