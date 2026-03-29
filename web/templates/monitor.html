@@ -7,12 +7,30 @@
     .monitor-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    @media (max-width: 991.98px) {
+        .monitor-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    
+    /* 移动端适配：当屏幕较窄时切换为一行一个 */
+    @media (max-width: 991.98px) {
+        .monitor-grid {
+            grid-template-columns: 1fr;
+        }
     }
     .monitor-card {
         background: #1e293b;
         border: 1px solid var(--border-color);
         transition: border-color 0.2s;
+        display: flex;
+        flex-direction: column;
+        height: auto;
     }
     .monitor-card:hover {
         border-color: var(--primary-color);
@@ -28,10 +46,14 @@
     .monitor-body {
         padding: 0;
         background: #000;
+        width: 100%;
         aspect-ratio: 16/9;
         position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
     }
     .monitor-body iframe {
+        display: block;
         width: 100%;
         height: 100%;
         border: none;
@@ -90,7 +112,7 @@
     }
     .monitor-stats {
         padding: 0.5rem 1rem;
-        background: rgba(15, 23, 42, 0.5);
+        background: rgba(15, 23, 42, 0.8);
         border-top: 1px solid var(--border-color);
     }
     .monitor-stats span {
@@ -164,228 +186,6 @@
     .btn-intercom-stop {
         background: var(--danger-color);
         color: #fff;
-    }
-
-    .monitor-card {
-        background: var(--bg-card);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--border-color);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .monitor-card:hover {
-        transform: translateY(-5px) scale(1.01);
-        box-shadow: 0 15px 40px rgba(244, 114, 182, 0.2);
-        border-color: rgba(255, 255, 255, 0.4);
-        background: var(--bg-card-hover);
-    }
-    .monitor-header {
-        background: linear-gradient(135deg, rgba(244, 114, 182, 0.5) 0%, rgba(34, 211, 238, 0.5) 100%);
-        backdrop-filter: blur(5px);
-        color: white;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .monitor-body {
-        padding: 0;
-        background: rgba(0, 0, 0, 0.5);
-        min-height: 350px;
-        position: relative;
-    }
-    .monitor-body iframe {
-        width: 100%;
-        height: 350px;
-        border: none;
-    }
-    .video-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(15, 15, 25, 0.8);
-        backdrop-filter: blur(10px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        transition: all 0.5s ease;
-    }
-    .video-overlay i {
-        font-size: 3rem;
-        margin-bottom: 15px;
-        color: var(--primary-light);
-    }
-    .video-overlay.hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-    .btn-refresh-stream {
-        background: transparent;
-        border: 1px solid var(--primary-color);
-        color: var(--primary-light);
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        margin-top: 10px;
-        transition: all 0.3s ease;
-    }
-    .btn-refresh-stream:hover {
-        background: var(--primary-color);
-        color: white;
-        box-shadow: 0 0 15px var(--glow-color);
-    }
-    .status-badge {
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    .status-normal {
-        background: rgba(16, 185, 129, 0.2);
-        color: #34d399;
-    }
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #34d399;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-    .monitor-stats {
-        display: flex;
-        gap: 20px;
-        padding: 15px 20px;
-        background: var(--bg-dark);
-        border-top: 1px solid var(--border-color);
-    }
-    .monitor-stats span {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-    }
-    .empty-state {
-        text-align: center;
-        padding: 80px 20px;
-        color: var(--text-secondary);
-        grid-column: 1 / -1;
-        background: var(--bg-card);
-        border-radius: 15px;
-        border: 1px solid var(--border-color);
-    }
-    .empty-state i {
-        font-size: 5rem;
-        margin-bottom: 20px;
-        background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        opacity: 0.5;
-    }
-    .empty-state h5 {
-        color: var(--text-primary);
-    }
-    {% if not current_user.is_authenticated %}
-    .alert-info {
-        background: rgba(244, 114, 182, 0.15);
-        border: none;
-        border-radius: 10px;
-        padding: 20px;
-        color: var(--primary-light);
-    }
-    .alert-info a {
-        color: var(--accent-color);
-        font-weight: 600;
-    }
-    {% endif %}
-    @media (max-width: 768px) {
-        .monitor-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    .intercom-bar {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 15px 20px;
-        margin-bottom: 25px;
-        display: none; /* 默认隐藏，连接成功后显示 */
-        align-items: center;
-        gap: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .intercom-status {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-    }
-    .status-dot-intercom {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #94a3b8;
-    }
-    .status-active {
-        background: #ef4444;
-        animation: pulse 1s infinite;
-    }
-    .status-connecting {
-        background: #f59e0b;
-        animation: pulse 1s infinite;
-    }
-    #intercomDeviceSelect {
-        background: var(--bg-dark);
-        color: var(--text-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 6px 12px;
-        width: 250px;
-    }
-    .btn-intercom {
-        padding: 6px 20px;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    .btn-intercom-start {
-        background: #10b981;
-        border: none;
-        color: white;
-    }
-    .btn-intercom-start:hover {
-        background: #059669;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-    }
-    .btn-intercom-stop {
-        background: #ef4444;
-        border: none;
-        color: white;
-    }
-    .btn-intercom-stop:hover {
-        background: #dc2626;
-        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
-    }
-    .btn-intercom:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
     }
 </style>
 {% endblock %}
