@@ -16,6 +16,8 @@ class MQTTManager:
         self.last_info_time = 0
         # 存储多个设备的最新心跳数据: { device_id: {info: {...}, last_seen: timestamp} }
         self.devices = {}
+        # 存储舵机设备的心跳数据: { servo_id: {"info": {...}, "last_seen": timestamp} }
+        self.servo_devices = {}
     
     def connect(self):
         """连接MQTT服务器"""
@@ -41,6 +43,7 @@ class MQTTManager:
             print("MQTT连接成功")
             # 订阅设备信息主题
             client.subscribe("jetson/info")
+            client.subscribe("jetson/esp8266/info", qos=1)
         else:
             self.connected = False
             print(f"MQTT连接失败, 返回码: {rc}")
@@ -67,6 +70,18 @@ class MQTTManager:
                 self.connected = True # 收到消息说明连接肯定正常
             except Exception as e:
                 print(f"解析 jetson/info 消息失败: {e}")
+        elif msg.topic == "jetson/esp8266/info":
+            try:
+                payload = json.loads(msg.payload.decode('utf-8'))
+                servo_id = payload.get('id')
+                if servo_id:
+                    self.servo_devices[servo_id] = {
+                        'info': payload,
+                        'last_seen': time.time()
+                    }
+                    self.connected = True
+            except Exception as e:
+                print(f"解析 jetson/esp8266/info 消息失败: {e}")
             
     def _on_disconnect(self, client, userdata, rc):
         self.connected = False
@@ -172,6 +187,19 @@ class MQTTManager:
             'cameras': all_cameras,
             'devices': active_devices,
             'device_details': {dev_id: self.devices[dev_id]['info'] for dev_id in active_devices}
+        }
+
+    def send_servo_command(self, camera_id, col, row):
+        """发送舵机控制指令到 jetson/esp8266/cmd 主题"""
+        payload = {"id": camera_id, "col": col, "row": row}
+        return self.publish_raw("jetson/esp8266/cmd", payload)
+
+    def get_servo_status(self):
+        """返回在线舵机设备字典（10秒内有心跳视为在线）"""
+        now = time.time()
+        return {
+            sid: info for sid, info in self.servo_devices.items()
+            if now - info['last_seen'] < 10
         }
 
 

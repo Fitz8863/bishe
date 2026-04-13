@@ -296,3 +296,45 @@ def get_jetson_info():
         }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@settings_bp.route('/api/servo/control', methods=['POST'])
+def servo_control():
+    data = request.json
+    if not data:
+        return jsonify({'error': '请求体必须为JSON格式'}), 400
+    
+    camera_id = data.get('camera_id')
+    col = data.get('col')
+    row = data.get('row')
+    
+    if not camera_id:
+        return jsonify({'error': '缺少 camera_id'}), 400
+    if col is None or row is None:
+        return jsonify({'error': '缺少 col 或 row 参数'}), 400
+    
+    try:
+        col = int(col)
+        row = int(row)
+    except (TypeError, ValueError):
+        return jsonify({'error': 'col 和 row 必须为整数'}), 400
+    
+    if not (-10 <= col <= 10):
+        return jsonify({'error': f'col 必须在 -10~10 范围内，当前值: {col}'}), 400
+    if not (-8 <= row <= 8):
+        return jsonify({'error': f'row 必须在 -8~8 范围内，当前值: {row}'}), 400
+    
+    try:
+        from blueprints.mqtt_manager import mqtt_manager
+        if not mqtt_manager or not mqtt_manager.connected:
+            return jsonify({'error': 'MQTT未连接'}), 400
+        
+        success, message = mqtt_manager.send_servo_command(camera_id, col, row)
+        if success:
+            return jsonify({
+                'message': '舵机控制指令已发送',
+                'col': col,
+                'row': row
+            }), 200
+        return jsonify({'error': message}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

@@ -187,6 +187,147 @@
         background: var(--danger-color);
         color: #fff;
     }
+
+    /* Servo Control D-Pad */
+    .servo-panel {
+        padding: 1rem;
+        background: #0f172a;
+        border-top: 1px solid var(--border-color);
+    }
+    .servo-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+        padding: 0.5rem 0;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+    }
+    .servo-toggle.collapsed i:first-child {
+        transform: rotate(-90deg);
+    }
+    .servo-toggle i {
+        transition: transform 0.2s;
+    }
+    .dpad-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.75rem 0;
+    }
+    .dpad-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .dpad-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #1e293b;
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.15s;
+    }
+    .dpad-btn:hover:not(:disabled) {
+        background: #334155;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+    .dpad-btn:active:not(:disabled) {
+        transform: scale(0.95);
+    }
+    .dpad-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+    .dpad-btn.center-btn {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #fff;
+    }
+    .dpad-btn.center-btn:hover {
+        background: #4f46e5;
+    }
+    .servo-layout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+    .servo-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+    }
+    .row-slider-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding-left: 1.25rem;
+    }
+    .slider-track {
+        background: #1e293b;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        position: relative;
+    }
+    .slider-track.h-axis {
+        width: 130px;
+        height: 6px;
+    }
+    .slider-track.v-axis {
+        width: 6px;
+        height: 110px;
+    }
+    .slider-thumb {
+        position: absolute;
+        background: var(--primary-color);
+        border-radius: 50%;
+        transition: left 0.2s ease, top 0.2s ease;
+        box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+    }
+    .slider-track.h-axis .slider-thumb {
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .slider-track.v-axis .slider-thumb {
+        width: 16px;
+        height: 16px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .slider-label {
+        font-size: 0.55rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+    }
+    .slider-value {
+        font-family: monospace;
+        font-size: 0.7rem;
+        color: var(--primary-light);
+        font-weight: 700;
+    }
 </style>
 {% endblock %}
 
@@ -495,12 +636,16 @@
                     cameras.forEach(camera => {
                         if (!activeCameras.has(camera.id)) {
                             // 发现新上线的设备
-                            const card = createCameraCard(camera.id, camera.name, camera.webrtc_url);
+                            const card = createCameraCard(camera.id, camera.name, camera.webrtc_url, camera.has_servo);
                             monitorGrid.appendChild(card);
                             activeCameras.set(camera.id, card);
+                            if (camera.has_servo) {
+                                initServoState(camera.id);
+                                updateServoDisplay(camera.id);
+                            }
                         } else {
                             // 如果信息有变化则更新
-                            updateCameraCard(camera.id, camera.name, camera.webrtc_url);
+                            updateCameraCard(camera.id, camera.name, camera.webrtc_url, camera.has_servo);
                         }
                     });
                 }
@@ -510,10 +655,62 @@
             });
     }
 
-    function createCameraCard(id, name, webrtcUrl) {
+    function createCameraCard(id, name, webrtcUrl, hasServo) {
         const card = document.createElement('div');
         card.className = 'monitor-card';
         card.id = `camera-card-${id}`;
+        
+        const servoPanel = hasServo ? `
+        <div class="servo-panel">
+            <div class="servo-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#servo-${id}">
+                <i class="fas fa-chevron-down me-1"></i>
+                <i class="fas fa-gamepad me-1"></i>远程控制
+            </div>
+            <div class="collapse" id="servo-${id}">
+                <div class="servo-layout">
+                    <div class="servo-main">
+                        <div class="col-slider-area">
+                            <span class="slider-label">COL</span>
+                            <div class="slider-track h-axis">
+                                <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
+                            </div>
+                            <span class="slider-value" id="servo-col-val-${id}">0</span>
+                        </div>
+                        <div class="dpad-container">
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Row +1">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Col -1">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="dpad-btn center-btn" onclick="servoCenter('${id}')" title="归中">
+                                    <i class="fas fa-circle"></i>
+                                </button>
+                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Col +1">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Row -1">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-slider-area">
+                        <span class="slider-label">ROW</span>
+                        <div class="slider-track v-axis">
+                            <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
+                        </div>
+                        <span class="slider-value" id="servo-row-val-${id}">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ` : '';
         
         card.innerHTML = `
             <div class="monitor-header">
@@ -539,6 +736,7 @@
                     </button>
                 </div>
             </div>
+            ${servoPanel}
         `;
         return card;
     }
@@ -565,7 +763,7 @@
         }, 100);
     }
 
-    function updateCameraCard(id, name, webrtcUrl) {
+    function updateCameraCard(id, name, webrtcUrl, hasServo) {
         const card = activeCameras.get(id);
         if (!card) return;
 
@@ -578,9 +776,147 @@
         if (iframe && iframe.getAttribute('data-url') !== webrtcUrl) {
             iframe.src = webrtcUrl;
             iframe.setAttribute('data-url', webrtcUrl);
-            const urlLabel = card.querySelector('.camera-url-label');
-            if (urlLabel) urlLabel.innerHTML = `<i class="fas fa-link"></i> ${webrtcUrl}`;
         }
+
+        const existingPanel = card.querySelector('.servo-panel');
+        if (hasServo && !existingPanel) {
+            const panelHtml = `
+        <div class="servo-panel">
+            <div class="servo-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#servo-${id}">
+                <i class="fas fa-chevron-down me-1"></i>
+                <i class="fas fa-gamepad me-1"></i>远程控制
+            </div>
+            <div class="collapse" id="servo-${id}">
+                <div class="servo-layout">
+                    <div class="servo-main">
+                        <div class="col-slider-area">
+                            <span class="slider-label">COL</span>
+                            <div class="slider-track h-axis">
+                                <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
+                            </div>
+                            <span class="slider-value" id="servo-col-val-${id}">0</span>
+                        </div>
+                        <div class="dpad-container">
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Row +1">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Col -1">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="dpad-btn center-btn" onclick="servoCenter('${id}')" title="归中">
+                                    <i class="fas fa-circle"></i>
+                                </button>
+                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Col +1">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="dpad-row">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Row -1">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-slider-area">
+                        <span class="slider-label">ROW</span>
+                        <div class="slider-track v-axis">
+                            <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
+                        </div>
+                        <span class="slider-value" id="servo-row-val-${id}">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+            card.insertAdjacentHTML('beforeend', panelHtml);
+        } else if (!hasServo && existingPanel) {
+            existingPanel.remove();
+            servoState.delete(id);
+        }
+    }
+
+    // Servo control state per camera
+    const servoState = new Map();
+
+    function initServoState(cameraId) {
+        if (!servoState.has(cameraId)) {
+            servoState.set(cameraId, { col: 0, row: 0, debounce: false });
+        }
+    }
+
+    function servoMove(cameraId, deltaCol, deltaRow) {
+        if (!servoState.has(cameraId)) {
+            servoState.set(cameraId, { col: 0, row: 0, debounce: false });
+        }
+        const state = servoState.get(cameraId);
+        if (state.debounce) return;
+
+        const newCol = state.col + deltaCol;
+        const newRow = state.row + deltaRow;
+
+        if (newCol < -10 || newCol > 10 || newRow < -8 || newRow > 8) return;
+
+        state.col = newCol;
+        state.row = newRow;
+        updateServoDisplay(cameraId);
+        sendServoCommand(cameraId, state.col, state.row);
+        state.debounce = true;
+        setTimeout(() => { state.debounce = false; }, 200);
+    }
+
+    function servoCenter(cameraId) {
+        if (!servoState.has(cameraId)) {
+            servoState.set(cameraId, { col: 0, row: 0, debounce: false });
+        }
+        const state = servoState.get(cameraId);
+        state.col = 0;
+        state.row = 0;
+        updateServoDisplay(cameraId);
+        sendServoCommand(cameraId, 0, 0);
+    }
+
+    function updateServoDisplay(cameraId) {
+        const state = servoState.get(cameraId);
+        if (!state) return;
+
+        const rowValEl = document.getElementById(`servo-row-val-${cameraId}`);
+        const colValEl = document.getElementById(`servo-col-val-${cameraId}`);
+        if (rowValEl) rowValEl.textContent = state.row;
+        if (colValEl) colValEl.textContent = state.col;
+
+        const rowThumb = document.getElementById(`servo-row-thumb-${cameraId}`);
+        const colThumb = document.getElementById(`servo-col-thumb-${cameraId}`);
+        
+        const rowPct = ((state.row + 8) / 16) * 100;
+        const colPct = ((state.col + 10) / 20) * 100;
+        
+        if (rowThumb) rowThumb.style.top = `${100 - rowPct}%`;
+        if (colThumb) colThumb.style.left = `${colPct}%`;
+
+        const card = document.getElementById(`camera-card-${cameraId}`);
+        if (!card) return;
+        card.querySelectorAll('.dpad-btn:not(.center-btn)').forEach(btn => {
+            const onclick = btn.getAttribute('onclick') || '';
+            const match = onclick.match(/servoMove\('[^']+',\s*(-?\d+),\s*(-?\d+)\)/);
+            if (!match) return;
+            const [, dc, dr] = match.map(Number);
+            btn.disabled = state.col + dc < -10 || state.col + dc > 10 || state.row + dr < -8 || state.row + dr > 8;
+        });
+    }
+
+    function sendServoCommand(cameraId, col, row) {
+        fetch('/settings/api/servo/control', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ camera_id: cameraId, col, row })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) console.error(`舵机控制失败: ${data.error}`);
+        })
+        .catch(err => console.error(`舵机请求异常: ${err}`));
     }
 
     window.onbeforeunload = function() {

@@ -27,19 +27,20 @@
     }
 
     .table tbody tr {
-        background: transparent !important;
+        background: rgba(0, 0, 0, 0.6) !important;
         border-bottom: 1px solid var(--border-color);
         transition: background-color 0.2s;
     }
 
     .table tbody tr:hover {
-        background: rgba(255, 255, 255, 0.02) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
     }
 
     .table td {
         padding: 0.875rem 1rem;
-        color: var(--text-primary) !important;
+        color: #ffffff !important; /* 强制纯白，确保对比度 */
         font-size: 0.875rem;
+        background-color: transparent !important; /* 确保 td 不会自带背景 */
     }
 
     .preview-img {
@@ -225,7 +226,7 @@
     <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title fw-bold text-white" style="text-transform: uppercase; letter-spacing: 0.05em;">SECURITY_CHECK</h6>
+                <h6 class="modal-title fw-bold text-white" style="text-transform: uppercase; letter-spacing: 0.05em;">检查管理员权限</h6>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -233,8 +234,8 @@
                 <input type="password" class="form-control" id="adminPassword" placeholder="Admin Password">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-light px-3" data-bs-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-sm btn-danger px-3" id="confirmDeleteBtn">CONFIRM_DELETE</button>
+                <button type="button" class="btn btn-sm btn-outline-light px-3" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-sm btn-danger px-3" id="confirmDeleteBtn">确定</button>
             </div>
         </div>
     </div>
@@ -334,7 +335,7 @@
                             <td class="text-secondary" style="font-family: monospace;">${capture.capture_time}</td>
                             <td class="text-end">
                                 <button class="btn-delete" onclick="prepareDelete(${capture.id})">
-                                    DELETE
+                                    删除
                                 </button>
                             </td>
                         `;

@@ -83,7 +83,7 @@
     <!-- 实时通知容器 -->
     <div id="notification-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; width: 320px;"></div>
 
-    <div id="alarm-btn" style="position: fixed; bottom: 24px; left: 24px; z-index: 10000; cursor: pointer; display: flex; align-items: center;">
+    <div id="alarm-btn" style="position: fixed; bottom: 24px; right: 24px; z-index: 10000; cursor: pointer; display: flex; align-items: center; flex-direction: row-reverse;">
         <div class="alarm-icon-part" style="
             width: 44px;
             height: 44px;
@@ -99,13 +99,13 @@
         <div class="alarm-text-part" style="
             background: #1e293b;
             border: 1px solid var(--border-color);
-            border-left: none;
+            border-right: none;
             padding: 10px 16px;
             color: var(--text-primary);
             font-size: 0.8rem;
-            margin-left: -4px;
-            padding-left: 12px;
-            transform: translateX(-100%);
+            margin-right: -4px;
+            padding-right: 12px;
+            transform: translateX(100%);
             opacity: 0;
             transition: all 0.2s ease;
             white-space: nowrap;

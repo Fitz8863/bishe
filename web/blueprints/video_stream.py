@@ -94,13 +94,17 @@ def list_cameras():
     # 获取动态MQTT发现的摄像头
     dynamic_cameras = []
     active_info = mqtt_manager.get_active_cameras()
+    online_servos = mqtt_manager.get_servo_status()
+    
     for cam in active_info:
-        dynamic_cameras.append({
+        cam_data = {
             'id': cam['id'],
             'name': cam.get('location', f"摄像头 {cam['id']}"),
-            'webrtc_url': cam.get('http_url'), # 兼容前端
-            'is_dynamic': True
-        })
+            'webrtc_url': cam.get('http_url'),
+            'is_dynamic': True,
+            'has_servo': cam['id'] in online_servos
+        }
+        dynamic_cameras.append(cam_data)
     
     return jsonify({
         'cameras': dynamic_cameras,
