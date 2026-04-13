@@ -1,0 +1,6 @@
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_detector/src/yolo.cc:25:1:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K;[m[K’ before ‘[01m[Kconst[m[K’
+   25 | [01;31m[Kconst[m[K std::array<cv::Scalar, 80> YOLO::kClassColors = {
+      | [01;31m[K^~~~~[m[K
+gmake[2]: *** [CMakeFiles/detector_node.dir/build.make:90：CMakeFiles/detector_node.dir/src/yolo.cc.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/detector_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

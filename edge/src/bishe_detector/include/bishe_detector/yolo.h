@@ -1,5 +1,8 @@
 # pragma once
 
+#include <array>
+#include <string>
+
 #include "trt_engine.h"
 
 struct DetectionBox {
@@ -32,6 +35,6 @@ protected:
 
     std::unique_ptr<TrtEngine> trt_engine_;
 
-    static const std::array<std::string, 80> kClassNames;
+    static const std::array<std::string, 4> kClassNames;
     static const std::array<cv::Scalar, 80> kClassColors;
 };

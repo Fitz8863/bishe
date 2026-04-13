@@ -6,9 +6,9 @@ cameras:
     height: 1080
     framerate: 30
     detector:
-      confidence_threshold: 0.45
+      confidence_threshold: 0.25
       nms_threshold: 0.5
-      engine_path: "models/yolov8s.engine"
+      engine_path: "models/best.engine"
       worker_threads: 1
       max_queue_size: 8
     streamer:
@@ -24,10 +24,13 @@ cameras:
   #   width: 1920
   #   height: 1080
   #   framerate: 30
+    # control_topic: "esp8266/cmd"
+    # control_hart: "esp8266/info"
+    # control_device_id: "esp8266_002"
   #   detector:
   #     confidence_threshold: 0.4
   #     nms_threshold: 0.5
-  #     engine_path: "models/yolov8s.engine"
+  #     engine_path: "models/best.engine"
   #     worker_threads: 1
   #     max_queue_size: 8
   #   streamer:

@@ -27,6 +27,7 @@ protected:
     DetectionResult BuildDetectionResult(cv::Mat& output, const cv::Mat& original_img, const cv::Size& original_size);
 
     size_t bbox_pred_dim_; //dimension of bounding box encoding
+    size_t num_classes_;
     size_t num_anchors_; 
     size_t input_size_; // input_size of the nn
     std::atomic<float> score_treshold_;

@@ -2,20 +2,25 @@
 
 YOLO::YOLO(std::unique_ptr<TrtEngine> trt_engine) : trt_engine_{std::move(trt_engine)} {}
 
-const std::array<std::string, 80> YOLO::kClassNames = {
-    "person",         "bicycle",    "car",           "motorcycle",    "airplane",     "bus",           "train",
-    "truck",          "boat",       "traffic light", "fire hydrant",  "stop sign",    "parking meter", "bench",
-    "bird",           "cat",        "dog",           "horse",         "sheep",        "cow",           "elephant",
-    "bear",           "zebra",      "giraffe",       "backpack",      "umbrella",     "handbag",       "tie",
-    "suitcase",       "frisbee",    "skis",          "snowboard",     "sports ball",  "kite",          "baseball bat",
-    "baseball glove", "skateboard", "surfboard",     "tennis racket", "bottle",       "wine glass",    "cup",
-    "fork",           "knife",      "spoon",         "bowl",          "banana",       "apple",         "sandwich",
-    "orange",         "broccoli",   "carrot",        "hot dog",       "pizza",        "donut",         "cake",
-    "chair",          "couch",      "potted plant",  "bed",           "dining table", "toilet",        "tv",
-    "laptop",         "mouse",      "remote",        "keyboard",      "cell phone",   "microwave",     "oven",
-    "toaster",        "sink",       "refrigerator",  "book",          "clock",        "vase",          "scissors",
-    "teddy bear",     "hair drier", "toothbrush"
+const std::array<std::string, 4> YOLO::kClassNames = {
+ "fire","smoking","helmet","person"
+
 };
+
+// const std::array<std::string, 80> YOLO::kClassNames = {
+//     "person",         "bicycle",    "car",           "motorcycle",    "airplane",     "bus",           "train",
+//     "truck",          "boat",       "traffic light", "fire hydrant",  "stop sign",    "parking meter", "bench",
+//     "bird",           "cat",        "dog",           "horse",         "sheep",        "cow",           "elephant",
+//     "bear",           "zebra",      "giraffe",       "backpack",      "umbrella",     "handbag",       "tie",
+//     "suitcase",       "frisbee",    "skis",          "snowboard",     "sports ball",  "kite",          "baseball bat",
+//     "baseball glove", "skateboard", "surfboard",     "tennis racket", "bottle",       "wine glass",    "cup",
+//     "fork",           "knife",      "spoon",         "bowl",          "banana",       "apple",         "sandwich",
+//     "orange",         "broccoli",   "carrot",        "hot dog",       "pizza",        "donut",         "cake",
+//     "chair",          "couch",      "potted plant",  "bed",           "dining table", "toilet",        "tv",
+//     "laptop",         "mouse",      "remote",        "keyboard",      "cell phone",   "microwave",     "oven",
+//     "toaster",        "sink",       "refrigerator",  "book",          "clock",        "vase",          "scissors",
+//     "teddy bear",     "hair drier", "toothbrush"
+// };
 
 const std::array<cv::Scalar, 80> YOLO::kClassColors = {
     cv::Scalar(0, 114, 189),   cv::Scalar(217, 83, 25),   cv::Scalar(237, 177, 32),  cv::Scalar(126, 47, 142),

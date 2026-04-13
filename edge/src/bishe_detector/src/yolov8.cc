@@ -1,5 +1,7 @@
 #include "yolov8.h"
 
+#include <stdexcept>
+
 YOLOv8::YOLOv8(std::unique_ptr<TrtEngine> trt_engine, float score_treshold, float nms_treshold) : YOLO(std::move(trt_engine)), score_treshold_(score_treshold), nms_treshold_(nms_treshold) {
     std::vector<size_t> input_dim = trt_engine_->GetInputDim();
     assert(input_dim.size() == 4); // support only dim [batch_size, channels, height, width]
@@ -10,10 +12,16 @@ YOLOv8::YOLOv8(std::unique_ptr<TrtEngine> trt_engine, float score_treshold, floa
     std::vector<size_t> output_dim = trt_engine_->GetOutputDim();
     assert(output_dim.size() == 3); // support only dim [batch_size, xyxy + classes scores]
     assert(output_dim[0] == 1); // support only batch_size of 1
-    assert(output_dim[1] == 84); // support only xyxy + class scores[80]
+    assert(output_dim[1] > 4);
 
     input_size_ = input_dim[2];
     bbox_pred_dim_ = output_dim[1];
+    num_classes_ = bbox_pred_dim_ - 4;
+    if (num_classes_ != kClassNames.size()) {
+        throw std::runtime_error(
+            "Model class count (" + std::to_string(num_classes_) +
+            ") does not match configured kClassNames count (" + std::to_string(kClassNames.size()) + ")");
+    }
     num_anchors_ = output_dim[2];
     AllocateBuffers();
 }
@@ -69,9 +77,11 @@ void YOLOv8::DrawBBoxes(const cv::Mat& image, std::vector<cv::Rect> boxes, std::
         std::stringstream stream;
         stream << std::fixed << std::setprecision(2) << confidences[i];
         std::string conf_str = stream.str();
+        const std::string class_name = kClassNames[class_ids[i]];
+        const cv::Scalar class_color = kClassColors[class_ids[i] % kClassColors.size()];
 
-        cv::rectangle(image, boxes[i], kClassColors[class_ids[i]], 3);
-        cv::putText(image, kClassNames[class_ids[i]] + " " + conf_str, cv::Point(boxes[i].x, boxes[i].y - 10),
+        cv::rectangle(image, boxes[i], class_color, 3);
+        cv::putText(image, class_name + " " + conf_str, cv::Point(boxes[i].x, boxes[i].y - 10),
             cv::FONT_HERSHEY_SIMPLEX, 0.9, cv::Scalar(255, 255, 255), 2);
     }
 }
@@ -111,7 +121,7 @@ DetectionResult YOLOv8::BuildDetectionResult(cv::Mat& output, const cv::Mat& ori
     for (int i = 0; i < output.rows; ++i) {
 
         float* row_ptr = output.ptr<float>(i);
-        cv::Mat row_scores(1, kClassNames.size(), CV_32F, row_ptr + 4);
+        cv::Mat row_scores(1, static_cast<int>(num_classes_), CV_32F, row_ptr + 4);
 
         // compute argmax which is class_id
         cv::minMaxLoc(row_scores, 0, &max_score, 0, &class_id);

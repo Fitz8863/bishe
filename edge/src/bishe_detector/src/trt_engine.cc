@@ -59,13 +59,20 @@ void TrtEngine::BuildEngine(const std::string& onnx_filepath, const std::string&
 void TrtEngine::LoadEngine(const std::string& engine_filepath) {
 
     std::ifstream file{engine_filepath, std::ios::binary | std::ios::ate};
+    if (!file.is_open()) {
+        throw std::runtime_error("Error, unable to open engine file: " + engine_filepath);
+    }
+
     std::streamsize size = file.tellg();
+    if (size <= 0) {
+        throw std::runtime_error("Error, engine file is empty or unreadable: " + engine_filepath);
+    }
+
     file.seekg(0, std::ios::beg);
 
     std::vector<char> buffer(size);
     if (!file.read(buffer.data(), size)) {
-        auto msg = "Error, unable to read engine file";
-        throw std::runtime_error("Error, unable to read engine file");
+        throw std::runtime_error("Error, unable to read engine file: " + engine_filepath);
     }
 
     runtime_ = std::unique_ptr<nvinfer1::IRuntime>(nvinfer1::createInferRuntime(logger_));
@@ -108,9 +115,27 @@ void TrtEngine::Inference(void *input_tensor, void *output_tensor) {
 std::vector<size_t> TrtEngine::GetInputDim() {
     std::vector<size_t> input_dim;
     if(engine_) {
-        const nvinfer1::Dims dim = engine_->getTensorShape(input_tensor_name_.c_str());
-        for(size_t i=0; i<dim.nbDims; ++i) {
-            input_dim.push_back(dim.d[i]);
+        nvinfer1::Dims dim = engine_->getTensorShape(input_tensor_name_.c_str());
+
+        bool has_dynamic_dim = false;
+        for (int i = 0; i < dim.nbDims; ++i) {
+            if (dim.d[i] <= 0) {
+                has_dynamic_dim = true;
+                break;
+            }
+        }
+
+        if (has_dynamic_dim && context_) {
+            const nvinfer1::Dims opt_dim = engine_->getProfileShape(input_tensor_name_.c_str(), 0, nvinfer1::OptProfileSelector::kOPT);
+            context_->setInputShape(input_tensor_name_.c_str(), opt_dim);
+            dim = context_->getTensorShape(input_tensor_name_.c_str());
+        }
+
+        for (int i = 0; i < dim.nbDims; ++i) {
+            if (dim.d[i] <= 0) {
+                throw std::runtime_error("Failed to resolve dynamic input shape from TensorRT engine");
+            }
+            input_dim.push_back(static_cast<size_t>(dim.d[i]));
         }
     } else {
         input_dim.push_back(0);
@@ -121,9 +146,39 @@ std::vector<size_t> TrtEngine::GetInputDim() {
 std::vector<size_t> TrtEngine::GetOutputDim() {
     std::vector<size_t> output_dim;
     if(engine_) {
-        const nvinfer1::Dims dim = engine_->getTensorShape(output_tensor_name_.c_str());
-        for(size_t i=0; i<dim.nbDims; ++i) {
-            output_dim.push_back(dim.d[i]);
+        nvinfer1::Dims dim = engine_->getTensorShape(output_tensor_name_.c_str());
+
+        bool has_dynamic_dim = false;
+        for (int i = 0; i < dim.nbDims; ++i) {
+            if (dim.d[i] <= 0) {
+                has_dynamic_dim = true;
+                break;
+            }
+        }
+
+        if (has_dynamic_dim && context_) {
+            nvinfer1::Dims input_dim = context_->getTensorShape(input_tensor_name_.c_str());
+            bool input_has_dynamic_dim = false;
+            for (int i = 0; i < input_dim.nbDims; ++i) {
+                if (input_dim.d[i] <= 0) {
+                    input_has_dynamic_dim = true;
+                    break;
+                }
+            }
+
+            if (input_has_dynamic_dim) {
+                const nvinfer1::Dims opt_dim = engine_->getProfileShape(input_tensor_name_.c_str(), 0, nvinfer1::OptProfileSelector::kOPT);
+                context_->setInputShape(input_tensor_name_.c_str(), opt_dim);
+            }
+
+            dim = context_->getTensorShape(output_tensor_name_.c_str());
+        }
+
+        for (int i = 0; i < dim.nbDims; ++i) {
+            if (dim.d[i] <= 0) {
+                throw std::runtime_error("Failed to resolve dynamic output shape from TensorRT engine");
+            }
+            output_dim.push_back(static_cast<size_t>(dim.d[i]));
         }
     } else {
         output_dim.push_back(0);
