@@ -429,6 +429,21 @@ private:
   }
 
   /**
+   * @brief 生成 monitor_node 可能的节点名称列表
+   * @param camera_id 摄像头 ID
+   * @return 节点名称向量
+   */
+  std::vector<std::string> monitorNodeCandidates(const std::string& camera_id) const
+  {
+    std::vector<std::string> names;
+    if (!camera_id.empty()) {
+      names.push_back("/camera_" + camera_id + "/monitor_node");
+    }
+    names.push_back("/monitor_node");
+    return names;
+  }
+
+  /**
    * @brief 获取或创建异步参数客户端
    * @param node_name 目标节点名称
    * @return 异步参数客户端智能指针
@@ -598,8 +613,10 @@ private:
       RCLCPP_WARN(this->get_logger(), "Missing valid camera_id in parameters command");
       return false;
     }
-    if (!root["value"].isObject()) {
-      RCLCPP_WARN(this->get_logger(), "Missing valid value object in parameters command");
+    const bool has_value = root["value"].isObject();
+    const bool has_duration = root.isMember("duration") && root["duration"].isNumeric();
+    if (!has_value && !has_duration) {
+      RCLCPP_WARN(this->get_logger(), "Missing valid value or duration in parameters command");
       return false;
     }
 
@@ -609,86 +626,106 @@ private:
       return false;
     }
 
-    const Json::Value &value = root["value"];
-    std::optional<double> confidence_threshold;
-    std::optional<double> nms_threshold;
-    if (!extractNumericField(value, "confidence_threshold", confidence_threshold) ||
-      !extractNumericField(value, "iou_threshold", nms_threshold)) {
-      return false;
-    }
-
-    if (!confidence_threshold.has_value() && !nms_threshold.has_value()) {
-      RCLCPP_WARN(this->get_logger(), "No supported parameter fields found in MQTT command");
-      return false;
-    }
-
-    if (confidence_threshold.has_value() && (*confidence_threshold < 0.0 || *confidence_threshold > 1.0)) {
-      RCLCPP_WARN(this->get_logger(), "confidence_threshold must be between 0 and 1");
-      return false;
-    }
-    if (nms_threshold.has_value() && (*nms_threshold < 0.0 || *nms_threshold > 1.0)) {
-      RCLCPP_WARN(this->get_logger(), "iou_threshold must be between 0 and 1");
-      return false;
-    }
-
     bool success = true;
     bool any_change_applied = false;
-    if (confidence_threshold.has_value() || nms_threshold.has_value()) {
-      bool detector_updated = false;
-      for (const auto &node_name : detectorNodeCandidates(camera_id)) {
-        std::vector<rclcpp::Parameter> current_parameters;
-        bool current_loaded = fetchParametersSync(node_name, { "confidence_threshold", "nms_threshold" }, current_parameters);
-        std::vector<rclcpp::Parameter> detector_parameters;
-        if (current_loaded) {
-          std::optional<double> current_confidence_threshold;
-          std::optional<double> current_nms_threshold;
-          for (const auto &parameter : current_parameters) {
-            if (parameter.get_name() == "confidence_threshold") {
-              if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
-                current_confidence_threshold = parameter.as_double();
-              } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
-                current_confidence_threshold = static_cast<double>(parameter.as_int());
+
+    // 处理检测器参数（confidence_threshold, nms_threshold）
+    if (has_value) {
+      const Json::Value &value = root["value"];
+      std::optional<double> confidence_threshold;
+      std::optional<double> nms_threshold;
+      if (!extractNumericField(value, "confidence_threshold", confidence_threshold) ||
+        !extractNumericField(value, "iou_threshold", nms_threshold)) {
+        return false;
+      }
+
+      if (confidence_threshold.has_value() && (*confidence_threshold < 0.0 || *confidence_threshold > 1.0)) {
+        RCLCPP_WARN(this->get_logger(), "confidence_threshold must be between 0 and 1");
+        return false;
+      }
+      if (nms_threshold.has_value() && (*nms_threshold < 0.0 || *nms_threshold > 1.0)) {
+        RCLCPP_WARN(this->get_logger(), "iou_threshold must be between 0 and 1");
+        return false;
+      }
+
+      if (confidence_threshold.has_value() || nms_threshold.has_value()) {
+        bool detector_updated = false;
+        for (const auto &node_name : detectorNodeCandidates(camera_id)) {
+          std::vector<rclcpp::Parameter> current_parameters;
+          bool current_loaded = fetchParametersSync(node_name, { "confidence_threshold", "nms_threshold" }, current_parameters);
+          std::vector<rclcpp::Parameter> detector_parameters;
+          if (current_loaded) {
+            std::optional<double> current_confidence_threshold;
+            std::optional<double> current_nms_threshold;
+            for (const auto &parameter : current_parameters) {
+              if (parameter.get_name() == "confidence_threshold") {
+                if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+                  current_confidence_threshold = parameter.as_double();
+                } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+                  current_confidence_threshold = static_cast<double>(parameter.as_int());
+                }
+              } else if (parameter.get_name() == "nms_threshold") {
+                if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
+                  current_nms_threshold = parameter.as_double();
+                } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
+                  current_nms_threshold = static_cast<double>(parameter.as_int());
+                }
               }
-            } else if (parameter.get_name() == "nms_threshold") {
-              if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) {
-                current_nms_threshold = parameter.as_double();
-              } else if (parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER) {
-                current_nms_threshold = static_cast<double>(parameter.as_int());
-              }
+            }
+
+            if (confidence_threshold.has_value() && (!current_confidence_threshold.has_value() || std::abs(*current_confidence_threshold - *confidence_threshold) > 1e-6)) {
+              detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
+            }
+            if (nms_threshold.has_value() && (!current_nms_threshold.has_value() || std::abs(*current_nms_threshold - *nms_threshold) > 1e-6)) {
+              detector_parameters.emplace_back("nms_threshold", *nms_threshold);
+            }
+          } else {
+            if (confidence_threshold.has_value()) {
+              detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
+            }
+            if (nms_threshold.has_value()) {
+              detector_parameters.emplace_back("nms_threshold", *nms_threshold);
             }
           }
 
-          if (confidence_threshold.has_value() && (!current_confidence_threshold.has_value() || std::abs(*current_confidence_threshold - *confidence_threshold) > 1e-6)) {
-            detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
+          if (detector_parameters.empty()) {
+            detector_updated = true;
+            break;
           }
-          if (nms_threshold.has_value() && (!current_nms_threshold.has_value() || std::abs(*current_nms_threshold - *nms_threshold) > 1e-6)) {
-            detector_parameters.emplace_back("nms_threshold", *nms_threshold);
-          }
-        } else {
-          if (confidence_threshold.has_value()) {
-            detector_parameters.emplace_back("confidence_threshold", *confidence_threshold);
-          }
-          if (nms_threshold.has_value()) {
-            detector_parameters.emplace_back("nms_threshold", *nms_threshold);
+
+          if (setParametersSync(node_name, detector_parameters)) {
+            detector_updated = true;
+            any_change_applied = true;
+            break;
           }
         }
-
-        if (detector_parameters.empty()) {
-          detector_updated = true;
-          break;
-        }
-
-        if (setParametersSync(node_name, detector_parameters)) {
-          detector_updated = true;
-          any_change_applied = true;
-          break;
+        success = success && detector_updated;
+        if (success) {
+          updateCacheForCommand(camera_id, confidence_threshold, nms_threshold);
         }
       }
-      success = success && detector_updated;
+    }
+
+    // 处理 duration → monitor_node 的 window_seconds 参数
+    if (has_duration) {
+      const int duration = root["duration"].asInt();
+      if (duration >= 1) {
+        bool monitor_updated = false;
+        for (const auto &node_name : monitorNodeCandidates(camera_id)) {
+          if (setParametersSync(node_name, {rclcpp::Parameter("window_seconds", duration)})) {
+            monitor_updated = true;
+            any_change_applied = true;
+            RCLCPP_INFO(this->get_logger(), "Updated window_seconds=%d for camera_%s", duration, camera_id.c_str());
+            break;
+          }
+        }
+        success = success && monitor_updated;
+      } else {
+        RCLCPP_WARN(this->get_logger(), "duration must be >= 1, got %d", duration);
+      }
     }
 
     if (success) {
-      updateCacheForCommand(camera_id, confidence_threshold, nms_threshold);
       if (any_change_applied) {
         RCLCPP_INFO(this->get_logger(), "Applied MQTT parameter command to camera_%s", camera_id.c_str());
       } else {

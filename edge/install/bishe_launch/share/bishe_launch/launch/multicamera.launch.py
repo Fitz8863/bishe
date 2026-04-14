@@ -48,6 +48,7 @@ def _generate_nodes(context):
         selected_camera_locations_for_mqtt.append(camera.get("location", f"camera_{camera_id}"))
         detector = camera.get("detector", {})
         streamer = camera.get("streamer", {})
+        monitor = camera.get("monitor", {})
         selected_camera_http_urls_for_mqtt.append(streamer.get("http_url", ""))
         namespace = f"camera_{camera_id}"
 
@@ -79,7 +80,7 @@ def _generate_nodes(context):
                         "nms_threshold": detector.get("nms_threshold", 0.5),
                         "engine_path": detector.get("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine"),
                         "worker_threads": detector.get("worker_threads", 1),
-                        "max_queue_size": detector.get("max_queue_size", 8),
+                        "max_queue_size": detector.get("max_queue_size", 4),
                     }
                 ],
                 output="screen",
@@ -110,12 +111,17 @@ def _generate_nodes(context):
                     parameters=[
                         {
                             "device": device_name,
-                            "window_seconds": 5,
-                            "violation_ratio_threshold": 0.4,
+                            "window_seconds": monitor.get("window_seconds", 5),
+                            "trigger_frame_threshold": monitor.get("trigger_frame_threshold", 3),
+                            "trigger_cooldown_seconds": monitor.get("trigger_cooldown_seconds", 15),
+                            "violation_ratio_threshold": monitor.get("violation_ratio_threshold", 0.4),
                             "location": camera.get("location", f"camera_{camera_id}"),
                             "camera_id": camera_id,
-                            "upload.server_url": camera.get("upload_server_url", "http://localhost:5000/capture/upload"),
-                            "alarm.audio_file": camera.get("alarm_audio_file", "/path/to/alarm.mp3"),
+                            "upload.server_url": monitor.get("upload_server_url", camera.get("upload_server_url", "http://localhost:5000/capture/upload")),
+                            "upload.timeout_seconds": monitor.get("upload_timeout_seconds", 10),
+                            "alarm.audio_file": monitor.get("alarm_audio_file", camera.get("alarm_audio_file", "")),
+                            "alarm.fire_audio_file": monitor.get("fire_alarm_audio_file", camera.get("fire_alarm_audio_file", "")),
+                            "alarm.smoking_audio_file": monitor.get("smoking_alarm_audio_file", camera.get("smoking_alarm_audio_file", "")),
                         }
                     ],
                     output="screen",
@@ -171,7 +177,7 @@ def generate_launch_description():
         [
             DeclareLaunchArgument("config_path", default_value=default_config_path),
             DeclareLaunchArgument("camera_ids", default_value=""),
-            DeclareLaunchArgument("enable_monitor", default_value="false"),
+            DeclareLaunchArgument("enable_monitor", default_value="true"),
             DeclareLaunchArgument("device", default_value="jetson-orin-nano"),
             OpaqueFunction(function=_generate_nodes),
         ]

@@ -1,0 +1,28 @@
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function ‘void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)’:
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:202:16: error: conflicting declaration ‘const auto state_it’
+  202 |     const auto state_it = event_states_.find(normalized_type);
+      |                ^~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:173:16: note: previous declaration as ‘const std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, MonitorNode::EventState>, false, true> state_it’
+  173 |     const auto state_it = event_states_.find(normalized_type);
+      |                ^~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:207:27: error: redeclaration of ‘cv_bridge::CvImagePtr cv_ptr’
+  207 |     cv_bridge::CvImagePtr cv_ptr;
+      |                           ^~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:178:27: note: ‘cv_bridge::CvImagePtr cv_ptr’ previously declared here
+  178 |     cv_bridge::CvImagePtr cv_ptr;
+      |                           ^~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:215:11: error: conflicting declaration ‘auto& state’
+  215 |     auto &state = state_it->second;
+      |           ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:186:11: note: previous declaration as ‘MonitorNode::EventState& state’
+  186 |     auto &state = state_it->second;
+      |           ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:218:16: error: conflicting declaration ‘const auto now’
+  218 |     const auto now = std::chrono::steady_clock::now();
+      |                ^~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:189:16: note: previous declaration as ‘const std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > > now’
+  189 |     const auto now = std::chrono::steady_clock::now();
+      |                ^~~
+gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:76：CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/monitor_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

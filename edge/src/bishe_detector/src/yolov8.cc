@@ -1,3 +1,4 @@
+#include <iostream>
 #include "yolov8.h"
 
 #include <stdexcept>
@@ -176,7 +177,16 @@ DetectionResult YOLOv8::BuildDetectionResult(cv::Mat& output, const cv::Mat& ori
         DetectionBox detection;
         detection.bbox = boxes[i];
         detection.class_id = filtered_class_ids[i];
-        detection.class_name = kClassNames[filtered_class_ids[i]];
+        
+        // --- 核心修复：确保 class_name 不越界且正确赋值 ---
+        if (filtered_class_ids[i] >= 0 && filtered_class_ids[i] < static_cast<int>(kClassNames.size())) {
+            detection.class_name = kClassNames[filtered_class_ids[i]];
+        } else {
+            detection.class_name = "unknown";
+            std::cerr << "检测到未定义类别ID: " << filtered_class_ids[i] << std::endl;
+        }
+        // ---------------------------------------------
+        
         detection.confidence = filtered_scores[i];
         result.detections.push_back(std::move(detection));
     }

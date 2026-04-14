@@ -1,0 +1,46 @@
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)
+-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_monitor
+Consolidate compiler generated dependencies of target monitor_node
+[ 50%] Building CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function ‘void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)’:
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:202:16: error: conflicting declaration ‘const auto state_it’
+  202 |     const auto state_it = event_states_.find(normalized_type);
+      |                ^~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:173:16: note: previous declaration as ‘const std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, MonitorNode::EventState>, false, true> state_it’
+  173 |     const auto state_it = event_states_.find(normalized_type);
+      |                ^~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:207:27: error: redeclaration of ‘cv_bridge::CvImagePtr cv_ptr’
+  207 |     cv_bridge::CvImagePtr cv_ptr;
+      |                           ^~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:178:27: note: ‘cv_bridge::CvImagePtr cv_ptr’ previously declared here
+  178 |     cv_bridge::CvImagePtr cv_ptr;
+      |                           ^~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:215:11: error: conflicting declaration ‘auto& state’
+  215 |     auto &state = state_it->second;
+      |           ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:186:11: note: previous declaration as ‘MonitorNode::EventState& state’
+  186 |     auto &state = state_it->second;
+      |           ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:218:16: error: conflicting declaration ‘const auto now’
+  218 |     const auto now = std::chrono::steady_clock::now();
+      |                ^~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:189:16: note: previous declaration as ‘const std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > > now’
+  189 |     const auto now = std::chrono::steady_clock::now();
+      |                ^~~
+gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:76：CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/monitor_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

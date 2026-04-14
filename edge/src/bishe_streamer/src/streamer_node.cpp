@@ -38,10 +38,12 @@ public:
 
     ~StreamerNode()
     {
+        RCLCPP_INFO(this->get_logger(), "正在关闭推流管线...");
         if (writer_.isOpened())
         {
             writer_.release();
         }
+        RCLCPP_INFO(this->get_logger(), "推流节点已安全退出");
     }
 
 private:
@@ -158,6 +160,8 @@ private:
             }
 
             updateFps();
+
+            if (!rclcpp::ok()) return;
 
             if (current_fps_ > 0.0) {
                 std::string fps_text = cv::format("FPS: %.1f", current_fps_);

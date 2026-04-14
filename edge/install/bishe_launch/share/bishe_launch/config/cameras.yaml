@@ -6,17 +6,25 @@ cameras:
     height: 1080
     framerate: 30
     detector:
-      confidence_threshold: 0.45
+      confidence_threshold: 0.25
       nms_threshold: 0.5
       engine_path: "models/best.engine"
       worker_threads: 1
-      max_queue_size: 8
+      max_queue_size: 4
     streamer:
       rtsp_url: "rtsp://localhost:8554/stream_001"  # rtsp://jetson-orin-nano:8554/stream_001
       http_url: "http://fnas:8889/jetson-stream1"
       scale: 1.0
       audio_device: "hw:0,0"
       framerate: 30
+    monitor:
+      window_seconds: 4
+      trigger_frame_threshold: 15
+      trigger_cooldown_seconds: 5
+      upload_server_url: "http://amd64:5001/capture/upload"
+      upload_timeout_seconds: 10
+      fire_alarm_audio_file: "/home/jetson/projects/bishe/edge/assets/alarm_fire.mp3"
+      smoking_alarm_audio_file: "/home/jetson/projects/bishe/edge/assets/ciallo.wav"
 
   # - id: "002"
   #   device: "/dev/video2"
@@ -24,6 +32,9 @@ cameras:
   #   width: 1920
   #   height: 1080
   #   framerate: 30
+    # control_topic: "esp8266/cmd"
+    # control_hart: "esp8266/info"
+    # control_device_id: "esp8266_002"
   #   detector:
   #     confidence_threshold: 0.4
   #     nms_threshold: 0.5

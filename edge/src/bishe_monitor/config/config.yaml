@@ -9,12 +9,16 @@ detector:
 
 monitor:
   window_seconds: 5
+  trigger_frame_threshold: 3
+  trigger_cooldown_seconds: 15
   violation_ratio_threshold: 0.4
   location: "生产车间A区"
   camera_id: "001"
+  upload_timeout_seconds: 10
 
 upload:
-  server_url: "http://YOUR_SERVER_IP:5000/capture/upload"
+  server_url: "http://amd64:5000/capture/upload"
 
 alarm:
-  audio_file: "/path/to/alarm.mp3"
+  fire_audio_file: "/home/jetson/projects/bishe/edge/assets/alarm_fire.mp3"
+  smoking_audio_file: "/home/jetson/projects/bishe/edge/assets/alarm_smoking.mp3"

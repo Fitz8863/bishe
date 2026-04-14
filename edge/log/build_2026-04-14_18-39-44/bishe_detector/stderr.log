@@ -1,0 +1,10 @@
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/yolov8.cc: In member function ‘DetectionResult YOLOv8::BuildDetectionResult(cv::Mat&, const cv::Mat&, const Size&)’:
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/yolov8.cc:185:25: error: ‘rclcpp’ has not been declared
+  185 |             RCLCPP_WARN(rclcpp::get_logger("YOLOv8"), "检测到未定义类别ID: %d", filtered_class_ids[i]);
+      |                         ^~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/yolov8.cc:185:13: error: ‘RCLCPP_WARN’ was not declared in this scope
+  185 |             RCLCPP_WARN(rclcpp::get_logger("YOLOv8"), "检测到未定义类别ID: %d", filtered_class_ids[i]);
+      |             ^~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/detector_node.dir/build.make:104：CMakeFiles/detector_node.dir/src/yolov8.cc.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/detector_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2
