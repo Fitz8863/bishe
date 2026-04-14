@@ -8,11 +8,11 @@
 // 串口变量定义
 SoftwareSerial mySerial(D9, D10);
 
-// const char *ssid = "ZTE-ExDsxH";
-// const char *password = "520heweijie";
+const char *ssid = "ZTE-ExDsxH";
+const char *password = "520heweijie";
 
-const char *ssid = "0721";
-const char *password = "0d000721";
+//const char *ssid = "0721";
+//const char *password = "0d000721";
 
 // MQTT Broker
 const char *mqtt_broker = "10.60.83.159";
@@ -23,7 +23,7 @@ const char *mqtt_password = "fuck123456";
 const int mqtt_port = 1883;
 
 // 设备 ID
-const char *device_id = "002";
+const char *id = "001";
 
 // MQTT 心跳计时
 unsigned long lastHeartbeat = 0;
@@ -86,10 +86,10 @@ void callback(char *topic, byte *payload, unsigned int length) {
     return;
   }
 
-  const char *rx_device_id = doc["device_id"];
+  const char *rx_device_id = doc["id"];
 
   // 匹配设备 ID
-  if (rx_device_id != nullptr && strcmp(rx_device_id, device_id) == 0) {
+  if (rx_device_id != nullptr && strcmp(rx_device_id, id) == 0) {
      Serial.println("接收数据是一致的，准备往串口发送数据包\n");
     
     // --- 重点修改：提取为有符号 8 位整数 ---
@@ -100,7 +100,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
     oled.clearDisplay();
     oled.setTextXY(0, 0);
     oled.putString("ID: ");
-    oled.putString(device_id);
+    oled.putString(id);
 
     oled.setTextXY(2, 0);
     oled.putString("Col: ");
@@ -114,7 +114,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
     // 执行串口打包发送
     sendSerialPacket(col, row);
   }
-  else if(rx_device_id !=nullptr && strcmp(rx_device_id,device_id)!=0){
+  else if(rx_device_id !=nullptr && strcmp(rx_device_id,id)!=0){
     Serial.println("远程下发的控制指令，id对应不上当前设备id，停止发送串口指令\n");
   }
 }
@@ -193,7 +193,7 @@ void setup() {
 void sendHeartbeat() {
   if (client.connected()) {
     StaticJsonDocument<200> doc;
-    doc["id"] = device_id;
+    doc["id"] = id;
     doc["status"] = "online";
     doc["uptime"] = millis() / 1000;
     String jsonOutput;

@@ -21,13 +21,24 @@ Target DLL:      CMSIS_AGDI.dll V1.33.16.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-E:\STM32F103C8T6-bishe\STM32-BISHE\MDK-ARM\STM32-BISHE.uvprojx
+e:\STM32F103C8T6-bishe\STM32-BISHE\MDK-ARM\STM32-BISHE.uvprojx
 Project File Date:  04/04/2026
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32-BISHE'
-"STM32-BISHE\STM32-BISHE.axf" - 0 Error(s), 0 Warning(s).
+compiling usart.c...
+../Core/Inc/Key.h(31): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Core/Inc/Led.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Core/Inc/Buzzer.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Core/Src/usart.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=20452 RO-data=2624 RW-data=184 ZI-data=9816  
+FromELF: creating hex file...
+"STM32-BISHE\STM32-BISHE.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -51,7 +62,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

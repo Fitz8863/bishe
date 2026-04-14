@@ -669,43 +669,43 @@
             <div class="collapse" id="servo-${id}">
                 <div class="servo-layout">
                     <div class="servo-main">
-                        <div class="col-slider-area">
-                            <span class="slider-label">COL</span>
+                        <div class="row-slider-area">
+                            <span class="slider-label">ROW</span>
                             <div class="slider-track h-axis">
-                                <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
+                                <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
                             </div>
-                            <span class="slider-value" id="servo-col-val-${id}">0</span>
+                            <span class="slider-value" id="servo-row-val-${id}">0</span>
                         </div>
                         <div class="dpad-container">
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Row +1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Col +1">
                                     <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Col -1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Row -1">
                                     <i class="fas fa-chevron-left"></i>
                                 </button>
                                 <button class="dpad-btn center-btn" onclick="servoCenter('${id}')" title="归中">
                                     <i class="fas fa-circle"></i>
                                 </button>
-                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Col +1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Row +1">
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
                             </div>
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Row -1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Col -1">
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="row-slider-area">
-                        <span class="slider-label">ROW</span>
+                    <div class="col-slider-area">
+                        <span class="slider-label">COL</span>
                         <div class="slider-track v-axis">
-                            <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
+                            <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
                         </div>
-                        <span class="slider-value" id="servo-row-val-${id}">0</span>
+                        <span class="slider-value" id="servo-col-val-${id}">0</span>
                     </div>
                 </div>
             </div>
@@ -789,43 +789,43 @@
             <div class="collapse" id="servo-${id}">
                 <div class="servo-layout">
                     <div class="servo-main">
-                        <div class="col-slider-area">
-                            <span class="slider-label">COL</span>
+                        <div class="row-slider-area">
+                            <span class="slider-label">ROW</span>
                             <div class="slider-track h-axis">
-                                <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
+                                <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
                             </div>
-                            <span class="slider-value" id="servo-col-val-${id}">0</span>
+                            <span class="slider-value" id="servo-row-val-${id}">0</span>
                         </div>
                         <div class="dpad-container">
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Row +1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, 1)" title="Col +1">
                                     <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Col -1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', -1, 0)" title="Row -1">
                                     <i class="fas fa-chevron-left"></i>
                                 </button>
                                 <button class="dpad-btn center-btn" onclick="servoCenter('${id}')" title="归中">
                                     <i class="fas fa-circle"></i>
                                 </button>
-                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Col +1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 1, 0)" title="Row +1">
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
                             </div>
                             <div class="dpad-row">
-                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Row -1">
+                                <button class="dpad-btn" onclick="servoMove('${id}', 0, -1)" title="Col -1">
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="row-slider-area">
-                        <span class="slider-label">ROW</span>
+                    <div class="col-slider-area">
+                        <span class="slider-label">COL</span>
                         <div class="slider-track v-axis">
-                            <div class="slider-thumb" id="servo-row-thumb-${id}"></div>
+                            <div class="slider-thumb" id="servo-col-thumb-${id}"></div>
                         </div>
-                        <span class="slider-value" id="servo-row-val-${id}">0</span>
+                        <span class="slider-value" id="servo-col-val-${id}">0</span>
                     </div>
                 </div>
             </div>
@@ -846,17 +846,17 @@
         }
     }
 
-    function servoMove(cameraId, deltaCol, deltaRow) {
+    function servoMove(cameraId, deltaRow, deltaCol) {
         if (!servoState.has(cameraId)) {
             servoState.set(cameraId, { col: 0, row: 0, debounce: false });
         }
         const state = servoState.get(cameraId);
         if (state.debounce) return;
 
-        const newCol = state.col + deltaCol;
         const newRow = state.row + deltaRow;
+        const newCol = state.col + deltaCol;
 
-        if (newCol < -10 || newCol > 10 || newRow < -8 || newRow > 8) return;
+        if (newCol < -8 || newCol > 8 || newRow < -10 || newRow > 10) return;
 
         state.col = newCol;
         state.row = newRow;
@@ -889,11 +889,11 @@
         const rowThumb = document.getElementById(`servo-row-thumb-${cameraId}`);
         const colThumb = document.getElementById(`servo-col-thumb-${cameraId}`);
         
-        const rowPct = ((state.row + 8) / 16) * 100;
-        const colPct = ((state.col + 10) / 20) * 100;
+        const rowPct = ((state.row + 10) / 20) * 100;
+        const colPct = ((state.col + 8) / 16) * 100;
         
-        if (rowThumb) rowThumb.style.top = `${100 - rowPct}%`;
-        if (colThumb) colThumb.style.left = `${colPct}%`;
+        if (rowThumb) rowThumb.style.left = `${rowPct}%`;
+        if (colThumb) colThumb.style.top = `${100 - colPct}%`;
 
         const card = document.getElementById(`camera-card-${cameraId}`);
         if (!card) return;
@@ -901,8 +901,8 @@
             const onclick = btn.getAttribute('onclick') || '';
             const match = onclick.match(/servoMove\('[^']+',\s*(-?\d+),\s*(-?\d+)\)/);
             if (!match) return;
-            const [, dc, dr] = match.map(Number);
-            btn.disabled = state.col + dc < -10 || state.col + dc > 10 || state.row + dr < -8 || state.row + dr > 8;
+            const [, dr, dc] = match.map(Number);
+            btn.disabled = state.row + dr < -10 || state.row + dr > 10 || state.col + dc < -8 || state.col + dc > 8;
         });
     }
 

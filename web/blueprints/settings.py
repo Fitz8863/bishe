@@ -318,10 +318,10 @@ def servo_control():
     except (TypeError, ValueError):
         return jsonify({'error': 'col 和 row 必须为整数'}), 400
     
-    if not (-10 <= col <= 10):
-        return jsonify({'error': f'col 必须在 -10~10 范围内，当前值: {col}'}), 400
-    if not (-8 <= row <= 8):
-        return jsonify({'error': f'row 必须在 -8~8 范围内，当前值: {row}'}), 400
+    if not (-8 <= col <= 8):
+        return jsonify({'error': f'col 必须在 -8~8 范围内，当前值: {col}'}), 400
+    if not (-10 <= row <= 10):
+        return jsonify({'error': f'row 必须在 -10~10 范围内，当前值: {row}'}), 400
     
     try:
         from blueprints.mqtt_manager import mqtt_manager

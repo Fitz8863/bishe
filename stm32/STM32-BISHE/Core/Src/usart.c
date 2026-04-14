@@ -30,7 +30,7 @@
 #define USART1_PACKET_TAIL         0x55U
 #define SERVO1_PWM_MIN             1000U
 #define SERVO1_PWM_MID             1500U
-#define SERVO1_PWM_MAX             1800U
+#define SERVO1_PWM_MAX             1900U
 #define SERVO2_PWM_MIN             1000U
 #define SERVO2_PWM_MID             1500U
 #define SERVO2_PWM_MAX             2000U
