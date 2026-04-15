@@ -1,0 +1,1 @@
+/home/jetson/projects/bishe/edge/build/bishe_msgs/rosidl_generator_py/bishe_msgs/msg/_detection_box_s.c

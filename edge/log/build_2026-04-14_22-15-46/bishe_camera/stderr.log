@@ -1,0 +1,5 @@
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp: In member function ‘void CameraNode::reportFps()’:
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:60:20: warning: unused variable ‘fps’ [-Wunused-variable]
+   60 |       const double fps = static_cast<double>(published_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
+      |                    ^~~
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410

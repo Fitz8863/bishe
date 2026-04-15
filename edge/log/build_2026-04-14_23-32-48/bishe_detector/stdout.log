@@ -1,0 +1,6 @@
+[ 16%] Built target gtest
+[ 33%] Built target gtest_main
+[ 41%] Building CXX object CMakeFiles/detector_node.dir/src/detector_node.cpp.o
+[ 50%] Building CXX object CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o
+[ 58%] Linking CXX executable test_detection_gate
+[ 58%] Built target test_detection_gate

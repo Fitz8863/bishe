@@ -1,0 +1,5 @@
+[ 33%] Built target gtest_main
+[ 33%] Built target gtest
+[ 83%] Built target detector_node
+Consolidate compiler generated dependencies of target test_detection_gate
+[ 91%] Building CXX object CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o

@@ -1,0 +1,22 @@
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc: In member function ‘virtual bool Int8EntropyCalibrator2::getBatch(void**, const char**, int)’:
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc:33:69: warning: unused parameter ‘names’ [-Wunused-parameter]
+   33 | bool Int8EntropyCalibrator2::getBatch(void* bindings[], const char* names[], int nbBindings) noexcept {
+      |                                                         ~~~~~~~~~~~~^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc:33:82: warning: unused parameter ‘nbBindings’ [-Wunused-parameter]
+   33 | bool Int8EntropyCalibrator2::getBatch(void* bindings[], const char* names[], int nbBindings) noexcept {
+      |                                                                              ~~~~^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc: In member function ‘void TrtEngine::BuildEngine(const string&, const string&, TrtPrecision)’:
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:20:28: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   20 |         for (size_t i=0; i < parser->getNbErrors(); ++i) {
+      |                          ~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:42:38: warning: ‘void nvinfer1::IBuilderConfig::setInt8Calibrator(nvinfer1::IInt8Calibrator*)’ is deprecated [-Wdeprecated-declarations]
+   42 |             config->setInt8Calibrator(calibrator_.get());
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /home/jetson/projects/bishe/edge/src/bishe_detector/include/bishe_detector/trt_engine.h:6,
+                 from /home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:1:
+/usr/include/aarch64-linux-gnu/NvInfer.h:8825:25: note: declared here
+ 8825 |     TRT_DEPRECATED void setInt8Calibrator(IInt8Calibrator* calibrator) noexcept
+      |                         ^~~~~~~~~~~~~~~~~
+/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
+/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.410
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410

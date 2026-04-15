@@ -1,0 +1,42 @@
+[0.021s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_monitor -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor
+[0.050s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.277s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.304s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.362s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.368s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.382s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.403s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.431s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.492s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.495s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.667s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.762s] -- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)
+[0.841s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.907s] -- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built
+[1.037s] -- Configuring done
+[1.074s] -- Generating done
+[1.085s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_monitor
+[1.104s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_monitor -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor
+[1.107s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_monitor -- -j6 -l6
+[1.184s] Consolidate compiler generated dependencies of target monitor_node
+[1.190s] [ 25%] Building CXX object gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[1.190s] [ 25%] Building CXX object gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[1.209s] [ 37%] Building CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o
+[2.997s] [ 50%] Linking CXX static library libgtest_main.a
+[3.063s] [ 50%] Built target gtest_main
+[7.481s] [ 62%] Linking CXX static library libgtest.a
+[7.579s] [ 62%] Built target gtest
+[7.611s] [ 75%] Building CXX object CMakeFiles/test_async_task_worker.dir/test/test_async_task_worker.cpp.o
+[7.756s] /home/jetson/projects/bishe/edge/src/bishe_monitor/test/test_async_task_worker.cpp:8:10: fatal error: bishe_monitor/async_task_worker.hpp: 没有那个文件或目录
+[7.756s]     8 | #include "bishe_monitor/async_task_worker.hpp"
+[7.756s]       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[7.756s] compilation terminated.
+[7.761s] gmake[2]: *** [CMakeFiles/test_async_task_worker.dir/build.make:76：CMakeFiles/test_async_task_worker.dir/test/test_async_task_worker.cpp.o] 错误 1
+[7.762s] gmake[1]: *** [CMakeFiles/Makefile2:184：CMakeFiles/test_async_task_worker.dir/all] 错误 2
+[7.762s] gmake[1]: *** 正在等待未完成的任务....
+[21.078s] [ 87%] Linking CXX executable monitor_node
+[21.552s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
+[21.554s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
+[22.430s] [ 87%] Built target monitor_node
+[22.432s] gmake: *** [Makefile:146：all] 错误 2
+[22.435s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '2': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_monitor -- -j6 -l6

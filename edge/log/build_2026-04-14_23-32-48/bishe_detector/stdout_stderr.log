@@ -1,0 +1,14 @@
+[ 16%] Built target gtest
+[ 33%] Built target gtest_main
+[ 41%] Building CXX object CMakeFiles/detector_node.dir/src/detector_node.cpp.o
+[ 50%] Building CXX object CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o
+/home/jetson/projects/bishe/edge/src/bishe_detector/src/detector_node.cpp:16:10: fatal error: bishe_detector/detection_gate.hpp: 没有那个文件或目录
+   16 | #include "bishe_detector/detection_gate.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/detector_node.dir/build.make:76：CMakeFiles/detector_node.dir/src/detector_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:157：CMakeFiles/detector_node.dir/all] 错误 2
+gmake[1]: *** 正在等待未完成的任务....
+[ 58%] Linking CXX executable test_detection_gate
+[ 58%] Built target test_detection_gate
+gmake: *** [Makefile:146：all] 错误 2

@@ -1,0 +1,10 @@
+/home/jetson/projects/bishe/edge/src/bishe_monitor/test/test_async_task_worker.cpp:8:10: fatal error: bishe_monitor/async_task_worker.hpp: 没有那个文件或目录
+    8 | #include "bishe_monitor/async_task_worker.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/test_async_task_worker.dir/build.make:76：CMakeFiles/test_async_task_worker.dir/test/test_async_task_worker.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:184：CMakeFiles/test_async_task_worker.dir/all] 错误 2
+gmake[1]: *** 正在等待未完成的任务....
+/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
+gmake: *** [Makefile:146：all] 错误 2

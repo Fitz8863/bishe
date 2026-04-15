@@ -1,0 +1,1 @@
+/home/jetson/projects/bishe/edge/build/bishe_msgs/rosidl_typesupport_introspection_c/bishe_msgs/msg/detail/detection_box__rosidl_typesupport_introspection_c.h

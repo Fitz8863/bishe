@@ -1,0 +1,333 @@
+[0.000000] (-) TimerEvent: {}
+[0.000312] (-) JobUnselected: {'identifier': 'bishe_camera'}
+[0.000685] (-) JobUnselected: {'identifier': 'bishe_detector'}
+[0.000727] (-) JobUnselected: {'identifier': 'bishe_launch'}
+[0.000761] (-) JobUnselected: {'identifier': 'bishe_mqtt'}
+[0.000791] (-) JobUnselected: {'identifier': 'bishe_msgs'}
+[0.000820] (-) JobUnselected: {'identifier': 'bishe_streamer'}
+[0.000855] (bishe_monitor) JobQueued: {'identifier': 'bishe_monitor', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs')])}
+[0.001418] (bishe_monitor) JobStarted: {'identifier': 'bishe_monitor'}
+[0.021037] (bishe_monitor) JobProgress: {'identifier': 'bishe_monitor', 'progress': 'cmake'}
+[0.028054] (bishe_monitor) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_monitor', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_monitor', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 42054 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-8e8502d4-3e32-49c7-8a5e-0a1f5c31d775.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '108100'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-94240dfbd8.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_monitor'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 42054 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[0.061174] (bishe_monitor) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099379] (-) TimerEvent: {}
+[0.199688] (-) TimerEvent: {}
+[0.281099] (bishe_monitor) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.294197] (bishe_monitor) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.299823] (-) TimerEvent: {}
+[0.343837] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.348036] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.358101] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.373887] (bishe_monitor) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.393950] (bishe_monitor) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.399957] (-) TimerEvent: {}
+[0.446062] (bishe_monitor) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.448752] (bishe_monitor) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.500099] (-) TimerEvent: {}
+[0.600412] (-) TimerEvent: {}
+[0.615032] (bishe_monitor) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.696374] (bishe_monitor) StdoutLine: {'line': b'-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)\n'}
+[0.700537] (-) TimerEvent: {}
+[0.771036] (bishe_monitor) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.800679] (-) TimerEvent: {}
+[0.839179] (bishe_monitor) StdoutLine: {'line': b"-- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built\n"}
+[0.900810] (-) TimerEvent: {}
+[0.981822] (bishe_monitor) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.000941] (-) TimerEvent: {}
+[1.026007] (bishe_monitor) StdoutLine: {'line': b'-- Generating done\n'}
+[1.039285] (bishe_monitor) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_monitor\n'}
+[1.061251] (bishe_monitor) CommandEnded: {'returncode': 0}
+[1.062525] (bishe_monitor) JobProgress: {'identifier': 'bishe_monitor', 'progress': 'build'}
+[1.063776] (bishe_monitor) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_monitor', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_monitor', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 42054 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-8e8502d4-3e32-49c7-8a5e-0a1f5c31d775.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '108100'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-94240dfbd8.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_monitor'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 42054 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[1.101083] (-) TimerEvent: {}
+[1.136105] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest_main\n'}
+[1.136635] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest\n'}
+[1.151824] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target monitor_node\n'}
+[1.159880] (bishe_monitor) StdoutLine: {'line': b'[ 14%] Built target gtest_main\n'}
+[1.174353] (bishe_monitor) StdoutLine: {'line': b'[ 28%] Built target gtest\n'}
+[1.177558] (bishe_monitor) StdoutLine: {'line': b'[ 35%] Building CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o\n'}
+[1.196102] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_upload_gate\n'}
+[1.197049] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_async_task_worker\n'}
+[1.201226] (-) TimerEvent: {}
+[1.213775] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_playback_command\n'}
+[1.224921] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_event_payload\n'}
+[1.243406] (bishe_monitor) StdoutLine: {'line': b'[ 50%] Built target test_alarm_upload_gate\n'}
+[1.264182] (bishe_monitor) StdoutLine: {'line': b'[ 64%] Built target test_alarm_playback_command\n'}
+[1.266832] (bishe_monitor) StdoutLine: {'line': b'[ 78%] Built target test_async_task_worker\n'}
+[1.269957] (bishe_monitor) StdoutLine: {'line': b'[ 92%] Built target test_alarm_event_payload\n'}
+[1.301488] (-) TimerEvent: {}
+[1.401801] (-) TimerEvent: {}
+[1.502086] (-) TimerEvent: {}
+[1.602377] (-) TimerEvent: {}
+[1.702692] (-) TimerEvent: {}
+[1.803011] (-) TimerEvent: {}
+[1.903335] (-) TimerEvent: {}
+[2.003636] (-) TimerEvent: {}
+[2.103997] (-) TimerEvent: {}
+[2.204346] (-) TimerEvent: {}
+[2.304687] (-) TimerEvent: {}
+[2.405014] (-) TimerEvent: {}
+[2.505356] (-) TimerEvent: {}
+[2.605722] (-) TimerEvent: {}
+[2.706079] (-) TimerEvent: {}
+[2.806451] (-) TimerEvent: {}
+[2.906818] (-) TimerEvent: {}
+[3.007160] (-) TimerEvent: {}
+[3.107501] (-) TimerEvent: {}
+[3.207983] (-) TimerEvent: {}
+[3.308340] (-) TimerEvent: {}
+[3.408691] (-) TimerEvent: {}
+[3.509037] (-) TimerEvent: {}
+[3.609377] (-) TimerEvent: {}
+[3.709733] (-) TimerEvent: {}
+[3.810097] (-) TimerEvent: {}
+[3.910440] (-) TimerEvent: {}
+[4.010806] (-) TimerEvent: {}
+[4.111135] (-) TimerEvent: {}
+[4.211483] (-) TimerEvent: {}
+[4.311817] (-) TimerEvent: {}
+[4.412132] (-) TimerEvent: {}
+[4.512457] (-) TimerEvent: {}
+[4.612812] (-) TimerEvent: {}
+[4.713169] (-) TimerEvent: {}
+[4.813505] (-) TimerEvent: {}
+[4.913836] (-) TimerEvent: {}
+[5.014190] (-) TimerEvent: {}
+[5.114529] (-) TimerEvent: {}
+[5.214911] (-) TimerEvent: {}
+[5.315254] (-) TimerEvent: {}
+[5.417914] (-) TimerEvent: {}
+[5.518244] (-) TimerEvent: {}
+[5.618587] (-) TimerEvent: {}
+[5.718949] (-) TimerEvent: {}
+[5.819276] (-) TimerEvent: {}
+[5.919627] (-) TimerEvent: {}
+[6.019945] (-) TimerEvent: {}
+[6.120261] (-) TimerEvent: {}
+[6.220577] (-) TimerEvent: {}
+[6.320891] (-) TimerEvent: {}
+[6.421220] (-) TimerEvent: {}
+[6.521551] (-) TimerEvent: {}
+[6.621892] (-) TimerEvent: {}
+[6.722241] (-) TimerEvent: {}
+[6.822580] (-) TimerEvent: {}
+[6.922935] (-) TimerEvent: {}
+[7.023272] (-) TimerEvent: {}
+[7.123621] (-) TimerEvent: {}
+[7.223967] (-) TimerEvent: {}
+[7.324325] (-) TimerEvent: {}
+[7.424667] (-) TimerEvent: {}
+[7.525021] (-) TimerEvent: {}
+[7.625372] (-) TimerEvent: {}
+[7.725714] (-) TimerEvent: {}
+[7.826074] (-) TimerEvent: {}
+[7.926428] (-) TimerEvent: {}
+[8.026733] (-) TimerEvent: {}
+[8.127083] (-) TimerEvent: {}
+[8.227420] (-) TimerEvent: {}
+[8.327746] (-) TimerEvent: {}
+[8.428084] (-) TimerEvent: {}
+[8.528422] (-) TimerEvent: {}
+[8.628768] (-) TimerEvent: {}
+[8.729103] (-) TimerEvent: {}
+[8.829458] (-) TimerEvent: {}
+[8.929789] (-) TimerEvent: {}
+[9.030128] (-) TimerEvent: {}
+[9.130474] (-) TimerEvent: {}
+[9.230831] (-) TimerEvent: {}
+[9.331166] (-) TimerEvent: {}
+[9.431490] (-) TimerEvent: {}
+[9.531804] (-) TimerEvent: {}
+[9.632109] (-) TimerEvent: {}
+[9.732412] (-) TimerEvent: {}
+[9.832761] (-) TimerEvent: {}
+[9.933082] (-) TimerEvent: {}
+[10.033393] (-) TimerEvent: {}
+[10.133695] (-) TimerEvent: {}
+[10.234011] (-) TimerEvent: {}
+[10.334331] (-) TimerEvent: {}
+[10.434681] (-) TimerEvent: {}
+[10.535199] (-) TimerEvent: {}
+[10.635529] (-) TimerEvent: {}
+[10.735830] (-) TimerEvent: {}
+[10.836113] (-) TimerEvent: {}
+[10.936398] (-) TimerEvent: {}
+[11.036685] (-) TimerEvent: {}
+[11.136989] (-) TimerEvent: {}
+[11.237283] (-) TimerEvent: {}
+[11.337581] (-) TimerEvent: {}
+[11.437892] (-) TimerEvent: {}
+[11.538182] (-) TimerEvent: {}
+[11.638472] (-) TimerEvent: {}
+[11.738810] (-) TimerEvent: {}
+[11.839087] (-) TimerEvent: {}
+[11.939362] (-) TimerEvent: {}
+[12.039646] (-) TimerEvent: {}
+[12.139937] (-) TimerEvent: {}
+[12.240205] (-) TimerEvent: {}
+[12.340460] (-) TimerEvent: {}
+[12.440721] (-) TimerEvent: {}
+[12.540977] (-) TimerEvent: {}
+[12.641228] (-) TimerEvent: {}
+[12.741481] (-) TimerEvent: {}
+[12.842026] (-) TimerEvent: {}
+[12.942379] (-) TimerEvent: {}
+[13.042906] (-) TimerEvent: {}
+[13.143275] (-) TimerEvent: {}
+[13.243603] (-) TimerEvent: {}
+[13.344184] (-) TimerEvent: {}
+[13.444434] (-) TimerEvent: {}
+[13.544682] (-) TimerEvent: {}
+[13.645066] (-) TimerEvent: {}
+[13.747905] (-) TimerEvent: {}
+[13.848258] (-) TimerEvent: {}
+[13.948607] (-) TimerEvent: {}
+[14.048962] (-) TimerEvent: {}
+[14.149325] (-) TimerEvent: {}
+[14.250747] (-) TimerEvent: {}
+[14.351137] (-) TimerEvent: {}
+[14.451434] (-) TimerEvent: {}
+[14.551725] (-) TimerEvent: {}
+[14.654065] (-) TimerEvent: {}
+[14.754367] (-) TimerEvent: {}
+[14.854671] (-) TimerEvent: {}
+[14.954957] (-) TimerEvent: {}
+[15.055284] (-) TimerEvent: {}
+[15.155590] (-) TimerEvent: {}
+[15.255877] (-) TimerEvent: {}
+[15.356175] (-) TimerEvent: {}
+[15.456500] (-) TimerEvent: {}
+[15.556827] (-) TimerEvent: {}
+[15.657140] (-) TimerEvent: {}
+[15.757425] (-) TimerEvent: {}
+[15.857722] (-) TimerEvent: {}
+[15.958023] (-) TimerEvent: {}
+[16.058305] (-) TimerEvent: {}
+[16.158624] (-) TimerEvent: {}
+[16.258932] (-) TimerEvent: {}
+[16.359242] (-) TimerEvent: {}
+[16.459539] (-) TimerEvent: {}
+[16.559827] (-) TimerEvent: {}
+[16.660113] (-) TimerEvent: {}
+[16.760402] (-) TimerEvent: {}
+[16.860682] (-) TimerEvent: {}
+[16.960984] (-) TimerEvent: {}
+[17.061277] (-) TimerEvent: {}
+[17.161561] (-) TimerEvent: {}
+[17.261844] (-) TimerEvent: {}
+[17.362124] (-) TimerEvent: {}
+[17.462402] (-) TimerEvent: {}
+[17.562688] (-) TimerEvent: {}
+[17.662957] (-) TimerEvent: {}
+[17.763214] (-) TimerEvent: {}
+[17.863474] (-) TimerEvent: {}
+[17.963746] (-) TimerEvent: {}
+[18.064023] (-) TimerEvent: {}
+[18.164293] (-) TimerEvent: {}
+[18.264553] (-) TimerEvent: {}
+[18.364846] (-) TimerEvent: {}
+[18.465163] (-) TimerEvent: {}
+[18.565503] (-) TimerEvent: {}
+[18.665834] (-) TimerEvent: {}
+[18.766173] (-) TimerEvent: {}
+[18.866640] (-) TimerEvent: {}
+[18.966980] (-) TimerEvent: {}
+[19.067306] (-) TimerEvent: {}
+[19.167628] (-) TimerEvent: {}
+[19.267958] (-) TimerEvent: {}
+[19.368286] (-) TimerEvent: {}
+[19.468610] (-) TimerEvent: {}
+[19.568937] (-) TimerEvent: {}
+[19.669260] (-) TimerEvent: {}
+[19.769586] (-) TimerEvent: {}
+[19.869915] (-) TimerEvent: {}
+[19.970249] (-) TimerEvent: {}
+[20.070583] (-) TimerEvent: {}
+[20.170980] (-) TimerEvent: {}
+[20.271308] (-) TimerEvent: {}
+[20.371636] (-) TimerEvent: {}
+[20.471968] (-) TimerEvent: {}
+[20.572301] (-) TimerEvent: {}
+[20.672641] (-) TimerEvent: {}
+[20.772970] (-) TimerEvent: {}
+[20.873300] (-) TimerEvent: {}
+[20.973620] (-) TimerEvent: {}
+[21.073993] (-) TimerEvent: {}
+[21.174322] (-) TimerEvent: {}
+[21.274681] (-) TimerEvent: {}
+[21.374996] (-) TimerEvent: {}
+[21.475343] (-) TimerEvent: {}
+[21.575685] (-) TimerEvent: {}
+[21.676020] (-) TimerEvent: {}
+[21.776343] (-) TimerEvent: {}
+[21.876666] (-) TimerEvent: {}
+[21.976993] (-) TimerEvent: {}
+[22.077311] (-) TimerEvent: {}
+[22.177629] (-) TimerEvent: {}
+[22.277944] (-) TimerEvent: {}
+[22.378289] (-) TimerEvent: {}
+[22.478644] (-) TimerEvent: {}
+[22.578988] (-) TimerEvent: {}
+[22.679316] (-) TimerEvent: {}
+[22.779642] (-) TimerEvent: {}
+[22.880388] (-) TimerEvent: {}
+[22.980654] (-) TimerEvent: {}
+[23.002187] (bishe_monitor) StdoutLine: {'line': b'[100%] Linking CXX executable monitor_node\n'}
+[23.080788] (-) TimerEvent: {}
+[23.181094] (-) TimerEvent: {}
+[23.281425] (-) TimerEvent: {}
+[23.381767] (-) TimerEvent: {}
+[23.482113] (-) TimerEvent: {}
+[23.582652] (-) TimerEvent: {}
+[23.597986] (bishe_monitor) StderrLine: {'line': b'/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410\n'}
+[23.600150] (bishe_monitor) StderrLine: {'line': b'/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410\n'}
+[23.682803] (-) TimerEvent: {}
+[23.783173] (-) TimerEvent: {}
+[23.883489] (-) TimerEvent: {}
+[23.983808] (-) TimerEvent: {}
+[24.084136] (-) TimerEvent: {}
+[24.184450] (-) TimerEvent: {}
+[24.284774] (-) TimerEvent: {}
+[24.361641] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o: in function `buildAlarmEventPayload(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, long)':\n"}
+[24.362125] (bishe_monitor) StderrLine: {'line': b"monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x40): undefined reference to `Json::Value::Value(Json::ValueType)'\n"}
+[24.362852] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x4c): undefined reference to `Json::Value::Value(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[24.364011] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x60): undefined reference to `Json::Value::operator[](char const*)'\n"}
+[24.364242] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x74): undefined reference to `Json::Value::operator=(Json::Value&&)'\n"}
+[24.364767] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x7c): undefined reference to `Json::Value::~Value()'\n"}
+[24.365501] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x88): undefined reference to `Json::Value::Value(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[24.366008] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x9c): undefined reference to `Json::Value::operator[](char const*)'\n"}
+[24.366479] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xb0): undefined reference to `Json::Value::operator=(Json::Value&&)'\n"}
+[24.366927] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xb8): undefined reference to `Json::Value::~Value()'\n"}
+[24.367404] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xc4): undefined reference to `Json::Value::Value(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[24.368246] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xd8): undefined reference to `Json::Value::operator[](char const*)'\n"}
+[24.368998] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xec): undefined reference to `Json::Value::operator=(Json::Value&&)'\n"}
+[24.369638] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0xf4): undefined reference to `Json::Value::~Value()'\n"}
+[24.370111] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x100): undefined reference to `Json::Value::Value(long)'\n"}
+[24.370538] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x114): undefined reference to `Json::Value::operator[](char const*)'\n"}
+[24.370956] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x128): undefined reference to `Json::Value::operator=(Json::Value&&)'\n"}
+[24.371335] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x130): undefined reference to `Json::Value::~Value()'\n"}
+[24.371718] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x138): undefined reference to `Json::StreamWriterBuilder::StreamWriterBuilder()'\n"}
+[24.372065] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x14c): undefined reference to `Json::Value::Value(char const*)'\n"}
+[24.372414] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x17c): undefined reference to `Json::StreamWriterBuilder::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[24.372757] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x190): undefined reference to `Json::Value::operator=(Json::Value&&)'\n"}
+[24.373035] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x1a8): undefined reference to `Json::Value::~Value()'\n"}
+[24.373358] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x1b8): undefined reference to `Json::writeString[abi:cxx11](Json::StreamWriter::Factory const&, Json::Value const&)'\n"}
+[24.373851] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x1c4): undefined reference to `Json::StreamWriterBuilder::~StreamWriterBuilder()'\n"}
+[24.374486] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x1cc): undefined reference to `Json::Value::~Value()'\n"}
+[24.374741] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x1fc): undefined reference to `Json::Value::~Value()'\n"}
+[24.374949] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x20c): undefined reference to `Json::Value::~Value()'\n"}
+[24.375066] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x21c): undefined reference to `Json::Value::~Value()'\n"}
+[24.375272] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x22c): undefined reference to `Json::Value::~Value()'\n"}
+[24.375533] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o:monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x254): more undefined references to `Json::Value::~Value()' follow\n"}
+[24.375794] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o: in function `buildAlarmEventPayload(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, long)':\n"}
+[24.375939] (bishe_monitor) StderrLine: {'line': b"monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x264): undefined reference to `Json::StreamWriterBuilder::~StreamWriterBuilder()'\n"}
+[24.376126] (bishe_monitor) StderrLine: {'line': b"/usr/bin/ld: monitor_node.cpp:(.text._Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l[_Z22buildAlarmEventPayloadRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_l]+0x274): undefined reference to `Json::Value::~Value()'\n"}
+[24.384885] (-) TimerEvent: {}
+[24.485162] (-) TimerEvent: {}
+[24.525750] (bishe_monitor) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[24.528740] (bishe_monitor) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:253\xef\xbc\x9amonitor_node] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[24.529415] (bishe_monitor) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:163\xef\xbc\x9aCMakeFiles/monitor_node.dir/all] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[24.529667] (bishe_monitor) StderrLine: {'line': b'gmake: *** [Makefile:146\xef\xbc\x9aall] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[24.532953] (bishe_monitor) CommandEnded: {'returncode': 2}
+[24.554927] (bishe_monitor) JobEnded: {'identifier': 'bishe_monitor', 'rc': 2}
+[24.566072] (-) EventReactorShutdown: {}

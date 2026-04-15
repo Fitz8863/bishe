@@ -1,0 +1,59 @@
+UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+   Site: jetson-orin-nano
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20260414-1533 - Experimental
+UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+Test project /home/jetson/projects/bishe/edge/build/bishe_detector
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_detection_gate
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml" "--package-name" "bishe_detector" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_detector/ament_cmake_gtest/test_detection_gate.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_detector':
+1:  - /home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml
+1: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+1: [==========] Running 7 tests from 2 test suites.
+1: [----------] Global test environment set-up.
+1: [----------] 6 tests from DetectionGateTest
+1: [ RUN      ] DetectionGateTest.AllowsFirstFrameImmediately
+1: [       OK ] DetectionGateTest.AllowsFirstFrameImmediately (0 ms)
+1: [ RUN      ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires
+1: [       OK ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires (0 ms)
+1: [ RUN      ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames
+1: [       OK ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames (0 ms)
+1: [ RUN      ] DetectionGateTest.DetectionDuringLockRefreshesDeadline
+1: [       OK ] DetectionGateTest.DetectionDuringLockRefreshesDeadline (0 ms)
+1: [ RUN      ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection
+1: [       OK ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection (0 ms)
+1: [ RUN      ] DetectionGateTest.UpdatingConfigAppliesNewIntervals
+1: [       OK ] DetectionGateTest.UpdatingConfigAppliesNewIntervals (0 ms)
+1: [----------] 6 tests from DetectionGateTest (0 ms total)
+1: 
+1: [----------] 1 test from DetectorResultUtilsTest
+1: [ RUN      ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame
+1: [       OK ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame (0 ms)
+1: [----------] 1 test from DetectorResultUtilsTest (0 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 7 tests from 2 test suites ran. (0 ms total)
+1: [  PASSED  ] 7 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+1: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+1/1 Test #1: test_detection_gate ..............   Passed    0.13 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+gtest    =   0.13 sec*proc (1 test)
+
+Total Test time (real) =   0.13 sec

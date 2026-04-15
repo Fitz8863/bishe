@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000129] (bishe_monitor) JobQueued: {'identifier': 'bishe_monitor', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs'), ('bishe_monitor', '/home/jetson/projects/bishe/edge/install/bishe_monitor')])}
+[0.000804] (bishe_monitor) JobStarted: {'identifier': 'bishe_monitor'}
+[0.055408] (bishe_monitor) JobEnded: {'identifier': 'bishe_monitor', 'rc': 0}
+[0.056336] (-) EventReactorShutdown: {}

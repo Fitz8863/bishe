@@ -1,0 +1,12 @@
+[ 33%] Built target gtest_main
+[ 33%] Built target gtest
+[ 83%] Built target detector_node
+Consolidate compiler generated dependencies of target test_detection_gate
+[ 91%] Building CXX object CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o
+/home/jetson/projects/bishe/edge/src/bishe_detector/test/test_detection_gate.cpp:5:10: fatal error: sensor_msgs/msg/image.hpp: 没有那个文件或目录
+    5 | #include <sensor_msgs/msg/image.hpp>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/test_detection_gate.dir/build.make:76：CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:184：CMakeFiles/test_detection_gate.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2
