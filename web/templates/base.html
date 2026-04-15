@@ -143,6 +143,29 @@
                 this.alarmInterval = null;
                 this.autoStopTimer = null;
                 this.isMuted = false;
+                this.isFireAlarm = false;
+                
+                // 使用 JS 动态创建 Audio 对象
+                this.fireAudio = new Audio('/static/alarm/alarm.mp3');
+                this.fireAudio.loop = false;
+                this.fireAudio.volume = 1.0;
+                this.fireAudio.preload = 'auto';
+                
+                // 计数器逻辑：播放 3 次
+                this.firePlayCount = 0;
+                this.maxFirePlays = 3;
+
+                // 监听音频播放结束事件
+                this.fireAudio.onended = () => {
+                    if (this.isFireAlarm) {
+                        this.firePlayCount++;
+                        if (this.firePlayCount < this.maxFirePlays) {
+                            this.playFireAudio();
+                        } else {
+                            this.stopAlarm();
+                        }
+                    }
+                };
             }
 
             init() {
@@ -155,7 +178,7 @@
             }
 
             playSiren() {
-                if (!this.audioCtx || this.isMuted) return;
+                if (!this.audioCtx || this.isMuted || this.isFireAlarm) return;
                 
                 const now = this.audioCtx.currentTime;
                 const oscillator = this.audioCtx.createOscillator();
@@ -177,15 +200,44 @@
                 oscillator.stop(now + 0.3);
             }
 
-            startAlarm() {
+            playFireAudio() {
+                this.fireAudio.currentTime = 0;
+                this.fireAudio.play().then(() => {
+                    console.log(`[Alarm] Fire audio playing (count: ${this.firePlayCount + 1}/${this.maxFirePlays})`);
+                }).catch(e => {
+                    console.log('[Alarm] Fire audio play failed:', e.message);
+                });
+            }
+
+            startAlarm(isFire = false) {
+                console.log('[Alarm] startAlarm called, isFire:', isFire, 'isMuted:', this.isMuted);
                 this.init();
                 
+                if (isFire) {
+                    this.isFireAlarm = true;
+                    if (this.alarmInterval) {
+                        clearInterval(this.alarmInterval);
+                        this.alarmInterval = null;
+                    }
+                    // 停止普通警报
+                    if (this.alarmInterval) clearInterval(this.alarmInterval);
+                    
+                    if (!this.isMuted) {
+                        this.firePlayCount = 0;
+                        this.playFireAudio();
+                    }
+                    document.getElementById('stop-alarm-btn').style.display = 'block';
+                    this.isPlaying = true;
+                    return;
+                }
+
                 if (this.isPlaying) {
                     this.resetAutoStop();
                     return;
                 }
                 
                 this.isPlaying = true;
+                this.isFireAlarm = false;
                 document.getElementById('stop-alarm-btn').style.display = 'block';
                 this.playSiren();
                 
@@ -197,6 +249,7 @@
             }
 
             resetAutoStop() {
+                if (this.isFireAlarm) return;
                 if (this.autoStopTimer) {
                     clearTimeout(this.autoStopTimer);
                 }
@@ -206,7 +259,14 @@
             }
 
             stopAlarm() {
+                console.log('[Alarm] stopAlarm called');
                 this.isPlaying = false;
+                this.isFireAlarm = false;
+                this.firePlayCount = 0;
+                
+                this.fireAudio.pause();
+                this.fireAudio.currentTime = 0;
+                
                 if (this.alarmInterval) {
                     clearInterval(this.alarmInterval);
                     this.alarmInterval = null;
@@ -236,6 +296,24 @@
 
         // 创建全局报警实例
         const alarmSound = new AlarmSound();
+        let userHasInteracted = false;
+
+        // 监听用户首次交互
+        document.addEventListener('click', () => {
+            if (!userHasInteracted) {
+                userHasInteracted = true;
+                console.log('[Audio] User interaction detected, audio playback allowed');
+                
+                // 使用 JS 创建的 Audio 对象播放一次，解除浏览器限制
+                alarmSound.fireAudio.play().then(() => {
+                    console.log('[Audio] Initial play succeeded');
+                    alarmSound.fireAudio.pause();
+                    alarmSound.fireAudio.currentTime = 0;
+                }).catch(e => {
+                    console.log('[Audio] Initial play failed:', e.message);
+                });
+            }
+        }, { once: true });
 
         // 点击静音按钮
         document.getElementById('alarm-btn').addEventListener('click', (e) => {
@@ -264,6 +342,40 @@
                 onNewCapture(data);
             }
         });
+
+        socket.on('fire_alarm', (data) => {
+            console.log('[SocketIO] Fire alarm received:', data);
+            showFireNotification(data);
+            console.log('[SocketIO] Calling alarmSound.startAlarm(true)...');
+            alarmSound.startAlarm(true);
+            console.log('[SocketIO] startAlarm call completed');
+        });
+
+        function showFireNotification(data) {
+            const container = document.getElementById('notification-container');
+            const toast = document.createElement('div');
+            toast.className = 'fade-in mb-3';
+            toast.style.cssText = `
+                background: #450a0a;
+                border: 2px solid var(--danger-color);
+                padding: 16px;
+                color: white;
+                position: relative;
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+                animation: pulse-border 2s infinite;
+            `;
+
+            toast.innerHTML = `
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-fire me-2 text-danger" style="font-size: 1.2rem;"></i>
+                    <strong class="me-auto text-white" style="font-size: 1rem; letter-spacing: 0.05em;">紧急：检测到火灾！</strong>
+                    <button type="button" class="btn-close btn-close-white ms-2" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+                <div class="text-white-50 small mb-0">${data.message || '请立即检查实时监控并采取行动！'}</div>
+            `;
+
+            container.prepend(toast);
+        }
 
         function showNotification(data) {
             const container = document.getElementById('notification-container');

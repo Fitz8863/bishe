@@ -2,6 +2,7 @@ import json
 import time
 import paho.mqtt.client as mqtt
 from flask import jsonify
+from exts import socketio
 
 class MQTTManager:
     def __init__(self, broker, port, username='', password='', topic_prefix='jetson/camera'):
@@ -44,6 +45,7 @@ class MQTTManager:
             # 订阅设备信息主题
             client.subscribe("jetson/info")
             client.subscribe("jetson/esp8266/info", qos=1)
+            client.subscribe("jetson/alarm", qos=1)
         else:
             self.connected = False
             print(f"MQTT连接失败, 返回码: {rc}")
@@ -82,6 +84,28 @@ class MQTTManager:
                     self.connected = True
             except Exception as e:
                 print(f"解析 jetson/esp8266/info 消息失败: {e}")
+        elif msg.topic == "jetson/alarm":
+            try:
+                payload = json.loads(msg.payload.decode('utf-8'))
+                print(f"[DEBUG] 收到 jetson/alarm 消息，payload: {payload}")
+                alarm_type = payload.get('alarm_type')
+                print(f"[DEBUG] alarm_type = {alarm_type}")
+                if alarm_type == 'fire':
+                    print("[DEBUG] 进入 fire 警报分支，准备发送 SocketIO 事件...")
+                    from exts import socketio
+                    socketio.emit('fire_alarm', {
+                        'message': '检测到火灾警报！',
+                        'camera_id': payload.get('camera_id'),
+                        'location': payload.get('location'),
+                        'timestamp': payload.get('timestamp_ns')
+                    }, namespace='/')
+                    print("[DEBUG] 已发送 fire_alarm SocketIO 事件")
+                else:
+                    print(f"[DEBUG] alarm_type 不是 'fire'，实际值：{alarm_type}")
+            except Exception as e:
+                print(f"解析 jetson/alarm 消息失败：{e}")
+                import traceback
+                traceback.print_exc()
             
     def _on_disconnect(self, client, userdata, rc):
         self.connected = False
@@ -206,7 +230,6 @@ class MQTTManager:
 mqtt_manager = None
 
 def init_mqtt(app):
-    """初始化MQTT（不自动连接，等待用户手动连接）"""
     global mqtt_manager
     mqtt_manager = MQTTManager(
         broker='',
@@ -215,6 +238,7 @@ def init_mqtt(app):
         password='',
         topic_prefix=app.config.get('MQTT_TOPIC_PREFIX', 'jetson/camera')
     )
+    mqtt_manager.socketio = socketio
     return mqtt_manager
 
 def get_mqtt_status():
