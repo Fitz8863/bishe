@@ -16,6 +16,7 @@ find_package(TensorRT REQUIRED)
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_gtest REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(image_transport REQUIRED)
@@ -34,6 +35,7 @@ add_executable(detector_node
 )
 
 target_include_directories(detector_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/bishe_detector>
   $<INSTALL_INTERFACE:include>
   ${CUDA_INCLUDE_DIRS}
@@ -62,5 +64,19 @@ install(TARGETS detector_node
 install(DIRECTORY include/
   DESTINATION include
 )
+
+if(BUILD_TESTING)
+  ament_add_gtest(test_detection_gate test/test_detection_gate.cpp)
+  if(TARGET test_detection_gate)
+    target_include_directories(test_detection_gate PUBLIC
+      ${CMAKE_CURRENT_SOURCE_DIR}/include
+      ${CMAKE_CURRENT_SOURCE_DIR}/include/bishe_detector
+    )
+    ament_target_dependencies(test_detection_gate
+      sensor_msgs
+      bishe_msgs
+    )
+  endif()
+endif()
 
 ament_package()

@@ -88,6 +88,12 @@ def _generate_nodes(context):
                             "confidence_threshold", 0.5
                         ),
                         "nms_threshold": detector.get("nms_threshold", 0.5),
+                        "sampling_interval_ms": detector.get(
+                            "sampling_interval_ms", 1000
+                        ),
+                        "lock_duration_ms": detector.get(
+                            "lock_duration_ms", 3000
+                        ),
                         "engine_path": detector.get(
                             "engine_path",
                             "/home/jetson/projects/bishe/models/yolov8s.engine",

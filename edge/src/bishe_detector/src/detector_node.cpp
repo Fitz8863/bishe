@@ -13,6 +13,9 @@
 #include <cmath>
 #include <algorithm>
 
+#include "bishe_detector/detection_gate.hpp"
+#include "bishe_detector/detector_result_utils.hpp"
+
 // YOLO Headers
 #include "trt_engine.h"
 #include "yolov8.h"
@@ -26,19 +29,27 @@ public:
     // Declare parameters
     this->declare_parameter<float>("confidence_threshold", 0.5);
     this->declare_parameter<float>("nms_threshold", 0.5);
+    this->declare_parameter<int>("sampling_interval_ms", 1000);
+    this->declare_parameter<int>("lock_duration_ms", 3000);
     this->declare_parameter<std::string>("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine");
     this->declare_parameter<int>("worker_threads", 1);
     this->declare_parameter<int>("max_queue_size", 8);
 
     float confidence_threshold = 0.5f;
     float nms_threshold = 0.5f;
+    int sampling_interval_ms = sampling_interval_ms_;
+    int lock_duration_ms = lock_duration_ms_;
     this->get_parameter("confidence_threshold", confidence_threshold);
     this->get_parameter("nms_threshold", nms_threshold);
+    this->get_parameter("sampling_interval_ms", sampling_interval_ms);
+    this->get_parameter("lock_duration_ms", lock_duration_ms);
     this->get_parameter("engine_path", engine_path_);
     this->get_parameter("worker_threads", worker_threads_);
     this->get_parameter("max_queue_size", max_queue_size_);
     confidence_threshold_.store(confidence_threshold);
     nms_threshold_.store(nms_threshold);
+    sampling_interval_ms_ = std::max(1, sampling_interval_ms);
+    lock_duration_ms_ = std::max(0, lock_duration_ms);
 
     if (worker_threads_ < 1) {
       worker_threads_ = 1;
@@ -68,7 +79,17 @@ public:
     parameter_callback_handle_ = this->add_on_set_parameters_callback(
       std::bind(&DetectorNode::handleParameterUpdate, this, std::placeholders::_1));
 
-    RCLCPP_INFO(this->get_logger(), "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, worker_threads: %d, max_queue_size: %d", confidence_threshold_.load(), nms_threshold_.load(), worker_threads_, max_queue_size_);
+    {
+      std::lock_guard<std::mutex> lock(gate_mutex_);
+      detection_gate_.update_config(
+        std::chrono::milliseconds{sampling_interval_ms_},
+        std::chrono::milliseconds{lock_duration_ms_},
+        std::chrono::steady_clock::time_point{});
+    }
+
+    RCLCPP_INFO(this->get_logger(),
+      "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, sampling_interval_ms: %d, lock_duration_ms: %d, worker_threads: %d, max_queue_size: %d",
+      confidence_threshold_.load(), nms_threshold_.load(), sampling_interval_ms_, lock_duration_ms_, worker_threads_, max_queue_size_);
   }
 
   ~DetectorNode() override
@@ -107,6 +128,7 @@ private:
   std::vector<std::thread> worker_threads_pool_;
   std::deque<FrameTask> queue_;
   std::mutex queue_mutex_;
+  std::mutex gate_mutex_;
   std::condition_variable queue_cv_;
   bool stop_workers_{false};
 
@@ -118,6 +140,9 @@ private:
   std::mutex stats_mutex_;
   std::chrono::steady_clock::time_point stats_window_start_{std::chrono::steady_clock::now()};
   rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr parameter_callback_handle_;
+  int sampling_interval_ms_{1000};
+  int lock_duration_ms_{3000};
+  DetectionGate detection_gate_{std::chrono::milliseconds{1000}, std::chrono::milliseconds{3000}};
 
   rcl_interfaces::msg::SetParametersResult handleParameterUpdate(const std::vector<rclcpp::Parameter> &parameters)
   {
@@ -126,7 +151,10 @@ private:
 
     float new_confidence_threshold = confidence_threshold_.load();
     float new_nms_threshold = nms_threshold_.load();
+    int new_sampling_interval_ms = sampling_interval_ms_;
+    int new_lock_duration_ms = lock_duration_ms_;
     bool thresholds_changed = false;
+    bool gate_changed = false;
 
     for (const auto &parameter : parameters) {
       if (parameter.get_name() == "confidence_threshold") {
@@ -169,6 +197,38 @@ private:
 
         new_nms_threshold = static_cast<float>(value);
         thresholds_changed = true;
+      } else if (parameter.get_name() == "sampling_interval_ms") {
+        if (parameter.get_type() != rclcpp::ParameterType::PARAMETER_INTEGER) {
+          result.successful = false;
+          result.reason = "sampling_interval_ms 必须是整数";
+          return result;
+        }
+
+        const int value = static_cast<int>(parameter.as_int());
+        if (value < 1) {
+          result.successful = false;
+          result.reason = "sampling_interval_ms 必须 >= 1";
+          return result;
+        }
+
+        new_sampling_interval_ms = value;
+        gate_changed = true;
+      } else if (parameter.get_name() == "lock_duration_ms") {
+        if (parameter.get_type() != rclcpp::ParameterType::PARAMETER_INTEGER) {
+          result.successful = false;
+          result.reason = "lock_duration_ms 必须是整数";
+          return result;
+        }
+
+        const int value = static_cast<int>(parameter.as_int());
+        if (value < 0) {
+          result.successful = false;
+          result.reason = "lock_duration_ms 必须 >= 0";
+          return result;
+        }
+
+        new_lock_duration_ms = value;
+        gate_changed = true;
       }
     }
 
@@ -179,6 +239,21 @@ private:
         worker->yolo->SetThresholds(new_confidence_threshold, new_nms_threshold);
       }
       RCLCPP_INFO(this->get_logger(), "检测参数已更新: confidence_threshold=%.2f, nms_threshold=%.2f", new_confidence_threshold, new_nms_threshold);
+    }
+
+    if (gate_changed) {
+      sampling_interval_ms_ = new_sampling_interval_ms;
+      lock_duration_ms_ = new_lock_duration_ms;
+      const auto now = std::chrono::steady_clock::now();
+      {
+        std::lock_guard<std::mutex> lock(gate_mutex_);
+        detection_gate_.update_config(
+          std::chrono::milliseconds{sampling_interval_ms_},
+          std::chrono::milliseconds{lock_duration_ms_},
+          now);
+      }
+      RCLCPP_INFO(this->get_logger(), "检测门控参数已更新: sampling_interval_ms=%d, lock_duration_ms=%d",
+        sampling_interval_ms_, lock_duration_ms_);
     }
 
     return result;
@@ -239,6 +314,12 @@ private:
       cv::Mat frame = cv_bridge::toCvShare(task.msg, "bgr8")->image;
       DetectionResult detection_result = worker->yolo->Detect(frame);
       const auto t1 = std::chrono::steady_clock::now();
+
+      if (!detection_result.detections.empty()) {
+        std::lock_guard<std::mutex> gate_lock(gate_mutex_);
+        detection_gate_.on_detection(t1);
+      }
+
       const double inf_ms = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count()) / 1000.0;
       {
         std::lock_guard<std::mutex> lock(stats_mutex_);
@@ -264,9 +345,22 @@ private:
     try
     {
       input_frames_.fetch_add(1);
+      const auto now = std::chrono::steady_clock::now();
+      bool should_process = false;
+      {
+        std::lock_guard<std::mutex> lock(gate_mutex_);
+        should_process = detection_gate_.should_process(now);
+      }
+
+      if (!should_process) {
+        result_pub_->publish(buildPassThroughResult(msg, nms_threshold_.load()));
+        output_frames_.fetch_add(1);
+        return;
+      }
+
       FrameTask task;
       task.msg = msg;
-      task.enqueue_time = std::chrono::steady_clock::now();
+      task.enqueue_time = now;
 
       {
         std::lock_guard<std::mutex> lock(queue_mutex_);
