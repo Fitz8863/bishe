@@ -221,6 +221,7 @@ private:
 
     // 状态上报配置
     this->declare_parameter<std::string>("info_topic", "jetson/info"); // 状态信息发布主题
+    this->declare_parameter<std::string>("alarm_topic", "jetson/alarm");
     this->declare_parameter<double>("report_interval_sec", 1.0);       // 上报间隔（秒）
 
     // 摄像头配置（支持多摄像头）
@@ -247,6 +248,7 @@ private:
 
     // 加载上报配置
     this->get_parameter("info_topic", info_topic_);
+    this->get_parameter("alarm_topic", alarm_topic_);
     this->get_parameter("report_interval_sec", report_interval_sec_);
     this->get_parameter("camera_ids", camera_ids_);
     this->get_parameter("camera_locations", camera_locations_);
@@ -382,7 +384,10 @@ private:
       createReportTimer();
 
       // 初始化通话控制发布器
-      intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
+    intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
+    alarm_event_sub_ = this->create_subscription<std_msgs::msg::String>(
+        "/alarm/event", 10,
+        std::bind(&MqttNode::onAlarmEvent, this, std::placeholders::_1));
 
       // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
       rclcpp::SubscriptionOptions sub_options;
@@ -1235,23 +1240,46 @@ private:
    *
    * 将构建好的 JSON payload 发布到 info_topic 指定的 MQTT 主题
    */
-  void publishToInfoTopic(const std::string &payload)
+  void publishToTopic(const std::string &topic, const std::string &payload, const char *topic_label)
   {
     if (client_ == nullptr || !client_->is_connected())
     {
-      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 3000, "Cannot publish jetson/info, MQTT not connected");
+      RCLCPP_WARN_THROTTLE(
+          this->get_logger(), *this->get_clock(), 3000,
+          "Cannot publish %s, MQTT not connected", topic_label);
       return;
     }
 
     try
     {
-      auto msg = mqtt::make_message(info_topic_, payload, 1, false);
+      auto msg = mqtt::make_message(topic, payload, 1, false);
       client_->publish(msg)->wait();
     }
     catch (const mqtt::exception &e)
     {
-      RCLCPP_ERROR(this->get_logger(), "Publish jetson/info failed: %s", e.what());
+      RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
     }
+  }
+
+  void publishToInfoTopic(const std::string &payload)
+  {
+    publishToTopic(info_topic_, payload, info_topic_.c_str());
+  }
+
+  void publishToAlarmTopic(const std::string &payload)
+  {
+    publishToTopic(alarm_topic_, payload, alarm_topic_.c_str());
+  }
+
+  void onAlarmEvent(const std_msgs::msg::String::SharedPtr msg)
+  {
+    if (!msg || msg->data.empty())
+    {
+      RCLCPP_WARN(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+      return;
+    }
+
+    publishToAlarmTopic(msg->data);
   }
 
   /**
@@ -1306,6 +1334,7 @@ private:
 
   // 上报配置
   std::string info_topic_;                    ///< 信息发布主题
+  std::string alarm_topic_;                   ///< 报警事件发布主题
   double report_interval_sec_{1.0};           ///< 上报间隔（秒）
   std::vector<std::string> camera_ids_;       ///< 摄像头 ID 列表
   std::vector<std::string> camera_locations_; ///< 摄像头位置列表
@@ -1318,6 +1347,7 @@ private:
   // 内部状态
   rclcpp::TimerBase::SharedPtr report_timer_;                                                     ///< 定时上报计时器
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr intercom_pub_;                              ///< 通话控制发布器
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr alarm_event_sub_;                        ///< 报警事件订阅器
   rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr param_event_sub_;          ///< 参数事件订阅器
   std::unordered_map<std::string, bool> initial_fetch_streamer_;                                  ///< 记录推流器是否已完成初始参数获取
   std::unordered_map<std::string, bool> initial_fetch_detector_;                                  ///< 记录检测器是否已完成初始参数获取

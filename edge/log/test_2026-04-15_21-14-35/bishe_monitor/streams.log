@@ -1,0 +1,128 @@
+[0.055s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
+[0.066s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_monitor/CTestConfiguration.ini
+[0.067s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_monitor/CTestConfiguration.ini
+[0.067s]    Site: jetson-orin-nano
+[0.067s]    Build name: (empty)
+[0.068s]  Add coverage exclude regular expressions.
+[0.068s] Create new tag: 20260415-1314 - Experimental
+[0.068s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_monitor/CTestConfiguration.ini
+[0.068s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_monitor/CTestConfiguration.ini
+[0.068s] Test project /home/jetson/projects/bishe/edge/build/bishe_monitor
+[0.068s] Constructing a list of tests
+[0.068s] Done constructing a list of tests
+[0.068s] Updating test list for fixtures
+[0.068s] Added 0 tests to meet fixture requirements
+[0.069s] Checking test dependency graph...
+[0.069s] Checking test dependency graph end
+[0.069s] test 1
+[0.069s]     Start 1: test_async_task_worker
+[0.069s] 
+[0.069s] 1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_async_task_worker.gtest.xml" "--package-name" "bishe_monitor" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_gtest/test_async_task_worker.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_async_task_worker" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_async_task_worker.gtest.xml"
+[0.069s] 1: Test timeout computed to be: 60
+[0.171s] 1: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_monitor':
+[0.171s] 1:  - /home/jetson/projects/bishe/edge/build/bishe_monitor/test_async_task_worker --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_async_task_worker.gtest.xml
+[0.174s] 1: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.174s] 1: [==========] Running 3 tests from 1 test suite.
+[0.174s] 1: [----------] Global test environment set-up.
+[0.174s] 1: [----------] 3 tests from AsyncTaskWorkerTest
+[0.174s] 1: [ RUN      ] AsyncTaskWorkerTest.ExecutesEnqueuedTasks
+[0.175s] 1: [       OK ] AsyncTaskWorkerTest.ExecutesEnqueuedTasks (1 ms)
+[0.175s] 1: [ RUN      ] AsyncTaskWorkerTest.RejectsNewTasksAfterStop
+[0.175s] 1: [       OK ] AsyncTaskWorkerTest.RejectsNewTasksAfterStop (0 ms)
+[0.175s] 1: [ RUN      ] AsyncTaskWorkerTest.DrainsQueuedTasksBeforeStopping
+[0.225s] 1: [       OK ] AsyncTaskWorkerTest.DrainsQueuedTasksBeforeStopping (50 ms)
+[0.225s] 1: [----------] 3 tests from AsyncTaskWorkerTest (51 ms total)
+[0.225s] 1: 
+[0.225s] 1: [----------] Global test environment tear-down
+[0.226s] 1: [==========] 3 tests from 1 test suite ran. (51 ms total)
+[0.226s] 1: [  PASSED  ] 3 tests.
+[0.226s] 1: -- run_test.py: return code 0
+[0.226s] 1: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_async_task_worker.gtest.xml'
+[0.226s] 1: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_async_task_worker.gtest.xml'
+[0.247s] 1/4 Test #1: test_async_task_worker ...........   Passed    0.18 sec
+[0.247s] test 2
+[0.247s]     Start 2: test_alarm_upload_gate
+[0.248s] 
+[0.248s] 2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_upload_gate.gtest.xml" "--package-name" "bishe_monitor" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_gtest/test_alarm_upload_gate.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_upload_gate" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_upload_gate.gtest.xml"
+[0.248s] 2: Test timeout computed to be: 60
+[0.351s] 2: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_monitor':
+[0.351s] 2:  - /home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_upload_gate --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_upload_gate.gtest.xml
+[0.355s] 2: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.356s] 2: [==========] Running 5 tests from 1 test suite.
+[0.356s] 2: [----------] Global test environment set-up.
+[0.356s] 2: [----------] 5 tests from AlarmUploadGateTest
+[0.357s] 2: [ RUN      ] AlarmUploadGateTest.FirstAlarmDoesNotUploadWhenThresholdGreaterThanOne
+[0.357s] 2: [       OK ] AlarmUploadGateTest.FirstAlarmDoesNotUploadWhenThresholdGreaterThanOne (0 ms)
+[0.357s] 2: [ RUN      ] AlarmUploadGateTest.ReachingThresholdRequestsUpload
+[0.357s] 2: [       OK ] AlarmUploadGateTest.ReachingThresholdRequestsUpload (0 ms)
+[0.357s] 2: [ RUN      ] AlarmUploadGateTest.UploadCanResetCountWhenConfigured
+[0.358s] 2: [       OK ] AlarmUploadGateTest.UploadCanResetCountWhenConfigured (0 ms)
+[0.358s] 2: [ RUN      ] AlarmUploadGateTest.QuietTimeoutClearsStaleCountBeforeNextAlarm
+[0.358s] 2: [       OK ] AlarmUploadGateTest.QuietTimeoutClearsStaleCountBeforeNextAlarm (0 ms)
+[0.358s] 2: [ RUN      ] AlarmUploadGateTest.DisablingQuietTimeoutKeepsCountAcrossLongGaps
+[0.358s] 2: [       OK ] AlarmUploadGateTest.DisablingQuietTimeoutKeepsCountAcrossLongGaps (0 ms)
+[0.359s] 2: [----------] 5 tests from AlarmUploadGateTest (0 ms total)
+[0.359s] 2: 
+[0.359s] 2: [----------] Global test environment tear-down
+[0.359s] 2: [==========] 5 tests from 1 test suite ran. (0 ms total)
+[0.359s] 2: [  PASSED  ] 5 tests.
+[0.359s] 2: -- run_test.py: return code 0
+[0.359s] 2: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_upload_gate.gtest.xml'
+[0.359s] 2: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_upload_gate.gtest.xml'
+[0.380s] 2/4 Test #2: test_alarm_upload_gate ...........   Passed    0.13 sec
+[0.381s] test 3
+[0.381s]     Start 3: test_alarm_playback_command
+[0.381s] 
+[0.381s] 3: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_playback_command.gtest.xml" "--package-name" "bishe_monitor" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_gtest/test_alarm_playback_command.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_playback_command" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_playback_command.gtest.xml"
+[0.381s] 3: Test timeout computed to be: 60
+[0.481s] 3: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_monitor':
+[0.482s] 3:  - /home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_playback_command --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_playback_command.gtest.xml
+[0.485s] 3: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.485s] 3: [==========] Running 2 tests from 1 test suite.
+[0.486s] 3: [----------] Global test environment set-up.
+[0.486s] 3: [----------] 2 tests from AlarmPlaybackCommandTest
+[0.486s] 3: [ RUN      ] AlarmPlaybackCommandTest.EscapesDangerousCharacters
+[0.486s] 3: [       OK ] AlarmPlaybackCommandTest.EscapesDangerousCharacters (0 ms)
+[0.486s] 3: [ RUN      ] AlarmPlaybackCommandTest.BuildsForegroundPlaybackCommandWithoutShellBackgrounding
+[0.486s] 3: [       OK ] AlarmPlaybackCommandTest.BuildsForegroundPlaybackCommandWithoutShellBackgrounding (0 ms)
+[0.486s] 3: [----------] 2 tests from AlarmPlaybackCommandTest (0 ms total)
+[0.487s] 3: 
+[0.487s] 3: [----------] Global test environment tear-down
+[0.487s] 3: [==========] 2 tests from 1 test suite ran. (0 ms total)
+[0.487s] 3: [  PASSED  ] 2 tests.
+[0.487s] 3: -- run_test.py: return code 0
+[0.487s] 3: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_playback_command.gtest.xml'
+[0.488s] 3: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_playback_command.gtest.xml'
+[0.510s] 3/4 Test #3: test_alarm_playback_command ......   Passed    0.13 sec
+[0.510s] test 4
+[0.511s]     Start 4: test_alarm_event_payload
+[0.512s] 
+[0.512s] 4: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_event_payload.gtest.xml" "--package-name" "bishe_monitor" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_monitor/ament_cmake_gtest/test_alarm_event_payload.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_event_payload" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_event_payload.gtest.xml"
+[0.512s] 4: Test timeout computed to be: 60
+[0.608s] 4: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_monitor':
+[0.609s] 4:  - /home/jetson/projects/bishe/edge/build/bishe_monitor/test_alarm_event_payload --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_event_payload.gtest.xml
+[0.612s] 4: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.612s] 4: [==========] Running 2 tests from 1 test suite.
+[0.612s] 4: [----------] Global test environment set-up.
+[0.612s] 4: [----------] 2 tests from AlarmEventPayloadTest
+[0.613s] 4: [ RUN      ] AlarmEventPayloadTest.BuildsParseablePayloadWithExpectedFields
+[0.613s] 4: [       OK ] AlarmEventPayloadTest.BuildsParseablePayloadWithExpectedFields (0 ms)
+[0.613s] 4: [ RUN      ] AlarmEventPayloadTest.KeepsEnglishAlarmTypeUnchanged
+[0.613s] 4: [       OK ] AlarmEventPayloadTest.KeepsEnglishAlarmTypeUnchanged (0 ms)
+[0.613s] 4: [----------] 2 tests from AlarmEventPayloadTest (0 ms total)
+[0.613s] 4: 
+[0.613s] 4: [----------] Global test environment tear-down
+[0.614s] 4: [==========] 2 tests from 1 test suite ran. (0 ms total)
+[0.614s] 4: [  PASSED  ] 2 tests.
+[0.614s] 4: -- run_test.py: return code 0
+[0.614s] 4: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_event_payload.gtest.xml'
+[0.616s] 4: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_monitor/test_results/bishe_monitor/test_alarm_event_payload.gtest.xml'
+[0.637s] 4/4 Test #4: test_alarm_event_payload .........   Passed    0.13 sec
+[0.637s] 
+[0.637s] 100% tests passed, 0 tests failed out of 4
+[0.637s] 
+[0.637s] Label Time Summary:
+[0.637s] gtest    =   0.57 sec*proc (4 tests)
+[0.637s] 
+[0.638s] Total Test time (real) =   0.57 sec
+[0.641s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process

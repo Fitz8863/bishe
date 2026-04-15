@@ -1,1 +1,1 @@
-OpenCV:bishe_msgs:cv_bridge:rclcpp
+OpenCV:bishe_msgs:cv_bridge:jsoncpp:rclcpp:std_msgs

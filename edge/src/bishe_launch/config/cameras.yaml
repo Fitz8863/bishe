@@ -18,13 +18,16 @@ cameras:
       audio_device: "hw:0,0"
       framerate: 60
     monitor:
-      window_seconds: 4
-      trigger_frame_threshold: 15
-      trigger_cooldown_seconds: 5
-      upload_server_url: "http://amd64:5001/capture/upload"
+      window_seconds: 8
+      trigger_frame_threshold: 80
+      trigger_cooldown_seconds: 3
+      upload_after_alarm_count: 3
+      reset_alarm_count_after_upload: true
+      alarm_count_reset_timeout_seconds: 30
+      upload_server_url: "http://100.82.58.128:5001/capture/upload"
       upload_timeout_seconds: 10
-      fire_alarm_audio_file: "/home/jetson/projects/bishe/edge/assets/alarm_fire.mp3"
-      smoking_alarm_audio_file: "/home/jetson/projects/bishe/edge/assets/ciallo.wav"
+      fire_alarm_audio_file: "assets/alarm.wav"
+      smoking_alarm_audio_file: "assets/smoking_alarm0.wav"
 
   # - id: "002"
   #   device: "/dev/video2"

@@ -1,0 +1,77 @@
+[0.020s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_monitor -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor
+[0.054s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.276s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.297s] -- Found ament_cmake_gtest: 1.3.12 (/opt/ros/humble/share/ament_cmake_gtest/cmake)
+[0.299s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.359s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.364s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.376s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.398s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.422s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.485s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.488s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.663s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.754s] -- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)
+[0.834s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.898s] -- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built
+[1.031s] -- Configuring done
+[1.079s] -- Generating done
+[1.093s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_monitor
+[1.114s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_monitor -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor
+[1.116s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_monitor -- -j6 -l6
+[1.188s] Consolidate compiler generated dependencies of target gtest_main
+[1.188s] Consolidate compiler generated dependencies of target gtest
+[1.199s] Consolidate compiler generated dependencies of target monitor_node
+[1.205s] [ 14%] Building CXX object gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[1.206s] [ 14%] Building CXX object gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[1.225s] [ 21%] Building CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o
+[3.022s] [ 28%] Linking CXX static library libgtest_main.a
+[3.083s] [ 28%] Built target gtest_main
+[7.376s] [ 35%] Linking CXX static library libgtest.a
+[7.481s] [ 35%] Built target gtest
+[7.503s] Consolidate compiler generated dependencies of target test_alarm_event_payload
+[7.503s] Consolidate compiler generated dependencies of target test_alarm_upload_gate
+[7.506s] Consolidate compiler generated dependencies of target test_async_task_worker
+[7.510s] Consolidate compiler generated dependencies of target test_alarm_playback_command
+[7.528s] [ 42%] Building CXX object CMakeFiles/test_async_task_worker.dir/test/test_async_task_worker.cpp.o
+[7.528s] [ 50%] Building CXX object CMakeFiles/test_alarm_event_payload.dir/test/test_alarm_event_payload.cpp.o
+[7.532s] [ 57%] Building CXX object CMakeFiles/test_alarm_upload_gate.dir/test/test_alarm_upload_gate.cpp.o
+[7.547s] [ 64%] Building CXX object CMakeFiles/test_alarm_playback_command.dir/test/test_alarm_playback_command.cpp.o
+[9.555s] [ 71%] Linking CXX executable test_alarm_playback_command
+[9.682s] [ 78%] Linking CXX executable test_alarm_event_payload
+[9.811s] [ 78%] Built target test_alarm_playback_command
+[9.931s] [ 78%] Built target test_alarm_event_payload
+[9.973s] [ 85%] Linking CXX executable test_alarm_upload_gate
+[10.217s] [ 85%] Built target test_alarm_upload_gate
+[10.550s] [ 92%] Linking CXX executable test_async_task_worker
+[10.783s] [ 92%] Built target test_async_task_worker
+[22.696s] [100%] Linking CXX executable monitor_node
+[23.327s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.410
+[23.329s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
+[24.213s] [100%] Built target monitor_node
+[24.231s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_monitor -- -j6 -l6
+[24.248s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_monitor': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_monitor
+[24.260s] -- Install configuration: ""
+[24.261s] -- Execute custom install script
+[24.262s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/lib/bishe_monitor/monitor_node
+[24.263s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/include/bishe_monitor/alarm_event_payload.hpp
+[24.263s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/include/bishe_monitor/alarm_playback_command.hpp
+[24.263s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/include/bishe_monitor/alarm_upload_gate.hpp
+[24.264s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/include/bishe_monitor/async_task_worker.hpp
+[24.264s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/config/config.yaml
+[24.264s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/ament_index/resource_index/package_run_dependencies/bishe_monitor
+[24.264s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/ament_index/resource_index/parent_prefix_path/bishe_monitor
+[24.264s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/environment/ament_prefix_path.sh
+[24.265s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/environment/ament_prefix_path.dsv
+[24.265s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/environment/path.sh
+[24.265s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/environment/path.dsv
+[24.266s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/local_setup.bash
+[24.266s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/local_setup.sh
+[24.266s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/local_setup.zsh
+[24.266s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/local_setup.dsv
+[24.266s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/package.dsv
+[24.281s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/ament_index/resource_index/packages/bishe_monitor
+[24.281s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/cmake/bishe_monitorConfig.cmake
+[24.281s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/cmake/bishe_monitorConfig-version.cmake
+[24.281s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_monitor/share/bishe_monitor/package.xml
+[24.285s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_monitor' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_monitor

@@ -135,6 +135,15 @@ def _generate_nodes(context):
                             "trigger_cooldown_seconds": monitor.get(
                                 "trigger_cooldown_seconds", 15
                             ),
+                            "upload_after_alarm_count": monitor.get(
+                                "upload_after_alarm_count", 3
+                            ),
+                            "reset_alarm_count_after_upload": monitor.get(
+                                "reset_alarm_count_after_upload", True
+                            ),
+                            "alarm_count_reset_timeout_seconds": monitor.get(
+                                "alarm_count_reset_timeout_seconds", 30
+                            ),
                             "violation_ratio_threshold": monitor.get(
                                 "violation_ratio_threshold", 0.4
                             ),
@@ -183,6 +192,7 @@ def _generate_nodes(context):
                     "subscribe_topic": "jetson/camera/command",
                     "publish_topic": "jetson/camera/command",
                     "info_topic": "jetson/info",
+                    "alarm_topic": "jetson/alarm",
                     "report_interval_sec": 1.5,
                     "camera_ids": selected_camera_ids_for_mqtt,
                     "camera_locations": selected_camera_locations_for_mqtt,

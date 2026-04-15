@@ -31,7 +31,11 @@ def _generate_nodes(context):
         raise RuntimeError(f"No cameras found in config: {config_path}")
 
     if selected_ids_value:
-        selected_ids = [camera_id.strip() for camera_id in selected_ids_value.split(",") if camera_id.strip()]
+        selected_ids = [
+            camera_id.strip()
+            for camera_id in selected_ids_value.split(",")
+            if camera_id.strip()
+        ]
     else:
         selected_ids = list(camera_map.keys())
 
@@ -41,11 +45,15 @@ def _generate_nodes(context):
     selected_camera_http_urls_for_mqtt = []
     for camera_id in selected_ids:
         if camera_id not in camera_map:
-            raise RuntimeError(f"Camera id '{camera_id}' not found in config: {config_path}")
+            raise RuntimeError(
+                f"Camera id '{camera_id}' not found in config: {config_path}"
+            )
 
         camera = camera_map[camera_id]
         selected_camera_ids_for_mqtt.append(str(camera_id))
-        selected_camera_locations_for_mqtt.append(camera.get("location", f"camera_{camera_id}"))
+        selected_camera_locations_for_mqtt.append(
+            camera.get("location", f"camera_{camera_id}")
+        )
         detector = camera.get("detector", {})
         streamer = camera.get("streamer", {})
         monitor = camera.get("monitor", {})
@@ -76,9 +84,14 @@ def _generate_nodes(context):
                 parameters=[
                     {
                         "device": device_name,
-                        "confidence_threshold": detector.get("confidence_threshold", 0.5),
+                        "confidence_threshold": detector.get(
+                            "confidence_threshold", 0.5
+                        ),
                         "nms_threshold": detector.get("nms_threshold", 0.5),
-                        "engine_path": detector.get("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine"),
+                        "engine_path": detector.get(
+                            "engine_path",
+                            "/home/jetson/projects/bishe/models/yolov8s.engine",
+                        ),
                         "worker_threads": detector.get("worker_threads", 1),
                         "max_queue_size": detector.get("max_queue_size", 4),
                     }
@@ -92,10 +105,14 @@ def _generate_nodes(context):
                 parameters=[
                     {
                         "device": device_name,
-                        "rtsp_url": streamer.get("rtsp_url", f"rtsp://localhost:8554/stream_{camera_id}"),
+                        "rtsp_url": streamer.get(
+                            "rtsp_url", f"rtsp://localhost:8554/stream_{camera_id}"
+                        ),
                         "scale": streamer.get("scale", 1.0),
                         "audio_device": streamer.get("audio_device", "hw:0,0"),
-                        "framerate": streamer.get("framerate", camera.get("framerate", 60)),
+                        "framerate": streamer.get(
+                            "framerate", camera.get("framerate", 60)
+                        ),
                     }
                 ],
                 output="screen",
@@ -112,16 +129,47 @@ def _generate_nodes(context):
                         {
                             "device": device_name,
                             "window_seconds": monitor.get("window_seconds", 5),
-                            "trigger_frame_threshold": monitor.get("trigger_frame_threshold", 3),
-                            "trigger_cooldown_seconds": monitor.get("trigger_cooldown_seconds", 15),
-                            "violation_ratio_threshold": monitor.get("violation_ratio_threshold", 0.4),
+                            "trigger_frame_threshold": monitor.get(
+                                "trigger_frame_threshold", 3
+                            ),
+                            "trigger_cooldown_seconds": monitor.get(
+                                "trigger_cooldown_seconds", 15
+                            ),
+                            "upload_after_alarm_count": monitor.get(
+                                "upload_after_alarm_count", 3
+                            ),
+                            "reset_alarm_count_after_upload": monitor.get(
+                                "reset_alarm_count_after_upload", True
+                            ),
+                            "alarm_count_reset_timeout_seconds": monitor.get(
+                                "alarm_count_reset_timeout_seconds", 30
+                            ),
+                            "violation_ratio_threshold": monitor.get(
+                                "violation_ratio_threshold", 0.4
+                            ),
                             "location": camera.get("location", f"camera_{camera_id}"),
                             "camera_id": camera_id,
-                            "upload.server_url": monitor.get("upload_server_url", camera.get("upload_server_url", "http://localhost:5000/capture/upload")),
-                            "upload.timeout_seconds": monitor.get("upload_timeout_seconds", 10),
-                            "alarm.audio_file": monitor.get("alarm_audio_file", camera.get("alarm_audio_file", "")),
-                            "alarm.fire_audio_file": monitor.get("fire_alarm_audio_file", camera.get("fire_alarm_audio_file", "")),
-                            "alarm.smoking_audio_file": monitor.get("smoking_alarm_audio_file", camera.get("smoking_alarm_audio_file", "")),
+                            "upload.server_url": monitor.get(
+                                "upload_server_url",
+                                camera.get(
+                                    "upload_server_url",
+                                    "http://localhost:5000/capture/upload",
+                                ),
+                            ),
+                            "upload.timeout_seconds": monitor.get(
+                                "upload_timeout_seconds", 10
+                            ),
+                            "alarm.audio_file": monitor.get(
+                                "alarm_audio_file", camera.get("alarm_audio_file", "")
+                            ),
+                            "alarm.fire_audio_file": monitor.get(
+                                "fire_alarm_audio_file",
+                                camera.get("fire_alarm_audio_file", ""),
+                            ),
+                            "alarm.smoking_audio_file": monitor.get(
+                                "smoking_alarm_audio_file",
+                                camera.get("smoking_alarm_audio_file", ""),
+                            ),
                         }
                     ],
                     output="screen",
@@ -137,13 +185,14 @@ def _generate_nodes(context):
             name="mqtt_node",
             parameters=[
                 {
-                    "broker": "fnas",
+                    "broker": "100.127.154.73",
                     "port": 1883,
                     "client_id": "jetson",
                     "device": "jetson-orin-nano",
                     "subscribe_topic": "jetson/camera/command",
                     "publish_topic": "jetson/camera/command",
                     "info_topic": "jetson/info",
+                    "alarm_topic": "jetson/alarm",
                     "report_interval_sec": 1.5,
                     "camera_ids": selected_camera_ids_for_mqtt,
                     "camera_locations": selected_camera_locations_for_mqtt,
