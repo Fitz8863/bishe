@@ -14,9 +14,15 @@ find_package(std_msgs REQUIRED)
 # Message generation
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/DetectorResult.msg"
+  "msg/SharedFrameRef.msg"
   DEPENDENCIES sensor_msgs std_msgs
 )
 
+install(DIRECTORY include/
+  DESTINATION include
+)
+
+ament_export_include_directories(include)
 ament_export_dependencies(rosidl_default_runtime)
 
 ament_package()

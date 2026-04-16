@@ -1,0 +1,75 @@
+[0.115s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
+[0.131s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.131s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.132s]    Site: jetson-orin-nano
+[0.132s]    Build name: (empty)
+[0.133s]  Add coverage exclude regular expressions.
+[0.135s] Create new tag: 20260416-0735 - Experimental
+[0.136s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.136s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.137s] Test project /home/jetson/projects/bishe/edge/build/bishe_detector
+[0.138s] Constructing a list of tests
+[0.139s] Done constructing a list of tests
+[0.139s] Updating test list for fixtures
+[0.139s] Added 0 tests to meet fixture requirements
+[0.141s] Checking test dependency graph...
+[0.142s] Checking test dependency graph end
+[0.143s] test 1
+[0.144s]     Start 1: test_detection_gate
+[0.145s] 
+[0.145s] 1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml" "--package-name" "bishe_detector" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_detector/ament_cmake_gtest/test_detection_gate.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml"
+[0.145s] 1: Test timeout computed to be: 60
+[0.322s] 1: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_detector':
+[0.322s] 1:  - /home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml
+[0.358s] 1: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.358s] 1: [==========] Running 8 tests from 2 test suites.
+[0.372s] 1: [----------] Global test environment set-up.
+[0.372s] 1: [----------] 6 tests from DetectionGateTest
+[0.373s] 1: [ RUN      ] DetectionGateTest.AllowsFirstFrameImmediately
+[0.374s] 1: [       OK ] DetectionGateTest.AllowsFirstFrameImmediately (0 ms)
+[0.375s] 1: [ RUN      ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires
+[0.375s] 1: [       OK ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires (0 ms)
+[0.376s] 1: [ RUN      ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames
+[0.376s] 1: [       OK ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames (0 ms)
+[0.377s] 1: [ RUN      ] DetectionGateTest.DetectionDuringLockRefreshesDeadline
+[0.377s] 1: [       OK ] DetectionGateTest.DetectionDuringLockRefreshesDeadline (0 ms)
+[0.377s] 1: [ RUN      ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection
+[0.378s] 1: [       OK ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection (0 ms)
+[0.378s] 1: [ RUN      ] DetectionGateTest.UpdatingConfigAppliesNewIntervals
+[0.379s] 1: [       OK ] DetectionGateTest.UpdatingConfigAppliesNewIntervals (0 ms)
+[0.379s] 1: [----------] 6 tests from DetectionGateTest (6 ms total)
+[0.379s] 1: 
+[0.380s] 1: [----------] 2 tests from DetectorResultUtilsTest
+[0.380s] 1: [ RUN      ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame
+[0.381s] 1: [       OK ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame (0 ms)
+[0.381s] 1: [ RUN      ] DetectorResultUtilsTest.BuildsOwnedPassThroughResultByMovingOwnedFrame
+[0.381s] 1: [       OK ] DetectorResultUtilsTest.BuildsOwnedPassThroughResultByMovingOwnedFrame (0 ms)
+[0.382s] 1: [----------] 2 tests from DetectorResultUtilsTest (2 ms total)
+[0.382s] 1: 
+[0.383s] 1: [----------] Global test environment tear-down
+[0.384s] 1: [==========] 8 tests from 2 test suites ran. (26 ms total)
+[0.384s] 1: [  PASSED  ] 8 tests.
+[0.389s] 1: -- run_test.py: return code 0
+[0.389s] 1: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+[0.389s] 1: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+[0.433s] 1/2 Test #1: test_detection_gate ..............   Passed    0.29 sec
+[0.438s] test 2
+[0.438s]     Start 2: test_shared_frame_ring
+[0.438s] 
+[0.438s] 2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_shared_frame_ring.gtest.xml" "--package-name" "bishe_detector" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_detector/ament_cmake_gtest/test_shared_frame_ring.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_shared_frame_ring" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_shared_frame_ring.gtest.xml"
+[0.439s] Unable to find required file: /home/jetson/projects/bishe/edge/build/bishe_detector/test_shared_frame_ring
+[0.439s] 2/2 Test #2: test_shared_frame_ring ...........***Not Run   0.00 sec
+[0.439s] 
+[0.439s] 50% tests passed, 1 tests failed out of 2
+[0.439s] 
+[0.439s] Label Time Summary:
+[0.439s] gtest    =   0.29 sec*proc (2 tests)
+[0.440s] 
+[0.440s] Total Test time (real) =   0.30 sec
+[0.440s] 
+[0.440s] The following tests FAILED:
+[0.440s] 	  2 - test_shared_frame_ring (Not Run)
+[0.441s] Errors while running CTest
+[0.441s] Output from these tests are in: /home/jetson/projects/bishe/edge/build/bishe_detector/Testing/Temporary/LastTest.log
+[0.441s] Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+[0.450s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_detector' returned '8': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process

@@ -9,9 +9,11 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
   <depend>sensor_msgs</depend>
   <depend>image_transport</depend>
   <depend>cv_bridge</depend>
+  <depend>bishe_msgs</depend>
   <depend>opencv4nodejs-prebuilt</depend>
 
   <test_depend>ament_lint_auto</test_depend>

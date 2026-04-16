@@ -1,0 +1,4 @@
+Unable to find required file: /home/jetson/projects/bishe/edge/build/bishe_detector/test_shared_frame_ring
+Errors while running CTest
+Output from these tests are in: /home/jetson/projects/bishe/edge/build/bishe_detector/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

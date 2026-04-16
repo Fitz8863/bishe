@@ -16,3 +16,16 @@ inline bishe_msgs::msg::DetectorResult buildPassThroughResult(
   result.annotated_image = *image;
   return result;
 }
+
+inline bishe_msgs::msg::DetectorResult buildOwnedPassThroughResult(
+    sensor_msgs::msg::Image::UniquePtr image,
+    float nms_threshold)
+{
+  bishe_msgs::msg::DetectorResult result;
+  result.has_violation = false;
+  result.confidence = 0.0f;
+  result.nms_threshold = nms_threshold;
+  result.violation_type = "";
+  result.annotated_image = std::move(*image);
+  return result;
+}

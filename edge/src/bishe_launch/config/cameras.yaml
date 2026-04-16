@@ -5,9 +5,10 @@ cameras:
     width: 1280
     height: 720
     framerate: 60
+    detector_scale: 1.0
     detector:
       confidence_threshold: 0.25
-      nms_threshold: 0.5
+      nms_threshold: 0.45
       sampling_interval_ms: 1000
       lock_duration_ms: 3000
       engine_path: "models/best.engine"
@@ -31,24 +32,3 @@ cameras:
       fire_alarm_audio_file: "assets/alarm.wav"
       smoking_alarm_audio_file: "assets/smoking_alarm0.wav"
 
-  # - id: "002"
-  #   device: "/dev/video2"
-  #   location: "生产车间B区"
-  #   width: 1920
-  #   height: 1080
-  #   framerate: 30
-    # control_topic: "esp8266/cmd"
-    # control_hart: "esp8266/info"
-    # control_device_id: "esp8266_002"
-  #   detector:
-  #     confidence_threshold: 0.4
-  #     nms_threshold: 0.5
-  #     engine_path: "models/best.engine"
-  #     worker_threads: 1
-  #     max_queue_size: 8
-  #   streamer:
-  #     rtsp_url: "rtsp://localhost:8554/stream_002"
-  #     http_url: "http://100.127.154.73:8889/jetson-stream2"
-  #     scale: 0.8
-  #     audio_device: "hw:0,0"
-  #     framerate: 30

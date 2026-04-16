@@ -1,0 +1,7 @@
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:13:10: fatal error: bishe_msgs/shared_frame_ring.hpp: 没有那个文件或目录
+   13 | #include "bishe_msgs/shared_frame_ring.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/bishe_camera_component.dir/build.make:76：CMakeFiles/bishe_camera_component.dir/src/camera_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:139：CMakeFiles/bishe_camera_component.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

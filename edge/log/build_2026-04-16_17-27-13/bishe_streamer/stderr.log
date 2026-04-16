@@ -1,0 +1,12 @@
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp: In member function ‘void StreamerNode::reportPipelineStats()’:
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:69:22: warning: unused variable ‘seconds’ [-Wunused-variable]
+   69 |         const double seconds = static_cast<double>(elapsed_ms) / 1000.0;
+      |                      ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:70:24: warning: unused variable ‘received’ [-Wunused-variable]
+   70 |         const uint64_t received = received_frames_.exchange(0);
+      |                        ^~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:78:22: warning: unused variable ‘avg_write_ms’ [-Wunused-variable]
+   78 |         const double avg_write_ms = written > 0 ? write_time_ms / static_cast<double>(written) : 0.0;
+      |                      ^~~~~~~~~~~~
+/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.410
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410

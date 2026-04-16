@@ -1,0 +1,35 @@
+[ 25%] [32mBuilding CXX object CMakeFiles/streamer_node.dir/src/streamer_node.cpp.o[0m
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:[m[K In member function ‘[01m[Kvoid StreamerNode::reportPipelineStats()[m[K’:
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:69:22:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kseconds[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   69 |         const double [01;35m[Kseconds[m[K = static_cast<double>(elapsed_ms) / 1000.0;
+      |                      [01;35m[K^~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:70:24:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kreceived[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   70 |         const uint64_t [01;35m[Kreceived[m[K = received_frames_.exchange(0);
+      |                        [01;35m[K^~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:78:22:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_write_ms[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   78 |         const double [01;35m[Kavg_write_ms[m[K = written > 0 ? write_time_ms / static_cast<double>(written) : 0.0;
+      |                      [01;35m[K^~~~~~~~~~~~[m[K
+[ 50%] [32m[1mLinking CXX executable streamer_node[0m
+/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.410
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410
+[ 50%] Built target streamer_node
+[100%] Built target intercom_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/lib/bishe_streamer/streamer_node
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/lib/bishe_streamer/intercom_node
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/package_run_dependencies/bishe_streamer
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/parent_prefix_path/bishe_streamer
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/path.sh
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/environment/path.dsv
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.bash
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.sh
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.zsh
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/local_setup.dsv
+-- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.dsv
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/ament_index/resource_index/packages/bishe_streamer
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/cmake/bishe_streamerConfig.cmake
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/cmake/bishe_streamerConfig-version.cmake
+-- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_streamer/share/bishe_streamer/package.xml

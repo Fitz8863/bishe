@@ -1,0 +1,92 @@
+[0.021s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_detector -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_detector
+[0.102s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.320s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.335s] -- Found ament_cmake_gtest: 1.3.12 (/opt/ros/humble/share/ament_cmake_gtest/cmake)
+[0.337s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.382s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.386s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.396s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.412s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.433s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.489s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.491s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.661s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.746s] -- Found rclcpp_components: 16.0.16 (/opt/ros/humble/share/rclcpp_components/cmake)
+[0.784s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.831s] -- Found image_transport: 3.1.12 (/opt/ros/humble/share/image_transport/cmake)
+[0.861s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.898s] -- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)
+[0.934s] -- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built
+[1.067s] -- Configuring done
+[1.128s] -- Generating done
+[1.145s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_detector
+[1.169s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_detector' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_detector -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_detector
+[1.172s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_detector -- -j6 -l6
+[1.245s] Consolidate compiler generated dependencies of target gtest
+[1.248s] Consolidate compiler generated dependencies of target gtest_main
+[1.261s] [  7%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/yolo.cc.o
+[1.261s] [ 14%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/trt_engine.cc.o
+[1.278s] [ 21%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/detector_node.cpp.o
+[1.279s] [ 28%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/yolov8.cc.o
+[1.293s] [ 42%] Built target gtest
+[1.313s] [ 57%] Built target gtest_main
+[1.337s] [ 64%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/int8_calibrator.cc.o
+[1.362s] Consolidate compiler generated dependencies of target test_detection_gate
+[1.392s] [ 78%] Built target test_detection_gate
+[5.449s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc: In member function ‘virtual bool Int8EntropyCalibrator2::getBatch(void**, const char**, int)’:
+[5.449s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc:33:69: warning: unused parameter ‘names’ [-Wunused-parameter]
+[5.450s]    33 | bool Int8EntropyCalibrator2::getBatch(void* bindings[], const char* names[], int nbBindings) noexcept {
+[5.450s]       |                                                         ~~~~~~~~~~~~^~~~~~~
+[5.450s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/int8_calibrator.cc:33:82: warning: unused parameter ‘nbBindings’ [-Wunused-parameter]
+[5.450s]    33 | bool Int8EntropyCalibrator2::getBatch(void* bindings[], const char* names[], int nbBindings) noexcept {
+[5.450s]       |                                                                              ~~~~^~~~~~~~~~
+[6.126s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc: In member function ‘void TrtEngine::BuildEngine(const string&, const string&, TrtPrecision)’:
+[6.126s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:20:28: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+[6.126s]    20 |         for (size_t i=0; i < parser->getNbErrors(); ++i) {
+[6.127s]       |                          ~~^~~~~~~~~~~~~~~~~~~~~~~
+[6.142s] /home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:42:38: warning: ‘void nvinfer1::IBuilderConfig::setInt8Calibrator(nvinfer1::IInt8Calibrator*)’ is deprecated [-Wdeprecated-declarations]
+[6.142s]    42 |             config->setInt8Calibrator(calibrator_.get());
+[6.142s]       |             ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+[6.144s] In file included from /home/jetson/projects/bishe/edge/src/bishe_detector/include/bishe_detector/trt_engine.h:6,
+[6.144s]                  from /home/jetson/projects/bishe/edge/src/bishe_detector/src/trt_engine.cc:1:
+[6.144s] /usr/include/aarch64-linux-gnu/NvInfer.h:8825:25: note: declared here
+[6.144s]  8825 |     TRT_DEPRECATED void setInt8Calibrator(IInt8Calibrator* calibrator) noexcept
+[6.144s]       |                         ^~~~~~~~~~~~~~~~~
+[16.150s] [ 85%] Linking CXX shared library libbishe_detector_component.so
+[16.852s] [ 85%] Built target bishe_detector_component
+[16.886s] [ 92%] Building CXX object CMakeFiles/detector_node.dir/src/detector_node_main.cpp.o
+[22.690s] [100%] Linking CXX executable detector_node
+[23.616s] [100%] Built target detector_node
+[23.635s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_detector' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_detector -- -j6 -l6
+[23.651s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_detector
+[23.664s] -- Install configuration: ""
+[23.664s] -- Execute custom install script
+[23.665s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_detector/lib/libbishe_detector_component.so
+[23.679s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/lib/bishe_detector/detector_node
+[23.679s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/detection_gate.hpp
+[23.680s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/detector_node_factory.hpp
+[23.693s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/detector_result_utils.hpp
+[23.693s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/int8_calibrator.h
+[23.693s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/trt_engine.h
+[23.694s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/utils.h
+[23.694s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/yolo.h
+[23.694s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/yolov10.h
+[23.694s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/yolov5a.h
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/include/bishe_detector/yolov8.h
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/ament_index/resource_index/package_run_dependencies/bishe_detector
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/ament_index/resource_index/parent_prefix_path/bishe_detector
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/environment/ament_prefix_path.sh
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/environment/ament_prefix_path.dsv
+[23.695s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/environment/path.sh
+[23.696s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/environment/path.dsv
+[23.696s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/local_setup.bash
+[23.696s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/local_setup.sh
+[23.696s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/local_setup.zsh
+[23.696s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/local_setup.dsv
+[23.696s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/package.dsv
+[23.710s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/ament_index/resource_index/packages/bishe_detector
+[23.711s] -- Symlinking: /home/jetson/projects/bishe/edge/install/bishe_detector/share/ament_index/resource_index/rclcpp_components/bishe_detector
+[23.725s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/cmake/bishe_detectorConfig.cmake
+[23.725s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/cmake/bishe_detectorConfig-version.cmake
+[23.725s] -- Up-to-date symlink: /home/jetson/projects/bishe/edge/install/bishe_detector/share/bishe_detector/package.xml
+[23.728s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_detector' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/jetson/projects/bishe/edge/build/bishe_detector

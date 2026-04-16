@@ -1,0 +1,104 @@
+[ 25%] Building CXX object CMakeFiles/bishe_camera_component.dir/src/camera_node.cpp.o
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp: In member function ‘void bishe_camera::CameraNode::publishFrame()’:
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:90:28: error: no matching function for call to ‘rclcpp::Publisher<sensor_msgs::msg::Image_<std::allocator<void> > >::publish(std::remove_reference<std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >&>::type)’
+   90 |         image_pub_->publish(std::move(msg));
+      |         ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:31,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:50,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:1:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:254:3: note: candidate: ‘template<class T> std::enable_if_t<(rosidl_generator_traits::is_message<T>::value && std::is_same<T, typename rclcpp::TypeAdapter<MessageT>::ros_message_type>::value)> rclcpp::Publisher<MessageT, AllocatorT>::publish(std::unique_ptr<T, typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Allocator>::rebind_traits<typename rclcpp::TypeAdapter<MessageT, void, void>::ros_message_type>::allocator_type>::rebind_alloc<typename rclcpp::TypeAdapter<MessageT, void, void>::ros_message_type>, std::allocator<typename rclcpp::TypeAdapter<MessageT>::ros_message_type> >::value, std::default_delete<typename rclcpp::TypeAdapter<MessageT>::ros_message_type>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Allocator>::rebind_traits<typename rclcpp::TypeAdapter<MessageT, void, void>::ros_message_type>::allocator_type> >::type>) [with T = T; MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>]’
+  254 |   publish(std::unique_ptr<T, ROSMessageTypeDeleter> msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:254:3: note:   template argument deduction/substitution failed:
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:90:28: note:   ‘std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >’ is not derived from ‘std::unique_ptr<T, std::default_delete<sensor_msgs::msg::Image_<std::allocator<void> > > >’
+   90 |         image_pub_->publish(std::move(msg));
+      |         ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:31,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:50,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:1:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:295:3: note: candidate: ‘template<class T> std::enable_if_t<(rosidl_generator_traits::is_message<T>::value && std::is_same<T, typename rclcpp::TypeAdapter<MessageT>::ros_message_type>::value)> rclcpp::Publisher<MessageT, AllocatorT>::publish(const T&) [with T = T; MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>]’
+  295 |   publish(const T & msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:295:3: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/11/bits/move.h:57,
+                 from /usr/include/c++/11/bits/stl_pair.h:59,
+                 from /usr/include/c++/11/bits/stl_algobase.h:64,
+                 from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:1:
+/usr/include/c++/11/type_traits: In substitution of ‘template<bool _Cond, class _Tp> using enable_if_t = typename std::enable_if::type [with bool _Cond = false; _Tp = void]’:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:295:3:   required by substitution of ‘template<class T> std::enable_if_t<(rosidl_generator_traits::is_message<T>::value && std::is_same<T, sensor_msgs::msg::Image_<std::allocator<void> > >::value), void> rclcpp::Publisher<sensor_msgs::msg::Image_<std::allocator<void> > >::publish<T>(const T&) [with T = std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >]’
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:90:28:   required from here
+/usr/include/c++/11/type_traits:2579:11: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+ 2579 |     using enable_if_t = typename enable_if<_Cond, _Tp>::type;
+      |           ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:31,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:50,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:1:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:325:3: note: candidate: ‘template<class T> std::enable_if_t<(typename rclcpp::TypeAdapter<MessageT>::is_specialized::value && std::is_same<T, typename rclcpp::TypeAdapter<MessageT>::custom_type>::value)> rclcpp::Publisher<MessageT, AllocatorT>::publish(std::unique_ptr<T, typename std::conditional<std::is_same<typename std::allocator_traits<typename std::allocator_traits<_Allocator>::rebind_traits<typename rclcpp::TypeAdapter<MessageT, void, void>::custom_type>::allocator_type>::rebind_alloc<typename rclcpp::TypeAdapter<MessageT, void, void>::custom_type>, std::allocator<typename rclcpp::TypeAdapter<MessageT>::custom_type> >::value, std::default_delete<typename rclcpp::TypeAdapter<MessageT>::custom_type>, rclcpp::allocator::AllocatorDeleter<typename std::allocator_traits<_Allocator>::rebind_traits<typename rclcpp::TypeAdapter<MessageT, void, void>::custom_type>::allocator_type> >::type>) [with T = T; MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>]’
+  325 |   publish(std::unique_ptr<T, PublishedTypeDeleter> msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:325:3: note:   template argument deduction/substitution failed:
+/home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:90:28: note:   ‘std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >’ is not derived from ‘std::unique_ptr<T, std::default_delete<sensor_msgs::msg::Image_<std::allocator<void> > > >’
+   90 |         image_pub_->publish(std::move(msg));
+      |         ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:31,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:50,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_camera/src/camera_node.cpp:1:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:367:3: note: candidate: ‘template<class T> std::enable_if_t<(typename rclcpp::TypeAdapter<MessageT>::is_specialized::value && std::is_same<T, typename rclcpp::TypeAdapter<MessageT>::custom_type>::value)> rclcpp::Publisher<MessageT, AllocatorT>::publish(const T&) [with T = T; MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>]’
+  367 |   publish(const T & msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:367:3: note:   template argument deduction/substitution failed:
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:386:3: note: candidate: ‘void rclcpp::Publisher<MessageT, AllocatorT>::publish(const rcl_serialized_message_t&) [with MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>; rcl_serialized_message_t = rcutils_uint8_array_s]’
+  386 |   publish(const rcl_serialized_message_t & serialized_msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:386:44: note:   no known conversion for argument 1 from ‘std::remove_reference<std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >&>::type’ {aka ‘std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >’} to ‘const rcl_serialized_message_t&’ {aka ‘const rcutils_uint8_array_s&’}
+  386 |   publish(const rcl_serialized_message_t & serialized_msg)
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:392:3: note: candidate: ‘void rclcpp::Publisher<MessageT, AllocatorT>::publish(const rclcpp::SerializedMessage&) [with MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>]’
+  392 |   publish(const SerializedMessage & serialized_msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:392:37: note:   no known conversion for argument 1 from ‘std::remove_reference<std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >&>::type’ {aka ‘std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >’} to ‘const rclcpp::SerializedMessage&’
+  392 |   publish(const SerializedMessage & serialized_msg)
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:406:3: note: candidate: ‘void rclcpp::Publisher<MessageT, AllocatorT>::publish(rclcpp::LoanedMessage<typename rclcpp::TypeAdapter<MessageT>::ros_message_type, AllocatorT>&&) [with MessageT = sensor_msgs::msg::Image_<std::allocator<void> >; AllocatorT = std::allocator<void>; typename rclcpp::TypeAdapter<MessageT>::ros_message_type = sensor_msgs::msg::Image_<std::allocator<void> >]’
+  406 |   publish(rclcpp::LoanedMessage<ROSMessageType, AllocatorT> && loaned_msg)
+      |   ^~~~~~~
+/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:406:64: note:   no known conversion for argument 1 from ‘std::remove_reference<std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >&>::type’ {aka ‘std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void> > >’} to ‘rclcpp::LoanedMessage<sensor_msgs::msg::Image_<std::allocator<void> >, std::allocator<void> >&&’
+  406 |   publish(rclcpp::LoanedMessage<ROSMessageType, AllocatorT> && loaned_msg)
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+gmake[2]: *** [CMakeFiles/bishe_camera_component.dir/build.make:76：CMakeFiles/bishe_camera_component.dir/src/camera_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:139：CMakeFiles/bishe_camera_component.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

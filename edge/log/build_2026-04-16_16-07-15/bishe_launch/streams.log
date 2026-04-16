@@ -1,0 +1,22 @@
+[1.064s] Invoking command in '/home/jetson/projects/bishe/edge/src/bishe_launch': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_streamer:/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_camera:/home/jetson/projects/bishe/edge/install/bishe_msgs:/home/jetson/projects/bishe/edge/install/bishe_mqtt LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_camera/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/edge/build/bishe_launch/build install --record /home/jetson/projects/bishe/edge/build/bishe_launch/install.log --single-version-externally-managed install_data
+[1.470s] running egg_info
+[1.471s] writing ../../build/bishe_launch/bishe_launch.egg-info/PKG-INFO
+[1.472s] writing dependency_links to ../../build/bishe_launch/bishe_launch.egg-info/dependency_links.txt
+[1.472s] writing entry points to ../../build/bishe_launch/bishe_launch.egg-info/entry_points.txt
+[1.472s] writing requirements to ../../build/bishe_launch/bishe_launch.egg-info/requires.txt
+[1.472s] writing top-level names to ../../build/bishe_launch/bishe_launch.egg-info/top_level.txt
+[1.475s] reading manifest file '../../build/bishe_launch/bishe_launch.egg-info/SOURCES.txt'
+[1.477s] writing manifest file '../../build/bishe_launch/bishe_launch.egg-info/SOURCES.txt'
+[1.477s] running build
+[1.477s] running build_py
+[1.478s] running install
+[1.478s] running install_lib
+[1.480s] running install_data
+[1.481s] copying launch/multicamera.launch.py -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/launch
+[1.481s] copying config/cameras.yaml -> /home/jetson/projects/bishe/edge/install/bishe_launch/share/bishe_launch/config
+[1.481s] running install_egg_info
+[1.484s] removing '/home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages/bishe_launch-0.1.0-py3.10.egg-info' (and everything under it)
+[1.485s] Copying ../../build/bishe_launch/bishe_launch.egg-info to /home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages/bishe_launch-0.1.0-py3.10.egg-info
+[1.487s] running install_scripts
+[1.523s] writing list of installed files to '/home/jetson/projects/bishe/edge/build/bishe_launch/install.log'
+[1.576s] Invoked command in '/home/jetson/projects/bishe/edge/src/bishe_launch' returned '0': CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_streamer:/home/jetson/projects/bishe/edge/install/bishe_monitor:/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_camera:/home/jetson/projects/bishe/edge/install/bishe_msgs:/home/jetson/projects/bishe/edge/install/bishe_mqtt LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_camera/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/build/bishe_launch/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/projects/bishe/edge/install/bishe_launch/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bishe_launch build --build-base /home/jetson/projects/bishe/edge/build/bishe_launch/build install --record /home/jetson/projects/bishe/edge/build/bishe_launch/install.log --single-version-externally-managed install_data

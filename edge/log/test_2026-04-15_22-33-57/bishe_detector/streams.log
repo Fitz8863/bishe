@@ -1,0 +1,61 @@
+[0.041s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_detector': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
+[0.054s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.054s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.054s]    Site: jetson-orin-nano
+[0.054s]    Build name: (empty)
+[0.054s]  Add coverage exclude regular expressions.
+[0.055s] Create new tag: 20260415-1433 - Experimental
+[0.055s] UpdateCTestConfiguration  from :/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.056s] Parse Config file:/home/jetson/projects/bishe/edge/build/bishe_detector/CTestConfiguration.ini
+[0.056s] Test project /home/jetson/projects/bishe/edge/build/bishe_detector
+[0.056s] Constructing a list of tests
+[0.056s] Done constructing a list of tests
+[0.056s] Updating test list for fixtures
+[0.057s] Added 0 tests to meet fixture requirements
+[0.057s] Checking test dependency graph...
+[0.057s] Checking test dependency graph end
+[0.057s] test 1
+[0.057s]     Start 1: test_detection_gate
+[0.057s] 
+[0.057s] 1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml" "--package-name" "bishe_detector" "--output-file" "/home/jetson/projects/bishe/edge/build/bishe_detector/ament_cmake_gtest/test_detection_gate.txt" "--command" "/home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate" "--gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml"
+[0.057s] 1: Test timeout computed to be: 60
+[0.158s] 1: -- run_test.py: invoking following command in '/home/jetson/projects/bishe/edge/build/bishe_detector':
+[0.158s] 1:  - /home/jetson/projects/bishe/edge/build/bishe_detector/test_detection_gate --gtest_output=xml:/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml
+[0.161s] 1: Running main() from /opt/ros/humble/src/gtest_vendor/src/gtest_main.cc
+[0.161s] 1: [==========] Running 7 tests from 2 test suites.
+[0.162s] 1: [----------] Global test environment set-up.
+[0.162s] 1: [----------] 6 tests from DetectionGateTest
+[0.162s] 1: [ RUN      ] DetectionGateTest.AllowsFirstFrameImmediately
+[0.162s] 1: [       OK ] DetectionGateTest.AllowsFirstFrameImmediately (0 ms)
+[0.163s] 1: [ RUN      ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires
+[0.163s] 1: [       OK ] DetectionGateTest.SkipsFramesUntilSamplingIntervalExpires (0 ms)
+[0.163s] 1: [ RUN      ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames
+[0.163s] 1: [       OK ] DetectionGateTest.DetectionEntersLockedModeAndAllowsAllFrames (0 ms)
+[0.163s] 1: [ RUN      ] DetectionGateTest.DetectionDuringLockRefreshesDeadline
+[0.163s] 1: [       OK ] DetectionGateTest.DetectionDuringLockRefreshesDeadline (0 ms)
+[0.163s] 1: [ RUN      ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection
+[0.163s] 1: [       OK ] DetectionGateTest.ReturnsToSamplingAfterLockExpiresWithoutNewDetection (0 ms)
+[0.163s] 1: [ RUN      ] DetectionGateTest.UpdatingConfigAppliesNewIntervals
+[0.164s] 1: [       OK ] DetectionGateTest.UpdatingConfigAppliesNewIntervals (0 ms)
+[0.164s] 1: [----------] 6 tests from DetectionGateTest (0 ms total)
+[0.164s] 1: 
+[0.164s] 1: [----------] 1 test from DetectorResultUtilsTest
+[0.164s] 1: [ RUN      ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame
+[0.164s] 1: [       OK ] DetectorResultUtilsTest.BuildsPassThroughResultFromRawFrame (0 ms)
+[0.165s] 1: [----------] 1 test from DetectorResultUtilsTest (0 ms total)
+[0.165s] 1: 
+[0.165s] 1: [----------] Global test environment tear-down
+[0.165s] 1: [==========] 7 tests from 2 test suites ran. (0 ms total)
+[0.165s] 1: [  PASSED  ] 7 tests.
+[0.165s] 1: -- run_test.py: return code 0
+[0.165s] 1: -- run_test.py: inject classname prefix into gtest result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+[0.165s] 1: -- run_test.py: verify result file '/home/jetson/projects/bishe/edge/build/bishe_detector/test_results/bishe_detector/test_detection_gate.gtest.xml'
+[0.186s] 1/1 Test #1: test_detection_gate ..............   Passed    0.13 sec
+[0.187s] 
+[0.187s] 100% tests passed, 0 tests failed out of 1
+[0.188s] 
+[0.188s] Label Time Summary:
+[0.188s] gtest    =   0.13 sec*proc (1 test)
+[0.188s] 
+[0.188s] Total Test time (real) =   0.13 sec
+[0.190s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_detector' returned '0': AMENT_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector:/home/jetson/projects/bishe/edge/install/bishe_msgs LD_LIBRARY_PATH=/home/jetson/projects/bishe/edge/install/bishe_detector/lib:/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64 PYTHONPATH=/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process

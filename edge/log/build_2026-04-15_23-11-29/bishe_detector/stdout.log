@@ -1,0 +1,6 @@
+[ 14%] Built target gtest
+[ 28%] Built target gtest_main
+[ 71%] Built target bishe_detector_component
+Consolidate compiler generated dependencies of target test_detection_gate
+[ 78%] Building CXX object CMakeFiles/test_detection_gate.dir/test/test_detection_gate.cpp.o
+[ 92%] Built target detector_node

@@ -147,6 +147,10 @@ public:
 
     // 初始化通话控制发布器
     intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
+    // 初始化报警事件订阅器 - 监听 monitor_node 发出的报警并转发到 MQTT
+    alarm_event_sub_ = this->create_subscription<std_msgs::msg::String>(
+        "/alarm/event", 10,
+        std::bind(&MqttNode::onAlarmEvent, this, std::placeholders::_1));
 
     // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
     rclcpp::SubscriptionOptions sub_options;
@@ -224,10 +228,10 @@ private:
     this->declare_parameter<std::string>("alarm_topic", "jetson/alarm");
     this->declare_parameter<double>("report_interval_sec", 1.0);       // 上报间隔（秒）
 
-    // 摄像头配置（支持多摄像头）
-    this->declare_parameter<std::vector<std::string>>("camera_ids", std::vector<std::string>{"001"});  // 摄像头 ID 列表
-    this->declare_parameter<std::vector<std::string>>("camera_locations", std::vector<std::string>{}); // 摄像头位置列表
-    this->declare_parameter<std::vector<std::string>>("camera_http_urls", std::vector<std::string>{}); // HTTP 流地址列表
+    // 单摄像头配置
+    this->declare_parameter<std::string>("camera_id", "001");
+    this->declare_parameter<std::string>("camera_location", "");
+    this->declare_parameter<std::string>("camera_http_url", "");
   }
 
   /**
@@ -250,14 +254,13 @@ private:
     this->get_parameter("info_topic", info_topic_);
     this->get_parameter("alarm_topic", alarm_topic_);
     this->get_parameter("report_interval_sec", report_interval_sec_);
-    this->get_parameter("camera_ids", camera_ids_);
-    this->get_parameter("camera_locations", camera_locations_);
-    this->get_parameter("camera_http_urls", camera_http_urls_);
+    this->get_parameter("camera_id", camera_id_);
+    this->get_parameter("camera_location", camera_location_);
+    this->get_parameter("camera_http_url", camera_http_url_);
 
-    // 默认为空列表提供保障
-    if (camera_ids_.empty())
+    if (camera_id_.empty())
     {
-      camera_ids_.push_back("001");
+      camera_id_ = "001";
     }
 
     // 同步静态配置（位置、HTTP URL）到缓存
@@ -273,14 +276,9 @@ private:
   void syncStaticCameraMetadata()
   {
     std::lock_guard<std::mutex> lock(info_mutex_);
-    for (size_t i = 0; i < camera_ids_.size(); ++i)
-    {
-      auto &info = info_cache_[camera_ids_[i]];
-      // 位置信息：从 camera_locations 数组中按索引获取
-      info.location = i < camera_locations_.size() ? camera_locations_[i] : "";
-      // HTTP URL：从 camera_http_urls 数组中按索引获取
-      info.http_url = i < camera_http_urls_.size() ? camera_http_urls_[i] : "";
-    }
+    auto &info = info_cache_[camera_id_];
+    info.location = camera_location_;
+    info.http_url = camera_http_url_;
   }
 
   /**
@@ -321,9 +319,9 @@ private:
    *
    * 通过 ROS2 参数服务检查是否有参数被外部动态修改。
    * 支持动态修改的参数包括：
-   * - camera_ids: 摄像头 ID 列表
-   * - camera_locations: 位置信息
-   * - camera_http_urls: HTTP URL 列表
+   * - camera_id: 摄像头 ID
+   * - camera_location: 位置信息
+   * - camera_http_url: HTTP URL
    * - report_interval_sec: 上报间隔
    * - info_topic: 上报主题
    *
@@ -332,23 +330,22 @@ private:
   void refreshLocalDynamicParameters()
   {
     // 用于存储从参数服务器获取的最新值
-    std::vector<std::string> latest_camera_ids;
-    std::vector<std::string> latest_locations;
-    std::vector<std::string> latest_http_urls;
+    std::string latest_camera_id = camera_id_;
+    std::string latest_location = camera_location_;
+    std::string latest_http_url = camera_http_url_;
     double latest_interval = report_interval_sec_;
     std::string latest_info_topic = info_topic_;
 
     // 从参数服务器获取最新值
-    (void)this->get_parameter("camera_ids", latest_camera_ids);
-    (void)this->get_parameter("camera_locations", latest_locations);
-    (void)this->get_parameter("camera_http_urls", latest_http_urls);
+    (void)this->get_parameter("camera_id", latest_camera_id);
+    (void)this->get_parameter("camera_location", latest_location);
+    (void)this->get_parameter("camera_http_url", latest_http_url);
     (void)this->get_parameter("report_interval_sec", latest_interval);
     (void)this->get_parameter("info_topic", latest_info_topic);
 
-    // 更新摄像头 ID 列表
-    if (!latest_camera_ids.empty())
+    if (!latest_camera_id.empty())
     {
-      camera_ids_ = latest_camera_ids;
+      camera_id_ = latest_camera_id;
     }
 
     // 更新上报主题
@@ -357,17 +354,8 @@ private:
       info_topic_ = latest_info_topic;
     }
 
-    // 更新位置信息
-    if (!latest_locations.empty())
-    {
-      camera_locations_ = latest_locations;
-    }
-
-    // 更新 HTTP URL
-    if (!latest_http_urls.empty())
-    {
-      camera_http_urls_ = latest_http_urls;
-    }
+    camera_location_ = latest_location;
+    camera_http_url_ = latest_http_url;
 
     // 同步静态元数据
     syncStaticCameraMetadata();
@@ -383,19 +371,6 @@ private:
       report_interval_sec_ = latest_interval;
       createReportTimer();
 
-      // 初始化通话控制发布器
-    intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
-    alarm_event_sub_ = this->create_subscription<std_msgs::msg::String>(
-        "/alarm/event", 10,
-        std::bind(&MqttNode::onAlarmEvent, this, std::placeholders::_1));
-
-      // 步骤7: 订阅全局参数事件，用于被动接收参数变更（优化 IPC 性能）
-      rclcpp::SubscriptionOptions sub_options;
-      sub_options.callback_group = param_callback_group_;
-      param_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
-          "/parameter_events", rclcpp::QoS(10),
-          std::bind(&MqttNode::onParameterEvent, this, std::placeholders::_1),
-          sub_options);
       RCLCPP_INFO(this->get_logger(), "Report interval updated to %.2f sec", report_interval_sec_);
     }
   }
@@ -615,7 +590,7 @@ private:
 
   bool cameraIdConfigured(const std::string &camera_id) const
   {
-    return std::find(camera_ids_.begin(), camera_ids_.end(), camera_id) != camera_ids_.end();
+    return camera_id == camera_id_;
   }
 
   void updateCacheForCommand(
@@ -954,22 +929,17 @@ private:
     bool is_streamer = false;
     bool is_detector = false;
 
-    for (const auto &camera_id : camera_ids_)
+    auto det_candidates = detectorNodeCandidates(camera_id_);
+    if (std::find(det_candidates.begin(), det_candidates.end(), node_name) != det_candidates.end())
     {
-      auto det_candidates = detectorNodeCandidates(camera_id);
-      if (std::find(det_candidates.begin(), det_candidates.end(), node_name) != det_candidates.end())
-      {
-        target_camera_id = camera_id;
-        is_detector = true;
-        break;
-      }
-      auto str_candidates = streamerNodeCandidates(camera_id);
-      if (std::find(str_candidates.begin(), str_candidates.end(), node_name) != str_candidates.end())
-      {
-        target_camera_id = camera_id;
-        is_streamer = true;
-        break;
-      }
+      target_camera_id = camera_id_;
+      is_detector = true;
+    }
+    auto str_candidates = streamerNodeCandidates(camera_id_);
+    if (!is_detector && std::find(str_candidates.begin(), str_candidates.end(), node_name) != str_candidates.end())
+    {
+      target_camera_id = camera_id_;
+      is_streamer = true;
     }
 
     if (target_camera_id.empty())
@@ -1186,8 +1156,7 @@ private:
    *       "scale": 1.0,
    *       "confidence_threshold": 0.5,
    *       "nms_threshold": 0.5
-   *     },
-   *     ...
+   *     }
    *   ]
    * }
    */
@@ -1205,31 +1174,22 @@ private:
     oss << "{\"timestamp_ns\":" << this->now().nanoseconds() << ",";
     oss << "\"device\":\"" << escapeJson(device_) << "\",";
     oss << "\"cameras\":[";
-    for (size_t i = 0; i < camera_ids_.size(); ++i)
+    const auto it = snapshot.find(camera_id_);
+    CameraInfo info;
+    if (it != snapshot.end())
     {
-      const auto &camera_id = camera_ids_[i];
-      const auto it = snapshot.find(camera_id);
-      CameraInfo info;
-      if (it != snapshot.end())
-      {
-        info = it->second;
-      }
-
-      oss << "{";
-      oss << "\"id\":\"" << camera_id << "\",";
-      oss << "\"location\":\"" << escapeJson(info.location) << "\",";
-      oss << "\"http_url\":\"" << escapeJson(info.http_url) << "\",";
-      oss << "\"resolution\":{\"width\":" << info.width << ",\"height\":" << info.height << ",\"fps\":" << info.fps << "},";
-      oss << "\"scale\":" << info.scale << ",";
-      oss << "\"confidence_threshold\":" << info.confidence_threshold << ",";
-      oss << "\"nms_threshold\":" << info.nms_threshold;
-      oss << "}";
-
-      if (i + 1 < camera_ids_.size())
-      {
-        oss << ",";
-      }
+      info = it->second;
     }
+
+    oss << "{";
+    oss << "\"id\":\"" << camera_id_ << "\",";
+    oss << "\"location\":\"" << escapeJson(info.location) << "\",";
+    oss << "\"http_url\":\"" << escapeJson(info.http_url) << "\",";
+    oss << "\"resolution\":{\"width\":" << info.width << ",\"height\":" << info.height << ",\"fps\":" << info.fps << "},";
+    oss << "\"scale\":" << info.scale << ",";
+    oss << "\"confidence_threshold\":" << info.confidence_threshold << ",";
+    oss << "\"nms_threshold\":" << info.nms_threshold;
+    oss << "}";
     oss << "]}";
     return oss.str();
   }
@@ -1296,21 +1256,18 @@ private:
     refreshLocalDynamicParameters(); // 检查参数是否有更新
 
     // 仅在未成功获取过初始参数时，才去主动拉取（彻底消除定时的 IPC 轮询开销）
-    for (const auto &camera_id : camera_ids_)
+    if (!initial_fetch_streamer_)
     {
-      if (!initial_fetch_streamer_[camera_id])
+      if (requestStreamerRuntimeInfo(camera_id_))
       {
-        if (requestStreamerRuntimeInfo(camera_id))
-        {
-          initial_fetch_streamer_[camera_id] = true;
-        }
+        initial_fetch_streamer_ = true;
       }
-      if (!initial_fetch_detector_[camera_id])
+    }
+    if (!initial_fetch_detector_)
+    {
+      if (requestDetectorThresholds(camera_id_))
       {
-        if (requestDetectorThresholds(camera_id))
-        {
-          initial_fetch_detector_[camera_id] = true;
-        }
+        initial_fetch_detector_ = true;
       }
     }
 
@@ -1336,9 +1293,9 @@ private:
   std::string info_topic_;                    ///< 信息发布主题
   std::string alarm_topic_;                   ///< 报警事件发布主题
   double report_interval_sec_{1.0};           ///< 上报间隔（秒）
-  std::vector<std::string> camera_ids_;       ///< 摄像头 ID 列表
-  std::vector<std::string> camera_locations_; ///< 摄像头位置列表
-  std::vector<std::string> camera_http_urls_; ///< HTTP URL 列表
+  std::string camera_id_;                     ///< 摄像头 ID
+  std::string camera_location_;               ///< 摄像头位置
+  std::string camera_http_url_;               ///< HTTP URL
   rclcpp::CallbackGroup::SharedPtr report_callback_group_{
       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
   rclcpp::CallbackGroup::SharedPtr param_callback_group_{
@@ -1349,8 +1306,8 @@ private:
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr intercom_pub_;                              ///< 通话控制发布器
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr alarm_event_sub_;                        ///< 报警事件订阅器
   rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr param_event_sub_;          ///< 参数事件订阅器
-  std::unordered_map<std::string, bool> initial_fetch_streamer_;                                  ///< 记录推流器是否已完成初始参数获取
-  std::unordered_map<std::string, bool> initial_fetch_detector_;                                  ///< 记录检测器是否已完成初始参数获取
+  bool initial_fetch_streamer_{false};                                                            ///< 推流器是否已完成初始参数获取
+  bool initial_fetch_detector_{false};                                                            ///< 检测器是否已完成初始参数获取
   std::unordered_map<std::string, std::shared_ptr<rclcpp::AsyncParametersClient>> param_clients_; ///< 参数客户端缓存
   std::unordered_map<std::string, std::chrono::steady_clock::time_point> next_query_time_;
   std::unordered_map<std::string, CameraInfo> info_cache_; ///< 摄像头信息缓存
