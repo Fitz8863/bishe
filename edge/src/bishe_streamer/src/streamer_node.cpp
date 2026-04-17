@@ -5,9 +5,9 @@
 #include <opencv2/opencv.hpp>
 #include <rclcpp/executors/multi_threaded_executor.hpp>
 #include "bishe_msgs/msg/detector_result.hpp"
+#include <algorithm>
 #include <chrono>
-#include <atomic>
-#include <mutex>
+#include <cmath>
 
 class StreamerNode : public rclcpp::Node
 {
@@ -50,42 +50,14 @@ public:
 
 private:
     uint64_t written_frames_{ 0 };
-    std::atomic<uint64_t> received_frames_{ 0 };
-    std::atomic<uint64_t> write_completed_frames_{ 0 };
-    double write_time_ms_acc_{ 0.0 };
-    std::mutex stats_mutex_;
     std::chrono::steady_clock::time_point fps_window_start_{ std::chrono::steady_clock::now() };
     double current_fps_{ 0.0 };
-
-    void reportPipelineStats()
-    {
-        const auto now = std::chrono::steady_clock::now();
-        const auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(now - fps_window_start_).count();
-        if (elapsed_ms < 1000)
-        {
-            return;
-        }
-
-        const double seconds = static_cast<double>(elapsed_ms) / 1000.0;
-        const uint64_t received = received_frames_.exchange(0);
-        const uint64_t written = write_completed_frames_.exchange(0);
-        double write_time_ms = 0.0;
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            write_time_ms = write_time_ms_acc_;
-            write_time_ms_acc_ = 0.0;
-        }
-        const double avg_write_ms = written > 0 ? write_time_ms / static_cast<double>(written) : 0.0;
-
-        // RCLCPP_INFO(
-        //     this->get_logger(),
-        //     "streamer 接收FPS: %.2f, 写出FPS: %.2f, 平均writer耗时: %.2fms",
-        //     static_cast<double>(received) / seconds,
-        //     static_cast<double>(written) / seconds,
-        //     avg_write_ms);
-
-        fps_window_start_ = now;
-    }
+    double last_reported_fps_{ -1.0 };
+    int last_reported_width_{ 0 };
+    int last_reported_height_{ 0 };
+    std::chrono::steady_clock::time_point last_runtime_sync_{ std::chrono::steady_clock::time_point::min() };
+    cv::Mat resized_frame_;
+    cv::Mat overlay_frame_;
 
     void updateFps()
     {
@@ -96,12 +68,27 @@ private:
         {
             current_fps_ = static_cast<double>(written_frames_) * 1000.0 / static_cast<double>(elapsed_ms);
             written_frames_ = 0;
-            syncRuntimeParameters();
+            fps_window_start_ = now;
+            maybeSyncRuntimeParameters();
         }
     }
 
-    void syncRuntimeParameters()
+    void maybeSyncRuntimeParameters(bool force = false)
     {
+        const auto now = std::chrono::steady_clock::now();
+        const bool dimension_changed =
+            output_width_ != last_reported_width_ || output_height_ != last_reported_height_;
+        const bool fps_changed =
+            last_reported_fps_ < 0.0 || std::fabs(current_fps_ - last_reported_fps_) >= 0.5;
+        const bool sync_due =
+            last_runtime_sync_ == std::chrono::steady_clock::time_point::min() ||
+            (now - last_runtime_sync_) >= std::chrono::seconds(5);
+
+        if (!force && !dimension_changed && !(sync_due && fps_changed))
+        {
+            return;
+        }
+
         const std::vector<rclcpp::Parameter> runtime_params = {
             rclcpp::Parameter("output_width", output_width_),
             rclcpp::Parameter("output_height", output_height_),
@@ -119,6 +106,11 @@ private:
                     runtime_params[i].get_name().c_str(), results[i].reason.c_str());
             }
         }
+
+        last_reported_width_ = output_width_;
+        last_reported_height_ = output_height_;
+        last_reported_fps_ = current_fps_;
+        last_runtime_sync_ = now;
     }
 
     void initWriter(int target_width, int target_height)
@@ -129,7 +121,7 @@ private:
         std::string rtsp_out_full =
             "appsrc is-live=true do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! "
             "x264enc bitrate=8000 speed-preset=ultrafast tune=zerolatency key-int-max=30 ! h264parse ! queue ! sink. "
-            "alsasrc device=" + audio_device_ + " ! audioconvert ! audioresample ! "
+            "pulsesrc ! audioconvert ! audioresample ! "
             "voaacenc bitrate=128000 ! aacparse ! queue ! sink. "
             "rtspclientsink location=" + rtsp_url_ + " name=sink";
 
@@ -162,8 +154,8 @@ private:
     {
         try
         {
-            received_frames_.fetch_add(1);
-            cv::Mat frame = cv_bridge::toCvCopy(msg->annotated_image, "bgr8")->image;
+            const auto cv_ptr = cv_bridge::toCvShare(msg->annotated_image, msg, "bgr8");
+            const cv::Mat& frame = cv_ptr->image;
             if (frame.empty()) return;
 
             int width = frame.cols;
@@ -176,7 +168,7 @@ private:
             {
                 output_width_ = target_width;
                 output_height_ = target_height;
-                syncRuntimeParameters();
+                maybeSyncRuntimeParameters(true);
             }
 
             if (!writer_.isOpened())
@@ -187,12 +179,17 @@ private:
 
             cv::Mat out_frame;
             if (scale_ == 1.0f) {
-                out_frame = frame;
+                if (current_fps_ > 0.0) {
+                    overlay_frame_ = frame.clone();
+                    out_frame = overlay_frame_;
+                }
+                else {
+                    out_frame = frame;
+                }
             }
             else {
-                static cv::Mat resized_frame;
-                cv::resize(frame, resized_frame, target_size, 0.0, 0.0, cv::INTER_LINEAR);
-                out_frame = resized_frame;
+                cv::resize(frame, resized_frame_, target_size, 0.0, 0.0, cv::INTER_LINEAR);
+                out_frame = resized_frame_;
             }
 
             updateFps();
@@ -212,16 +209,7 @@ private:
                 cv::putText(out_frame, fps_text, text_org, font_face, font_scale, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
             }
 
-            const auto write_start = std::chrono::steady_clock::now();
             writer_.write(out_frame);
-            const auto write_end = std::chrono::steady_clock::now();
-            const double write_ms = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(write_end - write_start).count()) / 1000.0;
-            {
-                std::lock_guard<std::mutex> lock(stats_mutex_);
-                write_time_ms_acc_ += write_ms;
-            }
-            write_completed_frames_.fetch_add(1);
-            reportPipelineStats();
         }
         catch (const cv_bridge::Exception& e)
         {

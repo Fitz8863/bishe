@@ -10,15 +10,6 @@
   <buildtool_depend>ament_python</buildtool_depend>
 
   <exec_depend>ros2launch</exec_depend>
-  <exec_depend>launch_ros</exec_depend>
-  <exec_depend>rclcpp_components</exec_depend>
-  <exec_depend>bishe_camera</exec_depend>
-  <exec_depend>bishe_detector</exec_depend>
-  <exec_depend>bishe_streamer</exec_depend>
-  <exec_depend>bishe_monitor</exec_depend>
-  <exec_depend>bishe_mqtt</exec_depend>
-
-  <test_depend>pytest</test_depend>
 
   <export>
     <build_type>ament_python</build_type>

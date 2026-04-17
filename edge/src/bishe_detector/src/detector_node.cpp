@@ -1,71 +1,51 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
+#include <image_transport/image_transport.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
 #include "bishe_msgs/msg/detector_result.hpp"
-#include "bishe_msgs/msg/shared_frame_ref.hpp"
 #include <chrono>
 #include <thread>
 #include <deque>
-#include <cstring>
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
 #include <cmath>
 #include <algorithm>
 
-#include <rclcpp_components/register_node_macro.hpp>
-
 #include "bishe_detector/detection_gate.hpp"
 #include "bishe_detector/detector_result_utils.hpp"
-#include "bishe_detector/detector_node_factory.hpp"
-#include "bishe_msgs/shared_frame_ring.hpp"
 
 // YOLO Headers
 #include "trt_engine.h"
 #include "yolov8.h"
 
-namespace bishe_detector
-{
-
 class DetectorNode : public rclcpp::Node
 {
 public:
-  explicit DetectorNode(const rclcpp::NodeOptions &options)
-      : Node("detector_node", options)
+  DetectorNode()
+      : Node("detector_node")
   {
     // Declare parameters
     this->declare_parameter<float>("confidence_threshold", 0.5);
     this->declare_parameter<float>("nms_threshold", 0.5);
-    this->declare_parameter<int>("sampling_interval_ms", 1000);
-    this->declare_parameter<int>("lock_duration_ms", 3000);
     this->declare_parameter<std::string>("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine");
-    this->declare_parameter<std::string>("input_topic", "camera/detector_frame_ref");
-    this->declare_parameter<int>("detector_width", 640);
-    this->declare_parameter<int>("detector_height", 360);
-    this->declare_parameter<std::string>("shared_memory_name", "/camera_001_detector_shm");
     this->declare_parameter<int>("worker_threads", 1);
     this->declare_parameter<int>("max_queue_size", 8);
+    this->declare_parameter<int>("sampling_interval_ms", 1000);
+    this->declare_parameter<int>("lock_duration_ms", 3000);
 
     float confidence_threshold = 0.5f;
     float nms_threshold = 0.5f;
-    int sampling_interval_ms = sampling_interval_ms_;
-    int lock_duration_ms = lock_duration_ms_;
     this->get_parameter("confidence_threshold", confidence_threshold);
     this->get_parameter("nms_threshold", nms_threshold);
-    this->get_parameter("sampling_interval_ms", sampling_interval_ms);
-    this->get_parameter("lock_duration_ms", lock_duration_ms);
     this->get_parameter("engine_path", engine_path_);
-    this->get_parameter("input_topic", input_topic_);
-    this->get_parameter("detector_width", detector_width_);
-    this->get_parameter("detector_height", detector_height_);
-    this->get_parameter("shared_memory_name", shared_memory_name_);
     this->get_parameter("worker_threads", worker_threads_);
     this->get_parameter("max_queue_size", max_queue_size_);
+    this->get_parameter("sampling_interval_ms", sampling_interval_ms_);
+    this->get_parameter("lock_duration_ms", lock_duration_ms_);
     confidence_threshold_.store(confidence_threshold);
     nms_threshold_.store(nms_threshold);
-    sampling_interval_ms_ = std::max(1, sampling_interval_ms);
-    lock_duration_ms_ = std::max(0, lock_duration_ms);
 
     if (worker_threads_ < 1) {
       worker_threads_ = 1;
@@ -73,6 +53,17 @@ public:
     if (max_queue_size_ < 1) {
       max_queue_size_ = 1;
     }
+    if (sampling_interval_ms_ < 1) {
+      sampling_interval_ms_ = 1000;
+    }
+    if (lock_duration_ms_ < 0) {
+      lock_duration_ms_ = 3000;
+    }
+
+    detection_gate_.update_config(
+        std::chrono::milliseconds(sampling_interval_ms_),
+        std::chrono::milliseconds(lock_duration_ms_),
+        std::chrono::steady_clock::now());
 
     RCLCPP_INFO(this->get_logger(), "加载engine模型: %s", engine_path_.c_str());
     for (int i = 0; i < worker_threads_; ++i) {
@@ -86,19 +77,8 @@ public:
       worker_threads_pool_.emplace_back(&DetectorNode::workerLoop, this, i);
     }
 
-    bishe_msgs::shared_memory::SharedFrameRingConfig ring_config;
-    ring_config.shm_name = shared_memory_name_;
-    ring_config.slot_count = 8;
-    ring_config.width = static_cast<uint32_t>(detector_width_);
-    ring_config.height = static_cast<uint32_t>(detector_height_);
-    ring_config.channels = 3;
-    detector_ring_ = std::make_unique<bishe_msgs::shared_memory::SharedFrameRing>(ring_config, false);
-
-    // Subscribe to camera shared-frame metadata
-    image_sub_ = this->create_subscription<bishe_msgs::msg::SharedFrameRef>(
-      input_topic_,
-      rclcpp::QoS(16).reliable(),
-      std::bind(&DetectorNode::imageCallback, this, std::placeholders::_1));
+    // Subscribe to camera images
+    image_sub_ = image_transport::create_subscription(this, "camera/image_raw", std::bind(&DetectorNode::imageCallback, this, std::placeholders::_1), "raw", rmw_qos_profile_sensor_data);
 
     // Publisher for detection results
     result_pub_ = this->create_publisher<bishe_msgs::msg::DetectorResult>("detector/result", 10);
@@ -106,18 +86,7 @@ public:
     parameter_callback_handle_ = this->add_on_set_parameters_callback(
       std::bind(&DetectorNode::handleParameterUpdate, this, std::placeholders::_1));
 
-    {
-      std::lock_guard<std::mutex> lock(gate_mutex_);
-      detection_gate_.update_config(
-        std::chrono::milliseconds{sampling_interval_ms_},
-        std::chrono::milliseconds{lock_duration_ms_},
-        std::chrono::steady_clock::time_point{});
-    }
-
-    RCLCPP_INFO(this->get_logger(),
-      "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, sampling_interval_ms: %d, lock_duration_ms: %d, worker_threads: %d, max_queue_size: %d",
-      confidence_threshold_.load(), nms_threshold_.load(), sampling_interval_ms_, lock_duration_ms_, worker_threads_, max_queue_size_);
-    RCLCPP_INFO(this->get_logger(), "检测输入topic: %s", input_topic_.c_str());
+    RCLCPP_INFO(this->get_logger(), "检测节点开始，置信度阈值: %.2f, NMS阈值: %.2f, worker_threads: %d, max_queue_size: %d, sampling_interval_ms: %d, lock_duration_ms: %d", confidence_threshold_.load(), nms_threshold_.load(), worker_threads_, max_queue_size_, sampling_interval_ms_, lock_duration_ms_);
   }
 
   ~DetectorNode() override
@@ -137,7 +106,7 @@ public:
 private:
 
   struct FrameTask {
-    bishe_msgs::msg::SharedFrameRef ref;
+    sensor_msgs::msg::Image::ConstSharedPtr msg;
     std::chrono::steady_clock::time_point enqueue_time;
   };
 
@@ -145,24 +114,23 @@ private:
     std::unique_ptr<YOLOv8> yolo;
   };
 
-  rclcpp::Subscription<bishe_msgs::msg::SharedFrameRef>::SharedPtr image_sub_;
+  image_transport::Subscriber image_sub_;
   rclcpp::Publisher<bishe_msgs::msg::DetectorResult>::SharedPtr result_pub_;
   std::atomic<float> confidence_threshold_{0.5f};
   std::atomic<float> nms_threshold_{0.5f};
   std::string engine_path_;
-  std::string input_topic_;
-  int detector_width_{640};
-  int detector_height_{360};
-  std::string shared_memory_name_;
   int worker_threads_{1};
   int max_queue_size_{8};
+  int sampling_interval_ms_{1000};
+  int lock_duration_ms_{3000};
   std::vector<std::unique_ptr<WorkerContext>> workers_;
   std::vector<std::thread> worker_threads_pool_;
   std::deque<FrameTask> queue_;
   std::mutex queue_mutex_;
-  std::mutex gate_mutex_;
   std::condition_variable queue_cv_;
   bool stop_workers_{false};
+  DetectionGate detection_gate_{std::chrono::milliseconds(1000), std::chrono::milliseconds(3000)};
+  std::mutex detection_gate_mutex_;
 
   std::atomic<uint64_t> input_frames_{0};
   std::atomic<uint64_t> output_frames_{0};
@@ -172,29 +140,6 @@ private:
   std::mutex stats_mutex_;
   std::chrono::steady_clock::time_point stats_window_start_{std::chrono::steady_clock::now()};
   rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr parameter_callback_handle_;
-  int sampling_interval_ms_{1000};
-  int lock_duration_ms_{3000};
-  DetectionGate detection_gate_{std::chrono::milliseconds{1000}, std::chrono::milliseconds{3000}};
-  std::unique_ptr<bishe_msgs::shared_memory::SharedFrameRing> detector_ring_;
-
-  sensor_msgs::msg::Image::UniquePtr buildImageFromSharedFrame(const bishe_msgs::msg::SharedFrameRef &ref)
-  {
-    bishe_msgs::shared_memory::SharedFrameView view;
-    if (!detector_ring_->viewSlot(ref.slot_index, ref.sequence, view)) {
-      return nullptr;
-    }
-
-    auto image = std::make_unique<sensor_msgs::msg::Image>();
-    image->header = ref.header;
-    image->width = view.width;
-    image->height = view.height;
-    image->step = view.step;
-    image->encoding = view.encoding;
-    image->is_bigendian = false;
-    image->data.resize(view.bytes_used);
-    std::memcpy(image->data.data(), view.data, view.bytes_used);
-    return image;
-  }
 
   rcl_interfaces::msg::SetParametersResult handleParameterUpdate(const std::vector<rclcpp::Parameter> &parameters)
   {
@@ -203,10 +148,7 @@ private:
 
     float new_confidence_threshold = confidence_threshold_.load();
     float new_nms_threshold = nms_threshold_.load();
-    int new_sampling_interval_ms = sampling_interval_ms_;
-    int new_lock_duration_ms = lock_duration_ms_;
     bool thresholds_changed = false;
-    bool gate_changed = false;
 
     for (const auto &parameter : parameters) {
       if (parameter.get_name() == "confidence_threshold") {
@@ -255,32 +197,26 @@ private:
           result.reason = "sampling_interval_ms 必须是整数";
           return result;
         }
-
         const int value = static_cast<int>(parameter.as_int());
         if (value < 1) {
           result.successful = false;
           result.reason = "sampling_interval_ms 必须 >= 1";
           return result;
         }
-
-        new_sampling_interval_ms = value;
-        gate_changed = true;
+        sampling_interval_ms_ = value;
       } else if (parameter.get_name() == "lock_duration_ms") {
         if (parameter.get_type() != rclcpp::ParameterType::PARAMETER_INTEGER) {
           result.successful = false;
           result.reason = "lock_duration_ms 必须是整数";
           return result;
         }
-
         const int value = static_cast<int>(parameter.as_int());
         if (value < 0) {
           result.successful = false;
           result.reason = "lock_duration_ms 必须 >= 0";
           return result;
         }
-
-        new_lock_duration_ms = value;
-        gate_changed = true;
+        lock_duration_ms_ = value;
       }
     }
 
@@ -293,20 +229,15 @@ private:
       RCLCPP_INFO(this->get_logger(), "检测参数已更新: confidence_threshold=%.2f, nms_threshold=%.2f", new_confidence_threshold, new_nms_threshold);
     }
 
-    if (gate_changed) {
-      sampling_interval_ms_ = new_sampling_interval_ms;
-      lock_duration_ms_ = new_lock_duration_ms;
-      const auto now = std::chrono::steady_clock::now();
-      {
-        std::lock_guard<std::mutex> lock(gate_mutex_);
-        detection_gate_.update_config(
-          std::chrono::milliseconds{sampling_interval_ms_},
-          std::chrono::milliseconds{lock_duration_ms_},
-          now);
-      }
-      RCLCPP_INFO(this->get_logger(), "检测门控参数已更新: sampling_interval_ms=%d, lock_duration_ms=%d",
-        sampling_interval_ms_, lock_duration_ms_);
+    {
+      std::lock_guard<std::mutex> lock(detection_gate_mutex_);
+      detection_gate_.update_config(
+          std::chrono::milliseconds(sampling_interval_ms_),
+          std::chrono::milliseconds(lock_duration_ms_),
+          std::chrono::steady_clock::now());
     }
+
+    RCLCPP_INFO(this->get_logger(), "检测门控参数已更新: sampling_interval_ms=%d, lock_duration_ms=%d", sampling_interval_ms_, lock_duration_ms_);
 
     return result;
   }
@@ -363,32 +294,13 @@ private:
       }
 
       const auto t0 = std::chrono::steady_clock::now();
-      if (!detector_ring_->acquire(task.ref.slot_index, task.ref.sequence)) {
-        dropped_frames_.fetch_add(1);
-        continue;
-      }
-
-      bishe_msgs::shared_memory::SharedFrameView view;
-      if (!detector_ring_->viewSlot(task.ref.slot_index, task.ref.sequence, view)) {
-        detector_ring_->release(task.ref.slot_index);
-        dropped_frames_.fetch_add(1);
-        continue;
-      }
-
-      cv::Mat frame(
-        static_cast<int>(view.height),
-        static_cast<int>(view.width),
-        CV_8UC3,
-        const_cast<uint8_t *>(view.data),
-        view.step);
+      cv::Mat frame = cv_bridge::toCvShare(task.msg, "bgr8")->image;
       DetectionResult detection_result = worker->yolo->Detect(frame);
       const auto t1 = std::chrono::steady_clock::now();
-
       if (!detection_result.detections.empty()) {
-        std::lock_guard<std::mutex> gate_lock(gate_mutex_);
+        std::lock_guard<std::mutex> lock(detection_gate_mutex_);
         detection_gate_.on_detection(t1);
       }
-
       const double inf_ms = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count()) / 1000.0;
       {
         std::lock_guard<std::mutex> lock(stats_mutex_);
@@ -401,16 +313,15 @@ private:
       result.confidence = detection_result.detections.empty() ? 0.0f : detection_result.detections.front().confidence;
       result.nms_threshold = this->nms_threshold_.load();
       result.violation_type = detection_result.detections.empty() ? "" : detection_result.detections.front().class_name;
-      result.annotated_image = *cv_bridge::CvImage(task.ref.header, "bgr8", detection_result.annotated_image).toImageMsg();
+      result.annotated_image = *cv_bridge::CvImage(task.msg->header, "bgr8", detection_result.annotated_image).toImageMsg();
 
       result_pub_->publish(result);
-      detector_ring_->release(task.ref.slot_index);
       output_frames_.fetch_add(1);
       // reportStats();
     }
   }
 
-  void imageCallback(const bishe_msgs::msg::SharedFrameRef::SharedPtr ref)
+  void imageCallback(const sensor_msgs::msg::Image::ConstSharedPtr &msg)
   {
     try
     {
@@ -418,29 +329,18 @@ private:
       const auto now = std::chrono::steady_clock::now();
       bool should_process = false;
       {
-        std::lock_guard<std::mutex> lock(gate_mutex_);
+        std::lock_guard<std::mutex> lock(detection_gate_mutex_);
         should_process = detection_gate_.should_process(now);
       }
 
       if (!should_process) {
-        if (!detector_ring_->acquire(ref->slot_index, ref->sequence)) {
-          dropped_frames_.fetch_add(1);
-          return;
-        }
-        auto image = buildImageFromSharedFrame(*ref);
-        detector_ring_->release(ref->slot_index);
-        if (!image) {
-          dropped_frames_.fetch_add(1);
-          return;
-        }
-        result_pub_->publish(buildOwnedPassThroughResult(std::move(image), nms_threshold_.load()));
+        result_pub_->publish(buildPassThroughResult(msg, nms_threshold_.load()));
         output_frames_.fetch_add(1);
-        // reportStats();
         return;
       }
 
       FrameTask task;
-      task.ref = *ref;
+      task.msg = msg;
       task.enqueue_time = now;
 
       {
@@ -465,11 +365,10 @@ private:
   }
 };
 
-std::shared_ptr<rclcpp::Node> make_detector_node(const rclcpp::NodeOptions &options)
+int main(int argc, char *argv[])
 {
-  return std::make_shared<DetectorNode>(options);
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<DetectorNode>());
+  rclcpp::shutdown();
+  return 0;
 }
-
-}  // namespace bishe_detector
-
-RCLCPP_COMPONENTS_REGISTER_NODE(bishe_detector::DetectorNode)

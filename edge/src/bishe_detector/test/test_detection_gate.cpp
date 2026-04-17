@@ -118,33 +118,3 @@ TEST(DetectorResultUtilsTest, BuildsPassThroughResultFromRawFrame)
   EXPECT_EQ(result.annotated_image.width, image->width);
   EXPECT_EQ(result.annotated_image.data, image->data);
 }
-
-TEST(DetectorResultUtilsTest, BuildsOwnedPassThroughResultByMovingOwnedFrame)
-{
-  auto image = std::make_unique<sensor_msgs::msg::Image>();
-  image->header.frame_id = "camera_frame";
-  image->header.stamp.sec = 123;
-  image->header.stamp.nanosec = 456;
-  image->height = 2;
-  image->width = 2;
-  image->encoding = "bgr8";
-  image->is_bigendian = false;
-  image->step = 6;
-  image->data = {
-      1, 2, 3, 4, 5, 6,
-      7, 8, 9, 10, 11, 12,
-  };
-
-  const auto result = buildOwnedPassThroughResult(std::move(image), 0.25f);
-
-  EXPECT_FALSE(result.has_violation);
-  EXPECT_FLOAT_EQ(result.confidence, 0.0f);
-  EXPECT_FLOAT_EQ(result.nms_threshold, 0.25f);
-  EXPECT_TRUE(result.violation_type.empty());
-  EXPECT_EQ(result.annotated_image.header.frame_id, "camera_frame");
-  EXPECT_EQ(result.annotated_image.height, 2u);
-  EXPECT_EQ(result.annotated_image.width, 2u);
-  EXPECT_EQ(result.annotated_image.encoding, "bgr8");
-  EXPECT_EQ(result.annotated_image.step, 6u);
-  EXPECT_EQ(result.annotated_image.data.size(), 12u);
-}
