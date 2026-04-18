@@ -1,0 +1,43 @@
+[35m[1mConsolidate compiler generated dependencies of target monitor_node[0m
+[ 14%] Built target gtest
+[ 21%] [32mBuilding CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o[0m
+[ 35%] Built target gtest_main
+[ 50%] Built target test_async_task_worker
+[ 64%] Built target test_alarm_playback_command
+[ 78%] Built target test_alarm_upload_gate
+[ 92%] Built target test_alarm_event_payload
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:295:8:[m[K [01;31m[Kerror: [m[K‘[01m[Kvoid MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)[m[K’ cannot be overloaded with ‘[01m[Kvoid MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)[m[K’
+  295 |   void [01;31m[KresultCallback[m[K(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
+      |        [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:123:8:[m[K [01;36m[Knote: [m[Kprevious declaration ‘[01m[Kvoid MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)[m[K’
+  123 |   void [01;36m[KresultCallback[m[K(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
+      |        [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:353:8:[m[K [01;31m[Kerror: [m[K‘[01m[Kvoid MonitorNode::playAlarm(const string&)[m[K’ cannot be overloaded with ‘[01m[Kvoid MonitorNode::playAlarm(const string&)[m[K’
+  353 |   void [01;31m[KplayAlarm[m[K(const std::string &violation_type)
+      |        [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:8:[m[K [01;36m[Knote: [m[Kprevious declaration ‘[01m[Kvoid MonitorNode::playAlarm(const string&)[m[K’
+  134 |   void [01;36m[KplayAlarm[m[K(const std::string &violation_type)
+      |        [01;36m[K^~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:399:8:[m[K [01;31m[Kerror: [m[K‘[01m[Kbool MonitorNode::captureAndUpload(const cv::Mat&, const string&)[m[K’ cannot be overloaded with ‘[01m[Kbool MonitorNode::captureAndUpload(const cv::Mat&, const string&)[m[K’
+  399 |   bool [01;31m[KcaptureAndUpload[m[K(const cv::Mat &frame, const std::string &violation_type)
+      |        [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:8:[m[K [01;36m[Knote: [m[Kprevious declaration ‘[01m[Kbool MonitorNode::captureAndUpload(const cv::Mat&, const string&)[m[K’
+  142 |   bool [01;36m[KcaptureAndUpload[m[K(const cv::Mat &frame, const std::string &violation_type)
+      |        [01;36m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:[m[K In member function ‘[01m[Kvoid MonitorNode::playAlarm(const string&)[m[K’:
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:37:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kviolation_type[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  134 |   void playAlarm([01;35m[Kconst std::string &violation_type[m[K)
+      |                  [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:[m[K In member function ‘[01m[Kbool MonitorNode::captureAndUpload(const cv::Mat&, const string&)[m[K’:
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:145:3:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type-Wreturn-type]8;;[m[K]
+  145 |   [01;35m[K}[m[K
+      |   [01;35m[K^[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:40:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kframe[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  142 |   bool captureAndUpload([01;35m[Kconst cv::Mat &frame[m[K, const std::string &violation_type)
+      |                         [01;35m[K~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:66:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kviolation_type[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  142 |   bool captureAndUpload(const cv::Mat &frame, [01;35m[Kconst std::string &violation_type[m[K)
+      |                                               [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:76：CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:163：CMakeFiles/monitor_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

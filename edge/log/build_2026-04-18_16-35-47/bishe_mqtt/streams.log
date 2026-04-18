@@ -1,0 +1,730 @@
+[0.026s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_mqtt -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_mqtt
+[0.052s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.287s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.312s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.379s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.384s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.395s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.413s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.436s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.497s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.500s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.676s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.898s] -- Configuring done
+[0.917s] -- Generating done
+[0.924s] -- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_mqtt
+[0.957s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake /home/jetson/projects/bishe/edge/src/bishe_mqtt -DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_mqtt
+[0.959s] Invoking command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6
+[1.035s] [35m[1mConsolidate compiler generated dependencies of target mqtt_node[0m
+[1.085s] [ 50%] [32mBuilding CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o[0m
+[6.265s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:923:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuilder[m[K’ does not name a type
+[6.265s]   923 |     [01;31m[Kbuilder[m[K["collectComments"] = false;
+[6.265s]       |     [01;31m[K^~~~~~~[m[K
+[6.265s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:46:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuilder[m[K’ is not a type
+[6.265s]   924 |     std::unique_ptr<Json::CharReader> reader([01;31m[Kbuilder[m[K.newCharReader());
+[6.265s]       |                                              [01;31m[K^~~~~~~[m[K
+[6.265s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:53:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K...[m[K’ before ‘[01m[K.[m[K’ token
+[6.266s]   924 |     std::unique_ptr<Json::CharReader> reader(builder[01;31m[K.[m[KnewCharReader());
+[6.266s]       |                                                     [01;31m[K^[m[K
+[6.266s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:927:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[6.266s]   927 |     [01;31m[Kif[m[K (!reader->parse(payload.data(), payload.data() + payload.size(), &root, &errors) || !root.isObject())
+[6.266s]       |     [01;31m[K^~[m[K
+[6.266s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:933:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[6.266s]   933 |     [01;31m[Kif[m[K (!root["type"].isString())
+[6.266s]       |     [01;31m[K^~[m[K
+[6.266s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:941:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[6.267s]   941 |     [01;31m[Kif[m[K (topic == subscribe_topic_)
+[6.267s]       |     [01;31m[K^~[m[K
+[6.267s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:949:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kelse[m[K’
+[6.267s]   949 |     [01;31m[Kelse[m[K if (topic == call_topic_)
+[6.267s]       |     [01;31m[K^~~~[m[K
+[6.267s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[6.267s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[6.267s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[6.267s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[6.268s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[6.268s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[6.268s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kdo[m[K’
+[6.268s]   958 |     [01;31m[KRCLCPP_WARN[m[K(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());
+[6.269s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[6.269s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kwhile[m[K’
+[6.269s]   958 |     [01;31m[KRCLCPP_WARN[m[K(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());
+[6.269s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[6.269s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In constructor ‘[01m[KMqttNode::MqttNode()[m[K’:
+[6.269s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:102:28:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KMqttNode[m[K’ does not have any field named ‘[01m[Kcb_[m[K’
+[6.269s]   102 |       : Node("mqtt_node"), [01;31m[Kcb_[m[K(
+[6.269s]       |                            [01;31m[K^~~[m[K
+[6.288s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:115:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_interval_sec_[m[K’ was not declared in this scope
+[6.288s]   115 |     if ([01;31m[Kreport_interval_sec_[m[K <= 0.0)
+[6.288s]       |         [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[6.300s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_[m[K’ was not declared in this scope
+[6.300s]   122 |     [01;31m[Kclient_[m[K = std::make_unique<mqtt::async_client>(server_address, client_id_);
+[6.300s]       |     [01;31m[K^~~~~~~[m[K
+[6.313s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:68:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_id_[m[K’ was not declared in this scope
+[6.313s]   122 |     client_ = std::make_unique<mqtt::async_client>(server_address, [01;31m[Kclient_id_[m[K);
+[6.313s]       |                                                                    [01;31m[K^~~~~~~~~~[m[K
+[6.323s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:123:27:[m[K [01;31m[Kerror: [m[K‘[01m[Kcb_[m[K’ was not declared in this scope
+[6.323s]   123 |     client_->set_callback([01;31m[Kcb_[m[K);
+[6.323s]       |                           [01;31m[K^~~[m[K
+[6.341s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:135:26:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscribe_topic_[m[K’ was not declared in this scope
+[6.341s]   135 |       client_->subscribe([01;31m[Ksubscribe_topic_[m[K, 1)->wait();
+[6.341s]       |                          [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.355s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:137:26:[m[K [01;31m[Kerror: [m[K‘[01m[Kcall_topic_[m[K’ was not declared in this scope
+[6.355s]   137 |       client_->subscribe([01;31m[Kcall_topic_[m[K, 1)->wait();
+[6.355s]       |                          [01;31m[K^~~~~~~~~~~[m[K
+[6.372s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:149:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kintercom_pub_[m[K’ was not declared in this scope
+[6.372s]   149 |     [01;31m[Kintercom_pub_[m[K = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
+[6.372s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[6.398s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:151:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kalarm_event_sub_[m[K’ was not declared in this scope
+[6.398s]   151 |     [01;31m[Kalarm_event_sub_[m[K = this->create_subscription<std_msgs::msg::String>(
+[6.398s]       |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.507s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:157:34:[m[K [01;31m[Kerror: [m[K‘[01m[Kparam_callback_group_[m[K’ was not declared in this scope; did you mean ‘[01m[Kcreate_callback_group[m[K’?
+[6.507s]   157 |     sub_options.callback_group = [01;31m[Kparam_callback_group_[m[K;
+[6.507s]       |                                  [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[6.507s]       |                                  [32m[Kcreate_callback_group[m[K
+[6.524s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:158:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kparam_event_sub_[m[K’ was not declared in this scope
+[6.524s]   158 |     [01;31m[Kparam_event_sub_[m[K = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+[6.524s]       |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.524s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:160:30:[m[K [01;31m[Kerror: [m[K‘[01m[KonParameterEvent[m[K’ is not a member of ‘[01m[KMqttNode[m[K’
+[6.525s]   160 |         std::bind(&MqttNode::[01;31m[KonParameterEvent[m[K, this, std::placeholders::_1),
+[6.525s]       |                              [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.538s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In destructor ‘[01m[Kvirtual MqttNode::~MqttNode()[m[K’:
+[6.538s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:172:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_[m[K’ was not declared in this scope
+[6.538s]   172 |     if ([01;31m[Kclient_[m[K == nullptr)
+[6.539s]       |         [01;31m[K^~~~~~~[m[K
+[6.550s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:179:11:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_[m[K’ was not declared in this scope
+[6.550s]   179 |       if ([01;31m[Kclient_[m[K->is_connected())
+[6.550s]       |           [01;31m[K^~~~~~~[m[K
+[6.572s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::loadParameters()[m[K’:
+[6.573s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:245:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kbroker_[m[K’ was not declared in this scope
+[6.573s]   245 |     this->get_parameter("broker", [01;31m[Kbroker_[m[K);
+[6.573s]       |                                   [01;31m[K^~~~~~~[m[K
+[6.584s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:246:33:[m[K [01;31m[Kerror: [m[K‘[01m[Kport_[m[K’ was not declared in this scope
+[6.584s]   246 |     this->get_parameter("port", [01;31m[Kport_[m[K);
+[6.585s]       |                                 [01;31m[K^~~~~[m[K
+[6.596s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:247:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_id_[m[K’ was not declared in this scope
+[6.597s]   247 |     this->get_parameter("client_id", [01;31m[Kclient_id_[m[K);
+[6.597s]       |                                      [01;31m[K^~~~~~~~~~[m[K
+[6.609s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:248:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kdevice_[m[K’ was not declared in this scope
+[6.609s]   248 |     this->get_parameter("device", [01;31m[Kdevice_[m[K);
+[6.609s]       |                                   [01;31m[K^~~~~~~[m[K
+[6.626s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:249:44:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscribe_topic_[m[K’ was not declared in this scope
+[6.627s]   249 |     this->get_parameter("subscribe_topic", [01;31m[Ksubscribe_topic_[m[K);
+[6.627s]       |                                            [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.641s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:250:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kcall_topic_[m[K’ was not declared in this scope
+[6.641s]   250 |     this->get_parameter("call_topic", [01;31m[Kcall_topic_[m[K);
+[6.641s]       |                                       [01;31m[K^~~~~~~~~~~[m[K
+[6.657s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:251:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublish_topic_[m[K’ was not declared in this scope
+[6.657s]   251 |     this->get_parameter("publish_topic", [01;31m[Kpublish_topic_[m[K);
+[6.658s]       |                                          [01;31m[K^~~~~~~~~~~~~~[m[K
+[6.671s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:254:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_topic_[m[K’ was not declared in this scope
+[6.671s]   254 |     this->get_parameter("info_topic", [01;31m[Kinfo_topic_[m[K);
+[6.671s]       |                                       [01;31m[K^~~~~~~~~~~[m[K
+[6.686s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:255:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kalarm_topic_[m[K’ was not declared in this scope
+[6.686s]   255 |     this->get_parameter("alarm_topic", [01;31m[Kalarm_topic_[m[K);
+[6.686s]       |                                        [01;31m[K^~~~~~~~~~~~[m[K
+[6.706s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:256:48:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_interval_sec_[m[K’ was not declared in this scope
+[6.706s]   256 |     this->get_parameter("report_interval_sec", [01;31m[Kreport_interval_sec_[m[K);
+[6.706s]       |                                                [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[6.720s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:257:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[6.720s]   257 |     this->get_parameter("camera_id", [01;31m[Kcamera_id_[m[K);
+[6.720s]       |                                      [01;31m[K^~~~~~~~~~[m[K
+[6.737s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:258:44:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_location_[m[K’ was not declared in this scope
+[6.737s]   258 |     this->get_parameter("camera_location", [01;31m[Kcamera_location_[m[K);
+[6.737s]       |                                            [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.755s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:259:44:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_http_url_[m[K’ was not declared in this scope
+[6.755s]   259 |     this->get_parameter("camera_http_url", [01;31m[Kcamera_http_url_[m[K);
+[6.755s]       |                                            [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.769s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::syncStaticCameraMetadata()[m[K’:
+[6.769s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:278:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[6.769s]   278 |     std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[6.771s]       |                                      [01;31m[K^~~~~~~~~~~[m[K
+[6.784s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[6.784s]   279 |     auto &info = [01;31m[Kinfo_cache_[m[K[camera_id_];
+[6.784s]       |                  [01;31m[K^~~~~~~~~~~[m[K
+[6.796s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[6.797s]   279 |     auto &info = info_cache_[[01;31m[Kcamera_id_[m[K];
+[6.797s]       |                              [01;31m[K^~~~~~~~~~[m[K
+[6.814s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:280:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_location_[m[K’ was not declared in this scope
+[6.814s]   280 |     info.location = [01;31m[Kcamera_location_[m[K;
+[6.814s]       |                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.831s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:281:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_http_url_[m[K’ was not declared in this scope
+[6.832s]   281 |     info.http_url = [01;31m[Kcamera_http_url_[m[K;
+[6.832s]       |                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.843s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kstd::string MqttNode::buildServerAddress() const[m[K’:
+[6.844s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:294:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kbroker_[m[K’ was not declared in this scope
+[6.844s]   294 |     if ([01;31m[Kbroker_[m[K.find("://") != std::string::npos)
+[6.844s]       |         [01;31m[K^~~~~~~[m[K
+[6.855s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kbroker_[m[K’ was not declared in this scope
+[6.855s]   298 |     return "tcp://" + [01;31m[Kbroker_[m[K + ":" + std::to_string(port_);
+[6.856s]       |                       [01;31m[K^~~~~~~[m[K
+[6.867s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:54:[m[K [01;31m[Kerror: [m[K‘[01m[Kport_[m[K’ was not declared in this scope
+[6.867s]   298 |     return "tcp://" + broker_ + ":" + std::to_string([01;31m[Kport_[m[K);
+[6.867s]       |                                                      [01;31m[K^~~~~[m[K
+[6.886s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::createReportTimer()[m[K’:
+[6.886s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:309:71:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_interval_sec_[m[K’ was not declared in this scope
+[6.887s]   309 |     const int interval_ms = std::max(100, static_cast<int>(std::round([01;31m[Kreport_interval_sec_[m[K * 1000.0)));
+[6.887s]       |                                                                       [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[6.901s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:310:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_timer_[m[K’ was not declared in this scope
+[6.901s]   310 |     [01;31m[Kreport_timer_[m[K = this->create_wall_timer(
+[6.901s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[6.925s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:313:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_callback_group_[m[K’ was not declared in this scope; did you mean ‘[01m[Kcreate_callback_group[m[K’?
+[6.925s]   313 |         [01;31m[Kreport_callback_group_[m[K);
+[6.925s]       |         [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.926s]       |         [32m[Kcreate_callback_group[m[K
+[6.939s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::refreshLocalDynamicParameters()[m[K’:
+[6.940s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:333:36:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[6.940s]   333 |     std::string latest_camera_id = [01;31m[Kcamera_id_[m[K;
+[6.940s]       |                                    [01;31m[K^~~~~~~~~~[m[K
+[6.954s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:334:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_location_[m[K’ was not declared in this scope; did you mean ‘[01m[Klatest_location[m[K’?
+[6.955s]   334 |     std::string latest_location = [01;31m[Kcamera_location_[m[K;
+[6.955s]       |                                   [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.955s]       |                                   [32m[Klatest_location[m[K
+[6.970s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:335:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_http_url_[m[K’ was not declared in this scope; did you mean ‘[01m[Klatest_http_url[m[K’?
+[6.971s]   335 |     std::string latest_http_url = [01;31m[Kcamera_http_url_[m[K;
+[6.971s]       |                                   [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[6.971s]       |                                   [32m[Klatest_http_url[m[K
+[6.990s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:336:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kreport_interval_sec_[m[K’ was not declared in this scope
+[6.990s]   336 |     double latest_interval = [01;31m[Kreport_interval_sec_[m[K;
+[6.990s]       |                              [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[7.004s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:337:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_topic_[m[K’ was not declared in this scope
+[7.004s]   337 |     std::string latest_info_topic = [01;31m[Kinfo_topic_[m[K;
+[7.004s]       |                                     [01;31m[K^~~~~~~~~~~[m[K
+[7.022s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kstd::shared_ptr<rclcpp::AsyncParametersClient> MqttNode::getOrCreateParamClient(const string&)[m[K’:
+[7.022s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:455:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kparam_clients_[m[K’ was not declared in this scope
+[7.023s]   455 |     const auto it = [01;31m[Kparam_clients_[m[K.find(node_name);
+[7.023s]       |                     [01;31m[K^~~~~~~~~~~~~~[m[K
+[7.039s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:462:54:[m[K [01;31m[Kerror: [m[K‘[01m[Kparam_callback_group_[m[K’ was not declared in this scope; did you mean ‘[01m[Kcreate_callback_group[m[K’?
+[7.039s]   462 |         this, node_name, rmw_qos_profile_parameters, [01;31m[Kparam_callback_group_[m[K);
+[7.039s]       |                                                      [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[7.039s]       |                                                      [32m[Kcreate_callback_group[m[K
+[7.064s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kbool MqttNode::fetchParametersSync(const string&, const std::vector<std::__cxx11::basic_string<char> >&, std::vector<rclcpp::Parameter>&)[m[K’:
+[7.064s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:502:29:[m[K [01;31m[Kerror: [m[K‘[01m[Knext_query_time_[m[K’ was not declared in this scope
+[7.064s]   502 |     const auto backoff_it = [01;31m[Knext_query_time_[m[K.find(node_name);
+[7.064s]       |                             [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[7.090s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kbool MqttNode::cameraIdConfigured(const string&) const[m[K’:
+[7.091s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:593:25:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope; did you mean ‘[01m[Kcamera_id[m[K’?
+[7.091s]   593 |     return camera_id == [01;31m[Kcamera_id_[m[K;
+[7.091s]       |                         [01;31m[K^~~~~~~~~~[m[K
+[7.091s]       |                         [32m[Kcamera_id[m[K
+[7.104s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::updateCacheForCommand(const string&, const std::optional<double>&, const std::optional<double>&)[m[K’:
+[7.104s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:601:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.104s]   601 |     std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.104s]       |                                      [01;31m[K^~~~~~~~~~~[m[K
+[7.118s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:602:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.118s]   602 |     auto &info = [01;31m[Kinfo_cache_[m[K[camera_id];
+[7.118s]       |                  [01;31m[K^~~~~~~~~~~[m[K
+[7.138s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kbool MqttNode::handleParameterCommand(const Json::Value&)[m[K’:
+[7.138s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:768:26:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Knode_name[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[7.138s]   768 |         for (const auto &[01;35m[Knode_name[m[K : monitorNodeCandidates(camera_id))
+[7.139s]       |                          [01;35m[K^~~~~~~~~[m[K
+[7.155s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kbool MqttNode::handleCallCommand(const Json::Value&)[m[K’:
+[7.155s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:810:26:[m[K [01;31m[Kerror: [m[K‘[01m[Kdevice_[m[K’ was not declared in this scope
+[7.155s]   810 |     if (target_device != [01;31m[Kdevice_[m[K)
+[7.155s]       |                          [01;31m[K^~~~~~~[m[K
+[7.173s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:828:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kintercom_pub_[m[K’ was not declared in this scope
+[7.174s]   828 |       [01;31m[Kintercom_pub_[m[K->publish(msg);
+[7.174s]       |       [01;31m[K^~~~~~~~~~~~~[m[K
+[7.190s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:835:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kintercom_pub_[m[K’ was not declared in this scope
+[7.190s]   835 |       [01;31m[Kintercom_pub_[m[K->publish(msg);
+[7.191s]       |       [01;31m[K^~~~~~~~~~~~~[m[K
+[7.208s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::handleMqttMessage(const string&, const string&)[m[K’:
+[7.208s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:18:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscribe_topic_[m[K’ was not declared in this scope
+[7.209s]   849 |     if (topic != [01;31m[Ksubscribe_topic_[m[K && topic != call_topic_)
+[7.209s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[7.221s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:47:[m[K [01;31m[Kerror: [m[K‘[01m[Kcall_topic_[m[K’ was not declared in this scope
+[7.221s]   849 |     if (topic != subscribe_topic_ && topic != [01;31m[Kcall_topic_[m[K)
+[7.221s]       |                                               [01;31m[K^~~~~~~~~~~[m[K
+[7.254s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:875:18:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscribe_topic_[m[K’ was not declared in this scope
+[7.254s]   875 |     if (topic == [01;31m[Ksubscribe_topic_[m[K)
+[7.255s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[7.268s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:884:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kcall_topic_[m[K’ was not declared in this scope
+[7.268s]   884 |     else if (topic == [01;31m[Kcall_topic_[m[K)
+[7.268s]       |                       [01;31m[K^~~~~~~~~~~[m[K
+[7.296s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In member function ‘[01m[Kvoid MqttNode::onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)[m[K’:
+[7.296s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:910:5:[m[K [01;31m[Kerror: [m[K‘[01m[KpublishToAlarmTopic[m[K’ was not declared in this scope
+[7.296s]   910 |     [01;31m[KpublishToAlarmTopic[m[K(msg->data);
+[7.296s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[7.296s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K At global scope:
+[7.297s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:969:22:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[KescapeJson[m[K’
+[7.297s]   969 |   static std::string [01;31m[KescapeJson[m[K(const std::string &value)
+[7.297s]       |                      [01;31m[K^~~~~~~~~~[m[K
+[7.310s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid onParameterEvent(rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >::SharedPtr)[m[K’:
+[7.310s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:50:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[7.310s]  1007 |     auto det_candidates = detectorNodeCandidates([01;31m[Kcamera_id_[m[K);
+[7.310s]       |                                                  [01;31m[K^~~~~~~~~~[m[K
+[7.322s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:27:[m[K [01;31m[Kerror: [m[K‘[01m[KdetectorNodeCandidates[m[K’ was not declared in this scope
+[7.322s]  1007 |     auto det_candidates = [01;31m[KdetectorNodeCandidates[m[K(camera_id_);
+[7.322s]       |                           [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.334s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1013:27:[m[K [01;31m[Kerror: [m[K‘[01m[KstreamerNodeCandidates[m[K’ was not declared in this scope
+[7.334s]  1013 |     auto str_candidates = [01;31m[KstreamerNodeCandidates[m[K(camera_id_);
+[7.334s]       |                           [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.343s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1025:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.343s]  1025 |     std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.343s]       |                                      [01;31m[K^~~~~~~~~~~[m[K
+[7.351s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1026:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.352s]  1026 |     auto &info = [01;31m[Kinfo_cache_[m[K[target_camera_id];
+[7.352s]       |                  [01;31m[K^~~~~~~~~~~[m[K
+[7.368s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kbool requestStreamerRuntimeInfo(const string&)[m[K’:
+[7.368s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1099:29:[m[K [01;31m[Kerror: [m[K‘[01m[KstreamerNodeCandidates[m[K’ was not declared in this scope
+[7.368s]  1099 |     const auto candidates = [01;31m[KstreamerNodeCandidates[m[K(camera_id);
+[7.369s]       |                             [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.380s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1103:12:[m[K [01;31m[Kerror: [m[K‘[01m[KfetchParametersSync[m[K’ was not declared in this scope
+[7.380s]  1103 |       if (![01;31m[KfetchParametersSync[m[K(node_name, {"output_width", "output_height", "output_fps", "scale"}, params))
+[7.380s]       |            [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[7.387s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1108:7:[m[K [01;31m[Kerror: [m[K‘[01m[KCameraInfo[m[K’ was not declared in this scope
+[7.387s]  1108 |       [01;31m[KCameraInfo[m[K info;
+[7.388s]       |       [01;31m[K^~~~~~~~~~[m[K
+[7.395s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1110:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.396s]  1110 |         std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.396s]       |                                          [01;31m[K^~~~~~~~~~~[m[K
+[7.402s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.402s]  1111 |         [01;31m[Kinfo[m[K = info_cache_[camera_id];
+[7.402s]       |         [01;31m[K^~~~[m[K
+[7.410s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:16:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.410s]  1111 |         info = [01;31m[Kinfo_cache_[m[K[camera_id];
+[7.411s]       |                [01;31m[K^~~~~~~~~~~[m[K
+[7.417s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1119:11:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.417s]  1119 |           [01;31m[Kinfo[m[K.width = static_cast<int>(p.as_int());
+[7.418s]       |           [01;31m[K^~~~[m[K
+[7.423s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1123:11:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.423s]  1123 |           [01;31m[Kinfo[m[K.height = static_cast<int>(p.as_int());
+[7.424s]       |           [01;31m[K^~~~[m[K
+[7.430s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1129:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.430s]  1129 |             [01;31m[Kinfo[m[K.fps = p.as_double();
+[7.430s]       |             [01;31m[K^~~~[m[K
+[7.436s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1133:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.436s]  1133 |             [01;31m[Kinfo[m[K.fps = static_cast<double>(p.as_int());
+[7.436s]       |             [01;31m[K^~~~[m[K
+[7.442s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1140:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.442s]  1140 |             [01;31m[Kinfo[m[K.scale = p.as_double();
+[7.442s]       |             [01;31m[K^~~~[m[K
+[7.448s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1144:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.448s]  1144 |             [01;31m[Kinfo[m[K.scale = static_cast<double>(p.as_int());
+[7.448s]       |             [01;31m[K^~~~[m[K
+[7.456s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1150:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.456s]  1150 |         std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.456s]       |                                          [01;31m[K^~~~~~~~~~~[m[K
+[7.464s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.464s]  1151 |         [01;31m[Kinfo_cache_[m[K[camera_id] = info;
+[7.464s]       |         [01;31m[K^~~~~~~~~~~[m[K
+[7.469s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:34:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.469s]  1151 |         info_cache_[camera_id] = [01;31m[Kinfo[m[K;
+[7.469s]       |                                  [01;31m[K^~~~[m[K
+[7.481s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kbool requestDetectorThresholds(const string&)[m[K’:
+[7.482s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1168:29:[m[K [01;31m[Kerror: [m[K‘[01m[KdetectorNodeCandidates[m[K’ was not declared in this scope
+[7.482s]  1168 |     const auto candidates = [01;31m[KdetectorNodeCandidates[m[K(camera_id);
+[7.482s]       |                             [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.492s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1172:12:[m[K [01;31m[Kerror: [m[K‘[01m[KfetchParametersSync[m[K’ was not declared in this scope
+[7.492s]  1172 |       if (![01;31m[KfetchParametersSync[m[K(node_name, {"confidence_threshold", "nms_threshold"}, params))
+[7.492s]       |            [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[7.499s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1177:7:[m[K [01;31m[Kerror: [m[K‘[01m[KCameraInfo[m[K’ was not declared in this scope
+[7.499s]  1177 |       [01;31m[KCameraInfo[m[K info;
+[7.499s]       |       [01;31m[K^~~~~~~~~~[m[K
+[7.506s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1179:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.506s]  1179 |         std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.506s]       |                                          [01;31m[K^~~~~~~~~~~[m[K
+[7.511s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.512s]  1180 |         [01;31m[Kinfo[m[K = info_cache_[camera_id];
+[7.512s]       |         [01;31m[K^~~~[m[K
+[7.519s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:16:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.519s]  1180 |         info = [01;31m[Kinfo_cache_[m[K[camera_id];
+[7.520s]       |                [01;31m[K^~~~~~~~~~~[m[K
+[7.526s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1189:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.526s]  1189 |             [01;31m[Kinfo[m[K.confidence_threshold = p.as_double();
+[7.527s]       |             [01;31m[K^~~~[m[K
+[7.532s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1193:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.533s]  1193 |             [01;31m[Kinfo[m[K.confidence_threshold = static_cast<double>(p.as_int());
+[7.533s]       |             [01;31m[K^~~~[m[K
+[7.539s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1200:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.539s]  1200 |             [01;31m[Kinfo[m[K.nms_threshold = p.as_double();
+[7.539s]       |             [01;31m[K^~~~[m[K
+[7.545s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1204:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.545s]  1204 |             [01;31m[Kinfo[m[K.nms_threshold = static_cast<double>(p.as_int());
+[7.545s]       |             [01;31m[K^~~~[m[K
+[7.552s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1210:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.552s]  1210 |         std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.552s]       |                                          [01;31m[K^~~~~~~~~~~[m[K
+[7.560s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.560s]  1211 |         [01;31m[Kinfo_cache_[m[K[camera_id] = info;
+[7.560s]       |         [01;31m[K^~~~~~~~~~~[m[K
+[7.566s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:34:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.566s]  1211 |         info_cache_[camera_id] = [01;31m[Kinfo[m[K;
+[7.566s]       |                                  [01;31m[K^~~~[m[K
+[7.574s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kstd::string buildInfoPayload()[m[K’:
+[7.574s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:37:[m[K [01;31m[Kerror: [m[K‘[01m[KCameraInfo[m[K’ was not declared in this scope
+[7.574s]  1241 |     std::unordered_map<std::string, [01;31m[KCameraInfo[m[K> snapshot;
+[7.574s]       |                                     [01;31m[K^~~~~~~~~~[m[K
+[7.574s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47:[m[K [01;31m[Kerror: [m[Ktemplate argument 2 is invalid
+[7.574s]  1241 |     std::unordered_map<std::string, CameraInfo[01;31m[K>[m[K snapshot;
+[7.575s]       |                                               [01;31m[K^[m[K
+[7.575s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47:[m[K [01;31m[Kerror: [m[Ktemplate argument 5 is invalid
+[7.581s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1243:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_mutex_[m[K’ was not declared in this scope
+[7.582s]  1243 |       std::lock_guard<std::mutex> lock([01;31m[Kinfo_mutex_[m[K);
+[7.582s]       |                                        [01;31m[K^~~~~~~~~~~[m[K
+[7.590s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1244:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_cache_[m[K’ was not declared in this scope
+[7.590s]  1244 |       snapshot = [01;31m[Kinfo_cache_[m[K;
+[7.590s]       |                  [01;31m[K^~~~~~~~~~~[m[K
+[7.590s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1249:36:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.591s]  1249 |     oss << "{\"timestamp_ns\":" << [01;31m[Kthis[m[K->now().nanoseconds() << ",";
+[7.591s]       |                                    [01;31m[K^~~~[m[K
+[7.598s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kdevice_[m[K’ was not declared in this scope
+[7.598s]  1250 |     oss << "\"device\":\"" << escapeJson([01;31m[Kdevice_[m[K) << "\",";
+[7.598s]       |                                          [01;31m[K^~~~~~~[m[K
+[7.609s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:31:[m[K [01;31m[Kerror: [m[K‘[01m[KescapeJson[m[K’ was not declared in this scope
+[7.609s]  1250 |     oss << "\"device\":\"" << [01;31m[KescapeJson[m[K(device_) << "\",";
+[7.609s]       |                               [01;31m[K^~~~~~~~~~[m[K
+[7.609s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:30:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kfind[m[K’ in ‘[01m[Ksnapshot[m[K’, which is of non-class type ‘[01m[Kint[m[K’
+[7.609s]  1252 |     const auto it = snapshot.[01;31m[Kfind[m[K(camera_id_);
+[7.609s]       |                              [01;31m[K^~~~[m[K
+[7.616s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[7.616s]  1252 |     const auto it = snapshot.find([01;31m[Kcamera_id_[m[K);
+[7.616s]       |                                   [01;31m[K^~~~~~~~~~[m[K
+[7.616s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1253:15:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kinfo[m[K’
+[7.616s]  1253 |     CameraInfo[01;31m[K [m[K[32m[Kinfo[m[K;
+[7.616s]       |               [01;31m[K^[m[K[32m[K~~~~[m[K
+[7.617s]       |               [32m[K;[m[K
+[7.617s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1254:24:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kend[m[K’ in ‘[01m[Ksnapshot[m[K’, which is of non-class type ‘[01m[Kint[m[K’
+[7.617s]  1254 |     if (it != snapshot.[01;31m[Kend[m[K())
+[7.617s]       |                        [01;31m[K^~~[m[K
+[7.624s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1256:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.624s]  1256 |       [01;31m[Kinfo[m[K = it->second;
+[7.624s]       |       [01;31m[K^~~~[m[K
+[7.631s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1261:44:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo[m[K’ was not declared in this scope
+[7.631s]  1261 |     oss << "\"location\":\"" << escapeJson([01;31m[Kinfo[m[K.location) << "\",";
+[7.631s]       |                                            [01;31m[K^~~~[m[K
+[7.640s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid publishToTopic(const string&, const string&, const char*)[m[K’:
+[7.640s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1280:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_[m[K’ was not declared in this scope
+[7.640s]  1280 |     if ([01;31m[Kclient_[m[K == nullptr || !client_->is_connected())
+[7.640s]       |         [01;31m[K^~~~~~~[m[K
+[7.640s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.641s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.642s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.642s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.642s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.642s]  1283 |           [01;31m[Kthis[m[K->get_logger(), *this->get_clock(), 3000,
+[7.642s]       |           [01;31m[K^~~~[m[K
+[7.642s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.642s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[7.642s]  1282 |       [01;31m[KRCLCPP_WARN_THROTTLE[m[K(
+[7.642s]       |       [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[7.643s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:32:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.643s]  1283 |           this->get_logger(), *[01;31m[Kthis[m[K->get_clock(), 3000,
+[7.643s]       |                                [01;31m[K^~~~[m[K
+[7.649s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In lambda function:
+[7.650s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kc[m[K’ was not declared in this scope
+[7.650s]  1282 |       [01;31m[KRCLCPP_WARN_THROTTLE[m[K(
+[7.650s]       |       [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[7.650s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[7.650s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.650s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.651s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.652s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.652s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid publishToTopic(const string&, const string&, const char*)[m[K’:
+[7.652s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.652s]  1283 |           [01;31m[Kthis[m[K->get_logger(), *this->get_clock(), 3000,
+[7.652s]       |           [01;31m[K^~~~[m[K
+[7.652s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.652s]  1283 |           [01;31m[Kthis[m[K->get_logger(), *this->get_clock(), 3000,
+[7.652s]       |           [01;31m[K^~~~[m[K
+[7.658s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1291:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kclient_[m[K’ was not declared in this scope
+[7.659s]  1291 |       [01;31m[Kclient_[m[K->publish(msg)->wait();
+[7.659s]       |       [01;31m[K^~~~~~~[m[K
+[7.659s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.659s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.659s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.659s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.659s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.659s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.660s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.660s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.660s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.660s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.660s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.660s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.660s]  1295 |       RCLCPP_ERROR([01;31m[Kthis[m[K->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+[7.660s]       |                    [01;31m[K^~~~[m[K
+[7.660s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.661s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:7:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[7.661s]  1295 |       [01;31m[KRCLCPP_ERROR[m[K(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+[7.661s]       |       [01;31m[K^~~~~~~~~~~~[m[K
+[7.661s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.661s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.662s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.662s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.662s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.662s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.662s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.662s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.662s]  1295 |       RCLCPP_ERROR([01;31m[Kthis[m[K->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+[7.662s]       |                    [01;31m[K^~~~[m[K
+[7.662s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.663s]  1295 |       RCLCPP_ERROR([01;31m[Kthis[m[K->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+[7.663s]       |                    [01;31m[K^~~~[m[K
+[7.668s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid publishToInfoTopic(const string&)[m[K’:
+[7.668s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1301:20:[m[K [01;31m[Kerror: [m[K‘[01m[Kinfo_topic_[m[K’ was not declared in this scope
+[7.668s]  1301 |     publishToTopic([01;31m[Kinfo_topic_[m[K, payload, info_topic_.c_str());
+[7.668s]       |                    [01;31m[K^~~~~~~~~~~[m[K
+[7.676s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid publishToAlarmTopic(const string&)[m[K’:
+[7.677s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1306:20:[m[K [01;31m[Kerror: [m[K‘[01m[Kalarm_topic_[m[K’ was not declared in this scope
+[7.677s]  1306 |     publishToTopic([01;31m[Kalarm_topic_[m[K, payload, alarm_topic_.c_str());
+[7.677s]       |                    [01;31m[K^~~~~~~~~~~~[m[K
+[7.677s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.677s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.677s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.677s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.678s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.678s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.678s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.678s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.678s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.679s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.679s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.679s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)[m[K’:
+[7.679s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.679s]  1313 |       RCLCPP_WARN([01;31m[Kthis[m[K->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+[7.679s]       |                   [01;31m[K^~~~[m[K
+[7.679s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.679s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:7:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[7.679s]  1313 |       [01;31m[KRCLCPP_WARN[m[K(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+[7.680s]       |       [01;31m[K^~~~~~~~~~~[m[K
+[7.680s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[7.680s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[7.681s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[7.681s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[7.681s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[7.681s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.681s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.681s]  1313 |       RCLCPP_WARN([01;31m[Kthis[m[K->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+[7.681s]       |                   [01;31m[K^~~~[m[K
+[7.681s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[7.681s]  1313 |       RCLCPP_WARN([01;31m[Kthis[m[K->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+[7.681s]       |                   [01;31m[K^~~~[m[K
+[7.691s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K In function ‘[01m[Kvoid reportInfoTimerCallback()[m[K’:
+[7.691s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1331:5:[m[K [01;31m[Kerror: [m[K‘[01m[KrefreshLocalDynamicParameters[m[K’ was not declared in this scope
+[7.692s]  1331 |     [01;31m[KrefreshLocalDynamicParameters[m[K(); // 检查参数是否有更新
+[7.692s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.703s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1334:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kinitial_fetch_streamer_[m[K’ was not declared in this scope
+[7.704s]  1334 |     if (![01;31m[Kinitial_fetch_streamer_[m[K)
+[7.704s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.711s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1336:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[7.711s]  1336 |       if (requestStreamerRuntimeInfo([01;31m[Kcamera_id_[m[K))
+[7.711s]       |                                      [01;31m[K^~~~~~~~~~[m[K
+[7.723s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1341:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kinitial_fetch_detector_[m[K’ was not declared in this scope
+[7.724s]  1341 |     if (![01;31m[Kinitial_fetch_detector_[m[K)
+[7.724s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.731s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1343:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kcamera_id_[m[K’ was not declared in this scope
+[7.731s]  1343 |       if (requestDetectorThresholds([01;31m[Kcamera_id_[m[K))
+[7.731s]       |                                     [01;31m[K^~~~~~~~~~[m[K
+[7.746s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:[m[K At global scope:
+[7.747s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1356:16:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KMqttCallback::MqttCallback()[m[K’
+[7.748s]  1356 |   MqttCallback [01;31m[Kcb_[m[K;                            ///< MQTT 消息回调处理
+[7.748s]       |                [01;31m[K^~~[m[K
+[7.748s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KMqttCallback::MqttCallback(rclcpp::Logger, std::function<void(const std::__cxx11::basic_string<char>&, const std::__cxx11::basic_string<char>&)>)[m[K’
+[7.748s]    53 |   explicit [01;36m[KMqttCallback[m[K(
+[7.748s]       |            [01;36m[K^~~~~~~~~~~~[m[K
+[7.749s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12:[m[K [01;36m[Knote: [m[K  candidate expects 2 arguments, 0 provided
+[7.749s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KMqttCallback::MqttCallback(const MqttCallback&)[m[K’
+[7.749s]    46 | class [01;36m[KMqttCallback[m[K : public virtual mqtt::callback
+[7.749s]       |       [01;36m[K^~~~~~~~~~~~[m[K
+[7.749s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 0 provided
+[7.749s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KMqttCallback::MqttCallback(MqttCallback&&)[m[K’
+[7.749s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 0 provided
+[7.750s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:7:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ at top level
+[7.750s]  1375 |       [01;31m[Kthis[m[K->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
+[7.750s]       |       [01;31m[K^~~~[m[K
+[7.750s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:80:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstd::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)[m[K’
+[7.750s]  1375 |       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)[01;31m[K}[m[K;
+[7.750s]       |                                                                                [01;31m[K^[m[K
+[7.750s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[7.750s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[7.750s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.751s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup][m[K’
+[7.751s]   408 |         [01;36m[Kshared_ptr[m[K(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+[7.751s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.751s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.751s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.751s]   340 |         [01;36m[Kshared_ptr[m[K(unique_ptr<_Yp, _Del>&& __r)
+[7.752s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.752s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.752s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.752s]   332 |         [01;36m[Kshared_ptr[m[K(auto_ptr<_Yp>&& __r);
+[7.752s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.752s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.752s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.752s]   325 |         explicit [01;36m[Kshared_ptr[m[K(const weak_ptr<_Yp>& __r)
+[7.753s]       |                  [01;36m[K^~~~~~~~~~[m[K
+[7.753s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.753s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.753s]   313 |         [01;36m[Kshared_ptr[m[K(shared_ptr<_Yp>&& __r) noexcept
+[7.753s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.753s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.753s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.753s]   296 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r) noexcept
+[7.754s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.754s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.754s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup][m[K’
+[7.754s]   257 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+[7.754s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.754s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.754s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup][m[K’
+[7.754s]   233 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d, _Alloc __a)
+[7.754s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.754s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.755s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.755s]   214 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d, _Alloc __a)
+[7.755s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.755s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.755s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup][m[K’
+[7.755s]   194 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d)
+[7.756s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.756s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.756s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.756s]   177 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d)
+[7.757s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.757s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.757s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.757s]   160 |         [01;36m[Kshared_ptr[m[K(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+[7.757s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.757s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.757s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.757s]   417 |       [01;36m[Kshared_ptr[m[K(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+[7.757s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.758s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[K  candidate expects 2 arguments, 1 provided
+[7.758s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t][m[K’
+[7.758s]   357 |       constexpr [01;36m[Kshared_ptr[m[K(nullptr_t) noexcept : shared_ptr() { }
+[7.758s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[7.758s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.758s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.758s]   304 |       [01;36m[Kshared_ptr[m[K(shared_ptr&& __r) noexcept
+[7.758s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.759s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.759s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.759s]   150 |       [01;36m[Kshared_ptr[m[K(const shared_ptr&) noexcept = default; ///< Copy constructor
+[7.759s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.759s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.759s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.759s]   148 |       constexpr [01;36m[Kshared_ptr[m[K() noexcept : __shared_ptr<_Tp>() { }
+[7.759s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[7.759s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+[7.760s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:7:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ at top level
+[7.760s]  1377 |       [01;31m[Kthis[m[K->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};
+[7.760s]       |       [01;31m[K^~~~[m[K
+[7.760s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:72:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstd::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)[m[K’
+[7.760s]  1377 |       this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)[01;31m[K}[m[K;
+[7.760s]       |                                                                        [01;31m[K^[m[K
+[7.760s] In file included from [01m[K/usr/include/c++/11/memory:77[m[K,
+[7.761s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153[m[K,
+[7.761s]                  from [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19[m[K:
+[7.761s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup][m[K’
+[7.761s]   408 |         [01;36m[Kshared_ptr[m[K(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+[7.761s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.761s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:408:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.761s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.761s]   340 |         [01;36m[Kshared_ptr[m[K(unique_ptr<_Yp, _Del>&& __r)
+[7.761s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:340:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.762s]   332 |         [01;36m[Kshared_ptr[m[K(auto_ptr<_Yp>&& __r);
+[7.762s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:332:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.762s]   325 |         explicit [01;36m[Kshared_ptr[m[K(const weak_ptr<_Yp>& __r)
+[7.762s]       |                  [01;36m[K^~~~~~~~~~[m[K
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:325:18:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.762s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.763s]   313 |         [01;36m[Kshared_ptr[m[K(shared_ptr<_Yp>&& __r) noexcept
+[7.763s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.763s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:313:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.763s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.763s]   296 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r) noexcept
+[7.763s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.763s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:296:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.763s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup][m[K’
+[7.763s]   257 |         [01;36m[Kshared_ptr[m[K(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+[7.764s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.764s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:257:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.764s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup][m[K’
+[7.764s]   233 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d, _Alloc __a)
+[7.764s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.764s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:233:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.764s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.764s]   214 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d, _Alloc __a)
+[7.764s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.764s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:214:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.765s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup][m[K’
+[7.765s]   194 |         [01;36m[Kshared_ptr[m[K(nullptr_t __p, _Deleter __d)
+[7.765s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.765s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:194:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.765s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.765s]   177 |         [01;36m[Kshared_ptr[m[K(_Yp* __p, _Deleter __d)
+[7.765s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.765s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:177:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.765s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup][m[K’
+[7.766s]   160 |         [01;36m[Kshared_ptr[m[K(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+[7.766s]       |         [01;36m[K^~~~~~~~~~[m[K
+[7.766s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:160:9:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[7.766s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.766s]   417 |       [01;36m[Kshared_ptr[m[K(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+[7.766s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.766s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:417:7:[m[K [01;36m[Knote: [m[K  candidate expects 2 arguments, 1 provided
+[7.766s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t][m[K’
+[7.766s]   357 |       constexpr [01;36m[Kshared_ptr[m[K(nullptr_t) noexcept : shared_ptr() { }
+[7.766s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:357:17:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.767s]   304 |       [01;36m[Kshared_ptr[m[K(shared_ptr&& __r) noexcept
+[7.767s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:304:7:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.767s]   150 |       [01;36m[Kshared_ptr[m[K(const shared_ptr&) noexcept = default; ///< Copy constructor
+[7.767s]       |       [01;36m[K^~~~~~~~~~[m[K
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:150:7:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[7.767s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup][m[K’
+[7.768s]   148 |       constexpr [01;36m[Kshared_ptr[m[K() noexcept : __shared_ptr<_Tp>() { }
+[7.768s]       |                 [01;36m[K^~~~~~~~~~[m[K
+[7.768s] [01m[K/usr/include/c++/11/bits/shared_ptr.h:148:17:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+[7.800s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:35:[m[K [01;31m[Kerror: [m[K‘[01m[KCameraInfo[m[K’ was not declared in this scope
+[7.801s]  1388 |   std::unordered_map<std::string, [01;31m[KCameraInfo[m[K> info_cache_; ///< 摄像头信息缓存
+[7.801s]       |                                   [01;31m[K^~~~~~~~~~[m[K
+[7.801s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45:[m[K [01;31m[Kerror: [m[Ktemplate argument 2 is invalid
+[7.801s]  1388 |   std::unordered_map<std::string, CameraInfo[01;31m[K>[m[K info_cache_; ///< 摄像头信息缓存
+[7.802s]       |                                             [01;31m[K^[m[K
+[7.802s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45:[m[K [01;31m[Kerror: [m[Ktemplate argument 5 is invalid
+[7.802s] [01m[K/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1390:1:[m[K [01;31m[Kerror: [m[Kexpected declaration before ‘[01m[K}[m[K’ token
+[7.802s]  1390 | [01;31m[K}[m[K;
+[7.802s]       | [01;31m[K^[m[K
+[12.906s] gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+[12.907s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+[12.907s] gmake: *** [Makefile:146：all] 错误 2
+[12.911s] Invoked command in '/home/jetson/projects/bishe/edge/build/bishe_mqtt' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/projects/bishe/edge/install/bishe_launch:/opt/ros/humble /usr/bin/cmake --build /home/jetson/projects/bishe/edge/build/bishe_mqtt -- -j6 -l6

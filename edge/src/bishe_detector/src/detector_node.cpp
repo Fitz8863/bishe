@@ -34,17 +34,27 @@ public:
   explicit DetectorNode(const rclcpp::NodeOptions &options)
       : Node("detector_node", options)
   {
-    // Declare parameters
+    // 声明 ROS 2 参数
+    // confidence_threshold: AI 检测置信度阈值，低于此值的检测结果将被忽略
     this->declare_parameter<float>("confidence_threshold", 0.5);
+    // nms_threshold: 非极大值抑制阈值，用于过滤重叠的边界框
     this->declare_parameter<float>("nms_threshold", 0.5);
+    // sampling_interval_ms: 常规采样间隔（毫秒）。在正常巡检状态下，每隔此时间处理一帧，用于节省算力
     this->declare_parameter<int>("sampling_interval_ms", 1000);
+    // lock_duration_ms: 检测锁定时间（毫秒）。一旦检测到违规，在此时间内会提高检测频率
     this->declare_parameter<int>("lock_duration_ms", 3000);
+    // engine_path: TensorRT 模型引擎文件的绝对路径
     this->declare_parameter<std::string>("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine");
+    // input_topic: 输入图像引用的 ROS 主题
     this->declare_parameter<std::string>("input_topic", "camera/detector_frame_ref");
+    // detector_width/height: 模型要求的输入分辨率
     this->declare_parameter<int>("detector_width", 640);
     this->declare_parameter<int>("detector_height", 360);
+    // shared_memory_name: 用于零拷贝图像传输的共享内存名称
     this->declare_parameter<std::string>("shared_memory_name", "/camera_001_detector_shm");
+    // worker_threads: 并行推理的线程数量
     this->declare_parameter<int>("worker_threads", 1);
+    // max_queue_size: 待处理任务队列的最大长度，防止 OOM
     this->declare_parameter<int>("max_queue_size", 8);
 
     float confidence_threshold = 0.5f;
@@ -347,12 +357,17 @@ private:
     stats_window_start_ = now;
   }
 
+  /**
+   * @brief 推理工作线程主循环
+   * 从任务队列中获取图像引用，通过共享内存读取数据并调用 YOLO 执行检测
+   */
   void workerLoop(int worker_idx)
   {
     auto &worker = workers_.at(static_cast<size_t>(worker_idx));
     while (rclcpp::ok()) {
       FrameTask task;
       {
+        // 等待队列有新任务或停止信号
         std::unique_lock<std::mutex> lock(queue_mutex_);
         queue_cv_.wait(lock, [this]() { return stop_workers_ || !queue_.empty(); });
         if (stop_workers_ && queue_.empty()) {
@@ -363,6 +378,7 @@ private:
       }
 
       const auto t0 = std::chrono::steady_clock::now();
+      // 获取共享内存插槽访问权
       if (!detector_ring_->acquire(task.ref.slot_index, task.ref.sequence)) {
         dropped_frames_.fetch_add(1);
         continue;
@@ -375,15 +391,18 @@ private:
         continue;
       }
 
+      // 将共享内存指针包装为 OpenCV Mat (零拷贝)
       cv::Mat frame(
         static_cast<int>(view.height),
         static_cast<int>(view.width),
         CV_8UC3,
         const_cast<uint8_t *>(view.data),
         view.step);
+      // 执行 AI 推理
       DetectionResult detection_result = worker->yolo->Detect(frame);
       const auto t1 = std::chrono::steady_clock::now();
 
+      // 如果发现违规，更新检测门控状态
       if (!detection_result.detections.empty()) {
         std::lock_guard<std::mutex> gate_lock(gate_mutex_);
         detection_gate_.on_detection(t1);
@@ -396,6 +415,7 @@ private:
       }
       processed_frames_.fetch_add(1);
 
+      // 构建并发布检测结果消息
       auto result = bishe_msgs::msg::DetectorResult();
       result.has_violation = !detection_result.detections.empty();
       result.confidence = detection_result.detections.empty() ? 0.0f : detection_result.detections.front().confidence;
@@ -404,12 +424,17 @@ private:
       result.annotated_image = *cv_bridge::CvImage(task.ref.header, "bgr8", detection_result.annotated_image).toImageMsg();
 
       result_pub_->publish(result);
+      // 释放共享内存插槽
       detector_ring_->release(task.ref.slot_index);
       output_frames_.fetch_add(1);
       // reportStats();
     }
   }
 
+  /**
+   * @brief 图像主题回调函数
+   * 负责接收相机发出的图像引用，并根据采样门控逻辑决定是否放入推理队列
+   */
   void imageCallback(const bishe_msgs::msg::SharedFrameRef::SharedPtr ref)
   {
     try
@@ -418,10 +443,12 @@ private:
       const auto now = std::chrono::steady_clock::now();
       bool should_process = false;
       {
+        // 门控逻辑：判断当前帧是否需要进行推理
         std::lock_guard<std::mutex> lock(gate_mutex_);
         should_process = detection_gate_.should_process(now);
       }
 
+      // 如果不需要推理，则执行“透传”逻辑，直接发布无违规的结果
       if (!should_process) {
         if (!detector_ring_->acquire(ref->slot_index, ref->sequence)) {
           dropped_frames_.fetch_add(1);
@@ -439,6 +466,7 @@ private:
         return;
       }
 
+      // 需要推理，将任务放入队列
       FrameTask task;
       task.ref = *ref;
       task.enqueue_time = now;
@@ -446,7 +474,7 @@ private:
       {
         std::lock_guard<std::mutex> lock(queue_mutex_);
         if (queue_.size() >= static_cast<size_t>(max_queue_size_)) {
-          queue_.pop_front();
+          queue_.pop_front(); // 丢弃最老的任务
           dropped_frames_.fetch_add(1);
         }
         queue_.push_back(std::move(task));

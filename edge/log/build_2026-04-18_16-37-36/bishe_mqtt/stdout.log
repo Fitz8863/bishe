@@ -1,0 +1,4 @@
+[35m[1mConsolidate compiler generated dependencies of target mqtt_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable mqtt_node[0m
+[100%] Built target mqtt_node

@@ -1,0 +1,35 @@
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:295:8: error: ‘void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)’ cannot be overloaded with ‘void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)’
+  295 |   void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
+      |        ^~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:123:8: note: previous declaration ‘void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)’
+  123 |   void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
+      |        ^~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:353:8: error: ‘void MonitorNode::playAlarm(const string&)’ cannot be overloaded with ‘void MonitorNode::playAlarm(const string&)’
+  353 |   void playAlarm(const std::string &violation_type)
+      |        ^~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:8: note: previous declaration ‘void MonitorNode::playAlarm(const string&)’
+  134 |   void playAlarm(const std::string &violation_type)
+      |        ^~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:399:8: error: ‘bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)’ cannot be overloaded with ‘bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)’
+  399 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
+      |        ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:8: note: previous declaration ‘bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)’
+  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
+      |        ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function ‘void MonitorNode::playAlarm(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:37: warning: unused parameter ‘violation_type’ [-Wunused-parameter]
+  134 |   void playAlarm(const std::string &violation_type)
+      |                  ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function ‘bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:145:3: warning: no return statement in function returning non-void [-Wreturn-type]
+  145 |   }
+      |   ^
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:40: warning: unused parameter ‘frame’ [-Wunused-parameter]
+  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
+      |                         ~~~~~~~~~~~~~~~^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:66: warning: unused parameter ‘violation_type’ [-Wunused-parameter]
+  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
+      |                                               ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:76：CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:163：CMakeFiles/monitor_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

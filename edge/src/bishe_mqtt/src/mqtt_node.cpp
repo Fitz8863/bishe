@@ -762,16 +762,18 @@ private:
       const int duration = root["duration"].asInt();
       if (duration >= 1)
       {
+        RCLCPP_INFO(this->get_logger(), "远程下发的判断窗口的值是 %d", duration);
+
         bool monitor_updated = false;
         for (const auto &node_name : monitorNodeCandidates(camera_id))
         {
-          if (setParametersSync(node_name, {rclcpp::Parameter("window_seconds", duration)}))
-          {
-            monitor_updated = true;
-            any_change_applied = true;
-            RCLCPP_INFO(this->get_logger(), "Updated window_seconds=%d for camera_%s", duration, camera_id.c_str());
-            break;
-          }
+          // if (setParametersSync(node_name, {rclcpp::Parameter("window_seconds", duration)}))
+          // {
+          //   monitor_updated = true;
+          //   any_change_applied = true;
+          //   RCLCPP_INFO(this->get_logger(), "Updated window_seconds=%d for camera_%s", duration, camera_id.c_str());
+          //   break;
+          // }
         }
         success = success && monitor_updated;
       }

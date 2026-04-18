@@ -1,0 +1,8 @@
+[35m[1mConsolidate compiler generated dependencies of target monitor_node[0m
+[ 14%] Built target gtest_main
+[ 21%] [32mBuilding CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o[0m
+[ 35%] Built target gtest
+[ 50%] Built target test_async_task_worker
+[ 64%] Built target test_alarm_playback_command
+[ 78%] Built target test_alarm_upload_gate
+[ 92%] Built target test_alarm_event_payload

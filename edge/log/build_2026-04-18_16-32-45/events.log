@@ -1,0 +1,1170 @@
+[0.000000] (-) TimerEvent: {}
+[0.000184] (-) JobUnselected: {'identifier': 'bishe_camera'}
+[0.000402] (-) JobUnselected: {'identifier': 'bishe_launch'}
+[0.000857] (-) JobUnselected: {'identifier': 'bishe_msgs'}
+[0.001075] (bishe_mqtt) JobQueued: {'identifier': 'bishe_mqtt', 'dependencies': OrderedDict()}
+[0.001279] (bishe_detector) JobQueued: {'identifier': 'bishe_detector', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs')])}
+[0.001364] (bishe_monitor) JobQueued: {'identifier': 'bishe_monitor', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs')])}
+[0.001429] (bishe_streamer) JobQueued: {'identifier': 'bishe_streamer', 'dependencies': OrderedDict([('bishe_msgs', '/home/jetson/projects/bishe/edge/install/bishe_msgs')])}
+[0.001491] (bishe_mqtt) JobStarted: {'identifier': 'bishe_mqtt'}
+[0.010266] (bishe_detector) JobStarted: {'identifier': 'bishe_detector'}
+[0.015405] (bishe_monitor) JobStarted: {'identifier': 'bishe_monitor'}
+[0.020600] (bishe_streamer) JobStarted: {'identifier': 'bishe_streamer'}
+[0.028325] (bishe_mqtt) JobProgress: {'identifier': 'bishe_mqtt', 'progress': 'cmake'}
+[0.030091] (bishe_mqtt) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_mqtt', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_mqtt'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_mqtt', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_mqtt'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.033091] (bishe_detector) JobProgress: {'identifier': 'bishe_detector', 'progress': 'cmake'}
+[0.034912] (bishe_detector) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_detector', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_detector'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_detector', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_detector'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[0.037369] (bishe_monitor) JobProgress: {'identifier': 'bishe_monitor', 'progress': 'cmake'}
+[0.038221] (bishe_monitor) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_monitor', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_monitor'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_monitor', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_monitor'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[0.042858] (bishe_streamer) JobProgress: {'identifier': 'bishe_streamer', 'progress': 'cmake'}
+[0.044701] (bishe_streamer) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/projects/bishe/edge/src/bishe_streamer', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/jetson/projects/bishe/edge/install/bishe_streamer'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_streamer'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[0.059617] (bishe_mqtt) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.060596] (bishe_monitor) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.066536] (bishe_streamer) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099585] (-) TimerEvent: {}
+[0.124632] (bishe_detector) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.199727] (-) TimerEvent: {}
+[0.294714] (bishe_monitor) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.295565] (bishe_streamer) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.296263] (bishe_mqtt) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.299817] (-) TimerEvent: {}
+[0.315801] (bishe_streamer) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.316150] (bishe_monitor) StdoutLine: {'line': b'-- Found ament_cmake_gtest: 1.3.12 (/opt/ros/humble/share/ament_cmake_gtest/cmake)\n'}
+[0.317080] (bishe_monitor) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.322236] (bishe_mqtt) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.348030] (bishe_detector) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.359993] (bishe_detector) StdoutLine: {'line': b'-- Found ament_cmake_gtest: 1.3.12 (/opt/ros/humble/share/ament_cmake_gtest/cmake)\n'}
+[0.360737] (bishe_detector) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.370242] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.370472] (bishe_mqtt) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.370619] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.375068] (bishe_mqtt) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.375255] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.375384] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.386367] (bishe_mqtt) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.386568] (bishe_streamer) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.386704] (bishe_monitor) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.396714] (bishe_detector) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.399904] (-) TimerEvent: {}
+[0.401063] (bishe_detector) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.404656] (bishe_streamer) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.404875] (bishe_monitor) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.405022] (bishe_mqtt) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.410372] (bishe_detector) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.425514] (bishe_detector) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.427727] (bishe_monitor) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.427901] (bishe_mqtt) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.428033] (bishe_streamer) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.445346] (bishe_detector) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.487655] (bishe_streamer) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.487996] (bishe_mqtt) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.488148] (bishe_monitor) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.490430] (bishe_streamer) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.490685] (bishe_mqtt) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.490821] (bishe_monitor) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.497230] (bishe_detector) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.499463] (bishe_detector) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.499973] (-) TimerEvent: {}
+[0.600201] (-) TimerEvent: {}
+[0.661460] (bishe_detector) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.662695] (bishe_mqtt) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.663092] (bishe_streamer) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.665360] (bishe_monitor) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.700318] (-) TimerEvent: {}
+[0.751048] (bishe_streamer) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.751416] (bishe_detector) StdoutLine: {'line': b'-- Found rclcpp_components: 16.0.16 (/opt/ros/humble/share/rclcpp_components/cmake)\n'}
+[0.751831] (bishe_monitor) StdoutLine: {'line': b'-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)\n'}
+[0.786369] (bishe_detector) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.800448] (-) TimerEvent: {}
+[0.801831] (bishe_streamer) StdoutLine: {'line': b'-- Found image_transport: 3.1.12 (/opt/ros/humble/share/image_transport/cmake)\n'}
+[0.830465] (bishe_monitor) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.832575] (bishe_detector) StdoutLine: {'line': b'-- Found image_transport: 3.1.12 (/opt/ros/humble/share/image_transport/cmake)\n'}
+[0.837018] (bishe_streamer) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.861924] (bishe_detector) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.884179] (bishe_mqtt) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.884720] (bishe_streamer) StdoutLine: {'line': b'-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)\n'}
+[0.894183] (bishe_detector) StdoutLine: {'line': b'-- Found bishe_msgs: 0.1.0 (/home/jetson/projects/bishe/edge/install/bishe_msgs/share/bishe_msgs/cmake)\n'}
+[0.896317] (bishe_monitor) StdoutLine: {'line': b"-- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built\n"}
+[0.900540] (-) TimerEvent: {}
+[0.904013] (bishe_mqtt) StdoutLine: {'line': b'-- Generating done\n'}
+[0.910216] (bishe_mqtt) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_mqtt\n'}
+[0.924733] (bishe_mqtt) CommandEnded: {'returncode': 0}
+[0.925855] (bishe_mqtt) JobProgress: {'identifier': 'bishe_mqtt', 'progress': 'build'}
+[0.927005] (bishe_mqtt) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_mqtt', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_mqtt', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_mqtt'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.929355] (bishe_detector) StdoutLine: {'line': b"-- Found gtest sources under '/opt/ros/humble/src/gtest_vendor': C++ tests using 'Google Test' will be built\n"}
+[1.000686] (-) TimerEvent: {}
+[1.003739] (bishe_mqtt) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target mqtt_node\n'}
+[1.027486] (bishe_mqtt) StdoutLine: {'line': b'[ 50%] Building CXX object CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o\n'}
+[1.033328] (bishe_monitor) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.045237] (bishe_streamer) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.066864] (bishe_detector) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.080745] (bishe_streamer) StdoutLine: {'line': b'-- Generating done\n'}
+[1.083854] (bishe_monitor) StdoutLine: {'line': b'-- Generating done\n'}
+[1.091923] (bishe_streamer) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_streamer\n'}
+[1.097055] (bishe_monitor) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_monitor\n'}
+[1.100805] (-) TimerEvent: {}
+[1.110475] (bishe_streamer) CommandEnded: {'returncode': 0}
+[1.111628] (bishe_streamer) JobProgress: {'identifier': 'bishe_streamer', 'progress': 'build'}
+[1.112152] (bishe_streamer) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_streamer', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_streamer', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_streamer'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[1.119282] (bishe_monitor) CommandEnded: {'returncode': 0}
+[1.120441] (bishe_monitor) JobProgress: {'identifier': 'bishe_monitor', 'progress': 'build'}
+[1.120945] (bishe_monitor) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_monitor', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_monitor', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_monitor'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[1.136027] (bishe_detector) StdoutLine: {'line': b'-- Generating done\n'}
+[1.156755] (bishe_detector) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/projects/bishe/edge/build/bishe_detector\n'}
+[1.196568] (bishe_detector) CommandEnded: {'returncode': 0}
+[1.197455] (bishe_detector) JobProgress: {'identifier': 'bishe_detector', 'progress': 'build'}
+[1.197508] (bishe_detector) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/projects/bishe/edge/build/bishe_detector', '--', '-j6', '-l6'], 'cwd': '/home/jetson/projects/bishe/edge/build/bishe_detector', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('no_proxy', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('LANGUAGE', 'zh_CN:zh:en_US:en'), ('USER', 'jetson'), ('SSH_CLIENT', '100.82.58.128 52452 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('AGENT', '1'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass.sh'), ('BUN_INSTALL', '/home/jetson/.bun'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jetson/projects/bishe'), ('TERM_PROGRAM_VERSION', '1.105.0'), ('NO_PROXY', 'localhost,127.0.0.1,::1,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-76390e52-2baa-44f4-b93c-9258ea3a6f22.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/jetson/miniforge3'), ('https_proxy', 'http://100.99.117.45:7890'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'jetson'), ('_', '/usr/bin/colcon'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422325064820'), ('http_proxy', 'http://100.99.117.45:7890'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '145'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('OPENCODE', '1'), ('PATH', '/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/usr/local/cuda-12.6/bin:/home/jetson/.bun/bin:/home/jetson/.opencode/bin:/home/jetson/miniforge3/condabin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/home/jetson/.vscode-server/cli/servers/Stable-03c265b1adee71ac88f833e065f7bb956b60550a/server/bin/remote-cli:/home/jetson/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/bundled/scripts/noConfigScripts:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/:/usr/src/tensorrt/bin:/opt/nodejs/node-v18.12.1-linux-arm64/bin/'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('MAMBA_ROOT_PREFIX', '/home/jetson/miniforge3'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/jetson/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-arm64/.noConfigDebugAdapterEndpoints/endpoint-e1bb108a6e1b7ac2.txt'), ('OPENCODE_PID', '1025122'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/jetson/.vscode-server/data/User/workspaceStorage/6dd9913f3a0de75da62111b03bb3ce16-1/ms-python.python/pythonrc.py'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-f69169a845.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jetson/miniforge3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('_CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('MAMBA_EXE', '/home/jetson/miniforge3/bin/mamba'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/jetson/projects/bishe/edge/build/bishe_detector'), ('CONDA_EXE', '/home/jetson/miniforge3/bin/conda'), ('SSH_CONNECTION', '100.82.58.128 52452 100.69.253.42 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/home/jetson/projects/bishe/edge/install/bishe_msgs:/opt/ros/humble')]), 'shell': False}
+[1.200916] (-) TimerEvent: {}
+[1.211857] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest_main\n'}
+[1.212206] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest\n'}
+[1.212357] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target monitor_node\n'}
+[1.212479] (bishe_streamer) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target intercom_node\n'}
+[1.212623] (bishe_streamer) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target streamer_node\n'}
+[1.219501] (bishe_monitor) StdoutLine: {'line': b'[ 14%] Built target gtest\n'}
+[1.230350] (bishe_monitor) StdoutLine: {'line': b'[ 28%] Built target gtest_main\n'}
+[1.233585] (bishe_streamer) StdoutLine: {'line': b'[ 25%] Building CXX object CMakeFiles/intercom_node.dir/src/intercom_node.cpp.o\n'}
+[1.237745] (bishe_streamer) StdoutLine: {'line': b'[ 50%] Building CXX object CMakeFiles/streamer_node.dir/src/streamer_node.cpp.o\n'}
+[1.254381] (bishe_monitor) StdoutLine: {'line': b'[ 35%] Building CXX object CMakeFiles/monitor_node.dir/src/monitor_node.cpp.o\n'}
+[1.256775] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_async_task_worker\n'}
+[1.271395] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_playback_command\n'}
+[1.274898] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_event_payload\n'}
+[1.277836] (bishe_monitor) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_alarm_upload_gate\n'}
+[1.289264] (bishe_monitor) StdoutLine: {'line': b'[ 50%] Built target test_async_task_worker\n'}
+[1.301094] (-) TimerEvent: {}
+[1.332574] (bishe_monitor) StdoutLine: {'line': b'[ 64%] Built target test_alarm_playback_command\n'}
+[1.337377] (bishe_monitor) StdoutLine: {'line': b'[ 78%] Built target test_alarm_upload_gate\n'}
+[1.344820] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target bishe_detector_component\n'}
+[1.346509] (bishe_monitor) StdoutLine: {'line': b'[ 92%] Built target test_alarm_event_payload\n'}
+[1.350600] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest_main\n'}
+[1.359529] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target gtest\n'}
+[1.375957] (bishe_detector) StdoutLine: {'line': b'[  6%] Building CXX object CMakeFiles/bishe_detector_component.dir/src/detector_node.cpp.o\n'}
+[1.401260] (-) TimerEvent: {}
+[1.406649] (bishe_detector) StdoutLine: {'line': b'[ 18%] Built target gtest_main\n'}
+[1.418136] (bishe_detector) StdoutLine: {'line': b'[ 31%] Built target gtest\n'}
+[1.496484] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_detection_gate\n'}
+[1.501396] (-) TimerEvent: {}
+[1.514209] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target test_shared_frame_ring\n'}
+[1.557705] (bishe_detector) StdoutLine: {'line': b'[ 43%] Built target test_detection_gate\n'}
+[1.601890] (bishe_detector) StdoutLine: {'line': b'[ 56%] Built target test_shared_frame_ring\n'}
+[1.602289] (-) TimerEvent: {}
+[1.702516] (-) TimerEvent: {}
+[1.802859] (-) TimerEvent: {}
+[1.903195] (-) TimerEvent: {}
+[2.003538] (-) TimerEvent: {}
+[2.103871] (-) TimerEvent: {}
+[2.204212] (-) TimerEvent: {}
+[2.304558] (-) TimerEvent: {}
+[2.404959] (-) TimerEvent: {}
+[2.505332] (-) TimerEvent: {}
+[2.605704] (-) TimerEvent: {}
+[2.706117] (-) TimerEvent: {}
+[2.806480] (-) TimerEvent: {}
+[2.906850] (-) TimerEvent: {}
+[3.007200] (-) TimerEvent: {}
+[3.107558] (-) TimerEvent: {}
+[3.207905] (-) TimerEvent: {}
+[3.308257] (-) TimerEvent: {}
+[3.408746] (-) TimerEvent: {}
+[3.509722] (-) TimerEvent: {}
+[3.610140] (-) TimerEvent: {}
+[3.710489] (-) TimerEvent: {}
+[3.810844] (-) TimerEvent: {}
+[3.911193] (-) TimerEvent: {}
+[4.011691] (-) TimerEvent: {}
+[4.112662] (-) TimerEvent: {}
+[4.213888] (-) TimerEvent: {}
+[4.314449] (-) TimerEvent: {}
+[4.414809] (-) TimerEvent: {}
+[4.515165] (-) TimerEvent: {}
+[4.615523] (-) TimerEvent: {}
+[4.715884] (-) TimerEvent: {}
+[4.816253] (-) TimerEvent: {}
+[4.916622] (-) TimerEvent: {}
+[5.016994] (-) TimerEvent: {}
+[5.117352] (-) TimerEvent: {}
+[5.217728] (-) TimerEvent: {}
+[5.318108] (-) TimerEvent: {}
+[5.418491] (-) TimerEvent: {}
+[5.518861] (-) TimerEvent: {}
+[5.619226] (-) TimerEvent: {}
+[5.719600] (-) TimerEvent: {}
+[5.819982] (-) TimerEvent: {}
+[5.920356] (-) TimerEvent: {}
+[6.020718] (-) TimerEvent: {}
+[6.121079] (-) TimerEvent: {}
+[6.221419] (-) TimerEvent: {}
+[6.286371] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:923:5: error: \xe2\x80\x98builder\xe2\x80\x99 does not name a type\n'}
+[6.286816] (bishe_mqtt) StderrLine: {'line': b'  923 |     builder["collectComments"] = false;\n'}
+[6.286977] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~\n'}
+[6.288374] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:46: error: \xe2\x80\x98builder\xe2\x80\x99 is not a type\n'}
+[6.288595] (bishe_mqtt) StderrLine: {'line': b'  924 |     std::unique_ptr<Json::CharReader> reader(builder.newCharReader());\n'}
+[6.288737] (bishe_mqtt) StderrLine: {'line': b'      |                                              ^~~~~~~\n'}
+[6.289981] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:53: error: expected \xe2\x80\x98,\xe2\x80\x99 or \xe2\x80\x98...\xe2\x80\x99 before \xe2\x80\x98.\xe2\x80\x99 token\n'}
+[6.290253] (bishe_mqtt) StderrLine: {'line': b'  924 |     std::unique_ptr<Json::CharReader> reader(builder.newCharReader());\n'}
+[6.290399] (bishe_mqtt) StderrLine: {'line': b'      |                                                     ^\n'}
+[6.291666] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:927:5: error: expected unqualified-id before \xe2\x80\x98if\xe2\x80\x99\n'}
+[6.291874] (bishe_mqtt) StderrLine: {'line': b'  927 |     if (!reader->parse(payload.data(), payload.data() + payload.size(), &root, &errors) || !root.isObject())\n'}
+[6.292014] (bishe_mqtt) StderrLine: {'line': b'      |     ^~\n'}
+[6.292135] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:933:5: error: expected unqualified-id before \xe2\x80\x98if\xe2\x80\x99\n'}
+[6.292250] (bishe_mqtt) StderrLine: {'line': b'  933 |     if (!root["type"].isString())\n'}
+[6.292359] (bishe_mqtt) StderrLine: {'line': b'      |     ^~\n'}
+[6.292465] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:941:5: error: expected unqualified-id before \xe2\x80\x98if\xe2\x80\x99\n'}
+[6.292575] (bishe_mqtt) StderrLine: {'line': b'  941 |     if (topic == subscribe_topic_)\n'}
+[6.292684] (bishe_mqtt) StderrLine: {'line': b'      |     ^~\n'}
+[6.292789] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:949:5: error: expected unqualified-id before \xe2\x80\x98else\xe2\x80\x99\n'}
+[6.292895] (bishe_mqtt) StderrLine: {'line': b'  949 |     else if (topic == call_topic_)\n'}
+[6.292998] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~\n'}
+[6.293101] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[6.293205] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[6.293306] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[6.293407] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[6.293537] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[6.293646] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[6.293751] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[6.293855] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[6.293960] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[6.294099] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[6.294208] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[6.294312] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5: error: expected unqualified-id before \xe2\x80\x98do\xe2\x80\x99\n'}
+[6.294418] (bishe_mqtt) StderrLine: {'line': b'  958 |     RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());\n'}
+[6.294524] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~\n'}
+[6.294627] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5: error: expected unqualified-id before \xe2\x80\x98while\xe2\x80\x99\n'}
+[6.294730] (bishe_mqtt) StderrLine: {'line': b'  958 |     RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());\n'}
+[6.294858] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~\n'}
+[6.301825] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In constructor \xe2\x80\x98MqttNode::MqttNode()\xe2\x80\x99:\n'}
+[6.302220] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:102:28: error: class \xe2\x80\x98MqttNode\xe2\x80\x99 does not have any field named \xe2\x80\x98cb_\xe2\x80\x99\n'}
+[6.302363] (bishe_mqtt) StderrLine: {'line': b'  102 |       : Node("mqtt_node"), cb_(\n'}
+[6.302481] (bishe_mqtt) StderrLine: {'line': b'      |                            ^~~\n'}
+[6.320258] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:115:9: error: \xe2\x80\x98report_interval_sec_\xe2\x80\x99 was not declared in this scope\n'}
+[6.320639] (bishe_mqtt) StderrLine: {'line': b'  115 |     if (report_interval_sec_ <= 0.0)\n'}
+[6.320780] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~~~~~~~~~~~\n'}
+[6.321824] (-) TimerEvent: {}
+[6.337431] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:5: error: \xe2\x80\x98client_\xe2\x80\x99 was not declared in this scope\n'}
+[6.337799] (bishe_mqtt) StderrLine: {'line': b'  122 |     client_ = std::make_unique<mqtt::async_client>(server_address, client_id_);\n'}
+[6.337938] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~\n'}
+[6.357082] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:68: error: \xe2\x80\x98client_id_\xe2\x80\x99 was not declared in this scope\n'}
+[6.357466] (bishe_mqtt) StderrLine: {'line': b'  122 |     client_ = std::make_unique<mqtt::async_client>(server_address, client_id_);\n'}
+[6.357606] (bishe_mqtt) StderrLine: {'line': b'      |                                                                    ^~~~~~~~~~\n'}
+[6.370339] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:123:27: error: \xe2\x80\x98cb_\xe2\x80\x99 was not declared in this scope\n'}
+[6.370747] (bishe_mqtt) StderrLine: {'line': b'  123 |     client_->set_callback(cb_);\n'}
+[6.370886] (bishe_mqtt) StderrLine: {'line': b'      |                           ^~~\n'}
+[6.394586] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:135:26: error: \xe2\x80\x98subscribe_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.394963] (bishe_mqtt) StderrLine: {'line': b'  135 |       client_->subscribe(subscribe_topic_, 1)->wait();\n'}
+[6.395101] (bishe_mqtt) StderrLine: {'line': b'      |                          ^~~~~~~~~~~~~~~~\n'}
+[6.415712] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:137:26: error: \xe2\x80\x98call_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.416097] (bishe_mqtt) StderrLine: {'line': b'  137 |       client_->subscribe(call_topic_, 1)->wait();\n'}
+[6.416240] (bishe_mqtt) StderrLine: {'line': b'      |                          ^~~~~~~~~~~\n'}
+[6.422016] (-) TimerEvent: {}
+[6.437835] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:149:5: error: \xe2\x80\x98intercom_pub_\xe2\x80\x99 was not declared in this scope\n'}
+[6.438253] (bishe_mqtt) StderrLine: {'line': b'  149 |     intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);\n'}
+[6.438391] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~\n'}
+[6.471606] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:151:5: error: \xe2\x80\x98alarm_event_sub_\xe2\x80\x99 was not declared in this scope\n'}
+[6.472002] (bishe_mqtt) StderrLine: {'line': b'  151 |     alarm_event_sub_ = this->create_subscription<std_msgs::msg::String>(\n'}
+[6.472142] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~~~~\n'}
+[6.522193] (-) TimerEvent: {}
+[6.594537] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:157:34: error: \xe2\x80\x98param_callback_group_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98create_callback_group\xe2\x80\x99?\n'}
+[6.594949] (bishe_mqtt) StderrLine: {'line': b'  157 |     sub_options.callback_group = param_callback_group_;\n'}
+[6.595109] (bishe_mqtt) StderrLine: {'line': b'      |                                  ^~~~~~~~~~~~~~~~~~~~~\n'}
+[6.595235] (bishe_mqtt) StderrLine: {'line': b'      |                                  create_callback_group\n'}
+[6.615968] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:158:5: error: \xe2\x80\x98param_event_sub_\xe2\x80\x99 was not declared in this scope\n'}
+[6.616351] (bishe_mqtt) StderrLine: {'line': b'  158 |     param_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(\n'}
+[6.616494] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~~~~\n'}
+[6.617028] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:160:30: error: \xe2\x80\x98onParameterEvent\xe2\x80\x99 is not a member of \xe2\x80\x98MqttNode\xe2\x80\x99\n'}
+[6.617207] (bishe_mqtt) StderrLine: {'line': b'  160 |         std::bind(&MqttNode::onParameterEvent, this, std::placeholders::_1),\n'}
+[6.617332] (bishe_mqtt) StderrLine: {'line': b'      |                              ^~~~~~~~~~~~~~~~\n'}
+[6.622329] (-) TimerEvent: {}
+[6.636360] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In destructor \xe2\x80\x98virtual MqttNode::~MqttNode()\xe2\x80\x99:\n'}
+[6.636750] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:172:9: error: \xe2\x80\x98client_\xe2\x80\x99 was not declared in this scope\n'}
+[6.636890] (bishe_mqtt) StderrLine: {'line': b'  172 |     if (client_ == nullptr)\n'}
+[6.637010] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~\n'}
+[6.653576] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:179:11: error: \xe2\x80\x98client_\xe2\x80\x99 was not declared in this scope\n'}
+[6.653964] (bishe_mqtt) StderrLine: {'line': b'  179 |       if (client_->is_connected())\n'}
+[6.654143] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~~~~\n'}
+[6.682181] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::loadParameters()\xe2\x80\x99:\n'}
+[6.682580] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:245:35: error: \xe2\x80\x98broker_\xe2\x80\x99 was not declared in this scope\n'}
+[6.682720] (bishe_mqtt) StderrLine: {'line': b'  245 |     this->get_parameter("broker", broker_);\n'}
+[6.682842] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~\n'}
+[6.702228] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:246:33: error: \xe2\x80\x98port_\xe2\x80\x99 was not declared in this scope\n'}
+[6.702670] (bishe_mqtt) StderrLine: {'line': b'  246 |     this->get_parameter("port", port_);\n'}
+[6.702812] (bishe_mqtt) StderrLine: {'line': b'      |                                 ^~~~~\n'}
+[6.716761] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:247:38: error: \xe2\x80\x98client_id_\xe2\x80\x99 was not declared in this scope\n'}
+[6.717135] (bishe_mqtt) StderrLine: {'line': b'  247 |     this->get_parameter("client_id", client_id_);\n'}
+[6.717277] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~\n'}
+[6.722476] (-) TimerEvent: {}
+[6.736207] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:248:35: error: \xe2\x80\x98device_\xe2\x80\x99 was not declared in this scope\n'}
+[6.736599] (bishe_mqtt) StderrLine: {'line': b'  248 |     this->get_parameter("device", device_);\n'}
+[6.736738] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~\n'}
+[6.761202] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:249:44: error: \xe2\x80\x98subscribe_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.761601] (bishe_mqtt) StderrLine: {'line': b'  249 |     this->get_parameter("subscribe_topic", subscribe_topic_);\n'}
+[6.761742] (bishe_mqtt) StderrLine: {'line': b'      |                                            ^~~~~~~~~~~~~~~~\n'}
+[6.777959] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:250:39: error: \xe2\x80\x98call_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.778384] (bishe_mqtt) StderrLine: {'line': b'  250 |     this->get_parameter("call_topic", call_topic_);\n'}
+[6.778520] (bishe_mqtt) StderrLine: {'line': b'      |                                       ^~~~~~~~~~~\n'}
+[6.802623] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:251:42: error: \xe2\x80\x98publish_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.803049] (bishe_mqtt) StderrLine: {'line': b'  251 |     this->get_parameter("publish_topic", publish_topic_);\n'}
+[6.803186] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~~~~~~~~\n'}
+[6.820718] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:254:39: error: \xe2\x80\x98info_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.821106] (bishe_mqtt) StderrLine: {'line': b'  254 |     this->get_parameter("info_topic", info_topic_);\n'}
+[6.821242] (bishe_mqtt) StderrLine: {'line': b'      |                                       ^~~~~~~~~~~\n'}
+[6.822557] (-) TimerEvent: {}
+[6.839350] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:255:40: error: \xe2\x80\x98alarm_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[6.839728] (bishe_mqtt) StderrLine: {'line': b'  255 |     this->get_parameter("alarm_topic", alarm_topic_);\n'}
+[6.839872] (bishe_mqtt) StderrLine: {'line': b'      |                                        ^~~~~~~~~~~~\n'}
+[6.862546] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:256:48: error: \xe2\x80\x98report_interval_sec_\xe2\x80\x99 was not declared in this scope\n'}
+[6.862928] (bishe_mqtt) StderrLine: {'line': b'  256 |     this->get_parameter("report_interval_sec", report_interval_sec_);\n'}
+[6.863100] (bishe_mqtt) StderrLine: {'line': b'      |                                                ^~~~~~~~~~~~~~~~~~~~\n'}
+[6.877796] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:257:38: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[6.878238] (bishe_mqtt) StderrLine: {'line': b'  257 |     this->get_parameter("camera_id", camera_id_);\n'}
+[6.878379] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~\n'}
+[6.897301] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:258:44: error: \xe2\x80\x98camera_location_\xe2\x80\x99 was not declared in this scope\n'}
+[6.897706] (bishe_mqtt) StderrLine: {'line': b'  258 |     this->get_parameter("camera_location", camera_location_);\n'}
+[6.897842] (bishe_mqtt) StderrLine: {'line': b'      |                                            ^~~~~~~~~~~~~~~~\n'}
+[6.917363] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:259:44: error: \xe2\x80\x98camera_http_url_\xe2\x80\x99 was not declared in this scope\n'}
+[6.917762] (bishe_mqtt) StderrLine: {'line': b'  259 |     this->get_parameter("camera_http_url", camera_http_url_);\n'}
+[6.917903] (bishe_mqtt) StderrLine: {'line': b'      |                                            ^~~~~~~~~~~~~~~~\n'}
+[6.946221] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::syncStaticCameraMetadata()\xe2\x80\x99:\n'}
+[6.946659] (-) TimerEvent: {}
+[6.946708] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:278:38: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[6.946845] (bishe_mqtt) StderrLine: {'line': b'  278 |     std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[6.946966] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~~\n'}
+[6.953267] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:18: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[6.953666] (bishe_mqtt) StderrLine: {'line': b'  279 |     auto &info = info_cache_[camera_id_];\n'}
+[6.953813] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~\n'}
+[6.970487] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:30: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[6.970903] (bishe_mqtt) StderrLine: {'line': b'  279 |     auto &info = info_cache_[camera_id_];\n'}
+[6.971046] (bishe_mqtt) StderrLine: {'line': b'      |                              ^~~~~~~~~~\n'}
+[6.992077] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:280:21: error: \xe2\x80\x98camera_location_\xe2\x80\x99 was not declared in this scope\n'}
+[6.992490] (bishe_mqtt) StderrLine: {'line': b'  280 |     info.location = camera_location_;\n'}
+[6.992634] (bishe_mqtt) StderrLine: {'line': b'      |                     ^~~~~~~~~~~~~~~~\n'}
+[7.015741] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:281:21: error: \xe2\x80\x98camera_http_url_\xe2\x80\x99 was not declared in this scope\n'}
+[7.016142] (bishe_mqtt) StderrLine: {'line': b'  281 |     info.http_url = camera_http_url_;\n'}
+[7.016289] (bishe_mqtt) StderrLine: {'line': b'      |                     ^~~~~~~~~~~~~~~~\n'}
+[7.032698] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98std::string MqttNode::buildServerAddress() const\xe2\x80\x99:\n'}
+[7.033110] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:294:9: error: \xe2\x80\x98broker_\xe2\x80\x99 was not declared in this scope\n'}
+[7.033263] (bishe_mqtt) StderrLine: {'line': b'  294 |     if (broker_.find("://") != std::string::npos)\n'}
+[7.033387] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~\n'}
+[7.046850] (-) TimerEvent: {}
+[7.047881] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:23: error: \xe2\x80\x98broker_\xe2\x80\x99 was not declared in this scope\n'}
+[7.048256] (bishe_mqtt) StderrLine: {'line': b'  298 |     return "tcp://" + broker_ + ":" + std::to_string(port_);\n'}
+[7.048404] (bishe_mqtt) StderrLine: {'line': b'      |                       ^~~~~~~\n'}
+[7.062454] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:54: error: \xe2\x80\x98port_\xe2\x80\x99 was not declared in this scope\n'}
+[7.062860] (bishe_mqtt) StderrLine: {'line': b'  298 |     return "tcp://" + broker_ + ":" + std::to_string(port_);\n'}
+[7.063006] (bishe_mqtt) StderrLine: {'line': b'      |                                                      ^~~~~\n'}
+[7.087447] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::createReportTimer()\xe2\x80\x99:\n'}
+[7.087848] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:309:71: error: \xe2\x80\x98report_interval_sec_\xe2\x80\x99 was not declared in this scope\n'}
+[7.088021] (bishe_mqtt) StderrLine: {'line': b'  309 |     const int interval_ms = std::max(100, static_cast<int>(std::round(report_interval_sec_ * 1000.0)));\n'}
+[7.088159] (bishe_mqtt) StderrLine: {'line': b'      |                                                                       ^~~~~~~~~~~~~~~~~~~~\n'}
+[7.105678] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:310:5: error: \xe2\x80\x98report_timer_\xe2\x80\x99 was not declared in this scope\n'}
+[7.106119] (bishe_mqtt) StderrLine: {'line': b'  310 |     report_timer_ = this->create_wall_timer(\n'}
+[7.106276] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~\n'}
+[7.133747] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:313:9: error: \xe2\x80\x98report_callback_group_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98create_callback_group\xe2\x80\x99?\n'}
+[7.134183] (bishe_mqtt) StderrLine: {'line': b'  313 |         report_callback_group_);\n'}
+[7.134332] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~~~~~~~~~~~~~\n'}
+[7.134456] (bishe_mqtt) StderrLine: {'line': b'      |         create_callback_group\n'}
+[7.147016] (-) TimerEvent: {}
+[7.154370] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::refreshLocalDynamicParameters()\xe2\x80\x99:\n'}
+[7.154776] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:333:36: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[7.154921] (bishe_mqtt) StderrLine: {'line': b'  333 |     std::string latest_camera_id = camera_id_;\n'}
+[7.155043] (bishe_mqtt) StderrLine: {'line': b'      |                                    ^~~~~~~~~~\n'}
+[7.175366] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:334:35: error: \xe2\x80\x98camera_location_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98latest_location\xe2\x80\x99?\n'}
+[7.175772] (bishe_mqtt) StderrLine: {'line': b'  334 |     std::string latest_location = camera_location_;\n'}
+[7.175917] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~~~~~~~~~~\n'}
+[7.176042] (bishe_mqtt) StderrLine: {'line': b'      |                                   latest_location\n'}
+[7.196427] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:335:35: error: \xe2\x80\x98camera_http_url_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98latest_http_url\xe2\x80\x99?\n'}
+[7.196833] (bishe_mqtt) StderrLine: {'line': b'  335 |     std::string latest_http_url = camera_http_url_;\n'}
+[7.196980] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~~~~~~~~~~\n'}
+[7.197106] (bishe_mqtt) StderrLine: {'line': b'      |                                   latest_http_url\n'}
+[7.232517] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:336:30: error: \xe2\x80\x98report_interval_sec_\xe2\x80\x99 was not declared in this scope\n'}
+[7.232893] (bishe_mqtt) StderrLine: {'line': b'  336 |     double latest_interval = report_interval_sec_;\n'}
+[7.233032] (bishe_mqtt) StderrLine: {'line': b'      |                              ^~~~~~~~~~~~~~~~~~~~\n'}
+[7.247162] (-) TimerEvent: {}
+[7.251031] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:337:37: error: \xe2\x80\x98info_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[7.251425] (bishe_mqtt) StderrLine: {'line': b'  337 |     std::string latest_info_topic = info_topic_;\n'}
+[7.251567] (bishe_mqtt) StderrLine: {'line': b'      |                                     ^~~~~~~~~~~\n'}
+[7.274398] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98std::shared_ptr<rclcpp::AsyncParametersClient> MqttNode::getOrCreateParamClient(const string&)\xe2\x80\x99:\n'}
+[7.274836] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:455:21: error: \xe2\x80\x98param_clients_\xe2\x80\x99 was not declared in this scope\n'}
+[7.274978] (bishe_mqtt) StderrLine: {'line': b'  455 |     const auto it = param_clients_.find(node_name);\n'}
+[7.275100] (bishe_mqtt) StderrLine: {'line': b'      |                     ^~~~~~~~~~~~~~\n'}
+[7.297496] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:462:54: error: \xe2\x80\x98param_callback_group_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98create_callback_group\xe2\x80\x99?\n'}
+[7.297928] (bishe_mqtt) StderrLine: {'line': b'  462 |         this, node_name, rmw_qos_profile_parameters, param_callback_group_);\n'}
+[7.298093] (bishe_mqtt) StderrLine: {'line': b'      |                                                      ^~~~~~~~~~~~~~~~~~~~~\n'}
+[7.298228] (bishe_mqtt) StderrLine: {'line': b'      |                                                      create_callback_group\n'}
+[7.326164] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98bool MqttNode::fetchParametersSync(const string&, const std::vector<std::__cxx11::basic_string<char> >&, std::vector<rclcpp::Parameter>&)\xe2\x80\x99:\n'}
+[7.326575] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:502:29: error: \xe2\x80\x98next_query_time_\xe2\x80\x99 was not declared in this scope\n'}
+[7.326722] (bishe_mqtt) StderrLine: {'line': b'  502 |     const auto backoff_it = next_query_time_.find(node_name);\n'}
+[7.326846] (bishe_mqtt) StderrLine: {'line': b'      |                             ^~~~~~~~~~~~~~~~\n'}
+[7.347330] (-) TimerEvent: {}
+[7.357940] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98bool MqttNode::cameraIdConfigured(const string&) const\xe2\x80\x99:\n'}
+[7.358376] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:593:25: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98camera_id\xe2\x80\x99?\n'}
+[7.358525] (bishe_mqtt) StderrLine: {'line': b'  593 |     return camera_id == camera_id_;\n'}
+[7.358676] (bishe_mqtt) StderrLine: {'line': b'      |                         ^~~~~~~~~~\n'}
+[7.358792] (bishe_mqtt) StderrLine: {'line': b'      |                         camera_id\n'}
+[7.375476] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::updateCacheForCommand(const string&, const std::optional<double>&, const std::optional<double>&)\xe2\x80\x99:\n'}
+[7.375905] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:601:38: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.376051] (bishe_mqtt) StderrLine: {'line': b'  601 |     std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.376174] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~~\n'}
+[7.394165] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:602:18: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.394573] (bishe_mqtt) StderrLine: {'line': b'  602 |     auto &info = info_cache_[camera_id];\n'}
+[7.394723] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~\n'}
+[7.416018] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98bool MqttNode::handleParameterCommand(const Json::Value&)\xe2\x80\x99:\n'}
+[7.416420] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:768:26: warning: unused variable \xe2\x80\x98node_name\xe2\x80\x99 [-Wunused-variable]\n'}
+[7.416590] (bishe_mqtt) StderrLine: {'line': b'  768 |         for (const auto &node_name : monitorNodeCandidates(camera_id))\n'}
+[7.416717] (bishe_mqtt) StderrLine: {'line': b'      |                          ^~~~~~~~~\n'}
+[7.436461] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98bool MqttNode::handleCallCommand(const Json::Value&)\xe2\x80\x99:\n'}
+[7.436853] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:810:26: error: \xe2\x80\x98device_\xe2\x80\x99 was not declared in this scope\n'}
+[7.436998] (bishe_mqtt) StderrLine: {'line': b'  810 |     if (target_device != device_)\n'}
+[7.437125] (bishe_mqtt) StderrLine: {'line': b'      |                          ^~~~~~~\n'}
+[7.447500] (-) TimerEvent: {}
+[7.459800] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:828:7: error: \xe2\x80\x98intercom_pub_\xe2\x80\x99 was not declared in this scope\n'}
+[7.460209] (bishe_mqtt) StderrLine: {'line': b'  828 |       intercom_pub_->publish(msg);\n'}
+[7.460354] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~~\n'}
+[7.479353] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:835:7: error: \xe2\x80\x98intercom_pub_\xe2\x80\x99 was not declared in this scope\n'}
+[7.479757] (bishe_mqtt) StderrLine: {'line': b'  835 |       intercom_pub_->publish(msg);\n'}
+[7.479902] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~~\n'}
+[7.502394] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::handleMqttMessage(const string&, const string&)\xe2\x80\x99:\n'}
+[7.502800] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:18: error: \xe2\x80\x98subscribe_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[7.502944] (bishe_mqtt) StderrLine: {'line': b'  849 |     if (topic != subscribe_topic_ && topic != call_topic_)\n'}
+[7.503066] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~~~~~~\n'}
+[7.519527] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:47: error: \xe2\x80\x98call_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[7.519937] (bishe_mqtt) StderrLine: {'line': b'  849 |     if (topic != subscribe_topic_ && topic != call_topic_)\n'}
+[7.520078] (bishe_mqtt) StderrLine: {'line': b'      |                                               ^~~~~~~~~~~\n'}
+[7.547665] (-) TimerEvent: {}
+[7.560811] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:875:18: error: \xe2\x80\x98subscribe_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[7.561215] (bishe_mqtt) StderrLine: {'line': b'  875 |     if (topic == subscribe_topic_)\n'}
+[7.561362] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~~~~~~\n'}
+[7.579239] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:884:23: error: \xe2\x80\x98call_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[7.579672] (bishe_mqtt) StderrLine: {'line': b'  884 |     else if (topic == call_topic_)\n'}
+[7.579816] (bishe_mqtt) StderrLine: {'line': b'      |                       ^~~~~~~~~~~\n'}
+[7.611356] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function \xe2\x80\x98void MqttNode::onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)\xe2\x80\x99:\n'}
+[7.611763] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:910:5: error: \xe2\x80\x98publishToAlarmTopic\xe2\x80\x99 was not declared in this scope\n'}
+[7.611909] (bishe_mqtt) StderrLine: {'line': b'  910 |     publishToAlarmTopic(msg->data);\n'}
+[7.612034] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~~~~~~~\n'}
+[7.613622] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: At global scope:\n'}
+[7.613906] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:969:22: error: expected initializer before \xe2\x80\x98escapeJson\xe2\x80\x99\n'}
+[7.614044] (bishe_mqtt) StderrLine: {'line': b'  969 |   static std::string escapeJson(const std::string &value)\n'}
+[7.614195] (bishe_mqtt) StderrLine: {'line': b'      |                      ^~~~~~~~~~\n'}
+[7.630123] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void onParameterEvent(rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >::SharedPtr)\xe2\x80\x99:\n'}
+[7.630558] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:50: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[7.630705] (bishe_mqtt) StderrLine: {'line': b' 1007 |     auto det_candidates = detectorNodeCandidates(camera_id_);\n'}
+[7.630845] (bishe_mqtt) StderrLine: {'line': b'      |                                                  ^~~~~~~~~~\n'}
+[7.645829] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:27: error: \xe2\x80\x98detectorNodeCandidates\xe2\x80\x99 was not declared in this scope\n'}
+[7.646242] (bishe_mqtt) StderrLine: {'line': b' 1007 |     auto det_candidates = detectorNodeCandidates(camera_id_);\n'}
+[7.646383] (bishe_mqtt) StderrLine: {'line': b'      |                           ^~~~~~~~~~~~~~~~~~~~~~\n'}
+[7.647764] (-) TimerEvent: {}
+[7.661790] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1013:27: error: \xe2\x80\x98streamerNodeCandidates\xe2\x80\x99 was not declared in this scope\n'}
+[7.662222] (bishe_mqtt) StderrLine: {'line': b' 1013 |     auto str_candidates = streamerNodeCandidates(camera_id_);\n'}
+[7.662370] (bishe_mqtt) StderrLine: {'line': b'      |                           ^~~~~~~~~~~~~~~~~~~~~~\n'}
+[7.673648] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1025:38: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.674048] (bishe_mqtt) StderrLine: {'line': b' 1025 |     std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.674245] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~~\n'}
+[7.685656] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1026:18: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.686048] (bishe_mqtt) StderrLine: {'line': b' 1026 |     auto &info = info_cache_[target_camera_id];\n'}
+[7.686208] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~\n'}
+[7.707534] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98bool requestStreamerRuntimeInfo(const string&)\xe2\x80\x99:\n'}
+[7.707926] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1099:29: error: \xe2\x80\x98streamerNodeCandidates\xe2\x80\x99 was not declared in this scope\n'}
+[7.708070] (bishe_mqtt) StderrLine: {'line': b' 1099 |     const auto candidates = streamerNodeCandidates(camera_id);\n'}
+[7.708188] (bishe_mqtt) StderrLine: {'line': b'      |                             ^~~~~~~~~~~~~~~~~~~~~~\n'}
+[7.723255] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1103:12: error: \xe2\x80\x98fetchParametersSync\xe2\x80\x99 was not declared in this scope\n'}
+[7.723640] (bishe_mqtt) StderrLine: {'line': b' 1103 |       if (!fetchParametersSync(node_name, {"output_width", "output_height", "output_fps", "scale"}, params))\n'}
+[7.723779] (bishe_mqtt) StderrLine: {'line': b'      |            ^~~~~~~~~~~~~~~~~~~\n'}
+[7.734701] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1108:7: error: \xe2\x80\x98CameraInfo\xe2\x80\x99 was not declared in this scope\n'}
+[7.735116] (bishe_mqtt) StderrLine: {'line': b' 1108 |       CameraInfo info;\n'}
+[7.735251] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[7.747359] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1110:42: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.747759] (bishe_mqtt) StderrLine: {'line': b' 1110 |         std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.747898] (-) TimerEvent: {}
+[7.747935] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~~~~~\n'}
+[7.757468] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:9: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.757863] (bishe_mqtt) StderrLine: {'line': b' 1111 |         info = info_cache_[camera_id];\n'}
+[7.758006] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~\n'}
+[7.767759] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:16: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.768164] (bishe_mqtt) StderrLine: {'line': b' 1111 |         info = info_cache_[camera_id];\n'}
+[7.768307] (bishe_mqtt) StderrLine: {'line': b'      |                ^~~~~~~~~~~\n'}
+[7.777003] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1119:11: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.777416] (bishe_mqtt) StderrLine: {'line': b' 1119 |           info.width = static_cast<int>(p.as_int());\n'}
+[7.777563] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~\n'}
+[7.785839] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1123:11: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.786328] (bishe_mqtt) StderrLine: {'line': b' 1123 |           info.height = static_cast<int>(p.as_int());\n'}
+[7.786477] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~\n'}
+[7.794885] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1129:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.795298] (bishe_mqtt) StderrLine: {'line': b' 1129 |             info.fps = p.as_double();\n'}
+[7.795443] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.803873] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1133:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.804279] (bishe_mqtt) StderrLine: {'line': b' 1133 |             info.fps = static_cast<double>(p.as_int());\n'}
+[7.804420] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.813098] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1140:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.813538] (bishe_mqtt) StderrLine: {'line': b' 1140 |             info.scale = p.as_double();\n'}
+[7.813687] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.821278] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1144:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.821688] (bishe_mqtt) StderrLine: {'line': b' 1144 |             info.scale = static_cast<double>(p.as_int());\n'}
+[7.821832] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.831773] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1150:42: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.832184] (bishe_mqtt) StderrLine: {'line': b' 1150 |         std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.832358] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~~~~~\n'}
+[7.842161] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:9: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.842535] (bishe_mqtt) StderrLine: {'line': b' 1151 |         info_cache_[camera_id] = info;\n'}
+[7.842667] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~~\n'}
+[7.848063] (-) TimerEvent: {}
+[7.850279] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:34: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.850652] (bishe_mqtt) StderrLine: {'line': b' 1151 |         info_cache_[camera_id] = info;\n'}
+[7.850794] (bishe_mqtt) StderrLine: {'line': b'      |                                  ^~~~\n'}
+[7.865027] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98bool requestDetectorThresholds(const string&)\xe2\x80\x99:\n'}
+[7.865414] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1168:29: error: \xe2\x80\x98detectorNodeCandidates\xe2\x80\x99 was not declared in this scope\n'}
+[7.865550] (bishe_mqtt) StderrLine: {'line': b' 1168 |     const auto candidates = detectorNodeCandidates(camera_id);\n'}
+[7.865667] (bishe_mqtt) StderrLine: {'line': b'      |                             ^~~~~~~~~~~~~~~~~~~~~~\n'}
+[7.878460] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1172:12: error: \xe2\x80\x98fetchParametersSync\xe2\x80\x99 was not declared in this scope\n'}
+[7.878838] (bishe_mqtt) StderrLine: {'line': b' 1172 |       if (!fetchParametersSync(node_name, {"confidence_threshold", "nms_threshold"}, params))\n'}
+[7.878967] (bishe_mqtt) StderrLine: {'line': b'      |            ^~~~~~~~~~~~~~~~~~~\n'}
+[7.888097] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1177:7: error: \xe2\x80\x98CameraInfo\xe2\x80\x99 was not declared in this scope\n'}
+[7.888476] (bishe_mqtt) StderrLine: {'line': b' 1177 |       CameraInfo info;\n'}
+[7.888600] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[7.898316] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1179:42: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.898678] (bishe_mqtt) StderrLine: {'line': b' 1179 |         std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.898804] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~~~~~\n'}
+[7.906814] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:9: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.907187] (bishe_mqtt) StderrLine: {'line': b' 1180 |         info = info_cache_[camera_id];\n'}
+[7.907436] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~\n'}
+[7.917259] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:16: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.917622] (bishe_mqtt) StderrLine: {'line': b' 1180 |         info = info_cache_[camera_id];\n'}
+[7.917758] (bishe_mqtt) StderrLine: {'line': b'      |                ^~~~~~~~~~~\n'}
+[7.926201] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1189:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.926567] (bishe_mqtt) StderrLine: {'line': b' 1189 |             info.confidence_threshold = p.as_double();\n'}
+[7.926691] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.934174] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1193:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.934558] (bishe_mqtt) StderrLine: {'line': b' 1193 |             info.confidence_threshold = static_cast<double>(p.as_int());\n'}
+[7.934685] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.942619] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1200:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.942974] (bishe_mqtt) StderrLine: {'line': b' 1200 |             info.nms_threshold = p.as_double();\n'}
+[7.943102] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.948206] (-) TimerEvent: {}
+[7.950904] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1204:13: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.951281] (bishe_mqtt) StderrLine: {'line': b' 1204 |             info.nms_threshold = static_cast<double>(p.as_int());\n'}
+[7.951413] (bishe_mqtt) StderrLine: {'line': b'      |             ^~~~\n'}
+[7.960897] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1210:42: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.961291] (bishe_mqtt) StderrLine: {'line': b' 1210 |         std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.961437] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~~~~~\n'}
+[7.971286] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:9: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[7.971676] (bishe_mqtt) StderrLine: {'line': b' 1211 |         info_cache_[camera_id] = info;\n'}
+[7.971803] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~~\n'}
+[7.979304] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:34: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[7.979680] (bishe_mqtt) StderrLine: {'line': b' 1211 |         info_cache_[camera_id] = info;\n'}
+[7.979803] (bishe_mqtt) StderrLine: {'line': b'      |                                  ^~~~\n'}
+[7.989549] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98std::string buildInfoPayload()\xe2\x80\x99:\n'}
+[7.989949] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:37: error: \xe2\x80\x98CameraInfo\xe2\x80\x99 was not declared in this scope\n'}
+[7.990139] (bishe_mqtt) StderrLine: {'line': b' 1241 |     std::unordered_map<std::string, CameraInfo> snapshot;\n'}
+[7.990272] (bishe_mqtt) StderrLine: {'line': b'      |                                     ^~~~~~~~~~\n'}
+[7.990390] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47: error: template argument 2 is invalid\n'}
+[7.990503] (bishe_mqtt) StderrLine: {'line': b' 1241 |     std::unordered_map<std::string, CameraInfo> snapshot;\n'}
+[7.990659] (bishe_mqtt) StderrLine: {'line': b'      |                                               ^\n'}
+[7.990771] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47: error: template argument 5 is invalid\n'}
+[7.999250] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1243:40: error: \xe2\x80\x98info_mutex_\xe2\x80\x99 was not declared in this scope\n'}
+[7.999621] (bishe_mqtt) StderrLine: {'line': b' 1243 |       std::lock_guard<std::mutex> lock(info_mutex_);\n'}
+[7.999749] (bishe_mqtt) StderrLine: {'line': b'      |                                        ^~~~~~~~~~~\n'}
+[8.009355] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1244:18: error: \xe2\x80\x98info_cache_\xe2\x80\x99 was not declared in this scope\n'}
+[8.009905] (bishe_mqtt) StderrLine: {'line': b' 1244 |       snapshot = info_cache_;\n'}
+[8.010130] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~~\n'}
+[8.010262] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1249:36: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.010376] (bishe_mqtt) StderrLine: {'line': b' 1249 |     oss << "{\\"timestamp_ns\\":" << this->now().nanoseconds() << ",";\n'}
+[8.010608] (bishe_mqtt) StderrLine: {'line': b'      |                                    ^~~~\n'}
+[8.019587] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:42: error: \xe2\x80\x98device_\xe2\x80\x99 was not declared in this scope\n'}
+[8.019952] (bishe_mqtt) StderrLine: {'line': b' 1250 |     oss << "\\"device\\":\\"" << escapeJson(device_) << "\\",";\n'}
+[8.020075] (bishe_mqtt) StderrLine: {'line': b'      |                                          ^~~~~~~\n'}
+[8.028521] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:31: error: \xe2\x80\x98escapeJson\xe2\x80\x99 was not declared in this scope\n'}
+[8.029041] (bishe_mqtt) StderrLine: {'line': b' 1250 |     oss << "\\"device\\":\\"" << escapeJson(device_) << "\\",";\n'}
+[8.029185] (bishe_mqtt) StderrLine: {'line': b'      |                               ^~~~~~~~~~\n'}
+[8.029296] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:30: error: request for member \xe2\x80\x98find\xe2\x80\x99 in \xe2\x80\x98snapshot\xe2\x80\x99, which is of non-class type \xe2\x80\x98int\xe2\x80\x99\n'}
+[8.029408] (bishe_mqtt) StderrLine: {'line': b' 1252 |     const auto it = snapshot.find(camera_id_);\n'}
+[8.029512] (bishe_mqtt) StderrLine: {'line': b'      |                              ^~~~\n'}
+[8.039237] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:35: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[8.039834] (bishe_mqtt) StderrLine: {'line': b' 1252 |     const auto it = snapshot.find(camera_id_);\n'}
+[8.039978] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~~~~\n'}
+[8.040093] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1253:15: error: expected \xe2\x80\x98;\xe2\x80\x99 before \xe2\x80\x98info\xe2\x80\x99\n'}
+[8.040200] (bishe_mqtt) StderrLine: {'line': b' 1253 |     CameraInfo info;\n'}
+[8.040304] (bishe_mqtt) StderrLine: {'line': b'      |               ^~~~~\n'}
+[8.040406] (bishe_mqtt) StderrLine: {'line': b'      |               ;\n'}
+[8.040508] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1254:24: error: request for member \xe2\x80\x98end\xe2\x80\x99 in \xe2\x80\x98snapshot\xe2\x80\x99, which is of non-class type \xe2\x80\x98int\xe2\x80\x99\n'}
+[8.040618] (bishe_mqtt) StderrLine: {'line': b' 1254 |     if (it != snapshot.end())\n'}
+[8.040721] (bishe_mqtt) StderrLine: {'line': b'      |                        ^~~\n'}
+[8.048512] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1256:7: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[8.048870] (-) TimerEvent: {}
+[8.048914] (bishe_mqtt) StderrLine: {'line': b' 1256 |       info = it->second;\n'}
+[8.049038] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~\n'}
+[8.058309] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1261:44: error: \xe2\x80\x98info\xe2\x80\x99 was not declared in this scope\n'}
+[8.058663] (bishe_mqtt) StderrLine: {'line': b' 1261 |     oss << "\\"location\\":\\"" << escapeJson(info.location) << "\\",";\n'}
+[8.058824] (bishe_mqtt) StderrLine: {'line': b'      |                                            ^~~~\n'}
+[8.069715] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void publishToTopic(const string&, const string&, const char*)\xe2\x80\x99:\n'}
+[8.070394] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1280:9: error: \xe2\x80\x98client_\xe2\x80\x99 was not declared in this scope\n'}
+[8.070535] (bishe_mqtt) StderrLine: {'line': b' 1280 |     if (client_ == nullptr || !client_->is_connected())\n'}
+[8.070650] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~\n'}
+[8.070756] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.070867] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.070970] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.071071] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.071175] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.071281] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.071384] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.071489] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.071598] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.071699] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.071802] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.071906] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.072034] (bishe_mqtt) StderrLine: {'line': b' 1283 |           this->get_logger(), *this->get_clock(), 3000,\n'}
+[8.072138] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~\n'}
+[8.072566] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.072729] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7: error: template argument 1 is invalid\n'}
+[8.072850] (bishe_mqtt) StderrLine: {'line': b' 1282 |       RCLCPP_WARN_THROTTLE(\n'}
+[8.072962] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~~~~~~~~~\n'}
+[8.073069] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:32: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.073174] (bishe_mqtt) StderrLine: {'line': b' 1283 |           this->get_logger(), *this->get_clock(), 3000,\n'}
+[8.073280] (bishe_mqtt) StderrLine: {'line': b'      |                                ^~~~\n'}
+[8.083628] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In lambda function:\n'}
+[8.084005] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7: error: \xe2\x80\x98c\xe2\x80\x99 was not declared in this scope\n'}
+[8.084139] (bishe_mqtt) StderrLine: {'line': b' 1282 |       RCLCPP_WARN_THROTTLE(\n'}
+[8.084574] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~~~~~~~~~\n'}
+[8.084716] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,\n'}
+[8.084828] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.085145] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.091765] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.092143] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.092282] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.092407] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.092526] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.092639] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.092749] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.092854] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.092962] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.093065] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void publishToTopic(const string&, const string&, const char*)\xe2\x80\x99:\n'}
+[8.093171] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.093310] (bishe_mqtt) StderrLine: {'line': b' 1283 |           this->get_logger(), *this->get_clock(), 3000,\n'}
+[8.093419] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~\n'}
+[8.093520] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.093625] (bishe_mqtt) StderrLine: {'line': b' 1283 |           this->get_logger(), *this->get_clock(), 3000,\n'}
+[8.093730] (bishe_mqtt) StderrLine: {'line': b'      |           ^~~~\n'}
+[8.095643] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1291:7: error: \xe2\x80\x98client_\xe2\x80\x99 was not declared in this scope\n'}
+[8.096310] (bishe_mqtt) StderrLine: {'line': b' 1291 |       client_->publish(msg)->wait();\n'}
+[8.096639] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~\n'}
+[8.096763] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.096874] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.097012] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.097397] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.097714] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.097832] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.097940] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.098045] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.098200] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.098309] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.098413] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.098548] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.098655] (bishe_mqtt) StderrLine: {'line': b' 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());\n'}
+[8.098757] (bishe_mqtt) StderrLine: {'line': b'      |                    ^~~~\n'}
+[8.098859] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.098960] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:7: error: template argument 1 is invalid\n'}
+[8.099081] (bishe_mqtt) StderrLine: {'line': b' 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());\n'}
+[8.099184] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~\n'}
+[8.099286] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,\n'}
+[8.099388] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.099489] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.099588] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.099687] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.099785] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.099885] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.099987] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.100087] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.100192] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.100292] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.100392] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.100493] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.100594] (bishe_mqtt) StderrLine: {'line': b' 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());\n'}
+[8.100696] (bishe_mqtt) StderrLine: {'line': b'      |                    ^~~~\n'}
+[8.100796] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.100898] (bishe_mqtt) StderrLine: {'line': b' 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());\n'}
+[8.100998] (bishe_mqtt) StderrLine: {'line': b'      |                    ^~~~\n'}
+[8.109441] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void publishToInfoTopic(const string&)\xe2\x80\x99:\n'}
+[8.109827] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1301:20: error: \xe2\x80\x98info_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[8.109988] (bishe_mqtt) StderrLine: {'line': b' 1301 |     publishToTopic(info_topic_, payload, info_topic_.c_str());\n'}
+[8.110158] (bishe_mqtt) StderrLine: {'line': b'      |                    ^~~~~~~~~~~\n'}
+[8.121220] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void publishToAlarmTopic(const string&)\xe2\x80\x99:\n'}
+[8.121606] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1306:20: error: \xe2\x80\x98alarm_topic_\xe2\x80\x99 was not declared in this scope\n'}
+[8.122116] (bishe_mqtt) StderrLine: {'line': b' 1306 |     publishToTopic(alarm_topic_, payload, alarm_topic_.c_str());\n'}
+[8.122273] (bishe_mqtt) StderrLine: {'line': b'      |                    ^~~~~~~~~~~~\n'}
+[8.122395] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.122508] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.123047] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.123189] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.123306] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.123415] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.123552] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.123657] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.123761] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.123861] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.123966] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.124069] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)\xe2\x80\x99:\n'}
+[8.124176] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.124281] (bishe_mqtt) StderrLine: {'line': b' 1313 |       RCLCPP_WARN(this->get_logger(), "\xe6\x94\xb6\xe5\x88\xb0\xe7\xa9\xba\xe7\x9a\x84\xe6\x8a\xa5\xe8\xad\xa6\xe4\xba\x8b\xe4\xbb\xb6\xef\xbc\x8c\xe8\xb7\xb3\xe8\xbf\x87 MQTT \xe8\xbd\xac\xe5\x8f\x91");\n'}
+[8.124384] (bishe_mqtt) StderrLine: {'line': b'      |                   ^~~~\n'}
+[8.124482] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.124583] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:7: error: template argument 1 is invalid\n'}
+[8.124688] (bishe_mqtt) StderrLine: {'line': b' 1313 |       RCLCPP_WARN(this->get_logger(), "\xe6\x94\xb6\xe5\x88\xb0\xe7\xa9\xba\xe7\x9a\x84\xe6\x8a\xa5\xe8\xad\xa6\xe4\xba\x8b\xe4\xbb\xb6\xef\xbc\x8c\xe8\xb7\xb3\xe8\xbf\x87 MQTT \xe8\xbd\xac\xe5\x8f\x91");\n'}
+[8.124820] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~\n'}
+[8.124923] (bishe_mqtt) StderrLine: {'line': b'In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,\n'}
+[8.125023] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,\n'}
+[8.125124] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,\n'}
+[8.125228] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,\n'}
+[8.125348] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,\n'}
+[8.125448] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,\n'}
+[8.125550] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,\n'}
+[8.125652] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,\n'}
+[8.125751] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[8.125849] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[8.125952] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[8.126148] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.126288] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.126399] (bishe_mqtt) StderrLine: {'line': b' 1313 |       RCLCPP_WARN(this->get_logger(), "\xe6\x94\xb6\xe5\x88\xb0\xe7\xa9\xba\xe7\x9a\x84\xe6\x8a\xa5\xe8\xad\xa6\xe4\xba\x8b\xe4\xbb\xb6\xef\xbc\x8c\xe8\xb7\xb3\xe8\xbf\x87 MQTT \xe8\xbd\xac\xe5\x8f\x91");\n'}
+[8.126505] (bishe_mqtt) StderrLine: {'line': b'      |                   ^~~~\n'}
+[8.126608] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 in non-member function\n'}
+[8.126730] (bishe_mqtt) StderrLine: {'line': b' 1313 |       RCLCPP_WARN(this->get_logger(), "\xe6\x94\xb6\xe5\x88\xb0\xe7\xa9\xba\xe7\x9a\x84\xe6\x8a\xa5\xe8\xad\xa6\xe4\xba\x8b\xe4\xbb\xb6\xef\xbc\x8c\xe8\xb7\xb3\xe8\xbf\x87 MQTT \xe8\xbd\xac\xe5\x8f\x91");\n'}
+[8.126838] (bishe_mqtt) StderrLine: {'line': b'      |                   ^~~~\n'}
+[8.140586] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function \xe2\x80\x98void reportInfoTimerCallback()\xe2\x80\x99:\n'}
+[8.140966] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1331:5: error: \xe2\x80\x98refreshLocalDynamicParameters\xe2\x80\x99 was not declared in this scope\n'}
+[8.141111] (bishe_mqtt) StderrLine: {'line': b' 1331 |     refreshLocalDynamicParameters(); // \xe6\xa3\x80\xe6\x9f\xa5\xe5\x8f\x82\xe6\x95\xb0\xe6\x98\xaf\xe5\x90\xa6\xe6\x9c\x89\xe6\x9b\xb4\xe6\x96\xb0\n'}
+[8.141228] (bishe_mqtt) StderrLine: {'line': b'      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[8.149850] (-) TimerEvent: {}
+[8.157222] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1334:10: error: \xe2\x80\x98initial_fetch_streamer_\xe2\x80\x99 was not declared in this scope\n'}
+[8.157611] (bishe_mqtt) StderrLine: {'line': b' 1334 |     if (!initial_fetch_streamer_)\n'}
+[8.157753] (bishe_mqtt) StderrLine: {'line': b'      |          ^~~~~~~~~~~~~~~~~~~~~~~\n'}
+[8.168099] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1336:38: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[8.168491] (bishe_mqtt) StderrLine: {'line': b' 1336 |       if (requestStreamerRuntimeInfo(camera_id_))\n'}
+[8.168630] (bishe_mqtt) StderrLine: {'line': b'      |                                      ^~~~~~~~~~\n'}
+[8.183546] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1341:10: error: \xe2\x80\x98initial_fetch_detector_\xe2\x80\x99 was not declared in this scope\n'}
+[8.183919] (bishe_mqtt) StderrLine: {'line': b' 1341 |     if (!initial_fetch_detector_)\n'}
+[8.184056] (bishe_mqtt) StderrLine: {'line': b'      |          ^~~~~~~~~~~~~~~~~~~~~~~\n'}
+[8.194460] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1343:37: error: \xe2\x80\x98camera_id_\xe2\x80\x99 was not declared in this scope\n'}
+[8.195287] (bishe_mqtt) StderrLine: {'line': b' 1343 |       if (requestDetectorThresholds(camera_id_))\n'}
+[8.195450] (bishe_mqtt) StderrLine: {'line': b'      |                                     ^~~~~~~~~~\n'}
+[8.215055] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: At global scope:\n'}
+[8.215458] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1356:16: error: no matching function for call to \xe2\x80\x98MqttCallback::MqttCallback()\xe2\x80\x99\n'}
+[8.215618] (bishe_mqtt) StderrLine: {'line': b' 1356 |   MqttCallback cb_;                            ///< MQTT \xe6\xb6\x88\xe6\x81\xaf\xe5\x9b\x9e\xe8\xb0\x83\xe5\xa4\x84\xe7\x90\x86\n'}
+[8.215749] (bishe_mqtt) StderrLine: {'line': b'      |                ^~~\n'}
+[8.216215] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12: note: candidate: \xe2\x80\x98MqttCallback::MqttCallback(rclcpp::Logger, std::function<void(const std::__cxx11::basic_string<char>&, const std::__cxx11::basic_string<char>&)>)\xe2\x80\x99\n'}
+[8.216419] (bishe_mqtt) StderrLine: {'line': b'   53 |   explicit MqttCallback(\n'}
+[8.216551] (bishe_mqtt) StderrLine: {'line': b'      |            ^~~~~~~~~~~~\n'}
+[8.222263] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12: note:   candidate expects 2 arguments, 0 provided\n'}
+[8.222983] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note: candidate: \xe2\x80\x98MqttCallback::MqttCallback(const MqttCallback&)\xe2\x80\x99\n'}
+[8.223209] (bishe_mqtt) StderrLine: {'line': b'   46 | class MqttCallback : public virtual mqtt::callback\n'}
+[8.223345] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~~~\n'}
+[8.223709] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note:   candidate expects 1 argument, 0 provided\n'}
+[8.224118] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note: candidate: \xe2\x80\x98MqttCallback::MqttCallback(MqttCallback&&)\xe2\x80\x99\n'}
+[8.224670] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note:   candidate expects 1 argument, 0 provided\n'}
+[8.225946] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:7: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 at top level\n'}
+[8.226222] (bishe_mqtt) StderrLine: {'line': b' 1375 |       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};\n'}
+[8.226362] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~\n'}
+[8.226874] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:80: error: no matching function for call to \xe2\x80\x98std::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)\xe2\x80\x99\n'}
+[8.227068] (bishe_mqtt) StderrLine: {'line': b' 1375 |       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};\n'}
+[8.227197] (bishe_mqtt) StderrLine: {'line': b'      |                                                                                ^\n'}
+[8.227810] (bishe_mqtt) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:77,\n'}
+[8.227990] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[8.228111] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.228241] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:408:9: note: candidate: \xe2\x80\x98template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.228397] (bishe_mqtt) StderrLine: {'line': b'  408 |         shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)\n'}
+[8.228509] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.228839] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:408:9: note:   template argument deduction/substitution failed:\n'}
+[8.229263] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:340:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.229438] (bishe_mqtt) StderrLine: {'line': b'  340 |         shared_ptr(unique_ptr<_Yp, _Del>&& __r)\n'}
+[8.229557] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.229875] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:340:9: note:   template argument deduction/substitution failed:\n'}
+[8.230314] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:332:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.230492] (bishe_mqtt) StderrLine: {'line': b'  332 |         shared_ptr(auto_ptr<_Yp>&& __r);\n'}
+[8.230614] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.230916] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:332:9: note:   template argument deduction/substitution failed:\n'}
+[8.231316] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:325:18: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.231484] (bishe_mqtt) StderrLine: {'line': b'  325 |         explicit shared_ptr(const weak_ptr<_Yp>& __r)\n'}
+[8.231606] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~\n'}
+[8.231926] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:325:18: note:   template argument deduction/substitution failed:\n'}
+[8.232313] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:313:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.232503] (bishe_mqtt) StderrLine: {'line': b'  313 |         shared_ptr(shared_ptr<_Yp>&& __r) noexcept\n'}
+[8.232627] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.232935] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:313:9: note:   template argument deduction/substitution failed:\n'}
+[8.233326] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:296:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.233493] (bishe_mqtt) StderrLine: {'line': b'  296 |         shared_ptr(const shared_ptr<_Yp>& __r) noexcept\n'}
+[8.233615] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.233931] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:296:9: note:   template argument deduction/substitution failed:\n'}
+[8.234372] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:257:9: note: candidate: \xe2\x80\x98template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.234592] (bishe_mqtt) StderrLine: {'line': b'  257 |         shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept\n'}
+[8.234729] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.235071] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:257:9: note:   template argument deduction/substitution failed:\n'}
+[8.235525] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:233:9: note: candidate: \xe2\x80\x98template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.235710] (bishe_mqtt) StderrLine: {'line': b'  233 |         shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)\n'}
+[8.235846] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.236202] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:233:9: note:   template argument deduction/substitution failed:\n'}
+[8.236645] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:214:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.236877] (bishe_mqtt) StderrLine: {'line': b'  214 |         shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)\n'}
+[8.237010] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.237362] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:214:9: note:   template argument deduction/substitution failed:\n'}
+[8.237793] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:194:9: note: candidate: \xe2\x80\x98template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.237970] (bishe_mqtt) StderrLine: {'line': b'  194 |         shared_ptr(nullptr_t __p, _Deleter __d)\n'}
+[8.238144] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.238482] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:194:9: note:   template argument deduction/substitution failed:\n'}
+[8.238919] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:177:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.239092] (bishe_mqtt) StderrLine: {'line': b'  177 |         shared_ptr(_Yp* __p, _Deleter __d)\n'}
+[8.239211] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.240123] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:177:9: note:   template argument deduction/substitution failed:\n'}
+[8.240275] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:160:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.240953] (bishe_mqtt) StderrLine: {'line': b'  160 |         shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }\n'}
+[8.241094] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.241212] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:160:9: note:   template argument deduction/substitution failed:\n'}
+[8.241325] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:417:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.241472] (bishe_mqtt) StderrLine: {'line': b'  417 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept\n'}
+[8.241583] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.241687] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:417:7: note:   candidate expects 2 arguments, 1 provided\n'}
+[8.241796] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:357:17: note: candidate: \xe2\x80\x98constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t]\xe2\x80\x99\n'}
+[8.241928] (bishe_mqtt) StderrLine: {'line': b'  357 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }\n'}
+[8.242039] (bishe_mqtt) StderrLine: {'line': b'      |                 ^~~~~~~~~~\n'}
+[8.242183] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:357:17: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.242293] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:304:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.242400] (bishe_mqtt) StderrLine: {'line': b'  304 |       shared_ptr(shared_ptr&& __r) noexcept\n'}
+[8.242507] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.242612] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:304:7: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.242724] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:150:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.242835] (bishe_mqtt) StderrLine: {'line': b'  150 |       shared_ptr(const shared_ptr&) noexcept = default; ///< Copy constructor\n'}
+[8.242939] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.243045] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:150:7: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.243153] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:148:17: note: candidate: \xe2\x80\x98constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.243265] (bishe_mqtt) StderrLine: {'line': b'  148 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }\n'}
+[8.243365] (bishe_mqtt) StderrLine: {'line': b'      |                 ^~~~~~~~~~\n'}
+[8.243469] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:148:17: note:   candidate expects 0 arguments, 1 provided\n'}
+[8.243597] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:7: error: invalid use of \xe2\x80\x98this\xe2\x80\x99 at top level\n'}
+[8.243703] (bishe_mqtt) StderrLine: {'line': b' 1377 |       this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};\n'}
+[8.243808] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~\n'}
+[8.243912] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:72: error: no matching function for call to \xe2\x80\x98std::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)\xe2\x80\x99\n'}
+[8.244035] (bishe_mqtt) StderrLine: {'line': b' 1377 |       this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};\n'}
+[8.244138] (bishe_mqtt) StderrLine: {'line': b'      |                                                                        ^\n'}
+[8.256078] (bishe_mqtt) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:77,\n'}
+[8.256499] (-) TimerEvent: {}
+[8.256553] (bishe_mqtt) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[8.256692] (bishe_mqtt) StderrLine: {'line': b'                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:\n'}
+[8.256816] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:408:9: note: candidate: \xe2\x80\x98template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.256977] (bishe_mqtt) StderrLine: {'line': b'  408 |         shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)\n'}
+[8.257093] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.257203] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:408:9: note:   template argument deduction/substitution failed:\n'}
+[8.257309] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:340:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.257423] (bishe_mqtt) StderrLine: {'line': b'  340 |         shared_ptr(unique_ptr<_Yp, _Del>&& __r)\n'}
+[8.257526] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.257626] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:340:9: note:   template argument deduction/substitution failed:\n'}
+[8.257729] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:332:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.257836] (bishe_mqtt) StderrLine: {'line': b'  332 |         shared_ptr(auto_ptr<_Yp>&& __r);\n'}
+[8.257938] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.258039] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:332:9: note:   template argument deduction/substitution failed:\n'}
+[8.258222] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:325:18: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.258336] (bishe_mqtt) StderrLine: {'line': b'  325 |         explicit shared_ptr(const weak_ptr<_Yp>& __r)\n'}
+[8.258437] (bishe_mqtt) StderrLine: {'line': b'      |                  ^~~~~~~~~~\n'}
+[8.258541] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:325:18: note:   template argument deduction/substitution failed:\n'}
+[8.258643] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:313:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.258784] (bishe_mqtt) StderrLine: {'line': b'  313 |         shared_ptr(shared_ptr<_Yp>&& __r) noexcept\n'}
+[8.258891] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.258992] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:313:9: note:   template argument deduction/substitution failed:\n'}
+[8.259092] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:296:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.259197] (bishe_mqtt) StderrLine: {'line': b'  296 |         shared_ptr(const shared_ptr<_Yp>& __r) noexcept\n'}
+[8.259298] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.259404] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:296:9: note:   template argument deduction/substitution failed:\n'}
+[8.259509] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:257:9: note: candidate: \xe2\x80\x98template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.259643] (bishe_mqtt) StderrLine: {'line': b'  257 |         shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept\n'}
+[8.259749] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.259848] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:257:9: note:   template argument deduction/substitution failed:\n'}
+[8.259948] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:233:9: note: candidate: \xe2\x80\x98template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.260086] (bishe_mqtt) StderrLine: {'line': b'  233 |         shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)\n'}
+[8.260192] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.260294] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:233:9: note:   template argument deduction/substitution failed:\n'}
+[8.260396] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:214:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.260510] (bishe_mqtt) StderrLine: {'line': b'  214 |         shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)\n'}
+[8.260611] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.260709] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:214:9: note:   template argument deduction/substitution failed:\n'}
+[8.260812] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:194:9: note: candidate: \xe2\x80\x98template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.260916] (bishe_mqtt) StderrLine: {'line': b'  194 |         shared_ptr(nullptr_t __p, _Deleter __d)\n'}
+[8.261018] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.261119] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:194:9: note:   template argument deduction/substitution failed:\n'}
+[8.261224] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:177:9: note: candidate: \xe2\x80\x98template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.261331] (bishe_mqtt) StderrLine: {'line': b'  177 |         shared_ptr(_Yp* __p, _Deleter __d)\n'}
+[8.261435] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.261534] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:177:9: note:   template argument deduction/substitution failed:\n'}
+[8.261637] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:160:9: note: candidate: \xe2\x80\x98template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.261743] (bishe_mqtt) StderrLine: {'line': b'  160 |         shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }\n'}
+[8.261848] (bishe_mqtt) StderrLine: {'line': b'      |         ^~~~~~~~~~\n'}
+[8.261950] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:160:9: note:   template argument deduction/substitution failed:\n'}
+[8.262106] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:417:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.262256] (bishe_mqtt) StderrLine: {'line': b'  417 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept\n'}
+[8.262367] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.262472] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:417:7: note:   candidate expects 2 arguments, 1 provided\n'}
+[8.262578] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:357:17: note: candidate: \xe2\x80\x98constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t]\xe2\x80\x99\n'}
+[8.262684] (bishe_mqtt) StderrLine: {'line': b'  357 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }\n'}
+[8.262788] (bishe_mqtt) StderrLine: {'line': b'      |                 ^~~~~~~~~~\n'}
+[8.262892] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:357:17: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.263014] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:304:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.263121] (bishe_mqtt) StderrLine: {'line': b'  304 |       shared_ptr(shared_ptr&& __r) noexcept\n'}
+[8.263223] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.263325] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:304:7: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.263423] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:150:7: note: candidate: \xe2\x80\x98std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.290315] (bishe_mqtt) StderrLine: {'line': b'  150 |       shared_ptr(const shared_ptr&) noexcept = default; ///< Copy constructor\n'}
+[8.290645] (bishe_mqtt) StderrLine: {'line': b'      |       ^~~~~~~~~~\n'}
+[8.290785] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:150:7: note:   conversion of argument 1 would be ill-formed:\n'}
+[8.290906] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:148:17: note: candidate: \xe2\x80\x98constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup]\xe2\x80\x99\n'}
+[8.291022] (bishe_mqtt) StderrLine: {'line': b'  148 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }\n'}
+[8.291133] (bishe_mqtt) StderrLine: {'line': b'      |                 ^~~~~~~~~~\n'}
+[8.291262] (bishe_mqtt) StderrLine: {'line': b'/usr/include/c++/11/bits/shared_ptr.h:148:17: note:   candidate expects 0 arguments, 1 provided\n'}
+[8.308798] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:35: error: \xe2\x80\x98CameraInfo\xe2\x80\x99 was not declared in this scope\n'}
+[8.309359] (bishe_mqtt) StderrLine: {'line': b' 1388 |   std::unordered_map<std::string, CameraInfo> info_cache_; ///< \xe6\x91\x84\xe5\x83\x8f\xe5\xa4\xb4\xe4\xbf\xa1\xe6\x81\xaf\xe7\xbc\x93\xe5\xad\x98\n'}
+[8.309528] (bishe_mqtt) StderrLine: {'line': b'      |                                   ^~~~~~~~~~\n'}
+[8.309660] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45: error: template argument 2 is invalid\n'}
+[8.309781] (bishe_mqtt) StderrLine: {'line': b' 1388 |   std::unordered_map<std::string, CameraInfo> info_cache_; ///< \xe6\x91\x84\xe5\x83\x8f\xe5\xa4\xb4\xe4\xbf\xa1\xe6\x81\xaf\xe7\xbc\x93\xe5\xad\x98\n'}
+[8.309896] (bishe_mqtt) StderrLine: {'line': b'      |                                             ^\n'}
+[8.310405] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45: error: template argument 5 is invalid\n'}
+[8.310997] (bishe_mqtt) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1390:1: error: expected declaration before \xe2\x80\x98}\xe2\x80\x99 token\n'}
+[8.311323] (bishe_mqtt) StderrLine: {'line': b' 1390 | };\n'}
+[8.311458] (bishe_mqtt) StderrLine: {'line': b'      | ^\n'}
+[8.356682] (-) TimerEvent: {}
+[8.457063] (-) TimerEvent: {}
+[8.557436] (-) TimerEvent: {}
+[8.657814] (-) TimerEvent: {}
+[8.758196] (-) TimerEvent: {}
+[8.793248] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:295:8: error: \xe2\x80\x98void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)\xe2\x80\x99 cannot be overloaded with \xe2\x80\x98void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)\xe2\x80\x99\n'}
+[8.793789] (bishe_monitor) StderrLine: {'line': b'  295 |   void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)\n'}
+[8.793940] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~~~~~~\n'}
+[8.794096] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:123:8: note: previous declaration \xe2\x80\x98void MonitorNode::resultCallback(bishe_msgs::msg::DetectorResult_<std::allocator<void> >::SharedPtr)\xe2\x80\x99\n'}
+[8.794233] (bishe_monitor) StderrLine: {'line': b'  123 |   void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)\n'}
+[8.794349] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~~~~~~\n'}
+[8.794457] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:353:8: error: \xe2\x80\x98void MonitorNode::playAlarm(const string&)\xe2\x80\x99 cannot be overloaded with \xe2\x80\x98void MonitorNode::playAlarm(const string&)\xe2\x80\x99\n'}
+[8.794566] (bishe_monitor) StderrLine: {'line': b'  353 |   void playAlarm(const std::string &violation_type)\n'}
+[8.794673] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~\n'}
+[8.795016] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:8: note: previous declaration \xe2\x80\x98void MonitorNode::playAlarm(const string&)\xe2\x80\x99\n'}
+[8.795170] (bishe_monitor) StderrLine: {'line': b'  134 |   void playAlarm(const std::string &violation_type)\n'}
+[8.795288] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~\n'}
+[8.795797] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:399:8: error: \xe2\x80\x98bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)\xe2\x80\x99 cannot be overloaded with \xe2\x80\x98bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)\xe2\x80\x99\n'}
+[8.795957] (bishe_monitor) StderrLine: {'line': b'  399 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)\n'}
+[8.796077] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~~~~~~~~\n'}
+[8.796404] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:8: note: previous declaration \xe2\x80\x98bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)\xe2\x80\x99\n'}
+[8.796589] (bishe_monitor) StderrLine: {'line': b'  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)\n'}
+[8.796720] (bishe_monitor) StderrLine: {'line': b'      |        ^~~~~~~~~~~~~~~~\n'}
+[8.858339] (-) TimerEvent: {}
+[8.875231] (bishe_streamer) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp: In member function \xe2\x80\x98void StreamerNode::reportPipelineStats()\xe2\x80\x99:\n'}
+[8.875696] (bishe_streamer) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:69:22: warning: unused variable \xe2\x80\x98seconds\xe2\x80\x99 [-Wunused-variable]\n'}
+[8.875848] (bishe_streamer) StderrLine: {'line': b'   69 |         const double seconds = static_cast<double>(elapsed_ms) / 1000.0;\n'}
+[8.875976] (bishe_streamer) StderrLine: {'line': b'      |                      ^~~~~~~\n'}
+[8.876112] (bishe_streamer) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:70:24: warning: unused variable \xe2\x80\x98received\xe2\x80\x99 [-Wunused-variable]\n'}
+[8.876224] (bishe_streamer) StderrLine: {'line': b'   70 |         const uint64_t received = received_frames_.exchange(0);\n'}
+[8.876332] (bishe_streamer) StderrLine: {'line': b'      |                        ^~~~~~~~\n'}
+[8.876434] (bishe_streamer) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_streamer/src/streamer_node.cpp:78:22: warning: unused variable \xe2\x80\x98avg_write_ms\xe2\x80\x99 [-Wunused-variable]\n'}
+[8.876537] (bishe_streamer) StderrLine: {'line': b'   78 |         const double avg_write_ms = written > 0 ? write_time_ms / static_cast<double>(written) : 0.0;\n'}
+[8.876640] (bishe_streamer) StderrLine: {'line': b'      |                      ^~~~~~~~~~~~\n'}
+[8.958503] (-) TimerEvent: {}
+[8.975638] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function \xe2\x80\x98void MonitorNode::playAlarm(const string&)\xe2\x80\x99:\n'}
+[8.976028] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:134:37: warning: unused parameter \xe2\x80\x98violation_type\xe2\x80\x99 [-Wunused-parameter]\n'}
+[8.976165] (bishe_monitor) StderrLine: {'line': b'  134 |   void playAlarm(const std::string &violation_type)\n'}
+[8.976286] (bishe_monitor) StderrLine: {'line': b'      |                  ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~\n'}
+[8.976750] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp: In member function \xe2\x80\x98bool MonitorNode::captureAndUpload(const cv::Mat&, const string&)\xe2\x80\x99:\n'}
+[8.976914] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:145:3: warning: no return statement in function returning non-void [-Wreturn-type]\n'}
+[8.977036] (bishe_monitor) StderrLine: {'line': b'  145 |   }\n'}
+[8.977150] (bishe_monitor) StderrLine: {'line': b'      |   ^\n'}
+[8.977488] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:40: warning: unused parameter \xe2\x80\x98frame\xe2\x80\x99 [-Wunused-parameter]\n'}
+[8.977635] (bishe_monitor) StderrLine: {'line': b'  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)\n'}
+[8.977751] (bishe_monitor) StderrLine: {'line': b'      |                         ~~~~~~~~~~~~~~~^~~~~\n'}
+[8.978083] (bishe_monitor) StderrLine: {'line': b'/home/jetson/projects/bishe/edge/src/bishe_monitor/src/monitor_node.cpp:142:66: warning: unused parameter \xe2\x80\x98violation_type\xe2\x80\x99 [-Wunused-parameter]\n'}
+[8.978273] (bishe_monitor) StderrLine: {'line': b'  142 |   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)\n'}
+[8.978395] (bishe_monitor) StderrLine: {'line': b'      |                                               ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~\n'}
+[9.058653] (-) TimerEvent: {}
+[9.159025] (-) TimerEvent: {}
+[9.259385] (-) TimerEvent: {}
+[9.359756] (-) TimerEvent: {}
+[9.460123] (-) TimerEvent: {}
+[9.560473] (-) TimerEvent: {}
+[9.660805] (-) TimerEvent: {}
+[9.761184] (-) TimerEvent: {}
+[9.861558] (-) TimerEvent: {}
+[9.961937] (-) TimerEvent: {}
+[10.062313] (-) TimerEvent: {}
+[10.162672] (-) TimerEvent: {}
+[10.263013] (-) TimerEvent: {}
+[10.363379] (-) TimerEvent: {}
+[10.463745] (-) TimerEvent: {}
+[10.564136] (-) TimerEvent: {}
+[10.664501] (-) TimerEvent: {}
+[10.764874] (-) TimerEvent: {}
+[10.865254] (-) TimerEvent: {}
+[10.965634] (-) TimerEvent: {}
+[11.065993] (-) TimerEvent: {}
+[11.166330] (-) TimerEvent: {}
+[11.266660] (-) TimerEvent: {}
+[11.367002] (-) TimerEvent: {}
+[11.467369] (-) TimerEvent: {}
+[11.567731] (-) TimerEvent: {}
+[11.668089] (-) TimerEvent: {}
+[11.768452] (-) TimerEvent: {}
+[11.868809] (-) TimerEvent: {}
+[11.969167] (-) TimerEvent: {}
+[12.069544] (-) TimerEvent: {}
+[12.169898] (-) TimerEvent: {}
+[12.270230] (-) TimerEvent: {}
+[12.370579] (-) TimerEvent: {}
+[12.470916] (-) TimerEvent: {}
+[12.571276] (-) TimerEvent: {}
+[12.671608] (-) TimerEvent: {}
+[12.771959] (-) TimerEvent: {}
+[12.872720] (-) TimerEvent: {}
+[12.973043] (-) TimerEvent: {}
+[13.073385] (-) TimerEvent: {}
+[13.173722] (-) TimerEvent: {}
+[13.274030] (-) TimerEvent: {}
+[13.374356] (-) TimerEvent: {}
+[13.474690] (-) TimerEvent: {}
+[13.575029] (-) TimerEvent: {}
+[13.675364] (-) TimerEvent: {}
+[13.775700] (-) TimerEvent: {}
+[13.876036] (-) TimerEvent: {}
+[13.967868] (bishe_mqtt) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76\xef\xbc\x9aCMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[13.969277] (bishe_mqtt) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137\xef\xbc\x9aCMakeFiles/mqtt_node.dir/all] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[13.969495] (bishe_mqtt) StderrLine: {'line': b'gmake: *** [Makefile:146\xef\xbc\x9aall] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[13.976173] (-) TimerEvent: {}
+[13.983633] (bishe_mqtt) CommandEnded: {'returncode': 2}
+[14.021360] (bishe_mqtt) JobEnded: {'identifier': 'bishe_mqtt', 'rc': 2}
+[14.076335] (-) TimerEvent: {}
+[14.176702] (-) TimerEvent: {}
+[14.277050] (-) TimerEvent: {}
+[14.377390] (-) TimerEvent: {}
+[14.477727] (-) TimerEvent: {}
+[14.578049] (-) TimerEvent: {}
+[14.678396] (-) TimerEvent: {}
+[14.778719] (-) TimerEvent: {}
+[14.879045] (-) TimerEvent: {}
+[14.979368] (-) TimerEvent: {}
+[15.079685] (-) TimerEvent: {}
+[15.179992] (-) TimerEvent: {}
+[15.280566] (-) TimerEvent: {}
+[15.380881] (-) TimerEvent: {}
+[15.481211] (-) TimerEvent: {}
+[15.581536] (-) TimerEvent: {}
+[15.681872] (-) TimerEvent: {}
+[15.782182] (-) TimerEvent: {}
+[15.832007] (bishe_monitor) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/monitor_node.dir/build.make:76\xef\xbc\x9aCMakeFiles/monitor_node.dir/src/monitor_node.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[15.832856] (bishe_monitor) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:163\xef\xbc\x9aCMakeFiles/monitor_node.dir/all] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[15.833041] (bishe_monitor) StderrLine: {'line': b'gmake: *** [Makefile:146\xef\xbc\x9aall] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[15.836040] (bishe_monitor) JobEnded: {'identifier': 'bishe_monitor', 'rc': 'SIGINT'}
+[15.882328] (-) TimerEvent: {}
+[15.982641] (-) TimerEvent: {}
+[16.083008] (-) TimerEvent: {}
+[16.183357] (-) TimerEvent: {}
+[16.283686] (-) TimerEvent: {}
+[16.384028] (-) TimerEvent: {}
+[16.484356] (-) TimerEvent: {}
+[16.584682] (-) TimerEvent: {}
+[16.684978] (-) TimerEvent: {}
+[16.785261] (-) TimerEvent: {}
+[16.885547] (-) TimerEvent: {}
+[16.985857] (-) TimerEvent: {}
+[17.086181] (-) TimerEvent: {}
+[17.186498] (-) TimerEvent: {}
+[17.286811] (-) TimerEvent: {}
+[17.387128] (-) TimerEvent: {}
+[17.487445] (-) TimerEvent: {}
+[17.587764] (-) TimerEvent: {}
+[17.688085] (-) TimerEvent: {}
+[17.788415] (-) TimerEvent: {}
+[17.888742] (-) TimerEvent: {}
+[17.989072] (-) TimerEvent: {}
+[18.039043] (bishe_streamer) StdoutLine: {'line': b'[ 75%] Linking CXX executable intercom_node\n'}
+[18.089222] (-) TimerEvent: {}
+[18.189550] (-) TimerEvent: {}
+[18.289885] (-) TimerEvent: {}
+[18.390179] (-) TimerEvent: {}
+[18.490475] (-) TimerEvent: {}
+[18.590766] (-) TimerEvent: {}
+[18.691060] (-) TimerEvent: {}
+[18.717786] (bishe_streamer) StdoutLine: {'line': b'[ 75%] Built target intercom_node\n'}
+[18.791192] (-) TimerEvent: {}
+[18.891506] (-) TimerEvent: {}
+[18.991834] (-) TimerEvent: {}
+[19.092158] (-) TimerEvent: {}
+[19.192475] (-) TimerEvent: {}
+[19.292792] (-) TimerEvent: {}
+[19.393107] (-) TimerEvent: {}
+[19.493417] (-) TimerEvent: {}
+[19.593730] (-) TimerEvent: {}
+[19.694040] (-) TimerEvent: {}
+[19.794366] (-) TimerEvent: {}
+[19.894667] (-) TimerEvent: {}
+[19.994966] (-) TimerEvent: {}
+[20.095273] (-) TimerEvent: {}
+[20.195573] (-) TimerEvent: {}
+[20.295869] (-) TimerEvent: {}
+[20.396170] (-) TimerEvent: {}
+[20.496454] (-) TimerEvent: {}
+[20.596762] (-) TimerEvent: {}
+[20.697091] (-) TimerEvent: {}
+[20.797392] (-) TimerEvent: {}
+[20.897706] (-) TimerEvent: {}
+[20.998050] (-) TimerEvent: {}
+[21.098372] (-) TimerEvent: {}
+[21.198684] (-) TimerEvent: {}
+[21.298989] (-) TimerEvent: {}
+[21.399293] (-) TimerEvent: {}
+[21.499588] (-) TimerEvent: {}
+[21.599885] (-) TimerEvent: {}
+[21.700192] (-) TimerEvent: {}
+[21.800510] (-) TimerEvent: {}
+[21.900827] (-) TimerEvent: {}
+[22.001153] (-) TimerEvent: {}
+[22.101445] (bishe_streamer) StdoutLine: {'line': b'[100%] Linking CXX executable streamer_node\n'}
+[22.101812] (-) TimerEvent: {}
+[22.202031] (-) TimerEvent: {}
+[22.302712] (-) TimerEvent: {}
+[22.403046] (-) TimerEvent: {}
+[22.503402] (-) TimerEvent: {}
+[22.603730] (-) TimerEvent: {}
+[22.617415] (bishe_streamer) StderrLine: {'line': b'/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.410\n'}
+[22.619325] (bishe_streamer) StderrLine: {'line': b'/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.410\n'}
+[22.703867] (-) TimerEvent: {}
+[22.804186] (-) TimerEvent: {}
+[22.904502] (-) TimerEvent: {}
+[23.004812] (-) TimerEvent: {}
+[23.105122] (-) TimerEvent: {}
+[23.205433] (-) TimerEvent: {}
+[23.305759] (-) TimerEvent: {}
+[23.406112] (-) TimerEvent: {}
+[23.506424] (-) TimerEvent: {}
+[23.606722] (-) TimerEvent: {}
+[23.614793] (bishe_streamer) StdoutLine: {'line': b'[100%] Built target streamer_node\n'}
+[23.631660] (bishe_streamer) JobEnded: {'identifier': 'bishe_streamer', 'rc': 'SIGINT'}
+[23.706839] (-) TimerEvent: {}
+[23.807126] (-) TimerEvent: {}
+[23.907421] (-) TimerEvent: {}
+[24.007693] (-) TimerEvent: {}
+[24.107982] (-) TimerEvent: {}
+[24.208281] (-) TimerEvent: {}
+[24.259378] (bishe_detector) StdoutLine: {'line': b'[ 62%] Linking CXX shared library libbishe_detector_component.so\n'}
+[24.308413] (-) TimerEvent: {}
+[24.408816] (-) TimerEvent: {}
+[24.509176] (-) TimerEvent: {}
+[24.609488] (-) TimerEvent: {}
+[24.709831] (-) TimerEvent: {}
+[24.810180] (-) TimerEvent: {}
+[24.910520] (-) TimerEvent: {}
+[25.010866] (-) TimerEvent: {}
+[25.111170] (-) TimerEvent: {}
+[25.211474] (-) TimerEvent: {}
+[25.311789] (-) TimerEvent: {}
+[25.412115] (-) TimerEvent: {}
+[25.505075] (bishe_detector) StdoutLine: {'line': b'[ 87%] Built target bishe_detector_component\n'}
+[25.512227] (-) TimerEvent: {}
+[25.532471] (bishe_detector) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target detector_node\n'}
+[25.571672] (bishe_detector) StdoutLine: {'line': b'[ 93%] Linking CXX executable detector_node\n'}
+[25.612298] (-) TimerEvent: {}
+[25.712471] (-) TimerEvent: {}
+[25.812653] (-) TimerEvent: {}
+[25.912824] (-) TimerEvent: {}
+[26.013003] (-) TimerEvent: {}
+[26.113168] (-) TimerEvent: {}
+[26.213374] (-) TimerEvent: {}
+[26.313625] (-) TimerEvent: {}
+[26.413864] (-) TimerEvent: {}
+[26.514037] (-) TimerEvent: {}
+[26.614214] (-) TimerEvent: {}
+[26.658626] (bishe_detector) StdoutLine: {'line': b'[100%] Built target detector_node\n'}
+[26.676189] (bishe_detector) JobEnded: {'identifier': 'bishe_detector', 'rc': 'SIGINT'}
+[26.686940] (-) EventReactorShutdown: {}

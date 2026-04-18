@@ -39,6 +39,10 @@ private:
     }
   }
 
+  /**
+   * @brief 开始语音拉流播放
+   * 采用 ffplay 作为播放引擎，通过子进程执行，并指定输出到 USB 扬声器
+   */
   void startStream(const std::string &url)
   {
     stopStream();
@@ -53,19 +57,20 @@ private:
     else if (pid == 0)
     {
       // 设置环境变量以指定 ALSA 设备为 hw:0 (USB 扬声器)
+      // 这是为了确保 ffplay (SDL2) 能够直接找到并使用指定的硬件设备
       setenv("AUDIODEV", "hw:0", 1);
       
-      // 使用 ffplay 播放音频
-      // -nodisp: 不显示视频窗口
-      // -autoexit: 播放结束后自动退出
-      // -rtsp_transport tcp: 强制使用 TCP 传输以提高稳定性
+      // 使用 ffplay 播放音频参数说明:
+      // -nodisp: 纯音频播放，不启动视频渲染窗口，节省系统资源
+      // -autoexit: 当网络流结束或连接断开时，自动退出进程以便重连
+      // -rtsp_transport tcp: 强制使用 TCP 传输。解决 RTSP over UDP 可能出现的 EOF 或花屏/卡顿问题
       execl("/usr/local/bin/ffplay", "ffplay",
             "-nodisp", 
             "-autoexit", 
             "-rtsp_transport", "tcp",
             "-i", url.c_str(),
             nullptr);
-      _exit(1);
+      _exit(1); // execl 失败时的保护
     }
     else
     {

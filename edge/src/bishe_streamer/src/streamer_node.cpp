@@ -126,6 +126,12 @@ private:
         double fps = static_cast<double>(framerate_);
         cv::Size target_size(target_width, target_height);
 
+        // GStreamer 推流管线说明:
+        // appsrc: 接收来自 OpenCV 的图像帧
+        // x264enc: H.264 编码，设置 ultrafast 预设和 zerolatency 调优以降低延迟
+        // alsasrc: 从指定的硬件麦克风捕获音频 (audio_device 参数控制)
+        // voaacenc: AAC 音频编码
+        // rtspclientsink: 将音视频合成流推送到 RTSP 服务器
         std::string rtsp_out_full =
             "appsrc is-live=true do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! "
             "x264enc bitrate=8000 speed-preset=ultrafast tune=zerolatency key-int-max=30 ! h264parse ! queue ! sink. "
@@ -140,6 +146,7 @@ private:
         {
             RCLCPP_WARN(this->get_logger(), "音视频复合管线开启失败（可能是音频设备 %s 被占用或不存在），尝试纯视频模式...", audio_device_.c_str());
 
+            // 纯视频推流管线备选
             std::string rtsp_out_video_only =
                 "appsrc is-live=true do-timestamp=true ! videoconvert ! video/x-raw,format=I420 ! "
                 "x264enc bitrate=8000 speed-preset=ultrafast tune=zerolatency key-int-max=30 ! h264parse ! "
@@ -158,6 +165,10 @@ private:
         }
     }
 
+    /**
+     * @brief 检测结果回调函数
+     * 接收经过 AI 处理后的标注图像，执行缩放处理，并写入推流管线
+     */
     void resultCallback(const bishe_msgs::msg::DetectorResult::ConstSharedPtr& msg)
     {
         try

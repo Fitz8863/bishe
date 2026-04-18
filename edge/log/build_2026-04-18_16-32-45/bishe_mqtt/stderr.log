@@ -1,0 +1,710 @@
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:923:5: error: ‘builder’ does not name a type
+  923 |     builder["collectComments"] = false;
+      |     ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:46: error: ‘builder’ is not a type
+  924 |     std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+      |                                              ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:924:53: error: expected ‘,’ or ‘...’ before ‘.’ token
+  924 |     std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+      |                                                     ^
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:927:5: error: expected unqualified-id before ‘if’
+  927 |     if (!reader->parse(payload.data(), payload.data() + payload.size(), &root, &errors) || !root.isObject())
+      |     ^~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:933:5: error: expected unqualified-id before ‘if’
+  933 |     if (!root["type"].isString())
+      |     ^~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:941:5: error: expected unqualified-id before ‘if’
+  941 |     if (topic == subscribe_topic_)
+      |     ^~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:949:5: error: expected unqualified-id before ‘else’
+  949 |     else if (topic == call_topic_)
+      |     ^~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5: error: expected unqualified-id before ‘do’
+  958 |     RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());
+      |     ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:958:5: error: expected unqualified-id before ‘while’
+  958 |     RCLCPP_WARN(this->get_logger(), "Unsupported MQTT command type %s on topic %s", type.c_str(), topic.c_str());
+      |     ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In constructor ‘MqttNode::MqttNode()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:102:28: error: class ‘MqttNode’ does not have any field named ‘cb_’
+  102 |       : Node("mqtt_node"), cb_(
+      |                            ^~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:115:9: error: ‘report_interval_sec_’ was not declared in this scope
+  115 |     if (report_interval_sec_ <= 0.0)
+      |         ^~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:5: error: ‘client_’ was not declared in this scope
+  122 |     client_ = std::make_unique<mqtt::async_client>(server_address, client_id_);
+      |     ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:122:68: error: ‘client_id_’ was not declared in this scope
+  122 |     client_ = std::make_unique<mqtt::async_client>(server_address, client_id_);
+      |                                                                    ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:123:27: error: ‘cb_’ was not declared in this scope
+  123 |     client_->set_callback(cb_);
+      |                           ^~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:135:26: error: ‘subscribe_topic_’ was not declared in this scope
+  135 |       client_->subscribe(subscribe_topic_, 1)->wait();
+      |                          ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:137:26: error: ‘call_topic_’ was not declared in this scope
+  137 |       client_->subscribe(call_topic_, 1)->wait();
+      |                          ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:149:5: error: ‘intercom_pub_’ was not declared in this scope
+  149 |     intercom_pub_ = this->create_publisher<std_msgs::msg::String>("intercom/control", 10);
+      |     ^~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:151:5: error: ‘alarm_event_sub_’ was not declared in this scope
+  151 |     alarm_event_sub_ = this->create_subscription<std_msgs::msg::String>(
+      |     ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:157:34: error: ‘param_callback_group_’ was not declared in this scope; did you mean ‘create_callback_group’?
+  157 |     sub_options.callback_group = param_callback_group_;
+      |                                  ^~~~~~~~~~~~~~~~~~~~~
+      |                                  create_callback_group
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:158:5: error: ‘param_event_sub_’ was not declared in this scope
+  158 |     param_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+      |     ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:160:30: error: ‘onParameterEvent’ is not a member of ‘MqttNode’
+  160 |         std::bind(&MqttNode::onParameterEvent, this, std::placeholders::_1),
+      |                              ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In destructor ‘virtual MqttNode::~MqttNode()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:172:9: error: ‘client_’ was not declared in this scope
+  172 |     if (client_ == nullptr)
+      |         ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:179:11: error: ‘client_’ was not declared in this scope
+  179 |       if (client_->is_connected())
+      |           ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::loadParameters()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:245:35: error: ‘broker_’ was not declared in this scope
+  245 |     this->get_parameter("broker", broker_);
+      |                                   ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:246:33: error: ‘port_’ was not declared in this scope
+  246 |     this->get_parameter("port", port_);
+      |                                 ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:247:38: error: ‘client_id_’ was not declared in this scope
+  247 |     this->get_parameter("client_id", client_id_);
+      |                                      ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:248:35: error: ‘device_’ was not declared in this scope
+  248 |     this->get_parameter("device", device_);
+      |                                   ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:249:44: error: ‘subscribe_topic_’ was not declared in this scope
+  249 |     this->get_parameter("subscribe_topic", subscribe_topic_);
+      |                                            ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:250:39: error: ‘call_topic_’ was not declared in this scope
+  250 |     this->get_parameter("call_topic", call_topic_);
+      |                                       ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:251:42: error: ‘publish_topic_’ was not declared in this scope
+  251 |     this->get_parameter("publish_topic", publish_topic_);
+      |                                          ^~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:254:39: error: ‘info_topic_’ was not declared in this scope
+  254 |     this->get_parameter("info_topic", info_topic_);
+      |                                       ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:255:40: error: ‘alarm_topic_’ was not declared in this scope
+  255 |     this->get_parameter("alarm_topic", alarm_topic_);
+      |                                        ^~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:256:48: error: ‘report_interval_sec_’ was not declared in this scope
+  256 |     this->get_parameter("report_interval_sec", report_interval_sec_);
+      |                                                ^~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:257:38: error: ‘camera_id_’ was not declared in this scope
+  257 |     this->get_parameter("camera_id", camera_id_);
+      |                                      ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:258:44: error: ‘camera_location_’ was not declared in this scope
+  258 |     this->get_parameter("camera_location", camera_location_);
+      |                                            ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:259:44: error: ‘camera_http_url_’ was not declared in this scope
+  259 |     this->get_parameter("camera_http_url", camera_http_url_);
+      |                                            ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::syncStaticCameraMetadata()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:278:38: error: ‘info_mutex_’ was not declared in this scope
+  278 |     std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                      ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:18: error: ‘info_cache_’ was not declared in this scope
+  279 |     auto &info = info_cache_[camera_id_];
+      |                  ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:279:30: error: ‘camera_id_’ was not declared in this scope
+  279 |     auto &info = info_cache_[camera_id_];
+      |                              ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:280:21: error: ‘camera_location_’ was not declared in this scope
+  280 |     info.location = camera_location_;
+      |                     ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:281:21: error: ‘camera_http_url_’ was not declared in this scope
+  281 |     info.http_url = camera_http_url_;
+      |                     ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘std::string MqttNode::buildServerAddress() const’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:294:9: error: ‘broker_’ was not declared in this scope
+  294 |     if (broker_.find("://") != std::string::npos)
+      |         ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:23: error: ‘broker_’ was not declared in this scope
+  298 |     return "tcp://" + broker_ + ":" + std::to_string(port_);
+      |                       ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:298:54: error: ‘port_’ was not declared in this scope
+  298 |     return "tcp://" + broker_ + ":" + std::to_string(port_);
+      |                                                      ^~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::createReportTimer()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:309:71: error: ‘report_interval_sec_’ was not declared in this scope
+  309 |     const int interval_ms = std::max(100, static_cast<int>(std::round(report_interval_sec_ * 1000.0)));
+      |                                                                       ^~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:310:5: error: ‘report_timer_’ was not declared in this scope
+  310 |     report_timer_ = this->create_wall_timer(
+      |     ^~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:313:9: error: ‘report_callback_group_’ was not declared in this scope; did you mean ‘create_callback_group’?
+  313 |         report_callback_group_);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+      |         create_callback_group
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::refreshLocalDynamicParameters()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:333:36: error: ‘camera_id_’ was not declared in this scope
+  333 |     std::string latest_camera_id = camera_id_;
+      |                                    ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:334:35: error: ‘camera_location_’ was not declared in this scope; did you mean ‘latest_location’?
+  334 |     std::string latest_location = camera_location_;
+      |                                   ^~~~~~~~~~~~~~~~
+      |                                   latest_location
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:335:35: error: ‘camera_http_url_’ was not declared in this scope; did you mean ‘latest_http_url’?
+  335 |     std::string latest_http_url = camera_http_url_;
+      |                                   ^~~~~~~~~~~~~~~~
+      |                                   latest_http_url
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:336:30: error: ‘report_interval_sec_’ was not declared in this scope
+  336 |     double latest_interval = report_interval_sec_;
+      |                              ^~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:337:37: error: ‘info_topic_’ was not declared in this scope
+  337 |     std::string latest_info_topic = info_topic_;
+      |                                     ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘std::shared_ptr<rclcpp::AsyncParametersClient> MqttNode::getOrCreateParamClient(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:455:21: error: ‘param_clients_’ was not declared in this scope
+  455 |     const auto it = param_clients_.find(node_name);
+      |                     ^~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:462:54: error: ‘param_callback_group_’ was not declared in this scope; did you mean ‘create_callback_group’?
+  462 |         this, node_name, rmw_qos_profile_parameters, param_callback_group_);
+      |                                                      ^~~~~~~~~~~~~~~~~~~~~
+      |                                                      create_callback_group
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::fetchParametersSync(const string&, const std::vector<std::__cxx11::basic_string<char> >&, std::vector<rclcpp::Parameter>&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:502:29: error: ‘next_query_time_’ was not declared in this scope
+  502 |     const auto backoff_it = next_query_time_.find(node_name);
+      |                             ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::cameraIdConfigured(const string&) const’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:593:25: error: ‘camera_id_’ was not declared in this scope; did you mean ‘camera_id’?
+  593 |     return camera_id == camera_id_;
+      |                         ^~~~~~~~~~
+      |                         camera_id
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::updateCacheForCommand(const string&, const std::optional<double>&, const std::optional<double>&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:601:38: error: ‘info_mutex_’ was not declared in this scope
+  601 |     std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                      ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:602:18: error: ‘info_cache_’ was not declared in this scope
+  602 |     auto &info = info_cache_[camera_id];
+      |                  ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::handleParameterCommand(const Json::Value&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:768:26: warning: unused variable ‘node_name’ [-Wunused-variable]
+  768 |         for (const auto &node_name : monitorNodeCandidates(camera_id))
+      |                          ^~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘bool MqttNode::handleCallCommand(const Json::Value&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:810:26: error: ‘device_’ was not declared in this scope
+  810 |     if (target_device != device_)
+      |                          ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:828:7: error: ‘intercom_pub_’ was not declared in this scope
+  828 |       intercom_pub_->publish(msg);
+      |       ^~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:835:7: error: ‘intercom_pub_’ was not declared in this scope
+  835 |       intercom_pub_->publish(msg);
+      |       ^~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::handleMqttMessage(const string&, const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:18: error: ‘subscribe_topic_’ was not declared in this scope
+  849 |     if (topic != subscribe_topic_ && topic != call_topic_)
+      |                  ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:849:47: error: ‘call_topic_’ was not declared in this scope
+  849 |     if (topic != subscribe_topic_ && topic != call_topic_)
+      |                                               ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:875:18: error: ‘subscribe_topic_’ was not declared in this scope
+  875 |     if (topic == subscribe_topic_)
+      |                  ^~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:884:23: error: ‘call_topic_’ was not declared in this scope
+  884 |     else if (topic == call_topic_)
+      |                       ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In member function ‘void MqttNode::onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:910:5: error: ‘publishToAlarmTopic’ was not declared in this scope
+  910 |     publishToAlarmTopic(msg->data);
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: At global scope:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:969:22: error: expected initializer before ‘escapeJson’
+  969 |   static std::string escapeJson(const std::string &value)
+      |                      ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void onParameterEvent(rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >::SharedPtr)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:50: error: ‘camera_id_’ was not declared in this scope
+ 1007 |     auto det_candidates = detectorNodeCandidates(camera_id_);
+      |                                                  ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1007:27: error: ‘detectorNodeCandidates’ was not declared in this scope
+ 1007 |     auto det_candidates = detectorNodeCandidates(camera_id_);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1013:27: error: ‘streamerNodeCandidates’ was not declared in this scope
+ 1013 |     auto str_candidates = streamerNodeCandidates(camera_id_);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1025:38: error: ‘info_mutex_’ was not declared in this scope
+ 1025 |     std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                      ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1026:18: error: ‘info_cache_’ was not declared in this scope
+ 1026 |     auto &info = info_cache_[target_camera_id];
+      |                  ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘bool requestStreamerRuntimeInfo(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1099:29: error: ‘streamerNodeCandidates’ was not declared in this scope
+ 1099 |     const auto candidates = streamerNodeCandidates(camera_id);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1103:12: error: ‘fetchParametersSync’ was not declared in this scope
+ 1103 |       if (!fetchParametersSync(node_name, {"output_width", "output_height", "output_fps", "scale"}, params))
+      |            ^~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1108:7: error: ‘CameraInfo’ was not declared in this scope
+ 1108 |       CameraInfo info;
+      |       ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1110:42: error: ‘info_mutex_’ was not declared in this scope
+ 1110 |         std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                          ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:9: error: ‘info’ was not declared in this scope
+ 1111 |         info = info_cache_[camera_id];
+      |         ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1111:16: error: ‘info_cache_’ was not declared in this scope
+ 1111 |         info = info_cache_[camera_id];
+      |                ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1119:11: error: ‘info’ was not declared in this scope
+ 1119 |           info.width = static_cast<int>(p.as_int());
+      |           ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1123:11: error: ‘info’ was not declared in this scope
+ 1123 |           info.height = static_cast<int>(p.as_int());
+      |           ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1129:13: error: ‘info’ was not declared in this scope
+ 1129 |             info.fps = p.as_double();
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1133:13: error: ‘info’ was not declared in this scope
+ 1133 |             info.fps = static_cast<double>(p.as_int());
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1140:13: error: ‘info’ was not declared in this scope
+ 1140 |             info.scale = p.as_double();
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1144:13: error: ‘info’ was not declared in this scope
+ 1144 |             info.scale = static_cast<double>(p.as_int());
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1150:42: error: ‘info_mutex_’ was not declared in this scope
+ 1150 |         std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                          ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:9: error: ‘info_cache_’ was not declared in this scope
+ 1151 |         info_cache_[camera_id] = info;
+      |         ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1151:34: error: ‘info’ was not declared in this scope
+ 1151 |         info_cache_[camera_id] = info;
+      |                                  ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘bool requestDetectorThresholds(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1168:29: error: ‘detectorNodeCandidates’ was not declared in this scope
+ 1168 |     const auto candidates = detectorNodeCandidates(camera_id);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1172:12: error: ‘fetchParametersSync’ was not declared in this scope
+ 1172 |       if (!fetchParametersSync(node_name, {"confidence_threshold", "nms_threshold"}, params))
+      |            ^~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1177:7: error: ‘CameraInfo’ was not declared in this scope
+ 1177 |       CameraInfo info;
+      |       ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1179:42: error: ‘info_mutex_’ was not declared in this scope
+ 1179 |         std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                          ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:9: error: ‘info’ was not declared in this scope
+ 1180 |         info = info_cache_[camera_id];
+      |         ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1180:16: error: ‘info_cache_’ was not declared in this scope
+ 1180 |         info = info_cache_[camera_id];
+      |                ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1189:13: error: ‘info’ was not declared in this scope
+ 1189 |             info.confidence_threshold = p.as_double();
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1193:13: error: ‘info’ was not declared in this scope
+ 1193 |             info.confidence_threshold = static_cast<double>(p.as_int());
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1200:13: error: ‘info’ was not declared in this scope
+ 1200 |             info.nms_threshold = p.as_double();
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1204:13: error: ‘info’ was not declared in this scope
+ 1204 |             info.nms_threshold = static_cast<double>(p.as_int());
+      |             ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1210:42: error: ‘info_mutex_’ was not declared in this scope
+ 1210 |         std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                          ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:9: error: ‘info_cache_’ was not declared in this scope
+ 1211 |         info_cache_[camera_id] = info;
+      |         ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1211:34: error: ‘info’ was not declared in this scope
+ 1211 |         info_cache_[camera_id] = info;
+      |                                  ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘std::string buildInfoPayload()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:37: error: ‘CameraInfo’ was not declared in this scope
+ 1241 |     std::unordered_map<std::string, CameraInfo> snapshot;
+      |                                     ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47: error: template argument 2 is invalid
+ 1241 |     std::unordered_map<std::string, CameraInfo> snapshot;
+      |                                               ^
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1241:47: error: template argument 5 is invalid
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1243:40: error: ‘info_mutex_’ was not declared in this scope
+ 1243 |       std::lock_guard<std::mutex> lock(info_mutex_);
+      |                                        ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1244:18: error: ‘info_cache_’ was not declared in this scope
+ 1244 |       snapshot = info_cache_;
+      |                  ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1249:36: error: invalid use of ‘this’ in non-member function
+ 1249 |     oss << "{\"timestamp_ns\":" << this->now().nanoseconds() << ",";
+      |                                    ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:42: error: ‘device_’ was not declared in this scope
+ 1250 |     oss << "\"device\":\"" << escapeJson(device_) << "\",";
+      |                                          ^~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1250:31: error: ‘escapeJson’ was not declared in this scope
+ 1250 |     oss << "\"device\":\"" << escapeJson(device_) << "\",";
+      |                               ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:30: error: request for member ‘find’ in ‘snapshot’, which is of non-class type ‘int’
+ 1252 |     const auto it = snapshot.find(camera_id_);
+      |                              ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1252:35: error: ‘camera_id_’ was not declared in this scope
+ 1252 |     const auto it = snapshot.find(camera_id_);
+      |                                   ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1253:15: error: expected ‘;’ before ‘info’
+ 1253 |     CameraInfo info;
+      |               ^~~~~
+      |               ;
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1254:24: error: request for member ‘end’ in ‘snapshot’, which is of non-class type ‘int’
+ 1254 |     if (it != snapshot.end())
+      |                        ^~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1256:7: error: ‘info’ was not declared in this scope
+ 1256 |       info = it->second;
+      |       ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1261:44: error: ‘info’ was not declared in this scope
+ 1261 |     oss << "\"location\":\"" << escapeJson(info.location) << "\",";
+      |                                            ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void publishToTopic(const string&, const string&, const char*)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1280:9: error: ‘client_’ was not declared in this scope
+ 1280 |     if (client_ == nullptr || !client_->is_connected())
+      |         ^~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of ‘this’ in non-member function
+ 1283 |           this->get_logger(), *this->get_clock(), 3000,
+      |           ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of ‘this’ in non-member function
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7: error: template argument 1 is invalid
+ 1282 |       RCLCPP_WARN_THROTTLE(
+      |       ^~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:32: error: invalid use of ‘this’ in non-member function
+ 1283 |           this->get_logger(), *this->get_clock(), 3000,
+      |                                ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In lambda function:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1282:7: error: ‘c’ was not declared in this scope
+ 1282 |       RCLCPP_WARN_THROTTLE(
+      |       ^~~~~~~~~~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void publishToTopic(const string&, const string&, const char*)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of ‘this’ in non-member function
+ 1283 |           this->get_logger(), *this->get_clock(), 3000,
+      |           ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1283:11: error: invalid use of ‘this’ in non-member function
+ 1283 |           this->get_logger(), *this->get_clock(), 3000,
+      |           ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1291:7: error: ‘client_’ was not declared in this scope
+ 1291 |       client_->publish(msg)->wait();
+      |       ^~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of ‘this’ in non-member function
+ 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+      |                    ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of ‘this’ in non-member function
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:7: error: template argument 1 is invalid
+ 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+      |       ^~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of ‘this’ in non-member function
+ 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+      |                    ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1295:20: error: invalid use of ‘this’ in non-member function
+ 1295 |       RCLCPP_ERROR(this->get_logger(), "Publish %s failed: %s", topic_label, e.what());
+      |                    ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void publishToInfoTopic(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1301:20: error: ‘info_topic_’ was not declared in this scope
+ 1301 |     publishToTopic(info_topic_, payload, info_topic_.c_str());
+      |                    ^~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void publishToAlarmTopic(const string&)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1306:20: error: ‘alarm_topic_’ was not declared in this scope
+ 1306 |     publishToTopic(alarm_topic_, payload, alarm_topic_.c_str());
+      |                    ^~~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void onAlarmEvent(std_msgs::msg::String_<std::allocator<void> >::SharedPtr)’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of ‘this’ in non-member function
+ 1313 |       RCLCPP_WARN(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+      |                   ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of ‘this’ in non-member function
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:7: error: template argument 1 is invalid
+ 1313 |       RCLCPP_WARN(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+      |       ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of ‘this’ in non-member function
+ 1313 |       RCLCPP_WARN(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+      |                   ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1313:19: error: invalid use of ‘this’ in non-member function
+ 1313 |       RCLCPP_WARN(this->get_logger(), "收到空的报警事件，跳过 MQTT 转发");
+      |                   ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: In function ‘void reportInfoTimerCallback()’:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1331:5: error: ‘refreshLocalDynamicParameters’ was not declared in this scope
+ 1331 |     refreshLocalDynamicParameters(); // 检查参数是否有更新
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1334:10: error: ‘initial_fetch_streamer_’ was not declared in this scope
+ 1334 |     if (!initial_fetch_streamer_)
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1336:38: error: ‘camera_id_’ was not declared in this scope
+ 1336 |       if (requestStreamerRuntimeInfo(camera_id_))
+      |                                      ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1341:10: error: ‘initial_fetch_detector_’ was not declared in this scope
+ 1341 |     if (!initial_fetch_detector_)
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1343:37: error: ‘camera_id_’ was not declared in this scope
+ 1343 |       if (requestDetectorThresholds(camera_id_))
+      |                                     ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp: At global scope:
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1356:16: error: no matching function for call to ‘MqttCallback::MqttCallback()’
+ 1356 |   MqttCallback cb_;                            ///< MQTT 消息回调处理
+      |                ^~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12: note: candidate: ‘MqttCallback::MqttCallback(rclcpp::Logger, std::function<void(const std::__cxx11::basic_string<char>&, const std::__cxx11::basic_string<char>&)>)’
+   53 |   explicit MqttCallback(
+      |            ^~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:53:12: note:   candidate expects 2 arguments, 0 provided
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note: candidate: ‘MqttCallback::MqttCallback(const MqttCallback&)’
+   46 | class MqttCallback : public virtual mqtt::callback
+      |       ^~~~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note:   candidate expects 1 argument, 0 provided
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note: candidate: ‘MqttCallback::MqttCallback(MqttCallback&&)’
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:46:7: note:   candidate expects 1 argument, 0 provided
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:7: error: invalid use of ‘this’ at top level
+ 1375 |       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
+      |       ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1375:80: error: no matching function for call to ‘std::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)’
+ 1375 |       this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive)};
+      |                                                                                ^
+In file included from /usr/include/c++/11/memory:77,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/usr/include/c++/11/bits/shared_ptr.h:408:9: note: candidate: ‘template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup]’
+  408 |         shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:408:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:340:9: note: candidate: ‘template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]’
+  340 |         shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:340:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:332:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  332 |         shared_ptr(auto_ptr<_Yp>&& __r);
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:332:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:325:18: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  325 |         explicit shared_ptr(const weak_ptr<_Yp>& __r)
+      |                  ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:325:18: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:313:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  313 |         shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:313:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:296:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  296 |         shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:296:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:257:9: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup]’
+  257 |         shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:257:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:233:9: note: candidate: ‘template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup]’
+  233 |         shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:233:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:214:9: note: candidate: ‘template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup]’
+  214 |         shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:214:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:194:9: note: candidate: ‘template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup]’
+  194 |         shared_ptr(nullptr_t __p, _Deleter __d)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:194:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:177:9: note: candidate: ‘template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]’
+  177 |         shared_ptr(_Yp* __p, _Deleter __d)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:177:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:160:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  160 |         shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:160:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:417:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup]’
+  417 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:417:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/11/bits/shared_ptr.h:357:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t]’
+  357 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:357:17: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:304:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup]’
+  304 |       shared_ptr(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:304:7: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:150:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup]’
+  150 |       shared_ptr(const shared_ptr&) noexcept = default; ///< Copy constructor
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:150:7: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:148:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup]’
+  148 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:148:17: note:   candidate expects 0 arguments, 1 provided
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:7: error: invalid use of ‘this’ at top level
+ 1377 |       this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};
+      |       ^~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1377:72: error: no matching function for call to ‘std::shared_ptr<rclcpp::CallbackGroup>::shared_ptr(<brace-enclosed initializer list>)’
+ 1377 |       this->create_callback_group(rclcpp::CallbackGroupType::Reentrant)};
+      |                                                                        ^
+In file included from /usr/include/c++/11/memory:77,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:19:
+/usr/include/c++/11/bits/shared_ptr.h:408:9: note: candidate: ‘template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = _Alloc; _Args = {_Args ...}; _Tp = rclcpp::CallbackGroup]’
+  408 |         shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:408:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:340:9: note: candidate: ‘template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]’
+  340 |         shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:340:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:332:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&) [with _Yp = _Tp1; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  332 |         shared_ptr(auto_ptr<_Yp>&& __r);
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:332:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:325:18: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  325 |         explicit shared_ptr(const weak_ptr<_Yp>& __r)
+      |                  ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:325:18: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:313:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  313 |         shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:313:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:296:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  296 |         shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:296:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:257:9: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*) [with _Yp = _Yp; _Tp = rclcpp::CallbackGroup]’
+  257 |         shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:257:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:233:9: note: candidate: ‘template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc) [with _Deleter = _Deleter; _Alloc = _Alloc; _Tp = rclcpp::CallbackGroup]’
+  233 |         shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:233:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:214:9: note: candidate: ‘template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc) [with _Yp = _Yp; _Deleter = _Deleter; _Alloc = _Alloc; <template-parameter-2-4> = <template-parameter-1-4>; _Tp = rclcpp::CallbackGroup]’
+  214 |         shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:214:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:194:9: note: candidate: ‘template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter) [with _Deleter = _Deleter; _Tp = rclcpp::CallbackGroup]’
+  194 |         shared_ptr(nullptr_t __p, _Deleter __d)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:194:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:177:9: note: candidate: ‘template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter) [with _Yp = _Yp; _Deleter = _Deleter; <template-parameter-2-3> = <template-parameter-1-3>; _Tp = rclcpp::CallbackGroup]’
+  177 |         shared_ptr(_Yp* __p, _Deleter __d)
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:177:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:160:9: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*) [with _Yp = _Yp; <template-parameter-2-2> = <template-parameter-1-2>; _Tp = rclcpp::CallbackGroup]’
+  160 |         shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+      |         ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:160:9: note:   template argument deduction/substitution failed:
+/usr/include/c++/11/bits/shared_ptr.h:417:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = rclcpp::CallbackGroup]’
+  417 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:417:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/11/bits/shared_ptr.h:357:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = rclcpp::CallbackGroup; std::nullptr_t = std::nullptr_t]’
+  357 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:357:17: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:304:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = rclcpp::CallbackGroup]’
+  304 |       shared_ptr(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:304:7: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:150:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = rclcpp::CallbackGroup]’
+  150 |       shared_ptr(const shared_ptr&) noexcept = default; ///< Copy constructor
+      |       ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:150:7: note:   conversion of argument 1 would be ill-formed:
+/usr/include/c++/11/bits/shared_ptr.h:148:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = rclcpp::CallbackGroup]’
+  148 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:148:17: note:   candidate expects 0 arguments, 1 provided
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:35: error: ‘CameraInfo’ was not declared in this scope
+ 1388 |   std::unordered_map<std::string, CameraInfo> info_cache_; ///< 摄像头信息缓存
+      |                                   ^~~~~~~~~~
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45: error: template argument 2 is invalid
+ 1388 |   std::unordered_map<std::string, CameraInfo> info_cache_; ///< 摄像头信息缓存
+      |                                             ^
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1388:45: error: template argument 5 is invalid
+/home/jetson/projects/bishe/edge/src/bishe_mqtt/src/mqtt_node.cpp:1390:1: error: expected declaration before ‘}’ token
+ 1390 | };
+      | ^
+gmake[2]: *** [CMakeFiles/mqtt_node.dir/build.make:76：CMakeFiles/mqtt_node.dir/src/mqtt_node.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/mqtt_node.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2
