@@ -86,62 +86,20 @@ private:
 
   void declareParameters()
   {
-    // window_seconds: 告警判定窗口时长（秒）。在此时间内累计检测到违规达到阈值则触发报警
     this->declare_parameter<int>("window_seconds", 5);
-    // violation_ratio_threshold: 违规帧占比阈值（目前代码主要使用帧数判定，此为预留）
     this->declare_parameter<float>("violation_ratio_threshold", 0.4);
-    // location: 摄像头的安装位置描述
     this->declare_parameter<std::string>("location", "生产车间A区");
-    // camera_id: 摄像头唯一标识 ID
     this->declare_parameter<std::string>("camera_id", "001");
-    // trigger_frame_threshold: 触发报警所需的累计违规帧数阈值
     this->declare_parameter<int>("trigger_frame_threshold", 3);
-    // trigger_cooldown_seconds: 两次报警之间的冷却时间，防止频繁误报
     this->declare_parameter<int>("trigger_cooldown_seconds", 15);
-    // upload_after_alarm_count: 累计多少次报警后执行一次图片抓拍上传
     this->declare_parameter<int>("upload_after_alarm_count", 3);
-    // reset_alarm_count_after_upload: 上传成功后是否重置报警计数器
     this->declare_parameter<bool>("reset_alarm_count_after_upload", true);
-    // alarm_count_reset_timeout_seconds: 报警计数器的静默重置时间（秒）
     this->declare_parameter<int>("alarm_count_reset_timeout_seconds", 30);
-    // upload.server_url: 告警图片上传的 HTTP 接口地址
     this->declare_parameter<std::string>("upload.server_url", "http://localhost:5000/capture/upload");
-    // upload.timeout_seconds: HTTP 上传的超时时间
     this->declare_parameter<int>("upload.timeout_seconds", 10);
-    // alarm.audio_file: 通用报警声音文件路径
     this->declare_parameter<std::string>("alarm.audio_file", "/path/to/alarm.mp3");
-    // alarm.fire_audio_file: 针对火灾报警的特定声音文件
     this->declare_parameter<std::string>("alarm.fire_audio_file", "");
-    // alarm.smoking_audio_file: 针对吸烟报警的特定声音文件
     this->declare_parameter<std::string>("alarm.smoking_audio_file", "");
-  }
-
-  /**
-   * @brief AI 检测结果回调函数
-   * 负责统计时间窗口内的违规帧数，并根据配置触发声音报警和抓拍上传
-   */
-  void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
-  {
-    if (!msg->has_violation) {
-      return;
-    }
-    // ...
-  }
-
-  /**
-   * @brief 播放报警声音并发布报警事件到 ROS 主题
-   */
-  void playAlarm(const std::string &violation_type)
-  {
-    // ...
-  }
-
-  /**
-   * @brief 执行抓拍图片上传任务
-   */
-  bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
-  {
-    // ...
   }
 
   void loadParameters()
@@ -292,6 +250,15 @@ private:
     alarm_event_pub_->publish(msg);
   }
 
+  /**
+   * @brief 检测结果处理回调
+   * @param msg 包含 AI 检测结果（是否有违规、违规类型、标注图像）
+   * 
+   * 核心逻辑：
+   * 1. 过滤未订阅的违规类型
+   * 2. 将检出时刻存入滑动窗口 (hit_times)
+   * 3. 统计窗口内检出帧数，若超过阈值且不在冷却期，则触发正式报警
+   */
   void resultCallback(const bishe_msgs::msg::DetectorResult::SharedPtr msg)
   {
     if (!msg->has_violation) {
@@ -350,6 +317,12 @@ private:
     triggerCaptureAndAlarm(normalized_type, state, now);
   }
 
+  /**
+   * @brief 播放报警音并发布报警事件
+   * @param violation_type 违规类型
+   * 
+   * 使用 gst-play-1.0 播放音频，并向本地 /alarm/event 主题发布消息
+   */
   void playAlarm(const std::string &violation_type)
   {
     const std::string audio_file = violation_type == "fire" ? fire_alarm_audio_file_ : smoking_alarm_audio_file_;
@@ -396,6 +369,13 @@ private:
     }
   }
 
+  /**
+   * @brief 执行图像抓拍并上传至 Web 后端
+   * @param frame 待上传的 OpenCV 图像
+   * @param violation_type 违规类型
+   * 
+   * 流程：保存本地临时文件 -> 通过 CURL 执行 HTTP POST 上传 -> 删除临时文件
+   */
   bool captureAndUpload(const cv::Mat &frame, const std::string &violation_type)
   {
     auto now = std::chrono::system_clock::now();

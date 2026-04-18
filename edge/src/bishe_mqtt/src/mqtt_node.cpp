@@ -628,6 +628,12 @@ private:
     return true;
   }
 
+  /**
+   * @brief 参数修改指令的具体处理逻辑
+   * 
+   * 接收到云端指令后，通过 ROS2 异步参数客户端将值同步给其他节点。
+   * 这里体现了 MQTT -> ROS 参数系统的映射关系。
+   */
   bool handleParameterCommand(const Json::Value &root)
   {
     if (!root["camera_id"].isString())
@@ -839,6 +845,16 @@ private:
     return false;
   }
 
+  /**
+   * @brief 处理来自 MQTT 的 JSON 控制指令
+   * @param topic 消息主题
+   * @param payload JSON 字符串
+   * 
+   * 指令类型支持：
+   * 1. "parameters": 动态修改检测参数（如阈值、监控时间窗口）
+   * 2. "intercom_start": 开启远程对讲
+   * 3. "intercom_stop": 停止远程对讲
+   */
   void handleMqttMessage(const std::string &topic, const std::string &payload)
   {
     if (topic != subscribe_topic_ && topic != call_topic_)
@@ -1252,6 +1268,14 @@ private:
    * 2. 从各节点获取最新运行时信息
    * 3. 构建 JSON payload
    * 4. 发布到 MQTT
+   */
+  /**
+   * @brief 定时上报回调函数
+   * 
+   * 每次定时器触发时：
+   * 1. 刷新并同步本地参数
+   * 2. 构建包含所有摄像头状态的 JSON 数据包
+   * 3. 发布到云端 MQTT info 主题
    */
   void reportInfoTimerCallback()
   {

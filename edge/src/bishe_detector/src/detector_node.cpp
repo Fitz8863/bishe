@@ -31,31 +31,32 @@ namespace bishe_detector
 class DetectorNode : public rclcpp::Node
 {
 public:
+  /**
+   * @brief DetectorNode 构造函数
+   * @param options ROS2 节点配置选项
+   * 
+   * 初始化过程：
+   * 1. 声明并加载参数（阈值、采样间隔、模型路径等）
+   * 2. 初始化 TensorRT 推理引擎及 YOLOv8 工作线程
+   * 3. 创建共享内存环形缓冲区 (SharedFrameRing)
+   * 4. 订阅相机发布的图像引用 (SharedFrameRef)
+   * 5. 创建检测结果发布器
+   */
   explicit DetectorNode(const rclcpp::NodeOptions &options)
       : Node("detector_node", options)
   {
-    // 声明 ROS 2 参数
-    // confidence_threshold: AI 检测置信度阈值，低于此值的检测结果将被忽略
-    this->declare_parameter<float>("confidence_threshold", 0.5);
-    // nms_threshold: 非极大值抑制阈值，用于过滤重叠的边界框
-    this->declare_parameter<float>("nms_threshold", 0.5);
-    // sampling_interval_ms: 常规采样间隔（毫秒）。在正常巡检状态下，每隔此时间处理一帧，用于节省算力
-    this->declare_parameter<int>("sampling_interval_ms", 1000);
-    // lock_duration_ms: 检测锁定时间（毫秒）。一旦检测到违规，在此时间内会提高检测频率
-    this->declare_parameter<int>("lock_duration_ms", 3000);
-    // engine_path: TensorRT 模型引擎文件的绝对路径
+    // 声明 ROS2 参数
+    this->declare_parameter<float>("confidence_threshold", 0.5);   // 置信度阈值
+    this->declare_parameter<float>("nms_threshold", 0.5);          // 非极大值抑制阈值
+    this->declare_parameter<int>("sampling_interval_ms", 1000);    // 正常状态下的采样间隔（毫秒）
+    this->declare_parameter<int>("lock_duration_ms", 3000);        // 检出目标后的高频锁定时间（毫秒）
     this->declare_parameter<std::string>("engine_path", "/home/jetson/projects/bishe/models/yolov8s.engine");
-    // input_topic: 输入图像引用的 ROS 主题
-    this->declare_parameter<std::string>("input_topic", "camera/detector_frame_ref");
-    // detector_width/height: 模型要求的输入分辨率
-    this->declare_parameter<int>("detector_width", 640);
-    this->declare_parameter<int>("detector_height", 360);
-    // shared_memory_name: 用于零拷贝图像传输的共享内存名称
+    this->declare_parameter<std::string>("input_topic", "camera/detector_frame_ref"); // 输入图像主题
+    this->declare_parameter<int>("detector_width", 640);           // 检测器输入宽度
+    this->declare_parameter<int>("detector_height", 360);          // 检测器输入高度
     this->declare_parameter<std::string>("shared_memory_name", "/camera_001_detector_shm");
-    // worker_threads: 并行推理的线程数量
-    this->declare_parameter<int>("worker_threads", 1);
-    // max_queue_size: 待处理任务队列的最大长度，防止 OOM
-    this->declare_parameter<int>("max_queue_size", 8);
+    this->declare_parameter<int>("worker_threads", 1);             // 并行推理线程数
+    this->declare_parameter<int>("max_queue_size", 8);             // 待处理任务队列最大容量
 
     float confidence_threshold = 0.5f;
     float nms_threshold = 0.5f;
@@ -361,14 +362,21 @@ private:
    * @brief 推理工作线程主循环
    * 从任务队列中获取图像引用，通过共享内存读取数据并调用 YOLO 执行检测
    */
+  /**
+   * @brief 推理工作线程循环
+   * @param worker_idx 线程索引
+   * 
+   * 循环从任务队列中提取任务，通过共享内存获取图像数据，执行 YOLO 推理，
+   * 并发布检测结果。
+   */
   void workerLoop(int worker_idx)
   {
     auto &worker = workers_.at(static_cast<size_t>(worker_idx));
     while (rclcpp::ok()) {
       FrameTask task;
       {
-        // 等待队列有新任务或停止信号
         std::unique_lock<std::mutex> lock(queue_mutex_);
+        // 等待直到队列不为空或收到停止信号
         queue_cv_.wait(lock, [this]() { return stop_workers_ || !queue_.empty(); });
         if (stop_workers_ && queue_.empty()) {
           return;
@@ -378,7 +386,7 @@ private:
       }
 
       const auto t0 = std::chrono::steady_clock::now();
-      // 获取共享内存插槽访问权
+      // 锁定并访问共享内存中的插槽
       if (!detector_ring_->acquire(task.ref.slot_index, task.ref.sequence)) {
         dropped_frames_.fetch_add(1);
         continue;
@@ -391,20 +399,19 @@ private:
         continue;
       }
 
-      // 将共享内存指针包装为 OpenCV Mat (零拷贝)
+      // 封装为 OpenCV 矩阵进行推理
       cv::Mat frame(
         static_cast<int>(view.height),
         static_cast<int>(view.width),
         CV_8UC3,
         const_cast<uint8_t *>(view.data),
         view.step);
-      // 执行 AI 推理
       DetectionResult detection_result = worker->yolo->Detect(frame);
       const auto t1 = std::chrono::steady_clock::now();
 
-      // 如果发现违规，更新检测门控状态
       if (!detection_result.detections.empty()) {
         std::lock_guard<std::mutex> gate_lock(gate_mutex_);
+        // 如果检测到目标，通知门控更新状态（用于高频锁定逻辑）
         detection_gate_.on_detection(t1);
       }
 
@@ -424,7 +431,7 @@ private:
       result.annotated_image = *cv_bridge::CvImage(task.ref.header, "bgr8", detection_result.annotated_image).toImageMsg();
 
       result_pub_->publish(result);
-      // 释放共享内存插槽
+      // 释放共享内存插槽供相机节点重用
       detector_ring_->release(task.ref.slot_index);
       output_frames_.fetch_add(1);
       // reportStats();
@@ -432,8 +439,13 @@ private:
   }
 
   /**
-   * @brief 图像主题回调函数
-   * 负责接收相机发出的图像引用，并根据采样门控逻辑决定是否放入推理队列
+   * @brief 相机图像引用订阅回调
+   * @param ref 共享内存中的图像引用
+   * 
+   * 负责流量控制：
+   * 1. 询问检测门控是否应当处理当前帧
+   * 2. 如果应该处理，则将其加入工作队列
+   * 3. 如果跳过处理，则直接发布一个空的“透传”结果（保持输出流稳定性）
    */
   void imageCallback(const bishe_msgs::msg::SharedFrameRef::SharedPtr ref)
   {
@@ -443,13 +455,13 @@ private:
       const auto now = std::chrono::steady_clock::now();
       bool should_process = false;
       {
-        // 门控逻辑：判断当前帧是否需要进行推理
         std::lock_guard<std::mutex> lock(gate_mutex_);
+        // 基于 sampling_interval_ms 的判定逻辑
         should_process = detection_gate_.should_process(now);
       }
 
-      // 如果不需要推理，则执行“透传”逻辑，直接发布无违规的结果
       if (!should_process) {
+        // ... 跳过处理逻辑 ...
         if (!detector_ring_->acquire(ref->slot_index, ref->sequence)) {
           dropped_frames_.fetch_add(1);
           return;
