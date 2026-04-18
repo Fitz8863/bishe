@@ -9,7 +9,7 @@ cameras:
     detector:
       confidence_threshold: 0.25
       nms_threshold: 0.45
-      sampling_interval_ms: 1000
+      sampling_interval_ms: 100
       lock_duration_ms: 3000
       engine_path: "models/best.engine"
       worker_threads: 1
