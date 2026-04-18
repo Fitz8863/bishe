@@ -1,1 +1,1 @@
-ros2launch
+bishe_camera:bishe_detector:bishe_monitor:bishe_mqtt:bishe_streamer:launch_ros:rclcpp_components:ros2launch

@@ -13,3 +13,9 @@ jetson@jetson-orin-nano:~$ pactl list sources short
 
 立即切换（即时生效）
 pactl set-default-source alsa_input.usb-Yundea_Technology_Yundea_1076_415035333633350F-01.mono-fallback
+
+播放音频测试
+ffplay -loop 0 -nodisp /home/jetson/projects/bishe/edge/assets/alarm.wav
+
+拉流测试
+ffplay  -nodisp -i  rtsp://fnas:8554/jetson-orin-nano

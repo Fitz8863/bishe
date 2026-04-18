@@ -16,6 +16,8 @@ public:
   using TimePoint = Clock::time_point;
   using Duration = std::chrono::seconds;
 
+  AlarmUploadGate() = default;
+
   AlarmUploadGate(int upload_after_alarm_count, bool reset_after_upload, Duration quiet_timeout)
   {
     updateConfig(upload_after_alarm_count, reset_after_upload, quiet_timeout);

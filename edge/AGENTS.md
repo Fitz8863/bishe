@@ -1,33 +1,34 @@
 # 🤖 Agent Guidelines for `bishe` Workspace (ROS 2 Humble)
 
-This repository contains a ROS 2 Humble workspace for a camera monitoring and safety detection system on Jetson Orin Nano. It includes nodes for camera capture (GStreamer), AI detection (TensorRT/YOLO), MQTT communication, and rule-based monitoring.
+This workspace contains the edge-side detection code running on Jetson Orin Nano for the Chemical Plant Hazard Detection System.
 
 ## 🏗️ Environment & Architecture
 - **Framework**: ROS 2 Humble (Ubuntu 22.04).
 - **Primary Languages**: C++17 and Python 3.10.
 - **Build System**: Colcon with `ament_cmake` or `ament_python`.
-- **Key Dependencies**: TensorRT, OpenCV (CUDA enabled), CUDA, image_transport, cv_bridge, Paho MQTT C++.
+- **Key Dependencies**: TensorRT 10.7, OpenCV (CUDA), Paho MQTT C++.
+
+### ⚠️ Critical Environment Quirks
+- **TensorRT Path**: Hardcoded in `bishe_detector/CMakeLists.txt` as `/home/ad/TensorRT-10.7.0.23/`.
+- **Dependency Chain**: `bishe_msgs` is the core dependency. **You MUST rebuild `bishe_msgs` first** after any `.msg` changes.
+- **MQTT Bridge**: `mqtt_node` bridges ROS topics (like `/alarm/event`) to MQTT. Ensure subscriptions are initialized in constructors.
+- **Default Device**: `jetson-orin-nano`.
 
 ## 🛠️ Build & Test Commands
 Always run from the workspace root (`/home/jetson/projects/bishe/edge`).
 
 - **Build All**: `colcon build --symlink-install`
-- **Build Package**: `colcon build --packages-select <package_name> --symlink-install`
-- **Build for LSP**: `colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON`
-- **Clean**: `rm -rf build/ install/ log/`
+- **Build Single Package**: `colcon build --packages-select <package_name> --symlink-install`
+- **Build with Compile Commands**: `colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON`
 - **Source Environment**: `source install/setup.bash`
 - **Test All**: `colcon test`
-- **Test Package**: `colcon test --packages-select <package_name>`
-- **Single Test**:
-  - Python: `colcon test --packages-select <pkg> --pytest-args -k "test_name"`
-  - C++: `colcon test --packages-select <pkg> --ctest-args -R "test_name"`
 
 ## 📝 Code Style & Conventions
 
 ### 1. General Rules
 - **Language**: Logic and variable names MUST be in English.
-- **Comments**: Chinese comments/strings are encouraged for clarity in this project.
-- **Sync**: Keep `package.xml` and `CMakeLists.txt`/`setup.py` synchronized.
+- **Comments**: **Chinese comments are strongly encouraged** for clarity.
+- **Safety**: Ensure all background threads and timers are explicitly joined/stopped in destructors.
 
 ### 2. C++ Guidelines (ROS 2 Style)
 - **Formatting**: 2-space indentation. Braces on new lines for classes/functions, but often same line for control flow in existing code.
