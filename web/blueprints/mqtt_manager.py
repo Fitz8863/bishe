@@ -94,7 +94,7 @@ class MQTTManager:
                     print("[DEBUG] 进入 fire 警报分支，准备发送 SocketIO 事件...")
                     from exts import socketio
                     socketio.emit('fire_alarm', {
-                        'message': '检测到火灾警报！',
+                        'message': '检测到火警报！',
                         'camera_id': payload.get('camera_id'),
                         'location': payload.get('location'),
                         'timestamp': payload.get('timestamp_ns')

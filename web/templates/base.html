@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}化工厂危险行为检测系统{% endblock %}</title>
+    <title>{% block title %}化工厂安全监控系统{% endblock %}</title>
     
     <link href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
                 <div class="bg-primary-color rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
                     <i class="fas fa-shield-alt text-dark" style="font-size: 1rem;"></i>
                 </div>
-                <span>化工厂危险行为检测系统</span>
+                <span>化工厂安全监控系统</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -368,7 +368,7 @@
             toast.innerHTML = `
                 <div class="d-flex align-items-center mb-2">
                     <i class="fas fa-fire me-2 text-danger" style="font-size: 1.2rem;"></i>
-                    <strong class="me-auto text-white" style="font-size: 1rem; letter-spacing: 0.05em;">紧急：检测到火灾！</strong>
+                    <strong class="me-auto text-white" style="font-size: 1rem; letter-spacing: 0.05em;">紧急：检测到有明火！</strong>
                     <button type="button" class="btn-close btn-close-white ms-2" onclick="this.parentElement.parentElement.remove()"></button>
                 </div>
                 <div class="text-white-50 small mb-0">${data.message || '请立即检查实时监控并采取行动！'}</div>

@@ -43,7 +43,7 @@
         </div>
         <div class="col-md-3">
             <div class="card p-3 border-start border-4 border-danger">
-                <div class="stat-label mb-1">今日告警</div>
+                <div class="stat-label mb-1">今日抓拍</div>
                 <div class="stat-number text-danger" id="todayCount">-</div>
             </div>
         </div>
@@ -376,7 +376,7 @@
                 const total = data.pagination?.total || 0;
                 document.getElementById('captureCount').textContent = total;
                 
-                // 计算今日告警
+                // 计算今日
                 const today = new Date().toISOString().split('T')[0];
                 fetch(`/capture/list?start_time=${today}T00:00&per_page=1`)
                     .then(res => res.json())

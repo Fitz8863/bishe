@@ -4,9 +4,9 @@
 #include <ESP8266HTTPClient.h>
 
 const char *ssid = "GUET-WiFi";
-const char *campus_account = "2200340118";
-const char *campus_account_suffix = "@unicom";
-const char *campus_password = "A159357zop";
+const char *campus_account = "2200340117";
+const char *campus_account_suffix = "@";
+const char *campus_password = "Guet@051010";
 const char *portal_probe_host = "www.baidu.com";
 const char *portal_probe_path = "/";
 const char *portal_login_base_url = "http://10.0.1.5:801/eportal/portal/login";
