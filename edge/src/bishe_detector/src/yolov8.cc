@@ -53,10 +53,44 @@ void YOLOv8::ReleaseBuffers() {
     }
 }
 
+void YOLOv8::SetPreprocessingParams(bool enable_clahe, double overexposed_threshold, double underexposed_threshold, double low_contrast_threshold) {
+    enable_clahe_ = enable_clahe;
+    clahe_overexposed_threshold_ = overexposed_threshold;
+    clahe_underexposed_threshold_ = underexposed_threshold;
+    clahe_low_contrast_threshold_ = low_contrast_threshold;
+}
+
 cv::Mat YOLOv8::PreprocessImage(const cv::Mat& original_img) {
+    cv::Mat process_img = original_img;
+
+    if (enable_clahe_) {
+        cv::Mat gray;
+        cv::cvtColor(original_img, gray, cv::COLOR_BGR2GRAY);
+        cv::Scalar mean_val, std_val;
+        cv::meanStdDev(gray, mean_val, std_val);
+        const double mean_brightness = mean_val[0];
+        const double contrast = std_val[0];
+
+        if (mean_brightness > clahe_overexposed_threshold_ ||
+            mean_brightness < clahe_underexposed_threshold_ ||
+            contrast < clahe_low_contrast_threshold_) {
+            cv::Mat lab;
+            cv::cvtColor(original_img, lab, cv::COLOR_BGR2Lab);
+            std::vector<cv::Mat> lab_channels;
+            cv::split(lab, lab_channels);
+
+            cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
+            clahe->setClipLimit(3.0);
+            clahe->apply(lab_channels[0], lab_channels[0]);
+
+            cv::merge(lab_channels, lab);
+            cv::cvtColor(lab, process_img, cv::COLOR_Lab2BGR);
+        }
+    }
+
     cv::Mat blob;
     cv::dnn::blobFromImage(
-        original_img,
+        process_img,
         blob,
         1.0 / 255.0,
         cv::Size(input_size_, input_size_),

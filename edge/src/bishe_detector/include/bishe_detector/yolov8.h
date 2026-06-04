@@ -19,6 +19,7 @@ public:
     cv::Mat PreprocessImage(const cv::Mat& original_img) override;
     cv::Mat PostprocessImage(cv::Mat& output, const cv::Mat& original_img, const cv::Size& original_size) override;
     void SetThresholds(float score_treshold, float nms_treshold);
+    void SetPreprocessingParams(bool enable_clahe, double overexposed_threshold, double underexposed_threshold, double low_contrast_threshold);
 
 protected:
 
@@ -38,4 +39,9 @@ protected:
 
     void AllocateBuffers();
     void ReleaseBuffers();
+
+    bool enable_clahe_{true};
+    double clahe_overexposed_threshold_{200.0};
+    double clahe_underexposed_threshold_{50.0};
+    double clahe_low_contrast_threshold_{40.0};
 };

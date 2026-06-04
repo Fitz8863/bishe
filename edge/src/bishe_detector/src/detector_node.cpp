@@ -57,6 +57,10 @@ public:
     this->declare_parameter<std::string>("shared_memory_name", "/camera_001_detector_shm");
     this->declare_parameter<int>("worker_threads", 1);             // 并行推理线程数
     this->declare_parameter<int>("max_queue_size", 8);             // 待处理任务队列最大容量
+    this->declare_parameter<bool>("enable_clahe", true);          // CLAHE 自适应对比度增强总开关
+    this->declare_parameter<double>("clahe_overexposed_threshold", 200.0);   // 过曝阈值
+    this->declare_parameter<double>("clahe_underexposed_threshold", 50.0);   // 欠曝阈值
+    this->declare_parameter<double>("clahe_low_contrast_threshold", 40.0);   // 低对比度阈值
 
     float confidence_threshold = 0.5f;
     float nms_threshold = 0.5f;
@@ -73,6 +77,12 @@ public:
     this->get_parameter("shared_memory_name", shared_memory_name_);
     this->get_parameter("worker_threads", worker_threads_);
     this->get_parameter("max_queue_size", max_queue_size_);
+    bool enable_clahe = true;
+    double clahe_overexposed = 200.0, clahe_underexposed = 50.0, clahe_low_contrast = 40.0;
+    this->get_parameter("enable_clahe", enable_clahe);
+    this->get_parameter("clahe_overexposed_threshold", clahe_overexposed);
+    this->get_parameter("clahe_underexposed_threshold", clahe_underexposed);
+    this->get_parameter("clahe_low_contrast_threshold", clahe_low_contrast);
     confidence_threshold_.store(confidence_threshold);
     nms_threshold_.store(nms_threshold);
     sampling_interval_ms_ = std::max(1, sampling_interval_ms);
@@ -91,6 +101,10 @@ public:
       auto trt_engine = std::make_unique<TrtEngine>(logger);
       trt_engine->LoadEngine(engine_path_);
       workers_.push_back(std::make_unique<WorkerContext>(WorkerContext{std::make_unique<YOLOv8>(std::move(trt_engine), confidence_threshold_.load(), nms_threshold_.load())}));
+    }
+
+    for (auto &worker : workers_) {
+      worker->yolo->SetPreprocessingParams(enable_clahe, clahe_overexposed, clahe_underexposed, clahe_low_contrast);
     }
 
     for (int i = 0; i < worker_threads_; ++i) {
@@ -427,7 +441,19 @@ private:
       result.has_violation = !detection_result.detections.empty();
       result.confidence = detection_result.detections.empty() ? 0.0f : detection_result.detections.front().confidence;
       result.nms_threshold = this->nms_threshold_.load();
-      result.violation_type = detection_result.detections.empty() ? "" : detection_result.detections.front().class_name;
+      // 遍历所有检测结果，优先使用 smoking/fire 等违规类别作为 violation_type
+      // （person 和 helmet 不会触发警报，仅用于标注显示）
+      result.violation_type = "";
+      for (const auto &det : detection_result.detections) {
+        if (det.class_name == "smoking" || det.class_name == "fire") {
+          result.violation_type = det.class_name;
+          break;
+        }
+      }
+      // 如果没有 smoking/fire，fallback 到第一个检测结果（供标注显示）
+      if (result.violation_type.empty() && !detection_result.detections.empty()) {
+        result.violation_type = detection_result.detections.front().class_name;
+      }
       result.annotated_image = *cv_bridge::CvImage(task.ref.header, "bgr8", detection_result.annotated_image).toImageMsg();
 
       result_pub_->publish(result);

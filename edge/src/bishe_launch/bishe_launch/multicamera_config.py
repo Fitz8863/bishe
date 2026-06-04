@@ -8,6 +8,7 @@ def _camera_parameters(camera: dict, device_name: str) -> dict:
     detector_height = max(1, int(round(camera.get("height", 720) * detector_scale)))
     return {
         "video_device": camera["device"],
+        "source_type": camera.get("source_type", "v4l2"),
         "device": device_name,
         "width": camera.get("width", 1280),
         "height": camera.get("height", 720),
@@ -39,6 +40,10 @@ def _detector_parameters(camera: dict, detector: dict, device_name: str) -> dict
         "detector_width": detector_width,
         "detector_height": detector_height,
         "shared_memory_name": f"/camera_{camera['id']}_detector_shm",
+        "enable_clahe": detector.get("enable_clahe", True),
+        "clahe_overexposed_threshold": detector.get("clahe_overexposed_threshold", 200.0),
+        "clahe_underexposed_threshold": detector.get("clahe_underexposed_threshold", 50.0),
+        "clahe_low_contrast_threshold": detector.get("clahe_low_contrast_threshold", 40.0),
     }
 
 

@@ -138,7 +138,7 @@ def _generate_nodes(context):
             name="mqtt_node",
             parameters=[
                 {
-                    "broker": "100.127.154.73",
+                    "broker": "10.60.83.159",
                     "port": 1883,
                     "client_id": "jetson",
                     "device": "jetson-orin-nano",

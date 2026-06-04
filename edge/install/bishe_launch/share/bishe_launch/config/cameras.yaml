@@ -1,34 +1,40 @@
 cameras:
   - id: "001"
-    device: "/dev/video0"
-    location: "生产车间A区"
+    # device: "/home/jetson/projects/bishe/edge/video/fire2.mp4"
+    # source_type: "file"  
+    device: "/dev/video0"          #  /home/jetson/projects/bishe/edge/video/spiderman.mp4 摄像头设备 | 或 MP4 视频路径 (当 source_type: "file")
+    source_type: "v4l2"            # "v4l2" (摄像头) | "file" (MP4 视频)
+    location: "物料仓库C区"
     width: 1280
     height: 720
-    framerate: 60
+    framerate: 30
     detector_scale: 1.0
     detector:
-      confidence_threshold: 0.25
+      confidence_threshold: 0.23
       nms_threshold: 0.45
       sampling_interval_ms: 100
       lock_duration_ms: 3000
-      engine_path: "models/best.engine"
+      engine_path: "models/best-new.engine"
       worker_threads: 1
       max_queue_size: 4
+      enable_clahe: false             # CLAHE 自适应对比度增强总开关
+      clahe_overexposed_threshold: 200.0   # 过曝阈值（平均亮度 > 此值触发）
+      clahe_underexposed_threshold: 50.0   # 欠曝阈值（平均亮度 < 此值触发）
+      clahe_low_contrast_threshold: 40.0   # 对比度阈值（标准差 < 此值触发）
     streamer:
-      rtsp_url: "rtsp://localhost:8554/stream_001"  # rtsp://jetson-orin-nano:8554/stream_001
-      http_url: "http://100.127.154.73:8889/jetson-stream1"
+      rtsp_url: "rtsp://10.60.83.159:8554/stream_001"  # rtsp://jetson-orin-nano:8554/stream_001
+      http_url: "http://10.60.83.159:8889/jetson-stream1"
       scale: 1.0
       audio_device: "hw:0,0"
-      framerate: 60
+      framerate: 30
     monitor:
-      window_seconds: 8
-      trigger_frame_threshold: 80
+      window_seconds: 6
+      trigger_frame_threshold: 35
       trigger_cooldown_seconds: 3
       upload_after_alarm_count: 3
       reset_alarm_count_after_upload: true
-      alarm_count_reset_timeout_seconds: 30
-      upload_server_url: "http://100.82.58.128:5001/capture/upload"
-      upload_timeout_seconds: 10
+      alarm_count_reset_timeout_seconds: 60
+      upload_server_url: "http://10.33.32.92:5001/capture/upload" # 这个ip要看web端去手动改！！！
+      upload_timeout_seconds: 15
       fire_alarm_audio_file: "assets/alarm.wav"
       smoking_alarm_audio_file: "assets/smoking_alarm0.wav"
-

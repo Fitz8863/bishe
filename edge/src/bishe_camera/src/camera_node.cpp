@@ -22,6 +22,7 @@ public:
       : Node("camera_node", options)
   {
     this->declare_parameter<std::string>("video_device", "/dev/video0");
+    this->declare_parameter<std::string>("source_type", "v4l2");
     this->declare_parameter<int>("width", 1280);
     this->declare_parameter<int>("height", 720);
     this->declare_parameter<int>("framerate", 60);
@@ -32,6 +33,7 @@ public:
     this->declare_parameter<std::string>("shared_metadata_topic", "camera/detector_frame_ref");
 
     this->get_parameter("video_device", device_);
+    this->get_parameter("source_type", source_type_);
     this->get_parameter("width", width_);
     this->get_parameter("height", height_);
     this->get_parameter("framerate", framerate_);
@@ -87,73 +89,89 @@ private:
 
   void initCamera()
   {
-    // Robust GStreamer pipeline for Jetson MJPEG capture
-    // Added jpegparse and simplified conversion
-    std::string pipeline =
-        "v4l2src device=" + device_ + " do-timestamp=true ! "
-        "image/jpeg, width=" + std::to_string(width_) + ", height=" + std::to_string(height_) + ", framerate=" + std::to_string(framerate_) + "/1 ! "
-        "jpegparse ! nvv4l2decoder mjpegdecode=1 ! "
-        "nvvidconv ! video/x-raw, format=BGRx ! "
-        "videoconvert ! video/x-raw, format=BGR ! appsink drop=true";
+    if (source_type_ == "file") {
+      // 从 MP4 视频文件读取，使用 CPU (FFmpeg) 解码
+      RCLCPP_INFO(this->get_logger(), "打开视频文件: %s", device_.c_str());
+      cap_.open(device_, cv::CAP_FFMPEG);
+      if (!cap_.isOpened()) {
+        RCLCPP_ERROR(this->get_logger(), "无法打开视频文件 %s", device_.c_str());
+        throw std::runtime_error("视频文件打开失败");
+      }
+      // 用文件实际 FPS 覆盖配置值，使 timer 间隔匹配
+      double real_fps = cap_.get(cv::CAP_PROP_FPS);
+      if (real_fps > 0) {
+        framerate_ = static_cast<int>(real_fps);
+        RCLCPP_INFO(this->get_logger(), "视频文件 FPS: %d", framerate_);
+      }
+    } else {
+      // Robust GStreamer pipeline for Jetson MJPEG capture
+      std::string pipeline =
+          "v4l2src device=" + device_ + " do-timestamp=true ! "
+          "image/jpeg, width=" + std::to_string(width_) + ", height=" + std::to_string(height_) + ", framerate=" + std::to_string(framerate_) + "/1 ! "
+          "jpegparse ! nvv4l2decoder mjpegdecode=1 ! "
+          "nvvidconv ! video/x-raw, format=BGRx ! "
+          "videoconvert ! video/x-raw, format=BGR ! appsink drop=true";
 
-    // RCLCPP_INFO(this->get_logger(), "Opening pipeline: %s", pipeline.c_str());
-    cap_.open(pipeline, cv::CAP_GSTREAMER);
-    if (!cap_.isOpened()) {
-      RCLCPP_ERROR(this->get_logger(), "无法打开摄像头 %s  GStreamer", device_.c_str());
-      throw std::runtime_error("摄像头打开失败");
+      cap_.open(pipeline, cv::CAP_GSTREAMER);
+      if (!cap_.isOpened()) {
+        RCLCPP_ERROR(this->get_logger(), "无法打开摄像头 %s  GStreamer", device_.c_str());
+        throw std::runtime_error("摄像头打开失败");
+      }
+      RCLCPP_INFO(this->get_logger(), "摄像头打开成功");
     }
-    RCLCPP_INFO(this->get_logger(), "摄像头打开成功");
   }
 
   void publishFrame()
   {
     cv::Mat frame;
-    if (cap_.read(frame)) {
-      if (!frame.empty()) {
-        auto now = this->now();
-        std_msgs::msg::Header header;
-        header.stamp = now;
-        header.frame_id = "camera_frame";
-
-        auto full_msg = cv_bridge::CvImage(header, "bgr8", frame).toImageMsg();
-        image_pub_->publish(*full_msg);
-
-        cv::Mat detector_frame;
-        if (detector_width_ != frame.cols || detector_height_ != frame.rows) {
-          cv::resize(frame, detector_frame, cv::Size(detector_width_, detector_height_), 0.0, 0.0, cv::INTER_LINEAR);
-        } else {
-          detector_frame = frame;
-        }
-
-        const uint32_t bytes_used = static_cast<uint32_t>(detector_frame.step * detector_frame.rows);
-        uint32_t slot_index = 0;
-        const uint64_t sequence = ++detector_sequence_;
-        if (detector_ring_->writeNext(
-              sequence,
-              detector_frame.data,
-              bytes_used,
-              static_cast<uint32_t>(detector_frame.cols),
-              static_cast<uint32_t>(detector_frame.rows),
-              static_cast<uint32_t>(detector_frame.step),
-              "bgr8",
-              slot_index)) {
-          bishe_msgs::msg::SharedFrameRef ref_msg;
-          ref_msg.header = header;
-          ref_msg.sequence = sequence;
-          ref_msg.slot_index = slot_index;
-          ref_msg.width = detector_frame.cols;
-          ref_msg.height = detector_frame.rows;
-          ref_msg.step = detector_frame.step;
-          ref_msg.bytes_used = bytes_used;
-          ref_msg.encoding = "bgr8";
-          detector_ref_pub_->publish(ref_msg);
-        } else {
-          // RCLCPP_WARN_THROTTLE(
-          //   this->get_logger(), *this->get_clock(), 2000,
-          //   "共享内存检测帧写入失败，丢弃当前 detector 帧");
-        }
-        // reportFps();
+    if (!cap_.read(frame)) {
+      if (source_type_ == "file") {
+        RCLCPP_INFO(this->get_logger(), "视频播放完毕，重新播放");
+        cap_.set(cv::CAP_PROP_POS_FRAMES, 0);
+        cap_.read(frame);
       }
+    }
+    if (frame.empty()) {
+      return;
+    }
+
+    auto now = this->now();
+    std_msgs::msg::Header header;
+    header.stamp = now;
+    header.frame_id = "camera_frame";
+
+    auto full_msg = cv_bridge::CvImage(header, "bgr8", frame).toImageMsg();
+    image_pub_->publish(*full_msg);
+
+    cv::Mat detector_frame;
+    if (detector_width_ != frame.cols || detector_height_ != frame.rows) {
+      cv::resize(frame, detector_frame, cv::Size(detector_width_, detector_height_), 0.0, 0.0, cv::INTER_LINEAR);
+    } else {
+      detector_frame = frame;
+    }
+
+    const uint32_t bytes_used = static_cast<uint32_t>(detector_frame.step * detector_frame.rows);
+    uint32_t slot_index = 0;
+    const uint64_t sequence = ++detector_sequence_;
+    if (detector_ring_->writeNext(
+          sequence,
+          detector_frame.data,
+          bytes_used,
+          static_cast<uint32_t>(detector_frame.cols),
+          static_cast<uint32_t>(detector_frame.rows),
+          static_cast<uint32_t>(detector_frame.step),
+          "bgr8",
+          slot_index)) {
+      bishe_msgs::msg::SharedFrameRef ref_msg;
+      ref_msg.header = header;
+      ref_msg.sequence = sequence;
+      ref_msg.slot_index = slot_index;
+      ref_msg.width = detector_frame.cols;
+      ref_msg.height = detector_frame.rows;
+      ref_msg.step = detector_frame.step;
+      ref_msg.bytes_used = bytes_used;
+      ref_msg.encoding = "bgr8";
+      detector_ref_pub_->publish(ref_msg);
     }
   }
 
@@ -162,6 +180,7 @@ private:
   rclcpp::TimerBase::SharedPtr timer_;
   cv::VideoCapture cap_;
   std::string device_;
+  std::string source_type_;
   int width_;
   int height_;
   int framerate_;
