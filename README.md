@@ -259,7 +259,7 @@ Paho MQTT C++ Library
 - 确保 MQTT 主题命名规范统一
 
 ---
-<img width="900" height="307" alt="image" src="https://github.com/user-attachments/assets/0a390a85-1307-446a-bf90-5e13b2e653a0" />
+<img width="995" height="338" alt="image" src="https://github.com/user-attachments/assets/cf535875-4d78-402d-a5fa-4bbf6ca7aa2a" />
 
 ## 许可证
 
